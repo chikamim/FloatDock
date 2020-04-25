@@ -20,6 +20,11 @@
 
 @implementation ViewController
 
+// 没有 使用 xib 的话, 需要自己创建
+- (void)loadView {
+    self.view = [NSView new];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
