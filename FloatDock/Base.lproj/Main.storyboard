@@ -628,6 +628,16 @@
                                                 <action selector="toggleFullScreen:" target="Ady-hI-5gd" id="dU3-MA-1Rq"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Alpha +" keyEquivalent="" id="q9B-Wl-aYh">
+                                            <connections>
+                                                <action selector="alphaUp:" target="Voe-Tx-rLC" id="MUL-gA-QFb"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Alpha -" keyEquivalent="" id="qXU-Oo-UvV">
+                                            <connections>
+                                                <action selector="alphaDown:" target="Voe-Tx-rLC" id="L7y-ny-WKY"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -699,7 +709,7 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="96" y="521"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -712,7 +722,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="655"/>
+            <point key="canvasLocation" x="96" y="913"/>
         </scene>
     </scenes>
 </document>

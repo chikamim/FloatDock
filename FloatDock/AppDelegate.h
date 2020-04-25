@@ -12,5 +12,8 @@
 
 @property (nonatomic, weak  ) NSWindow * window;
 
+- (IBAction)alphaUp:(id)sender;
+- (IBAction)alphaDown:(id)sender;
+
 @end
 

@@ -32,17 +32,15 @@
 }
 
 - (void)setWindowStyle:(NSWindow *)window {
-    //window.minSize = CGSizeMake(400, 80);
-    //window.maxSize = CGSizeMake(400, 81);
     
     [window setStyleMask:NSWindowStyleMaskBorderless];
+
     CGRect rect =CGRectMake(window.frame.origin.x, window.frame.origin.y, 400, 60);
-    
     [window setFrame:rect display:YES];
     
     [window setMovableByWindowBackground:YES]; // 整体都可以拖拽
     
-    
+    window.hasShadow = NO; // 关闭阴影
 }
 
 
@@ -50,5 +48,17 @@
     // Insert code here to tear down your application
 }
 
+
+- (IBAction)alphaUp:(id)sender {
+    if (self.window.alphaValue < 1.0) {
+        self.window.alphaValue = self.window.alphaValue + 0.05;
+    }
+}
+
+- (IBAction)alphaDown:(id)sender {
+    if (self.window.alphaValue > 0.1) {
+        self.window.alphaValue = self.window.alphaValue - 0.05;
+    }
+}
 
 @end
