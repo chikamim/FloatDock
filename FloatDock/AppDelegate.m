@@ -17,14 +17,18 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
-    ViewController * vc = [[ViewController alloc] init];
+#if TARGET_OS_MAC//模拟器
+    NSString * macOSInjectionPath = @"/Applications/InjectionIII.app/Contents/Resources/macOSInjection.bundle";
+    if ([[NSFileManager defaultManager] fileExistsAtPath:macOSInjectionPath]) {
+        [[NSBundle bundleWithPath:macOSInjectionPath] load];
+    }
+#endif
     
+    // 设置 wc
+    ViewController * vc = [[ViewController alloc] init];
     NSWindow * window = [NSApplication sharedApplication].keyWindow;
     [window setContentViewController:vc];
-    
-    //window.title = @"Float Dock";
     self.window = window;
-    
     [self setWindowStyle:window];
     
     //self.window.contentView.layer.cornerRadius = 12;
@@ -48,7 +52,6 @@
     
     window.alphaValue = 0.4;
 }
-
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application

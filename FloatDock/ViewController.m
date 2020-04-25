@@ -131,8 +131,6 @@
         [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:config completionHandler:nil];
     }
     // [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[url]]; // 打开文件夹
-    
-    [self addW];
 }
 
 - (void)mouseEntered:(NSEvent *)event {
@@ -142,20 +140,6 @@
 
 - (void)mouseExited:(NSEvent *)event {
     self.view.window.alphaValue = 0.5;
-}
-
-- (void)addW {
-    //NSWindow * win = [[NSWindow alloc] init];
-    
-    
-    //[win ]
-}
-
-// MARK: 注册 drag drop
-- (void)registerDragDrop {
-    //self.view.registeredDraggedTypes = @[NSPasteboardTypeFileURL];
-    [self.view registerForDraggedTypes:@[NSPasteboardTypeFileURL]];
-    
 }
 
 @end
