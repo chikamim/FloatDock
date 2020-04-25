@@ -15,6 +15,7 @@
 		E43781D82453306900AA785B /* AppInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781D72453306900AA785B /* AppInfoEntity.m */; };
 		E43781DA2453F07800AA785B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E43781D92453F07800AA785B /* icon.png */; };
 		E43781DD2453FC3500AA785B /* DragView.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781DC2453FC3500AA785B /* DragView.m */; };
+		E43781E324542D6A00AA785B /* DataSavePath.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781E224542D6A00AA785B /* DataSavePath.m */; };
 		E97881DF951C3A94C79F92A5 /* Pods_FloatDock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4376660DB09AC0CFCDE5409 /* Pods_FloatDock.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +38,8 @@
 		E43781D92453F07800AA785B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = SOURCE_ROOT; };
 		E43781DB2453FC3500AA785B /* DragView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragView.h; sourceTree = "<group>"; };
 		E43781DC2453FC3500AA785B /* DragView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragView.m; sourceTree = "<group>"; };
+		E43781E124542D6A00AA785B /* DataSavePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSavePath.h; sourceTree = "<group>"; };
+		E43781E224542D6A00AA785B /* DataSavePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSavePath.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +84,7 @@
 		E43781BE2453291B00AA785B /* FloatDock */ = {
 			isa = PBXGroup;
 			children = (
+				E43781E424543BE900AA785B /* tool */,
 				E43781D32453292B00AA785B /* other */,
 				E43781BF2453291B00AA785B /* AppDelegate.h */,
 				E43781C02453291B00AA785B /* AppDelegate.m */,
@@ -113,6 +117,15 @@
 				E43781DC2453FC3500AA785B /* DragView.m */,
 			);
 			path = entity;
+			sourceTree = "<group>";
+		};
+		E43781E424543BE900AA785B /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				E43781E124542D6A00AA785B /* DataSavePath.h */,
+				E43781E224542D6A00AA785B /* DataSavePath.m */,
+			);
+			path = tool;
 			sourceTree = "<group>";
 		};
 		FF76C8A160FF392FDD2F7FA6 /* Frameworks */ = {
@@ -241,6 +254,7 @@
 				E43781C42453291B00AA785B /* ViewController.m in Sources */,
 				E43781CC2453291C00AA785B /* main.m in Sources */,
 				E43781C12453291B00AA785B /* AppDelegate.m in Sources */,
+				E43781E324542D6A00AA785B /* DataSavePath.m in Sources */,
 				E43781DD2453FC3500AA785B /* DragView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,9 +13,9 @@
 
 @interface ViewController()
 
-@property (nonatomic, strong) NSMutableArray * urlArray;
+//@property (nonatomic, strong) NSMutableArray * urlArray;
 @property (nonatomic, strong) DragView * dv;
-
+@property (nonatomic, strong) NSMutableArray * btArray;
 @end
 
 @implementation ViewController
@@ -31,7 +31,7 @@
     //self.view.layer.backgroundColor = (__bridge CGColorRef _Nullable)([NSColor whiteColor]);
     // [CGColor whiteColor];
     //self.view.frame = CGRectMake(0, 0, 400, 80);
-    
+    self.btArray = [NSMutableArray new];
     [self addDvs];
     [self addViews];
 }
@@ -49,42 +49,62 @@
     
     __weak typeof(self) weakSelf = self;
     self.dv.dragAppBlock = ^(NSString * _Nonnull string) {
-        [weakSelf.urlArray addObject:[NSString stringWithFormat:@"file://%@/", string]];
-        [weakSelf addBT:weakSelf.urlArray.count - 1];
+        [weakSelf addAppPath:string];
+        [AppInfoTool updateEntity];
     };
 }
 
 - (void)addViews {
-    self.urlArray = [@[
-        @"file:///System/Library/CoreServices/Finder.app/",
-        @"file:///Applications/Google Chrome.app",
-        @"file:///Applications/Xcode.app/",
-        //@"file:///Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/",
-        @"file:///Applications/iTerm.app/",
-    ] mutableCopy];
     
-  
-    for (NSInteger i = 0; i<self.urlArray.count; i++) {
-        [self addBT:i];
-    }
+    [self showBeforeAppPaths];
 }
 
-- (void)addBT:(NSInteger)index {
+// MARK: 增加 按钮
+- (void)showBeforeAppPaths {
+    CGFloat maxX = 70;
+    for (NSInteger i = 0; i<self.appInfoEntity.appPathArray.count; i++) {
+        maxX =[self addBT:i];
+    }
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        CGRect rect = CGRectMake(self.view.window.frame.origin.x,
+                                 self.view.window.frame.origin.y,
+                                 maxX,
+                                 VcHeight);
+        [self.view.window setFrame:rect display:YES];
+        
+        [self.view.window setLevel:NSFloatingWindowLevel];
+    });
+}
+
+- (void)addAppPath:(NSString *)path {
+    [self.appInfoEntity.appPathArray addObject:[NSString stringWithFormat:@"file://%@/", path]];
+    CGFloat maxX = [self addBT:self.appInfoEntity.appPathArray.count - 1];
+    
+    CGRect rect = CGRectMake(self.view.window.frame.origin.x,
+                             self.view.window.frame.origin.y,
+                             maxX,
+                             VcHeight);
+    
+    [self.view.window setFrame:rect display:YES];
+    [self.view.window setLevel:NSFloatingWindowLevel];
+}
+
+- (CGFloat)addBT:(NSInteger)index {
     CGFloat width = 50;
     CGFloat gap   = 10;
     
     NSButton * bt = ({
-        //NSButton * button = //[[NSButton alloc] init];
-        //[NSButton buttonWithTitle:titleArray[i] target:self action:@selector(btAction:)];'
-        NSString * str = self.urlArray[index];
+        NSString * str = self.appInfoEntity.appPathArray[index];
         //str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
         
         NSButton * button = [NSButton new];
-        //button = [NSButton buttonWithTitle:titleArray[i] target:self action:@selector(btAction:)];
-        //button = [NSButton buttonWithImage:image target:self action:@selector(btAction:)];
         button.target = self;
         button.action = @selector(btAction:);
-        {
+        if (str.length == 0) {
+            [button setImage:[NSImage imageNamed:@"icon"]];
+            
+        } else {
             // http://hk.uwenku.com/question/p-vrwwdiql-bnz.html
             NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
             NSImage *finderIcon;
@@ -106,29 +126,37 @@
         button;
     });
     
-    bt.frame = CGRectMake(width * index + gap*(index + 1), 5, width, width);
+    bt.frame = CGRectMake(width * index + gap*(index + 1), 15, width, width);
+    
+    [self.btArray addObject:bt];
+    return CGRectGetMaxX(bt.frame) + gap;
 }
 
 - (void)btAction:(NSButton *)bt {
     //NSURL * url = [NSURL URLWithString:@"file:///Applications/Google%20Chrome.app/"];
     
-    NSString * str = self.urlArray[bt.tag];
-    str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-    NSURL * url = [NSURL URLWithString:str];
-    
-    //NSURL * imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", str, @"Icon?"]];
-    //NSImage * image = [NSImage imageNamed:@""];
-    //NSImage * image;
-    //image = [[NSImage alloc]initWithContentsOfURL:imageUrl];
-    //image = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericFolderIcon)];
-    //image = [NSImage imageNamed:str];
-    //image = [[NSWorkspace sharedWorkspace] iconForFile:str];
-    //NSLog(@"image: %@", NSStringFromSize(image.size));
-    
-    if (url) {
-        NSWorkspaceOpenConfiguration * config = [NSWorkspaceOpenConfiguration configuration];
-        config.activates = YES;
-        [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:config completionHandler:nil];
+    NSString * str = self.appInfoEntity.appPathArray[bt.tag];
+    if (str.length == 0) {
+        //[[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[[NSURL fileURLWithPath:@"file:///Applications/"]]];
+        [self addAppAction];
+    } else {
+        str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+        NSURL * url = [NSURL URLWithString:str];
+        
+        //NSURL * imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", str, @"Icon?"]];
+        //NSImage * image = [NSImage imageNamed:@""];
+        //NSImage * image;
+        //image = [[NSImage alloc]initWithContentsOfURL:imageUrl];
+        //image = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericFolderIcon)];
+        //image = [NSImage imageNamed:str];
+        //image = [[NSWorkspace sharedWorkspace] iconForFile:str];
+        //NSLog(@"image: %@", NSStringFromSize(image.size));
+        
+        if (url) {
+            NSWorkspaceOpenConfiguration * config = [NSWorkspaceOpenConfiguration configuration];
+            config.activates = YES;
+            [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:config completionHandler:nil];
+        }
     }
     // [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[url]]; // 打开文件夹
 }
@@ -141,5 +169,36 @@
 - (void)mouseExited:(NSEvent *)event {
     self.view.window.alphaValue = 0.5;
 }
+
+- (void)addAppAction {
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    
+    [panel setAllowsMultipleSelection:YES];
+    [panel setCanChooseDirectories:NO];
+    [panel setCanChooseFiles:YES];
+    [panel setAllowedFileTypes:@[@"app"]];
+    
+    [NSApp.windows[0] setLevel:NSNormalWindowLevel];
+    
+    if ([panel runModal] == NSModalResponseOK) {
+        for (int i = 0; i<panel.URLs.count; i++) {
+            NSString * path   = [panel.URLs[i] path];
+            
+            if (i == 0) {
+                if (self.appInfoEntity.appPathArray.firstObject.length == 0) {
+                    [self.appInfoEntity.appPathArray removeAllObjects];
+                    NSButton * bt = self.btArray.firstObject;
+                    
+                    [bt removeFromSuperview];
+                }
+            }
+            
+            [self addAppPath:path];
+        }
+        [AppInfoTool updateEntity];
+    }
+   
+}
+
 
 @end

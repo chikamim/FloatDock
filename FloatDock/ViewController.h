@@ -7,9 +7,13 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "AppInfoEntity.h"
+
+static CGFloat VcHeight = 70;
 
 @interface ViewController : NSViewController
 
+@property (nonatomic, weak  ) AppInfoEntity * appInfoEntity;
 
 @end
 

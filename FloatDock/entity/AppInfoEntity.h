@@ -6,15 +6,35 @@
 //  Copyright © 2020 王凯庆. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <JSONModel/JSONModel.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AppInfoEntity : NSObject
+@protocol AppInfoEntity;
+@interface AppInfoEntity : JSONModel
 
-@property (nonatomic        ) NSInteger index;
-@property (nonatomic, strong) NSURL * appUrl;
+@property (nonatomic, strong) NSMutableArray<NSString *> * appPathArray;
 
+@end
+
+@protocol AppInfoArrayEntity;
+@interface AppInfoArrayEntity : JSONModel
+
+@property (nonatomic, strong) NSMutableArray<AppInfoEntity> * windowArray;
+
+@end
+
+@interface AppInfoTool : NSObject
+
+@property (nonatomic, strong) AppInfoArrayEntity * appInfoArrayEntity;
+
++ (instancetype)share;
+
++ (AppInfoArrayEntity *)getAppInfoArrayEntity;
+
++ (void)updateEntity;
+
+//+ (void)saveAppInfoArrayEntity:(AppInfoArrayEntity *)entity;
 
 @end
 

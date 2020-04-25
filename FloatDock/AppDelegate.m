@@ -11,6 +11,9 @@
 
 @interface AppDelegate ()
 
+@property (nonatomic, weak  ) AppInfoTool * appInfoTool;
+//AppInfoArrayEntity * appInfoArrayEntity;
+
 @end
 
 @implementation AppDelegate
@@ -23,9 +26,22 @@
         [[NSBundle bundleWithPath:macOSInjectionPath] load];
     }
 #endif
+    self.appInfoTool = [AppInfoTool share];
+    if (self.appInfoTool.appInfoArrayEntity.windowArray.count == 0) {
+        AppInfoEntity * entity = [AppInfoEntity new];
+        [entity.appPathArray addObject:@""];
+        
+        [self.appInfoTool.appInfoArrayEntity.windowArray addObject:entity];
+    }
+
+    for (int i = 1; i<self.appInfoTool.appInfoArrayEntity.windowArray.count; i++) {
+        [self showNewDoc:self.appInfoTool.appInfoArrayEntity.windowArray[i]];
+    }
     
     // 设置 wc
     ViewController * vc = [[ViewController alloc] init];
+    vc.appInfoEntity = self.appInfoTool.appInfoArrayEntity.windowArray.firstObject;
+    
     NSWindow * window = [NSApplication sharedApplication].keyWindow;
     [window setContentViewController:vc];
     self.window = window;
@@ -39,34 +55,46 @@
     
     [window setStyleMask:NSWindowStyleMaskBorderless];
     
-    CGRect rect =CGRectMake(window.frame.origin.x, window.frame.origin.y, 400, 60);
-    [window setFrame:rect display:YES];
+    //CGRect rect =CGRectMake(window.frame.origin.x, window.frame.origin.y, 400, 60);
+    //[window setFrame:rect display:YES];
     
     [window setMovableByWindowBackground:YES]; // 整体都可以拖拽
-    
     window.hasShadow = NO; // 关闭阴影
     
     [window.contentView.layer setBackgroundColor:[[NSColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:208.0/255.0 alpha:1]CGColor]];
     
     [window setLevel:NSFloatingWindowLevel];
-    
     window.alphaValue = 0.4;
 }
-
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
-}
-
 
 - (IBAction)alphaUp:(id)sender {
     if (self.window.alphaValue < 1.0) {
         self.window.alphaValue = self.window.alphaValue + 0.05;
+        
+        for (int i = 1; i<[NSApplication sharedApplication].windows.count; i++) {
+            NSWindow * win = [NSApplication sharedApplication].windows[i];
+            win.alphaValue = self.window.alphaValue;
+        }
     }
+    //    NSWindow * win0 = [NSApplication sharedApplication].windows[0];
+    //    NSWindow * win1 = [NSApplication sharedApplication].windows[1];
+    //
+    //    [NSApplication sharedApplication].mainWindow;
+    
+    //win0.visible;
+    
+    //[win0 ]
+    //NSLog(@"23");
 }
 
 - (IBAction)alphaDown:(id)sender {
     if (self.window.alphaValue > 0.1) {
         self.window.alphaValue = self.window.alphaValue - 0.05;
+        
+        for (int i = 1; i<[NSApplication sharedApplication].windows.count; i++) {
+            NSWindow * win = [NSApplication sharedApplication].windows[i];
+            win.alphaValue = self.window.alphaValue;
+        }
     }
 }
 
@@ -87,8 +115,20 @@
     
     // 2. 创建一个没有 xib 的 vc 方法.
     // https://stackoverflow.com/questions/34124228/initialize-a-subclass-of-nsviewcontroller-without-a-xib-file
+    
+    
+    AppInfoEntity * entity = [AppInfoEntity new];
+    [entity.appPathArray addObject:@""];
+    [self.appInfoTool.appInfoArrayEntity.windowArray addObject:entity];
+    
+    [self showNewDoc:entity];
+}
+
+- (void)showNewDoc:(AppInfoEntity *)appInfoEntity {
+    // 设置 wc
     ViewController * vc = [[ViewController alloc] init];
-    vc.view.frame = CGRectMake(0, 0, 400, 60);
+    vc.appInfoEntity = appInfoEntity;
+    //vc.view.frame = CGRectMake(0, 0, 400, 60);
     
     NSWindow * window = [NSWindow new];
     [window setLevel:NSFloatingWindowLevel];
@@ -99,6 +139,12 @@
     NSWindowController * wc = [[NSWindowController alloc] initWithWindow:window];
     
     [wc showWindow:nil];
+}
+
+// MARK: app 关闭
+- (void)applicationWillTerminate:(NSNotification *)aNotification {
+    //[AppInfoTool saveAppInfoArrayEntity:self.appInfoTool.appInfoArrayEntity];
+    //[SqliteCofing updateWindowFrame:self.window.frame];
 }
 
 @end
