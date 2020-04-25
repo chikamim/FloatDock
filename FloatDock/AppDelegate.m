@@ -132,13 +132,9 @@
     };
     
     //vc.view.frame = CGRectMake(0, 0, 400, 60);
-    if (window) {
-        
-    } else {
+    if (!window) {
         window = [NSWindow new];
     }
-    
-    [window setLevel:NSFloatingWindowLevel];
     [window setContentViewController:vc];
     
     [self setWindowStyle:window];

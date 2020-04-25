@@ -80,7 +80,7 @@ static CGFloat AppGap   = 10;
                                  VcHeight);
         [self.view.window setFrame:rect display:YES];
         
-        [self.view.window setLevel:NSFloatingWindowLevel];
+        //[self.view.window setLevel:NSFloatingWindowLevel];
     });
 }
 
@@ -98,7 +98,7 @@ static CGFloat AppGap   = 10;
                              VcHeight);
     
     [self.view.window setFrame:rect display:YES];
-    [self.view.window setLevel:NSFloatingWindowLevel];
+    //[self.view.window setLevel:NSFloatingWindowLevel];
 }
 
 - (CGFloat)addBT:(NSInteger)index {
@@ -244,7 +244,7 @@ static CGFloat AppGap   = 10;
     [panel setCanChooseFiles:YES];
     [panel setAllowedFileTypes:@[@"app"]];
     
-    [NSApp.windows[0] setLevel:NSNormalWindowLevel];
+    //[NSApp.windows[0] setLevel:NSNormalWindowLevel];
     
     if ([panel runModal] == NSModalResponseOK) {
         for (int i = 0; i<panel.URLs.count; i++) {
