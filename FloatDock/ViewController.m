@@ -22,11 +22,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    //self.view.layer.backgroundColor = (__bridge CGColorRef _Nullable)([NSColor whiteColor]);
+    // [CGColor whiteColor];
+    //self.view.frame = CGRectMake(0, 0, 400, 80);
+    
+    [self addViews];
+}
+
+- (void)addViews {
     self.urlArray = @[
         @"file:///System/Library/CoreServices/Finder.app/",
         @"file:///Applications/Google Chrome.app",
         @"file:///Applications/Xcode.app/",
-        @"file:///Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/",
+        //@"file:///Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/",
         @"file:///Applications/iTerm.app/",
     ];
     
@@ -54,7 +62,13 @@
                 
                 [button setImage:finderIcon];
             }
+            
+            // 设置 button 背景色 边界.
+            [[button cell] setBackgroundColor:[NSColor clearColor]];
+            button.bordered = NO;
+            
             button.tag = i;
+            
             [self.view addSubview:button];
             
             button;
@@ -62,6 +76,7 @@
         
         bt.frame = CGRectMake(width * i + gap*(i + 1), 5, width, width);
     }
+    
     
 }
 

@@ -15,32 +15,34 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
     
     NSWindow * window = [NSApplication sharedApplication].keyWindow;
     window.title = @"Float Dock";
-    //window.hasCloseBox = NO;
-    //[window setStyleMask:NSWindowStyleMaskBorderless];
-    //[window setStyleMask:NSWindowStyleMaskBorderless];
+    self.window = window;
     
+    [self setWindowStyle:window];
+    
+    self.window.alphaValue = 0.4;
+    
+    [self.window.contentView.layer setBackgroundColor:[[NSColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:208.0/255.0 alpha:1]CGColor]];
+    //self.window.contentView.layer.cornerRadius = 12;
+    //self.window.contentView.layer.masksToBounds = YES;
+    
+    [NSApp.windows[0] setLevel:NSFloatingWindowLevel];
+}
+
+- (void)setWindowStyle:(NSWindow *)window {
+    //window.minSize = CGSizeMake(400, 80);
+    //window.maxSize = CGSizeMake(400, 81);
+    
+    [window setStyleMask:NSWindowStyleMaskBorderless];
+    CGRect rect =CGRectMake(window.frame.origin.x, window.frame.origin.y, 400, 60);
+    
+    [window setFrame:rect display:YES];
     
     [window setMovableByWindowBackground:YES]; // 整体都可以拖拽
     
-    self.window = window;
     
-    self.window.minSize = CGSizeMake(400, 80);
-    self.window.maxSize = CGSizeMake(400, 80);
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        //self.window.minSize = CGSizeMake(400, 80);
-        //self.window.maxSize = CGSizeMake(400, 80);
-    });
-    
-    
-
-    self.window.alphaValue = 0.3;
-    
-    [NSApp.windows[0] setLevel:NSFloatingWindowLevel];
 }
 
 
