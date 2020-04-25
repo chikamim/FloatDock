@@ -10,8 +10,13 @@
 
 #import "DragView.h"
 #import <Masonry/Masonry.h>
+//#import "AppInfoBT.h"
+#import "AppInfoMenuBT.h"
 
-@interface ViewController()
+static CGFloat AppWidth = 50;
+static CGFloat AppGap   = 10;
+
+@interface ViewController() <AppInfoMenuBTProtocol>
 
 //@property (nonatomic, strong) NSMutableArray * urlArray;
 @property (nonatomic, strong) DragView * dv;
@@ -81,6 +86,10 @@
     [self.appInfoEntity.appPathArray addObject:[NSString stringWithFormat:@"file://%@/", path]];
     CGFloat maxX = [self addBT:self.appInfoEntity.appPathArray.count - 1];
     
+    [self updateFrameMaxX:maxX];
+}
+
+- (void)updateFrameMaxX:(CGFloat)maxX {
     CGRect rect = CGRectMake(self.view.window.frame.origin.x,
                              self.view.window.frame.origin.y,
                              maxX,
@@ -91,16 +100,18 @@
 }
 
 - (CGFloat)addBT:(NSInteger)index {
-    CGFloat width = 50;
-    CGFloat gap   = 10;
+    CGFloat width = AppWidth;
+    CGFloat gap   = AppGap;
     
-    NSButton * bt = ({
+    AppInfoMenuBT * bt = ({
         NSString * str = self.appInfoEntity.appPathArray[index];
         //str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
         
-        NSButton * button = [NSButton new];
-        button.target = self;
-        button.action = @selector(btAction:);
+        AppInfoMenuBT * button = [AppInfoMenuBT new];
+        button.target   = self;
+        button.action   = @selector(btAction:);
+        button.delegate = self;
+        
         if (str.length == 0) {
             [button setImage:[NSImage imageNamed:@"icon"]];
             
@@ -198,6 +209,79 @@
         [AppInfoTool updateEntity];
     }
    
+}
+
+// MARK: delegate
+- (void)delete:(NSButton *)appInfoMenuBT {
+    [self.appInfoEntity.appPathArray removeObjectAtIndex:appInfoMenuBT.tag];
+    [self.btArray removeObject:appInfoMenuBT];
+    
+    [appInfoMenuBT removeFromSuperview];
+    
+    for (int index = 0; index< self.btArray.count; index++) {
+        NSButton * bt = self.btArray[index];
+        bt.tag = index;
+        
+        bt.frame = CGRectMake(AppWidth * index + AppGap*(index + 1), 15, AppWidth, AppWidth);
+    }
+    if (self.appInfoEntity.appPathArray.count == 0) {
+        [self.appInfoEntity.appPathArray addObject:@""];
+        
+        [self showBeforeAppPaths];
+    }
+    
+    NSButton * bt = (NSButton *)[self.btArray lastObject];
+    CGFloat maxX = CGRectGetMaxX(bt.frame) + AppGap;
+    
+    [self updateFrameMaxX:maxX];
+    
+    [AppInfoTool updateEntity];
+    
+    
+}
+
+- (void)moveLeft:(NSButton *)appInfoMenuBT  {
+    if (appInfoMenuBT.tag == 0) {
+        return;
+    } else {
+        NSInteger exchangeTag = appInfoMenuBT.tag-1;
+        NSButton * changeBT = self.btArray[exchangeTag];
+        
+        [self.appInfoEntity.appPathArray exchangeObjectAtIndex:appInfoMenuBT.tag withObjectAtIndex:exchangeTag];
+        [self.btArray exchangeObjectAtIndex:appInfoMenuBT.tag withObjectAtIndex:exchangeTag];
+        
+        CGRect rect         = changeBT.frame;
+        changeBT.frame      = appInfoMenuBT.frame;
+        appInfoMenuBT.frame = rect;
+        
+        NSInteger tag       = changeBT.tag;
+        changeBT.tag        = appInfoMenuBT.tag;
+        appInfoMenuBT.tag   = tag;
+        
+        [AppInfoTool updateEntity];
+    }
+}
+
+- (void)moveRight:(NSButton *)appInfoMenuBT {
+    if (appInfoMenuBT.tag >= self.appInfoEntity.appPathArray.count - 1) {
+        return;
+    } else {
+        NSInteger exchangeTag = appInfoMenuBT.tag+1;
+        NSButton * changeBT = self.btArray[exchangeTag];
+        
+        [self.appInfoEntity.appPathArray exchangeObjectAtIndex:appInfoMenuBT.tag withObjectAtIndex:exchangeTag];
+        [self.btArray exchangeObjectAtIndex:appInfoMenuBT.tag withObjectAtIndex:exchangeTag];
+        
+        CGRect rect         = changeBT.frame;
+        changeBT.frame      = appInfoMenuBT.frame;
+        appInfoMenuBT.frame = rect;
+        
+        NSInteger tag       = changeBT.tag;
+        changeBT.tag        = appInfoMenuBT.tag;
+        appInfoMenuBT.tag   = tag;
+        
+        [AppInfoTool updateEntity];
+    }
 }
 
 
