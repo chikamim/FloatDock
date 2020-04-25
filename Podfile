@@ -12,6 +12,6 @@ target 'FloatDock' do
   # Pods for FloatDock
 	
   pod 'Masonry'
-  
+  pod 'PoporFMDB'
   
 end
