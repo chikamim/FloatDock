@@ -14,6 +14,7 @@
 		E43781CC2453291C00AA785B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781CB2453291C00AA785B /* main.m */; };
 		E43781D82453306900AA785B /* AppInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781D72453306900AA785B /* AppInfoEntity.m */; };
 		E43781DA2453F07800AA785B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E43781D92453F07800AA785B /* icon.png */; };
+		E43781DD2453FC3500AA785B /* DragView.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781DC2453FC3500AA785B /* DragView.m */; };
 		E97881DF951C3A94C79F92A5 /* Pods_FloatDock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4376660DB09AC0CFCDE5409 /* Pods_FloatDock.framework */; };
 /* End PBXBuildFile section */
 
@@ -34,6 +35,8 @@
 		E43781D62453306900AA785B /* AppInfoEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppInfoEntity.h; sourceTree = "<group>"; };
 		E43781D72453306900AA785B /* AppInfoEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInfoEntity.m; sourceTree = "<group>"; };
 		E43781D92453F07800AA785B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = SOURCE_ROOT; };
+		E43781DB2453FC3500AA785B /* DragView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragView.h; sourceTree = "<group>"; };
+		E43781DC2453FC3500AA785B /* DragView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +109,8 @@
 			children = (
 				E43781D62453306900AA785B /* AppInfoEntity.h */,
 				E43781D72453306900AA785B /* AppInfoEntity.m */,
+				E43781DB2453FC3500AA785B /* DragView.h */,
+				E43781DC2453FC3500AA785B /* DragView.m */,
 			);
 			path = entity;
 			sourceTree = "<group>";
@@ -236,6 +241,7 @@
 				E43781C42453291B00AA785B /* ViewController.m in Sources */,
 				E43781CC2453291C00AA785B /* main.m in Sources */,
 				E43781C12453291B00AA785B /* AppDelegate.m in Sources */,
+				E43781DD2453FC3500AA785B /* DragView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

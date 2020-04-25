@@ -8,14 +8,15 @@
 
 #import "ViewController.h"
 
+#import "DragView.h"
 #import <Masonry/Masonry.h>
 
 @interface ViewController()
 
-@property (nonatomic, strong) NSArray * urlArray;
+@property (nonatomic, strong) NSMutableArray * urlArray;
+@property (nonatomic, strong) DragView * dv;
 
 @end
-
 
 @implementation ViewController
 
@@ -26,58 +27,81 @@
     // [CGColor whiteColor];
     //self.view.frame = CGRectMake(0, 0, 400, 80);
     
+    [self addDvs];
     [self addViews];
 }
 
+- (void)addDvs {
+    self.dv = [DragView new];
+    
+    [self.view addSubview:self.dv];
+    [self.dv mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(0);
+        make.left.mas_equalTo(0);
+        make.bottom.mas_equalTo(0);
+        make.right.mas_equalTo(0);
+    }];
+    
+    __weak typeof(self) weakSelf = self;
+    self.dv.dragAppBlock = ^(NSString * _Nonnull string) {
+        [weakSelf.urlArray addObject:[NSString stringWithFormat:@"file://%@/", string]];
+        [weakSelf addBT:weakSelf.urlArray.count - 1];
+    };
+}
+
 - (void)addViews {
-    self.urlArray = @[
+    self.urlArray = [@[
         @"file:///System/Library/CoreServices/Finder.app/",
         @"file:///Applications/Google Chrome.app",
         @"file:///Applications/Xcode.app/",
         //@"file:///Applications/Xcode.app/Contents/Developer/Applications/Simulator.app/",
         @"file:///Applications/iTerm.app/",
-    ];
+    ] mutableCopy];
     
+  
+    for (NSInteger i = 0; i<self.urlArray.count; i++) {
+        [self addBT:i];
+    }
+}
+
+- (void)addBT:(NSInteger)index {
     CGFloat width = 50;
     CGFloat gap   = 10;
-    for (NSInteger i = 0; i<self.urlArray.count; i++) {
-        NSButton * bt = ({
-            //NSButton * button = //[[NSButton alloc] init];
-            //[NSButton buttonWithTitle:titleArray[i] target:self action:@selector(btAction:)];'
-            NSString * str = self.urlArray[i];
-            //str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-            
-            NSButton * button = [NSButton new];
-            //button = [NSButton buttonWithTitle:titleArray[i] target:self action:@selector(btAction:)];
-            //button = [NSButton buttonWithImage:image target:self action:@selector(btAction:)];
-            button.target = self;
-            button.action = @selector(btAction:);
-            {
-                // http://hk.uwenku.com/question/p-vrwwdiql-bnz.html
-                NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
-                NSImage *finderIcon;
-                //= [workspace iconForFile:[workspace absolutePathForAppBundleWithIdentifier:@"com.apple.Finder"]];
-                finderIcon = [workspace iconForFile:[str substringFromIndex:7]];
-                [finderIcon setSize:NSMakeSize(width, width)];
-                
-                [button setImage:finderIcon];
-            }
-            
-            // 设置 button 背景色 边界.
-            [[button cell] setBackgroundColor:[NSColor clearColor]];
-            button.bordered = NO;
-            
-            button.tag = i;
-            
-            [self.view addSubview:button];
-            
-            button;
-        });
+    
+    NSButton * bt = ({
+        //NSButton * button = //[[NSButton alloc] init];
+        //[NSButton buttonWithTitle:titleArray[i] target:self action:@selector(btAction:)];'
+        NSString * str = self.urlArray[index];
+        //str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
         
-        bt.frame = CGRectMake(width * i + gap*(i + 1), 5, width, width);
-    }
+        NSButton * button = [NSButton new];
+        //button = [NSButton buttonWithTitle:titleArray[i] target:self action:@selector(btAction:)];
+        //button = [NSButton buttonWithImage:image target:self action:@selector(btAction:)];
+        button.target = self;
+        button.action = @selector(btAction:);
+        {
+            // http://hk.uwenku.com/question/p-vrwwdiql-bnz.html
+            NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
+            NSImage *finderIcon;
+            //= [workspace iconForFile:[workspace absolutePathForAppBundleWithIdentifier:@"com.apple.Finder"]];
+            finderIcon = [workspace iconForFile:[str substringFromIndex:7]];
+            [finderIcon setSize:NSMakeSize(width, width)];
+            
+            [button setImage:finderIcon];
+        }
+        
+        // 设置 button 背景色 边界.
+        [[button cell] setBackgroundColor:[NSColor clearColor]];
+        button.bordered = NO;
+        
+        button.tag = index;
+        
+        [self.view addSubview:button];
+        
+        button;
+    });
     
-    
+    bt.frame = CGRectMake(width * index + gap*(index + 1), 5, width, width);
 }
 
 - (void)btAction:(NSButton *)bt {
@@ -120,6 +144,13 @@
     
     
     //[win ]
+}
+
+// MARK: 注册 drag drop
+- (void)registerDragDrop {
+    //self.view.registeredDraggedTypes = @[NSPasteboardTypeFileURL];
+    [self.view registerForDraggedTypes:@[NSPasteboardTypeFileURL]];
+    
 }
 
 @end
