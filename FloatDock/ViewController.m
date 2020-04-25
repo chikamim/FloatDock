@@ -18,9 +18,10 @@ static CGFloat AppGap   = 10;
 
 @interface ViewController() <AppInfoMenuBTProtocol>
 
-//@property (nonatomic, strong) NSMutableArray * urlArray;
 @property (nonatomic, strong) DragView * dv;
 @property (nonatomic, strong) NSMutableArray * btArray;
+@property (nonatomic, strong) NSMenu * clickMenu;
+
 @end
 
 @implementation ViewController
@@ -62,6 +63,7 @@ static CGFloat AppGap   = 10;
 - (void)addViews {
     
     [self showBeforeAppPaths];
+    [self addMenus];
 }
 
 // MARK: 增加 按钮
@@ -172,6 +174,47 @@ static CGFloat AppGap   = 10;
     // [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[url]]; // 打开文件夹
 }
 
+// MARK: 右键menu
+- (void)addMenus {
+    if (!self.clickMenu) {
+        self.clickMenu = [NSMenu new];
+        
+        NSMenuItem *item1 = [[NSMenuItem alloc] initWithTitle:@"清空" action:@selector(clearDockAction) keyEquivalent:@""];
+        NSMenuItem *item2 = [[NSMenuItem alloc] initWithTitle:@"删除" action:@selector(deleteDockAction) keyEquivalent:@""];
+        
+        [item1 setTarget:self];
+        [item2 setTarget:self];
+        
+        [self.clickMenu addItem:item1];
+        [self.clickMenu addItem:item2];
+    }
+    self.view.menu = self.clickMenu;
+}
+
+- (void)clearDockAction {
+    if (self.appInfoEntity.appPathArray.firstObject.length == 0) {
+        return;
+    }
+    
+    [self.appInfoEntity.appPathArray removeAllObjects];
+    for (NSButton * bt in self.btArray) {
+        [bt removeFromSuperview];
+    }
+    [self.btArray removeAllObjects];
+    
+    [self.appInfoEntity.appPathArray addObject:@""];
+    [self showBeforeAppPaths];
+    
+    [AppInfoTool updateEntity];
+}
+
+- (void)deleteDockAction {
+    [[AppInfoTool share].appInfoArrayEntity.windowArray removeObject:self.appInfoEntity];
+    [AppInfoTool updateEntity];
+    
+    [self.view.window close];
+}
+
 - (void)mouseEntered:(NSEvent *)event {
     self.view.window.alphaValue = 1.0;
     NSLog(@"entered");
@@ -224,20 +267,19 @@ static CGFloat AppGap   = 10;
         
         bt.frame = CGRectMake(AppWidth * index + AppGap*(index + 1), 15, AppWidth, AppWidth);
     }
+    
     if (self.appInfoEntity.appPathArray.count == 0) {
         [self.appInfoEntity.appPathArray addObject:@""];
         
-        [self showBeforeAppPaths];
+        [self showBeforeAppPaths]; // 包含了 刷新 frame
+    } else {
+        NSButton * bt = (NSButton *)[self.btArray lastObject];
+        CGFloat maxX = CGRectGetMaxX(bt.frame) + AppGap;
+        
+        [self updateFrameMaxX:maxX];
     }
     
-    NSButton * bt = (NSButton *)[self.btArray lastObject];
-    CGFloat maxX = CGRectGetMaxX(bt.frame) + AppGap;
-    
-    [self updateFrameMaxX:maxX];
-    
     [AppInfoTool updateEntity];
-    
-    
 }
 
 - (void)moveLeft:(NSButton *)appInfoMenuBT  {
