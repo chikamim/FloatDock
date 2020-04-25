@@ -179,16 +179,28 @@ static CGFloat AppGap   = 10;
     if (!self.clickMenu) {
         self.clickMenu = [NSMenu new];
         
-        NSMenuItem *item1 = [[NSMenuItem alloc] initWithTitle:@"清空" action:@selector(clearDockAction) keyEquivalent:@""];
-        NSMenuItem *item2 = [[NSMenuItem alloc] initWithTitle:@"删除" action:@selector(deleteDockAction) keyEquivalent:@""];
+        NSMenuItem *item1 = [[NSMenuItem alloc] initWithTitle:@"新增APP" action:@selector(addAppAction) keyEquivalent:@""];
+        NSMenuItem *item2 = [[NSMenuItem alloc] initWithTitle:@"新增Dock" action:@selector(addDockAction) keyEquivalent:@""];
+        NSMenuItem *item3 = [[NSMenuItem alloc] initWithTitle:@"清空" action:@selector(clearDockAction) keyEquivalent:@""];
+        NSMenuItem *item4 = [[NSMenuItem alloc] initWithTitle:@"删除" action:@selector(deleteDockAction) keyEquivalent:@""];
         
         [item1 setTarget:self];
         [item2 setTarget:self];
+        [item3 setTarget:self];
+        [item4 setTarget:self];
         
         [self.clickMenu addItem:item1];
         [self.clickMenu addItem:item2];
+        [self.clickMenu addItem:item3];
+        [self.clickMenu addItem:item4];
     }
     self.view.menu = self.clickMenu;
+}
+
+- (void)addDockAction {
+    if (self.addDockBlock) {
+        self.addDockBlock();
+    }
 }
 
 - (void)clearDockAction {

@@ -11,9 +11,13 @@
 
 static CGFloat VcHeight = 70;
 
+typedef void(^FloatDockBlockPVoid) (void);
+
 @interface ViewController : NSViewController
 
 @property (nonatomic, weak  ) AppInfoEntity * appInfoEntity;
+@property (nonatomic, copy  ) FloatDockBlockPVoid addDockBlock;
+
 
 @end
 

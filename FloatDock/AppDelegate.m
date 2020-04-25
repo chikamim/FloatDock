@@ -34,18 +34,16 @@
         [self.appInfoTool.appInfoArrayEntity.windowArray addObject:entity];
     }
 
-    for (int i = 1; i<self.appInfoTool.appInfoArrayEntity.windowArray.count; i++) {
-        [self showNewDoc:self.appInfoTool.appInfoArrayEntity.windowArray[i]];
+    for (int i = 0; i<self.appInfoTool.appInfoArrayEntity.windowArray.count; i++) {
+        AppInfoEntity * aie = self.appInfoTool.appInfoArrayEntity.windowArray[i];
+        if (i == 0) {
+            NSWindow * window = [NSApplication sharedApplication].keyWindow;
+            self.window = window;
+            [self showNewDock:aie window:window];
+        } else {
+            [self showNewDock:aie window:nil];
+        }
     }
-    
-    // 设置 wc
-    ViewController * vc = [[ViewController alloc] init];
-    vc.appInfoEntity = self.appInfoTool.appInfoArrayEntity.windowArray.firstObject;
-    
-    NSWindow * window = [NSApplication sharedApplication].keyWindow;
-    [window setContentViewController:vc];
-    self.window = window;
-    [self setWindowStyle:window];
     
     //self.window.contentView.layer.cornerRadius = 12;
     //self.window.contentView.layer.masksToBounds = YES;
@@ -121,16 +119,25 @@
     [entity.appPathArray addObject:@""];
     [self.appInfoTool.appInfoArrayEntity.windowArray addObject:entity];
     
-    [self showNewDoc:entity];
+    [self showNewDock:entity window:nil];
 }
 
-- (void)showNewDoc:(AppInfoEntity *)appInfoEntity {
+- (void)showNewDock:(AppInfoEntity *)appInfoEntity window:(NSWindow *)window {
     // 设置 wc
     ViewController * vc = [[ViewController alloc] init];
     vc.appInfoEntity = appInfoEntity;
-    //vc.view.frame = CGRectMake(0, 0, 400, 60);
+    __weak typeof(self) weakSelf = self;
+    vc.addDockBlock = ^{
+        [weakSelf createNewDock:nil];
+    };
     
-    NSWindow * window = [NSWindow new];
+    //vc.view.frame = CGRectMake(0, 0, 400, 60);
+    if (window) {
+        
+    } else {
+        window = [NSWindow new];
+    }
+    
     [window setLevel:NSFloatingWindowLevel];
     [window setContentViewController:vc];
     
