@@ -10,16 +10,17 @@
 
 #import "DragView.h"
 #import <Masonry/Masonry.h>
-//#import "AppInfoBT.h"
-#import "AppInfoMenuBT.h"
+#import "AppInfoView.h"
 
-static CGFloat AppWidth = 50;
-static CGFloat AppGap   = 10;
 
-@interface ViewController() <AppInfoMenuBTProtocol>
+static CGFloat AppWidth  = 46;
+static CGFloat AppHeight = 56;
+static CGFloat AppGap    = 10;
+
+@interface ViewController() <AppInfoViewProtocol>
 
 @property (nonatomic, strong) DragView * dv;
-@property (nonatomic, strong) NSMutableArray * btArray;
+@property (nonatomic, strong) NSMutableArray * aivArray;
 @property (nonatomic, strong) NSMenu * clickMenu;
 
 @property (nonatomic        ) BOOL initFrame;
@@ -36,11 +37,11 @@ static CGFloat AppGap   = 10;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"x: %f", self.appInfoEntity.x);
+    //NSLog(@"x: %f", self.appInfoEntity.x);
     //self.view.layer.backgroundColor = (__bridge CGColorRef _Nullable)([NSColor whiteColor]);
     // [CGColor whiteColor];
     //self.view.frame = CGRectMake(0, 0, 400, 80);
-    self.btArray = [NSMutableArray new];
+    self.aivArray = [NSMutableArray new];
     [self addDvs];
     [self addViews];
 }
@@ -110,20 +111,20 @@ static CGFloat AppGap   = 10;
 }
 
 - (CGFloat)addBT:(NSInteger)index {
-    CGFloat width = AppWidth;
-    CGFloat gap   = AppGap;
+    //CGFloat width = AppWidth;
+    //CGFloat gap   = AppGap;
     
-    AppInfoMenuBT * bt = ({
+    AppInfoView * aiv = ({
         NSString * str = self.appInfoEntity.appPathArray[index];
         //str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
         
-        AppInfoMenuBT * button = [AppInfoMenuBT new];
-        button.target   = self;
-        button.action   = @selector(btAction:);
-        button.delegate = self;
+        AppInfoView * oneAIV = [AppInfoView new];
+        oneAIV.delegate     = self;
+        oneAIV.appBT.target = self;
+        oneAIV.appBT.action = @selector(btAction:);
         
         if (str.length == 0) {
-            [button setImage:[NSImage imageNamed:@"icon"]];
+            [oneAIV.appBT setImage:[NSImage imageNamed:@"icon"]];
             
         } else {
             // http://hk.uwenku.com/question/p-vrwwdiql-bnz.html
@@ -131,26 +132,30 @@ static CGFloat AppGap   = 10;
             NSImage *finderIcon;
             //= [workspace iconForFile:[workspace absolutePathForAppBundleWithIdentifier:@"com.apple.Finder"]];
             finderIcon = [workspace iconForFile:[str substringFromIndex:7]];
-            [finderIcon setSize:NSMakeSize(width, width)];
+            [finderIcon setSize:NSMakeSize(AppWidth, AppWidth)];
             
-            [button setImage:finderIcon];
+            [oneAIV.appBT setImage:finderIcon];
         }
         
-        // 设置 button 背景色 边界.
-        [[button cell] setBackgroundColor:[NSColor clearColor]];
-        button.bordered = NO;
+        oneAIV.appBT.tag = index;
         
-        button.tag = index;
+        [self.view addSubview:oneAIV];
         
-        [self.view addSubview:button];
-        
-        button;
+        oneAIV;
     });
     
-    bt.frame = CGRectMake(width * index + gap*(index + 1), 15, width, width);
+    aiv.frame = [self aivFrameIndex:index];
+    //CGRectMake(AppWidth * index + AppGap*(index + 1), 10, AppWidth, AppHeight);
+    aiv.appBT.frame = CGRectMake(0, 10, AppWidth, AppWidth);
+    aiv.appPath    = self.appInfoEntity.appPathArray[index];
+    aiv.appUrlPath = [aiv.appPath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     
-    [self.btArray addObject:bt];
-    return CGRectGetMaxX(bt.frame) + gap;
+    [self.aivArray addObject:aiv];
+    return CGRectGetMaxX(aiv.frame) + AppGap;
+}
+
+- (CGRect)aivFrameIndex:(NSInteger)index {
+    return CGRectMake(AppWidth * index + AppGap*(index + 1), 10, AppWidth, AppHeight);
 }
 
 - (void)btAction:(NSButton *)bt {
@@ -217,10 +222,10 @@ static CGFloat AppGap   = 10;
     }
     
     [self.appInfoEntity.appPathArray removeAllObjects];
-    for (NSButton * bt in self.btArray) {
-        [bt removeFromSuperview];
+    for (AppInfoView * aiv in self.aivArray) {
+        [aiv removeFromSuperview];
     }
-    [self.btArray removeAllObjects];
+    [self.aivArray removeAllObjects];
     
     [self.appInfoEntity.appPathArray addObject:@""];
     [self showBeforeAppPaths];
@@ -261,9 +266,10 @@ static CGFloat AppGap   = 10;
             if (i == 0) {
                 if (self.appInfoEntity.appPathArray.firstObject.length == 0) {
                     [self.appInfoEntity.appPathArray removeAllObjects];
-                    NSButton * bt = self.btArray.firstObject;
+                    AppInfoView * aiv = self.aivArray.firstObject;
                     
-                    [bt removeFromSuperview];
+                    [aiv removeFromSuperview];
+                    [self.aivArray removeObject:aiv];
                 }
             }
             
@@ -275,17 +281,17 @@ static CGFloat AppGap   = 10;
 }
 
 // MARK: delegate
-- (void)delete:(NSButton *)appInfoMenuBT {
-    [self.appInfoEntity.appPathArray removeObjectAtIndex:appInfoMenuBT.tag];
-    [self.btArray removeObject:appInfoMenuBT];
+- (void)delete:(AppInfoView *)appInfoView {
+    [self.appInfoEntity.appPathArray removeObjectAtIndex:appInfoView.appBT.tag];
+    [self.aivArray removeObject:appInfoView];
     
-    [appInfoMenuBT removeFromSuperview];
+    [appInfoView removeFromSuperview];
     
-    for (int index = 0; index< self.btArray.count; index++) {
-        NSButton * bt = self.btArray[index];
-        bt.tag = index;
+    for (int index = 0; index< self.aivArray.count; index++) {
+        AppInfoView * aiv = self.aivArray[index];
+        aiv.appBT.tag = index;
         
-        bt.frame = CGRectMake(AppWidth * index + AppGap*(index + 1), 15, AppWidth, AppWidth);
+        aiv.frame = [self aivFrameIndex:index];
     }
     
     if (self.appInfoEntity.appPathArray.count == 0) {
@@ -293,8 +299,8 @@ static CGFloat AppGap   = 10;
         
         [self showBeforeAppPaths]; // 包含了 刷新 frame
     } else {
-        NSButton * bt = (NSButton *)[self.btArray lastObject];
-        CGFloat maxX = CGRectGetMaxX(bt.frame) + AppGap;
+        AppInfoView * aiv = (AppInfoView *)[self.aivArray lastObject];
+        CGFloat maxX = CGRectGetMaxX(aiv.frame) + AppGap;
         
         [self updateFrameMaxX:maxX];
     }
@@ -302,53 +308,48 @@ static CGFloat AppGap   = 10;
     [AppInfoTool updateEntity];
 }
 
-- (void)moveLeft:(NSButton *)appInfoMenuBT  {
-    if (appInfoMenuBT.tag == 0) {
+- (void)moveLeft:(AppInfoView *)appInfoView  {
+    if (appInfoView.appBT.tag == 0) {
         return;
     } else {
-        NSInteger exchangeTag = appInfoMenuBT.tag-1;
-        NSButton * changeBT = self.btArray[exchangeTag];
-        
-        [self.appInfoEntity.appPathArray exchangeObjectAtIndex:appInfoMenuBT.tag withObjectAtIndex:exchangeTag];
-        [self.btArray exchangeObjectAtIndex:appInfoMenuBT.tag withObjectAtIndex:exchangeTag];
-        
-        CGRect rect         = changeBT.frame;
-        changeBT.frame      = appInfoMenuBT.frame;
-        appInfoMenuBT.frame = rect;
-        
-        NSInteger tag       = changeBT.tag;
-        changeBT.tag        = appInfoMenuBT.tag;
-        appInfoMenuBT.tag   = tag;
-        
+        [self exchangeAIV:appInfoView withIndex:appInfoView.appBT.tag-1];
         [AppInfoTool updateEntity];
     }
 }
 
-- (void)moveRight:(NSButton *)appInfoMenuBT {
-    if (appInfoMenuBT.tag >= self.appInfoEntity.appPathArray.count - 1) {
+- (void)moveRight:(AppInfoView *)appInfoView {
+    if (appInfoView.appBT.tag >= self.appInfoEntity.appPathArray.count - 1) {
         return;
     } else {
-        NSInteger exchangeTag = appInfoMenuBT.tag+1;
-        NSButton * changeBT = self.btArray[exchangeTag];
-        
-        [self.appInfoEntity.appPathArray exchangeObjectAtIndex:appInfoMenuBT.tag withObjectAtIndex:exchangeTag];
-        [self.btArray exchangeObjectAtIndex:appInfoMenuBT.tag withObjectAtIndex:exchangeTag];
-        
-        CGRect rect         = changeBT.frame;
-        changeBT.frame      = appInfoMenuBT.frame;
-        appInfoMenuBT.frame = rect;
-        
-        NSInteger tag       = changeBT.tag;
-        changeBT.tag        = appInfoMenuBT.tag;
-        appInfoMenuBT.tag   = tag;
-        
+        [self exchangeAIV:appInfoView withIndex:appInfoView.appBT.tag+1];
         [AppInfoTool updateEntity];
     }
 }
 
-- (void)checkActive:(NSArray *)appRunningArray {
+- (void)exchangeAIV:(AppInfoView *)aiv1 withIndex:(NSInteger)exchangeTag {
+    AppInfoView * changeAIV = self.aivArray[exchangeTag];
+           
+    [self.appInfoEntity.appPathArray exchangeObjectAtIndex:aiv1.appBT.tag withObjectAtIndex:exchangeTag];
+    [self.aivArray exchangeObjectAtIndex:aiv1.appBT.tag withObjectAtIndex:exchangeTag];
     
+    CGRect rect           = changeAIV.frame;
+    changeAIV.frame       = aiv1.frame;
+    aiv1.frame            = rect;
     
+    NSInteger tag         = changeAIV.appBT.tag;
+    changeAIV.appBT.tag   = aiv1.appBT.tag;
+    aiv1.appBT.tag = tag;
+}
+
+- (void)checkActive:(NSSet *)appRunningSet {
+    for (AppInfoView * aiv in self.aivArray) {
+        //NSLog(@"aiv.appPath: %@", aiv.appUrlPath);
+        if ([appRunningSet containsObject:aiv.appUrlPath]) {
+            aiv.activeIV.hidden = NO;
+        } else{
+            aiv.activeIV.hidden = YES;
+        }
+    }
 }
 
 @end

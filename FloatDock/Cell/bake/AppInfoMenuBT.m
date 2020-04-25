@@ -7,10 +7,13 @@
 //
 
 #import "AppInfoMenuBT.h"
+#import <Masonry/Masonry.h>
 
 @interface AppInfoMenuBT ()
 
 @property (nonatomic, strong) NSMenu * clickMenu;
+
+@property (nonatomic, strong) NSImageView * activeIV;
 
 @end
 
@@ -18,7 +21,9 @@
 
 - (id)init {
     if (self = [super init]) {
+        [self addIV];
         [self addMenu];
+        
     }
     return self;
 }
@@ -40,6 +45,22 @@
         [self.clickMenu addItem:item3];
     }
     self.menu = self.clickMenu;
+}
+
+- (void)addIV {
+    self.activeIV = ({
+        NSImageView * iv = [NSImageView new];
+        iv.image = [NSImage imageNamed:@"whitePoint"];
+        //[self addSubview:iv];
+        [self.cell.controlView addSubview:iv];
+        iv;
+    });
+    [self.activeIV mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.mas_equalTo(0);
+        make.centerX.mas_equalTo(0);
+        make.width.mas_equalTo(6);
+        make.height.mas_equalTo(6);
+    }];
 }
 
 - (void)delete:(NSButton *)appInfoMenuBT {

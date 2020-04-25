@@ -13,7 +13,7 @@
 @interface AppDelegate ()
 
 @property (nonatomic, weak  ) AppInfoTool * appInfoTool;
-//AppInfoArrayEntity * appInfoArrayEntity;
+@property (nonatomic        ) CGFloat windowAlpha;
 
 @end
 
@@ -27,6 +27,7 @@
         [[NSBundle bundleWithPath:macOSInjectionPath] load];
     }
 #endif
+    self.windowAlpha = 0.45;
     self.appInfoTool = [AppInfoTool share];
     if (self.appInfoTool.appInfoArrayEntity.windowArray.count == 0) {
         AppInfoEntity * entity = [AppInfoEntity new];
@@ -49,7 +50,10 @@
     //self.window.contentView.layer.cornerRadius = 12;
     //self.window.contentView.layer.masksToBounds = YES;
     
-    [self check];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self check1];
+    });
+    
 }
 
 - (void)setWindowStyle:(NSWindow *)window {
@@ -65,31 +69,31 @@
     [window.contentView.layer setBackgroundColor:[[NSColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:208.0/255.0 alpha:1]CGColor]];
     
     [window setLevel:NSFloatingWindowLevel];
-    window.alphaValue = 0.4;
+    window.alphaValue = self.windowAlpha;
 }
 
 - (IBAction)alphaUp:(id)sender {
-    NSWindow * win = [NSApplication sharedApplication].windows.firstObject;
-    if (win.alphaValue < 1.0) {
-        win.alphaValue = win.alphaValue + 0.05;
+    if (self.windowAlpha < 1.0) {
+        self.windowAlpha = self.windowAlpha + 0.05;
         
-        for (int i = 1; i<[NSApplication sharedApplication].windows.count; i++) {
+        for (int i = 0; i<[NSApplication sharedApplication].windows.count; i++) {
             NSWindow * oneWin = [NSApplication sharedApplication].windows[i];
-            oneWin.alphaValue = win.alphaValue;
+            oneWin.alphaValue = self.windowAlpha;
         }
     }
+    //NSLog(@"self.windowAlpha: %.02f", self.windowAlpha);
 }
 
 - (IBAction)alphaDown:(id)sender {
-    NSWindow * win = [NSApplication sharedApplication].windows.firstObject;
-    if (win.alphaValue > 0.1) {
-        win.alphaValue = win.alphaValue - 0.05;
+    if (self.windowAlpha > 0.1) {
+        self.windowAlpha = self.windowAlpha - 0.05;
         
-        for (int i = 1; i<[NSApplication sharedApplication].windows.count; i++) {
+        for (int i = 0; i<[NSApplication sharedApplication].windows.count; i++) {
             NSWindow * oneWin = [NSApplication sharedApplication].windows[i];
-            oneWin.alphaValue = win.alphaValue;
+            oneWin.alphaValue = self.windowAlpha;
         }
     }
+    //NSLog(@"self.windowAlpha: %.02f", self.windowAlpha);
 }
 
 - (IBAction)createNewDock:(id)sender {
@@ -158,7 +162,6 @@
     //        //}
     //    }
     //
-    [self check1];
 }
 
 - (void)check1 {
@@ -166,24 +169,23 @@
     [RACObserve(work, runningApplications) subscribeNext:^(id  _Nullable x) {
         //NSLog(@"111");
         NSArray<NSRunningApplication *> * appAppArray =[work runningApplications];
-        NSMutableArray * appNormalArray = [NSMutableArray new];
-        
+        //NSMutableArray * appNormalArray = [NSMutableArray new];
+        NSMutableSet * appSet = [NSMutableSet new];
         for (NSRunningApplication * oneApp in appAppArray) {
                if (oneApp.activationPolicy == NSApplicationActivationPolicyRegular) {
                    //NSLog(@"oneApp: %@ _ %@", oneApp.description, oneApp.bundleURL);
                    //NSLog(@"oneApp: %@", oneApp.bundleURL);
-                   [appNormalArray addObject:oneApp];
+                   //[appNormalArray addObject:oneApp];
+                   [appSet addObject:oneApp.bundleURL.absoluteString];
                }
         }
+        //NSLog(@"appSet: %@", appSet);
         NSArray * windowArray = [NSApplication sharedApplication].windows;
         for (FloatWindow * window in windowArray) {
             ViewController * vc = (ViewController *)window.contentViewController;
-            [vc checkActive:appNormalArray];
+            [vc checkActive:appSet];
         }
     }];
-    
-    
-    
 }
 
 @end

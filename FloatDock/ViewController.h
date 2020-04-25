@@ -18,7 +18,7 @@ typedef void(^FloatDockBlockPVoid) (void);
 @property (nonatomic, weak  ) AppInfoEntity * appInfoEntity;
 @property (nonatomic, copy  ) FloatDockBlockPVoid addDockBlock;
 
-- (void)checkActive:(NSArray *)appRunningArray;
+- (void)checkActive:(NSSet *)appRunningSet;
 
 
 @end
