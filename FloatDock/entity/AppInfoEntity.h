@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol AppInfoEntity;
 @interface AppInfoEntity : JSONModel
 
+@property (nonatomic        ) CGFloat x;
+@property (nonatomic        ) CGFloat y;
+
 @property (nonatomic, strong) NSMutableArray<NSString *> * appPathArray;
 
 @end

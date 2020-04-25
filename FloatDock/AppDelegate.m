@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "FloatWindow.h"
 #import "ViewController.h"
 
 @interface AppDelegate ()
@@ -133,7 +134,7 @@
     
     //vc.view.frame = CGRectMake(0, 0, 400, 60);
     if (!window) {
-        window = [NSWindow new];
+        window = [FloatWindow new];
     }
     [window setContentViewController:vc];
     
@@ -146,8 +147,25 @@
 
 // MARK: app 关闭
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-    //[AppInfoTool saveAppInfoArrayEntity:self.appInfoTool.appInfoArrayEntity];
-    //[SqliteCofing updateWindowFrame:self.window.frame];
+    
+}
+
+- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)application {
+    [self recordXY];
+    return YES;
+}
+
+
+- (void)recordXY {
+    for (NSWindow * win in [NSApplication sharedApplication].windows) {
+        ViewController * vc = (ViewController *)win.contentViewController;
+        
+        vc.appInfoEntity.x = win.frame.origin.x;
+        vc.appInfoEntity.y = win.frame.origin.y;
+    }
+    
+    [AppInfoTool updateEntity];
+    
 }
 
 @end

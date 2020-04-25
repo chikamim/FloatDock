@@ -34,6 +34,7 @@ static CGFloat AppGap   = 10;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSLog(@"x: %f", self.appInfoEntity.x);
     //self.view.layer.backgroundColor = (__bridge CGColorRef _Nullable)([NSColor whiteColor]);
     // [CGColor whiteColor];
     //self.view.frame = CGRectMake(0, 0, 400, 80);

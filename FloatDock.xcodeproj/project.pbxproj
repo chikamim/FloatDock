@@ -18,6 +18,7 @@
 		E43781E324542D6A00AA785B /* DataSavePath.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781E224542D6A00AA785B /* DataSavePath.m */; };
 		E43781E924543F1800AA785B /* AppInfoBT.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781E824543F1800AA785B /* AppInfoBT.m */; };
 		E43781EC2454418E00AA785B /* AppInfoMenuBT.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781EB2454418E00AA785B /* AppInfoMenuBT.m */; };
+		E43781F524545A1900AA785B /* FloatWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781F424545A1900AA785B /* FloatWindow.m */; };
 		E97881DF951C3A94C79F92A5 /* Pods_FloatDock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4376660DB09AC0CFCDE5409 /* Pods_FloatDock.framework */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,8 @@
 		E43781E824543F1800AA785B /* AppInfoBT.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInfoBT.m; sourceTree = "<group>"; };
 		E43781EA2454418E00AA785B /* AppInfoMenuBT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppInfoMenuBT.h; sourceTree = "<group>"; };
 		E43781EB2454418E00AA785B /* AppInfoMenuBT.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInfoMenuBT.m; sourceTree = "<group>"; };
+		E43781F324545A1900AA785B /* FloatWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FloatWindow.h; sourceTree = "<group>"; };
+		E43781F424545A1900AA785B /* FloatWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FloatWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,14 +93,15 @@
 		E43781BE2453291B00AA785B /* FloatDock */ = {
 			isa = PBXGroup;
 			children = (
-				E43781E524543EED00AA785B /* Cell */,
-				E43781E424543BE900AA785B /* tool */,
 				E43781D32453292B00AA785B /* other */,
+				E43781F2245459EC00AA785B /* win */,
 				E43781BF2453291B00AA785B /* AppDelegate.h */,
 				E43781C02453291B00AA785B /* AppDelegate.m */,
 				E43781C22453291B00AA785B /* ViewController.h */,
 				E43781C32453291B00AA785B /* ViewController.m */,
+				E43781E524543EED00AA785B /* Cell */,
 				E43781D52453305300AA785B /* entity */,
+				E43781E424543BE900AA785B /* tool */,
 			);
 			path = FloatDock;
 			sourceTree = "<group>";
@@ -120,8 +124,6 @@
 			children = (
 				E43781D62453306900AA785B /* AppInfoEntity.h */,
 				E43781D72453306900AA785B /* AppInfoEntity.m */,
-				E43781DB2453FC3500AA785B /* DragView.h */,
-				E43781DC2453FC3500AA785B /* DragView.m */,
 			);
 			path = entity;
 			sourceTree = "<group>";
@@ -138,6 +140,7 @@
 		E43781E524543EED00AA785B /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				E43781F12454572900AA785B /* DragView */,
 				E43781E624543EF700AA785B /* NSButton */,
 			);
 			path = Cell;
@@ -152,6 +155,24 @@
 				E43781EB2454418E00AA785B /* AppInfoMenuBT.m */,
 			);
 			path = NSButton;
+			sourceTree = "<group>";
+		};
+		E43781F12454572900AA785B /* DragView */ = {
+			isa = PBXGroup;
+			children = (
+				E43781DB2453FC3500AA785B /* DragView.h */,
+				E43781DC2453FC3500AA785B /* DragView.m */,
+			);
+			path = DragView;
+			sourceTree = "<group>";
+		};
+		E43781F2245459EC00AA785B /* win */ = {
+			isa = PBXGroup;
+			children = (
+				E43781F324545A1900AA785B /* FloatWindow.h */,
+				E43781F424545A1900AA785B /* FloatWindow.m */,
+			);
+			path = win;
 			sourceTree = "<group>";
 		};
 		FF76C8A160FF392FDD2F7FA6 /* Frameworks */ = {
@@ -282,6 +303,7 @@
 				E43781C42453291B00AA785B /* ViewController.m in Sources */,
 				E43781CC2453291C00AA785B /* main.m in Sources */,
 				E43781C12453291B00AA785B /* AppDelegate.m in Sources */,
+				E43781F524545A1900AA785B /* FloatWindow.m in Sources */,
 				E43781E324542D6A00AA785B /* DataSavePath.m in Sources */,
 				E43781DD2453FC3500AA785B /* DragView.m in Sources */,
 			);
