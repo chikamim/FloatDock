@@ -21,6 +21,7 @@
 		E43781F524545A1900AA785B /* FloatWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781F424545A1900AA785B /* FloatWindow.m */; };
 		E43782202454777100AA785B /* whitePoint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E437821F2454777100AA785B /* whitePoint@2x.png */; };
 		E437822324547BB700AA785B /* AppInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E437822224547BB700AA785B /* AppInfoView.m */; };
+		E437822924549E8400AA785B /* icon48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E437822824549E8400AA785B /* icon48@2x.png */; };
 		E97881DF951C3A94C79F92A5 /* Pods_FloatDock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4376660DB09AC0CFCDE5409 /* Pods_FloatDock.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		E437821F2454777100AA785B /* whitePoint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whitePoint@2x.png"; sourceTree = SOURCE_ROOT; };
 		E437822124547BB700AA785B /* AppInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppInfoView.h; sourceTree = "<group>"; };
 		E437822224547BB700AA785B /* AppInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInfoView.m; sourceTree = "<group>"; };
+		E437822824549E8400AA785B /* icon48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon48@2x.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +115,7 @@
 		E43781D32453292B00AA785B /* other */ = {
 			isa = PBXGroup;
 			children = (
+				E437822824549E8400AA785B /* icon48@2x.png */,
 				E437821F2454777100AA785B /* whitePoint@2x.png */,
 				E43781D92453F07800AA785B /* icon.png */,
 				E43781C52453291C00AA785B /* Assets.xcassets */,
@@ -270,6 +273,7 @@
 				E43782202454777100AA785B /* whitePoint@2x.png in Resources */,
 				E43781C92453291C00AA785B /* Main.storyboard in Resources */,
 				E43781DA2453F07800AA785B /* icon.png in Resources */,
+				E437822924549E8400AA785B /* icon48@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

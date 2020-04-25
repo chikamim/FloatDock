@@ -13,8 +13,8 @@
 #import "AppInfoView.h"
 
 
-static CGFloat AppWidth  = 46;
-static CGFloat AppHeight = 56;
+static CGFloat AppWidth  = 48;
+static CGFloat AppHeight = 58;
 static CGFloat AppGap    = 10;
 
 @interface ViewController() <AppInfoViewProtocol>
@@ -123,7 +123,7 @@ static CGFloat AppGap    = 10;
         oneAIV.appBT.action = @selector(btAction:);
         
         if (str.length == 0) {
-            [oneAIV.appBT setImage:[NSImage imageNamed:@"icon"]];
+            [oneAIV.appBT setImage:[NSImage imageNamed:@"icon48"]];
             
         } else {
             // http://hk.uwenku.com/question/p-vrwwdiql-bnz.html
@@ -185,8 +185,9 @@ static CGFloat AppGap    = 10;
         NSMenuItem *item1 = [[NSMenuItem alloc] initWithTitle:@"新增APP" action:@selector(addAppAction) keyEquivalent:@""];
         NSMenuItem *item1_0 = [[NSMenuItem alloc] initWithTitle:@"新增Finder" action:@selector(addFinderAppPath) keyEquivalent:@""];
         NSMenuItem *item2 = [[NSMenuItem alloc] initWithTitle:@"新增Dock" action:@selector(addDockAction) keyEquivalent:@""];
-        NSMenuItem *item3 = [[NSMenuItem alloc] initWithTitle:@"清空" action:@selector(clearDockAction) keyEquivalent:@""];
-        NSMenuItem *item4 = [[NSMenuItem alloc] initWithTitle:@"删除" action:@selector(deleteDockAction) keyEquivalent:@""];
+        NSMenuItem *item_0 = [NSMenuItem separatorItem];
+        NSMenuItem *item3 = [[NSMenuItem alloc] initWithTitle:@"清空Dock" action:@selector(clearDockAction) keyEquivalent:@""];
+        NSMenuItem *item4 = [[NSMenuItem alloc] initWithTitle:@"删除Dock" action:@selector(deleteDockAction) keyEquivalent:@""];
         
         [item1 setTarget:self];
         [item1_0 setTarget:self];
@@ -197,6 +198,9 @@ static CGFloat AppGap    = 10;
         [self.clickMenu addItem:item1];
         [self.clickMenu addItem:item1_0];
         [self.clickMenu addItem:item2];
+        
+        [self.clickMenu addItem:item_0];
+        
         [self.clickMenu addItem:item3];
         [self.clickMenu addItem:item4];
     }
@@ -263,6 +267,7 @@ static CGFloat AppGap    = 10;
         NSString * path = [array[i] path];
         [self addAppPath:path];
     }
+    [self checkActiveSelf];
 }
 
 - (void)addPathArray:(NSArray *)array {
@@ -273,6 +278,7 @@ static CGFloat AppGap    = 10;
         NSString * path = array[i];
         [self addAppPath:path];
     }
+    [self checkActiveSelf];
 }
 
 // 移除第一个空的 aiv
@@ -357,6 +363,19 @@ static CGFloat AppGap    = 10;
             aiv.activeIV.hidden = YES;
         }
     }
+}
+
+// 自己单独检查
+- (void)checkActiveSelf {
+    NSWorkspace * work = [NSWorkspace sharedWorkspace];
+    NSArray<NSRunningApplication *> * appAppArray =[work runningApplications];
+    NSMutableSet * appSet = [NSMutableSet new];
+    for (NSRunningApplication * oneApp in appAppArray) {
+           if (oneApp.activationPolicy == NSApplicationActivationPolicyRegular) {
+               [appSet addObject:oneApp.bundleURL.absoluteString];
+           }
+    }
+    [self checkActive:appSet];
 }
 
 @end

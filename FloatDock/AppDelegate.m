@@ -27,7 +27,7 @@
         [[NSBundle bundleWithPath:macOSInjectionPath] load];
     }
 #endif
-    self.windowAlpha = 0.45;
+    self.windowAlpha = 0.6;
     self.appInfoTool = [AppInfoTool share];
     if (self.appInfoTool.appInfoArrayEntity.windowArray.count == 0) {
         AppInfoEntity * entity = [AppInfoEntity new];
