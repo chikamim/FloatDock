@@ -48,6 +48,8 @@
     
     //self.window.contentView.layer.cornerRadius = 12;
     //self.window.contentView.layer.masksToBounds = YES;
+    
+    [self check];
 }
 
 - (void)setWindowStyle:(NSWindow *)window {
@@ -138,26 +140,49 @@
     [wc showWindow:nil];
 }
 
-// MARK: app 关闭
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-    
+- (void)check {
+    //    NSArray<NSRunningApplication *> * apps =[[NSWorkspace sharedWorkspace] runningApplications];
+    //    NSRunningApplication * app = [NSRunningApplication currentApplication];
+    //
+    //    NSApplicationActivationPolicy policy = NSApplicationActivationPolicyRegular;
+    //
+    //    for (NSRunningApplication * oneApp in apps) {
+    //        if (oneApp.activationPolicy == policy) {
+    //            //NSLog(@"oneApp: %@ _ %@", oneApp.description, oneApp.bundleURL);
+    //            NSLog(@"oneApp: %@", oneApp.bundleURL);
+    //        }
+    //
+    //        //oneApp.
+    //        //if (app == oneApp) {
+    //        //    NSLog(@"111");
+    //        //}
+    //    }
+    //
+    [self check1];
 }
 
-- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)application {
-    [self recordXY];
-    return YES;
-}
-
-
-- (void)recordXY {
-    for (NSWindow * win in [NSApplication sharedApplication].windows) {
-        ViewController * vc = (ViewController *)win.contentViewController;
+- (void)check1 {
+    NSWorkspace * work = [NSWorkspace sharedWorkspace];
+    [RACObserve(work, runningApplications) subscribeNext:^(id  _Nullable x) {
+        //NSLog(@"111");
+        NSArray<NSRunningApplication *> * appAppArray =[work runningApplications];
+        NSMutableArray * appNormalArray = [NSMutableArray new];
         
-        vc.appInfoEntity.x = win.frame.origin.x;
-        vc.appInfoEntity.y = win.frame.origin.y;
-    }
+        for (NSRunningApplication * oneApp in appAppArray) {
+               if (oneApp.activationPolicy == NSApplicationActivationPolicyRegular) {
+                   //NSLog(@"oneApp: %@ _ %@", oneApp.description, oneApp.bundleURL);
+                   //NSLog(@"oneApp: %@", oneApp.bundleURL);
+                   [appNormalArray addObject:oneApp];
+               }
+        }
+        NSArray * windowArray = [NSApplication sharedApplication].windows;
+        for (FloatWindow * window in windowArray) {
+            ViewController * vc = (ViewController *)window.contentViewController;
+            [vc checkActive:appNormalArray];
+        }
+    }];
     
-    [AppInfoTool updateEntity];
+    
     
 }
 

@@ -346,5 +346,9 @@ static CGFloat AppGap   = 10;
     }
 }
 
+- (void)checkActive:(NSArray *)appRunningArray {
+    
+    
+}
 
 @end

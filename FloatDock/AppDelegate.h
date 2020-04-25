@@ -13,6 +13,7 @@
  */
 
 #import <Cocoa/Cocoa.h>
+#import <ReactiveObjC/ReactiveObjC.h>
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 

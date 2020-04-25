@@ -13,5 +13,6 @@ target 'FloatDock' do
 	
   pod 'Masonry'
   pod 'JSONModel'
+  pod 'ReactiveObjC'
   
 end
