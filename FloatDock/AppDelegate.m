@@ -37,13 +37,13 @@
 
     for (int i = 0; i<self.appInfoTool.appInfoArrayEntity.windowArray.count; i++) {
         AppInfoEntity * aie = self.appInfoTool.appInfoArrayEntity.windowArray[i];
-        if (i == 0) {
-            NSWindow * window = [NSApplication sharedApplication].keyWindow;
-            self.window = window;
-            [self showNewDock:aie window:window];
-        } else {
-            [self showNewDock:aie window:nil];
-        }
+        //if (i == 0) {
+        //    NSWindow * window = [NSApplication sharedApplication].keyWindow;
+        //    self.window = window;
+        //    [self showNewDock:aie window:window];
+        //} else {
+        [self showNewDock:aie window:nil];
+        //}
     }
     
     //self.window.contentView.layer.cornerRadius = 12;
@@ -67,32 +67,25 @@
 }
 
 - (IBAction)alphaUp:(id)sender {
-    if (self.window.alphaValue < 1.0) {
-        self.window.alphaValue = self.window.alphaValue + 0.05;
+    NSWindow * win = [NSApplication sharedApplication].windows.firstObject;
+    if (win.alphaValue < 1.0) {
+        win.alphaValue = win.alphaValue + 0.05;
         
         for (int i = 1; i<[NSApplication sharedApplication].windows.count; i++) {
-            NSWindow * win = [NSApplication sharedApplication].windows[i];
-            win.alphaValue = self.window.alphaValue;
+            NSWindow * oneWin = [NSApplication sharedApplication].windows[i];
+            oneWin.alphaValue = win.alphaValue;
         }
     }
-    //    NSWindow * win0 = [NSApplication sharedApplication].windows[0];
-    //    NSWindow * win1 = [NSApplication sharedApplication].windows[1];
-    //
-    //    [NSApplication sharedApplication].mainWindow;
-    
-    //win0.visible;
-    
-    //[win0 ]
-    //NSLog(@"23");
 }
 
 - (IBAction)alphaDown:(id)sender {
-    if (self.window.alphaValue > 0.1) {
-        self.window.alphaValue = self.window.alphaValue - 0.05;
+    NSWindow * win = [NSApplication sharedApplication].windows.firstObject;
+    if (win.alphaValue > 0.1) {
+        win.alphaValue = win.alphaValue - 0.05;
         
         for (int i = 1; i<[NSApplication sharedApplication].windows.count; i++) {
-            NSWindow * win = [NSApplication sharedApplication].windows[i];
-            win.alphaValue = self.window.alphaValue;
+            NSWindow * oneWin = [NSApplication sharedApplication].windows[i];
+            oneWin.alphaValue = win.alphaValue;
         }
     }
 }

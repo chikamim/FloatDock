@@ -22,6 +22,8 @@ static CGFloat AppGap   = 10;
 @property (nonatomic, strong) NSMutableArray * btArray;
 @property (nonatomic, strong) NSMenu * clickMenu;
 
+@property (nonatomic        ) BOOL initFrame;
+
 @end
 
 @implementation ViewController
@@ -74,11 +76,16 @@ static CGFloat AppGap   = 10;
         maxX =[self addBT:i];
     }
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        CGRect rect = CGRectMake(self.view.window.frame.origin.x,
-                                 self.view.window.frame.origin.y,
-                                 maxX,
-                                 VcHeight);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        CGRect rect;
+        if (!self.initFrame) {
+            self.initFrame = YES;
+            rect = CGRectMake(self.appInfoEntity.x, self.appInfoEntity.y,
+                              maxX, VcHeight);
+        } else {
+            rect = CGRectMake(self.view.window.frame.origin.x, self.view.window.frame.origin.y,
+                              maxX, VcHeight);
+        }
         [self.view.window setFrame:rect display:YES];
         
         //[self.view.window setLevel:NSFloatingWindowLevel];

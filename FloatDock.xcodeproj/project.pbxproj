@@ -94,7 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				E43781D32453292B00AA785B /* other */,
-				E43781F2245459EC00AA785B /* win */,
+				E43781F2245459EC00AA785B /* FloatWindow */,
 				E43781BF2453291B00AA785B /* AppDelegate.h */,
 				E43781C02453291B00AA785B /* AppDelegate.m */,
 				E43781C22453291B00AA785B /* ViewController.h */,
@@ -166,13 +166,13 @@
 			path = DragView;
 			sourceTree = "<group>";
 		};
-		E43781F2245459EC00AA785B /* win */ = {
+		E43781F2245459EC00AA785B /* FloatWindow */ = {
 			isa = PBXGroup;
 			children = (
 				E43781F324545A1900AA785B /* FloatWindow.h */,
 				E43781F424545A1900AA785B /* FloatWindow.m */,
 			);
-			path = win;
+			path = FloatWindow;
 			sourceTree = "<group>";
 		};
 		FF76C8A160FF392FDD2F7FA6 /* Frameworks */ = {

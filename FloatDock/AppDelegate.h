@@ -16,9 +16,6 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
-@property (nonatomic, weak  ) NSWindow * window;
-//@property (nonatomic, strong) NSMutableArray * windowArray;
-
 - (IBAction)alphaUp:(id)sender;
 - (IBAction)alphaDown:(id)sender;
 
