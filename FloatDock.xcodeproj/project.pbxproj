@@ -99,11 +99,10 @@
 			isa = PBXGroup;
 			children = (
 				E43781D32453292B00AA785B /* other */,
-				E43781F2245459EC00AA785B /* FloatWindow */,
 				E43781BF2453291B00AA785B /* AppDelegate.h */,
 				E43781C02453291B00AA785B /* AppDelegate.m */,
-				E43781C22453291B00AA785B /* ViewController.h */,
-				E43781C32453291B00AA785B /* ViewController.m */,
+				E43781F2245459EC00AA785B /* FloatWindow */,
+				E4378225245493C000AA785B /* VC */,
 				E43781E524543EED00AA785B /* Cell */,
 				E43781D52453305300AA785B /* entity */,
 				E43781E424543BE900AA785B /* tool */,
@@ -189,6 +188,15 @@
 				E43781EB2454418E00AA785B /* AppInfoMenuBT.m */,
 			);
 			path = bake;
+			sourceTree = "<group>";
+		};
+		E4378225245493C000AA785B /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				E43781C22453291B00AA785B /* ViewController.h */,
+				E43781C32453291B00AA785B /* ViewController.m */,
+			);
+			path = VC;
 			sourceTree = "<group>";
 		};
 		FF76C8A160FF392FDD2F7FA6 /* Frameworks */ = {

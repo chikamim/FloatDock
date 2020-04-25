@@ -58,14 +58,13 @@ static CGFloat AppGap    = 10;
     }];
     
     __weak typeof(self) weakSelf = self;
-    self.dv.dragAppBlock = ^(NSString * _Nonnull string) {
-        [weakSelf addAppPath:string];
+    self.dv.dragAppBlock = ^(NSArray * array) {
+        [weakSelf addPathUrls:array];
         [AppInfoTool updateEntity];
     };
 }
 
 - (void)addViews {
-    
     [self showBeforeAppPaths];
     [self addMenus];
 }
@@ -169,15 +168,6 @@ static CGFloat AppGap    = 10;
         str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
         NSURL * url = [NSURL URLWithString:str];
         
-        //NSURL * imageUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", str, @"Icon?"]];
-        //NSImage * image = [NSImage imageNamed:@""];
-        //NSImage * image;
-        //image = [[NSImage alloc]initWithContentsOfURL:imageUrl];
-        //image = [[NSWorkspace sharedWorkspace] iconForFileType:NSFileTypeForHFSTypeCode(kGenericFolderIcon)];
-        //image = [NSImage imageNamed:str];
-        //image = [[NSWorkspace sharedWorkspace] iconForFile:str];
-        //NSLog(@"image: %@", NSStringFromSize(image.size));
-        
         if (url) {
             NSWorkspaceOpenConfiguration * config = [NSWorkspaceOpenConfiguration configuration];
             config.activates = YES;
@@ -193,21 +183,29 @@ static CGFloat AppGap    = 10;
         self.clickMenu = [NSMenu new];
         
         NSMenuItem *item1 = [[NSMenuItem alloc] initWithTitle:@"新增APP" action:@selector(addAppAction) keyEquivalent:@""];
+        NSMenuItem *item1_0 = [[NSMenuItem alloc] initWithTitle:@"新增Finder" action:@selector(addFinderAppPath) keyEquivalent:@""];
         NSMenuItem *item2 = [[NSMenuItem alloc] initWithTitle:@"新增Dock" action:@selector(addDockAction) keyEquivalent:@""];
         NSMenuItem *item3 = [[NSMenuItem alloc] initWithTitle:@"清空" action:@selector(clearDockAction) keyEquivalent:@""];
         NSMenuItem *item4 = [[NSMenuItem alloc] initWithTitle:@"删除" action:@selector(deleteDockAction) keyEquivalent:@""];
         
         [item1 setTarget:self];
+        [item1_0 setTarget:self];
         [item2 setTarget:self];
         [item3 setTarget:self];
         [item4 setTarget:self];
         
         [self.clickMenu addItem:item1];
+        [self.clickMenu addItem:item1_0];
         [self.clickMenu addItem:item2];
         [self.clickMenu addItem:item3];
         [self.clickMenu addItem:item4];
     }
     self.view.menu = self.clickMenu;
+}
+
+- (void)addFinderAppPath {
+    [self addPathArray:@[@"/System/Library/CoreServices/Finder.app/"]];
+    [AppInfoTool updateEntity];
 }
 
 - (void)addDockAction {
@@ -240,15 +238,7 @@ static CGFloat AppGap    = 10;
     [self.view.window close];
 }
 
-- (void)mouseEntered:(NSEvent *)event {
-    self.view.window.alphaValue = 1.0;
-    NSLog(@"entered");
-}
-
-- (void)mouseExited:(NSEvent *)event {
-    self.view.window.alphaValue = 0.5;
-}
-
+// MARK: 打开系统文件件事件
 - (void)addAppAction {
     NSOpenPanel *panel = [NSOpenPanel openPanel];
     
@@ -260,27 +250,43 @@ static CGFloat AppGap    = 10;
     //[NSApp.windows[0] setLevel:NSNormalWindowLevel];
     
     if ([panel runModal] == NSModalResponseOK) {
-        for (int i = 0; i<panel.URLs.count; i++) {
-            NSString * path   = [panel.URLs[i] path];
-            
-            if (i == 0) {
-                if (self.appInfoEntity.appPathArray.firstObject.length == 0) {
-                    [self.appInfoEntity.appPathArray removeAllObjects];
-                    AppInfoView * aiv = self.aivArray.firstObject;
-                    
-                    [aiv removeFromSuperview];
-                    [self.aivArray removeObject:aiv];
-                }
-            }
-            
-            [self addAppPath:path];
-        }
+        [self addPathUrls:panel.URLs];
         [AppInfoTool updateEntity];
     }
-   
 }
 
-// MARK: delegate
+- (void)addPathUrls:(NSArray *)array {
+    for (int i = 0; i<array.count; i++) {
+        if (i == 0) {
+            [self removeNilAiv];
+        }
+        NSString * path = [array[i] path];
+        [self addAppPath:path];
+    }
+}
+
+- (void)addPathArray:(NSArray *)array {
+    for (int i = 0; i<array.count; i++) {
+        if (i == 0) {
+            [self removeNilAiv];
+        }
+        NSString * path = array[i];
+        [self addAppPath:path];
+    }
+}
+
+// 移除第一个空的 aiv
+- (void)removeNilAiv {
+    if (self.appInfoEntity.appPathArray.firstObject.length == 0) {
+        [self.appInfoEntity.appPathArray removeAllObjects];
+        AppInfoView * aiv = self.aivArray.firstObject;
+        
+        [aiv removeFromSuperview];
+        [self.aivArray removeObject:aiv];
+    }
+}
+
+// MARK: AIV 的 delegate
 - (void)delete:(AppInfoView *)appInfoView {
     [self.appInfoEntity.appPathArray removeObjectAtIndex:appInfoView.appBT.tag];
     [self.aivArray removeObject:appInfoView];
@@ -341,6 +347,7 @@ static CGFloat AppGap    = 10;
     aiv1.appBT.tag = tag;
 }
 
+// MARK: 检查 APP 运行状态
 - (void)checkActive:(NSSet *)appRunningSet {
     for (AppInfoView * aiv in self.aivArray) {
         //NSLog(@"aiv.appPath: %@", aiv.appUrlPath);

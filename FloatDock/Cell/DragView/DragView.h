@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 // 2. 获取 path 方法
 // https://stackoverflow.com/questions/31320947/nsurl-returns-files-id-instead-of-files-path
 
-typedef void(^DragViewBlockPString) (NSString * string);
+typedef void(^DragViewBlockPString) (NSArray * array);
 
 @interface DragView : NSView
 

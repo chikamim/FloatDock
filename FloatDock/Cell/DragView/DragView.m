@@ -39,33 +39,52 @@
     NSPasteboard *pboard = [sender draggingPasteboard];
     
     if ([[pboard types] containsObject:NSPasteboardTypeFileURL]) {
-            return NSDragOperationCopy;
+        return NSDragOperationCopy;
     }
     
     return NSDragOperationNone;
 }
 
+
 /***
  第三步：当在view中松开鼠标键时会触发以下函数，我们可以在这个函数里面处理接受到的数据
+ 这里只能处理单个
  ***/
-- (BOOL)prepareForDragOperation:(id<NSDraggingInfo>)sender {
-    // 1）、获取拖动数据中的粘贴板
-    NSPasteboard *zPasteboard = [sender draggingPasteboard];
-    // 2）、从粘贴板中提取我们想要的NSFilenamesPboardType数据， 这里获取到的是一个文件链接的数组， 里面保存的是所有拖动进来的文件地址， 如果你只想处理一个文件， 那么只需要从数组中提取一个路径就可以了。
-    //NSArray *list = [zPasteboard propertyListForType:NSPasteboardTypeFileURL];
-    // 3）、将接受到的文件链接数组通过代理传送
-    //if(self.delegate && [self.delegate respondsToSelector:@selector(dragDropViewFileList:)]) {
-    //    [self.delegate dragDropViewFileList:list];
-    //}
-    
-    // 获取 path 方法
-    // https://stackoverflow.com/questions/31320947/nsurl-returns-files-id-instead-of-files-path
-    NSURL * fileURL = [NSURL URLFromPasteboard:zPasteboard];
-    
-    if (self.dragAppBlock) {
-        self.dragAppBlock(fileURL.path);
+//- (BOOL)prepareForDragOperation:(id<NSDraggingInfo>)sender {
+//    // 1）、获取拖动数据中的粘贴板
+//    NSPasteboard *zPasteboard = [sender draggingPasteboard];
+//    // 2）、从粘贴板中提取我们想要的NSFilenamesPboardType数据， 这里获取到的是一个文件链接的数组， 里面保存的是所有拖动进来的文件地址， 如果你只想处理一个文件， 那么只需要从数组中提取一个路径就可以了。
+//    //NSArray *list = [zPasteboard propertyListForType:NSPasteboardTypeFileURL];
+//    // 3）、将接受到的文件链接数组通过代理传送
+//    //if(self.delegate && [self.delegate respondsToSelector:@selector(dragDropViewFileList:)]) {
+//    //    [self.delegate dragDropViewFileList:list];
+//    //}
+//
+//    // 获取 path 方法
+//    // https://stackoverflow.com/questions/31320947/nsurl-returns-files-id-instead-of-files-path
+//    NSURL * fileURL = [NSURL URLFromPasteboard:zPasteboard];
+//
+//    if (self.dragAppBlock) {
+//        self.dragAppBlock(fileURL.path);
+//    }
+//    //NSLog(@"path: %@", fileURL.path);
+//    return YES;
+//}
+
+/***
+ 第三步：当在view中松开鼠标键时会触发以下函数，我们可以在这个函数里面处理接受到的数据
+ // https://stackoom.com/question/171Nv/读取多个拖拽的文件 解释
+***/
+
+- (BOOL)performDragOperation:(id<NSDraggingInfo>)sender {
+    NSPasteboard *pboard = [sender draggingPasteboard];
+    if ([[pboard types] containsObject:NSPasteboardTypeFileURL]) {
+        NSArray *urls = [pboard readObjectsForClasses:@[[NSURL class]] options:nil];
+        //NSLog(@"URLs are: %@", urls);
+        if (self.dragAppBlock) {
+            self.dragAppBlock(urls);
+        }
     }
-    //NSLog(@"path: %@", fileURL.path);
     return YES;
 }
 
