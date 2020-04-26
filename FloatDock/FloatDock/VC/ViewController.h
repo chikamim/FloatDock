@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import "AppInfoEntity.h"
 
-#import "AppInfoMenuVM.h"
-
 @interface ViewController : NSViewController
 
 @property (nonatomic, weak  ) AppInfoEntity * appInfoEntity;

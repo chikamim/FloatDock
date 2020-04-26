@@ -8,7 +8,6 @@
 
 #import "AppInfoMenuVM.h"
 
-#import "AppInfoViewVM.h"
 #import "AppDelegate.h"
 #import "AppWindowTool.h"
 
@@ -52,25 +51,20 @@
 
 // MARK: 右键menu
 - (void)addFinderAppPath {
-    [self.appInfoViewVM addAppPathArray:@[@"/System/Library/CoreServices/Finder.app/"]];
-    [AppInfoTool updateEntity];
+    [self addAppPathArray:@[@"/System/Library/CoreServices/Finder.app/"]];
 }
 
 - (void)addDockAction {
     [[AppWindowTool share] createNewDockEvent];
 }
 
-- (void)clearDockAction {
-    [self.appInfoViewVM clearDockAppAction];
-    [AppInfoTool updateEntity];
-}
+- (void)clearDockAppAction { }
 
-- (void)deleteDockAction {
-    [[AppInfoTool share].appInfoArrayEntity.windowArray removeObject:self.appInfoEntity];
-    [AppInfoTool updateEntity];
-    
-    [self.view.window close];
-}
+- (void)deleteDockAction { }
+
+- (void)addAppUrlArray:(NSArray *)array { }
+
+- (void)addAppPathArray:(NSArray *)array { }
 
 // MARK: 打开系统文件件事件
 - (void)addAppAction {
@@ -82,8 +76,7 @@
     [panel setAllowedFileTypes:@[@"app"]];
     
     if ([panel runModal] == NSModalResponseOK) {
-        [self.appInfoViewVM addAppUrlArray:panel.URLs];
-        [AppInfoTool updateEntity];
+        [self addAppUrlArray:panel.URLs];
     }
 }
 

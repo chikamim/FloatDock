@@ -8,8 +8,10 @@
 
 #import "ViewController.h"
 
-#import "DragView.h"
 #import <Masonry/Masonry.h>
+#import <ReactiveObjC/ReactiveObjC.h>
+
+#import "DragView.h"
 #import "AppInfoView.h"
 #import "AppInfoViewVM.h"
 #import "AppInfoMenuVM.h"
@@ -70,11 +72,42 @@
         AppInfoMenuVM * vm = [AppInfoMenuVM new];
         vm.view          = self.view;
         vm.appInfoEntity = self.appInfoEntity;
-        vm.appInfoViewVM = self.appInfoViewVM;
         [vm addMenus];
         
         vm;
     });
+    
+    // MARK: 通过 rac 替换相互之间的引用关系
+    @weakify(self);
+    // 新增 app icon
+    [[self.appInfoViewVM rac_signalForSelector:@selector(addAppAction)] subscribeNext:^(RACTuple * _Nullable x) {
+        @strongify(self);
+        
+        [self.appInfoMenuVM addAppAction];
+    }];
+    
+    // 新增 app icon url 数组
+    [[self.appInfoMenuVM rac_signalForSelector:@selector(addAppUrlArray:)] subscribeNext:^(RACTuple * _Nullable x) {
+        @strongify(self);
+        [self.appInfoViewVM addAppUrlArray:(NSArray *)x.first];
+    }];
+    // 新增 app icon path 数组
+    [[self.appInfoMenuVM rac_signalForSelector:@selector(addAppPathArray:)] subscribeNext:^(RACTuple * _Nullable x) {
+        @strongify(self);
+        [self.appInfoViewVM addAppPathArray:(NSArray *)x.first];
+    }];
+    
+    // 清空 dock
+    [[self.appInfoMenuVM rac_signalForSelector:@selector(clearDockAppAction)] subscribeNext:^(RACTuple * _Nullable x) {
+       @strongify(self);
+        [self.appInfoViewVM clearDockAppAction];
+    }];
+    
+    // 删除 dock
+    [[self.appInfoMenuVM rac_signalForSelector:@selector(deleteDockAction)] subscribeNext:^(RACTuple * _Nullable x) {
+        @strongify(self);
+        [self.appInfoViewVM deleteDockAction];
+    }];
     
 }
 

@@ -10,8 +10,6 @@
 #import <Cocoa/Cocoa.h>
 #import "AppInfoEntity.h"
 
-@class AppInfoViewVM;
-
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^FloatDockBlockPVoid) (void);
@@ -20,9 +18,20 @@ typedef void(^FloatDockBlockPVoid) (void);
 
 @property (nonatomic, weak  ) NSView * view;
 @property (nonatomic, weak  ) AppInfoEntity  * appInfoEntity;
-@property (nonatomic, weak  ) AppInfoViewVM  * appInfoViewVM;
 
 - (void)addMenus;
+
+- (void)addAppAction;
+
+// 对外: 清空dock
+- (void)clearDockAppAction;
+// 对外: 删除dock
+- (void)deleteDockAction;
+
+// 对外: 新增APP url 数组
+- (void)addAppUrlArray:(NSArray *)array;
+// 对外: 新增APP path 数组
+- (void)addAppPathArray:(NSArray *)array;
 
 @end
 

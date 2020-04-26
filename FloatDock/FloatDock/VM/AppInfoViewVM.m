@@ -7,7 +7,6 @@
 //
 
 #import "AppInfoViewVM.h"
-#import "AppDelegate.h"
 
 @interface AppInfoViewVM ()
 
@@ -56,6 +55,8 @@
         [self addAppPath:path];
     }
     [self checkActiveSelf];
+    
+    [AppInfoTool updateEntity];
 }
 
 - (void)addAppPathArray:(NSArray *)array {
@@ -67,6 +68,8 @@
         [self addAppPath:path];
     }
     [self checkActiveSelf];
+    
+    [AppInfoTool updateEntity];
 }
 
 - (void)addAppPath:(NSString *)path {
@@ -122,7 +125,6 @@
     });
     
     aiv.frame = [AppInfoViewVM aivFrameIndex:index];
-    //CGRectMake(AppWidth * index + AppGap*(index + 1), 10, AppWidth, AppHeight);
     aiv.appBT.frame = CGRectMake(0, 10, AppWidth, AppWidth);
     aiv.appPath    = self.appInfoEntity.appPathArray[index];
     aiv.appUrlPath = [aiv.appPath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
@@ -136,8 +138,7 @@
     
     NSString * str = self.appInfoEntity.appPathArray[bt.tag];
     if (str.length == 0) {
-        AppDelegate * app = (AppDelegate *) [NSApplication sharedApplication];
-        [app createNewDock:nil];
+        [self addAppAction];
     } else {
         str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
         NSURL * url = [NSURL URLWithString:str];
@@ -149,6 +150,10 @@
         }
     }
     // [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[url]]; // 打开文件夹
+}
+
+- (void)addAppAction {
+    
 }
 
 - (void)updateFrameMaxX:(CGFloat)maxX {
@@ -175,6 +180,16 @@
     // 加载一个默认的
     [self.appInfoEntity.appPathArray addObject:@""];
     [self showBeforeAppPaths];
+    
+    // 更新 data
+    [AppInfoTool updateEntity];
+}
+
+- (void)deleteDockAction {
+    [[AppInfoTool share].appInfoArrayEntity.windowArray removeObject:self.appInfoEntity];
+    [AppInfoTool updateEntity];
+    
+    [self.view.window close];
 }
 
 // MARK: AIV 的 delegate
@@ -287,7 +302,7 @@
 }
 
 + (CGRect)aivFrameIndex:(NSInteger)index {
-    return CGRectMake(AppWidth * index + AppGap*(index + 1), 10, AppWidth, AppHeight);
+    return CGRectMake(AppWidth * index + AppGap*(index + 1), AppY, AppWidth, AppHeight);
 }
 
 // MARK: 检查小白点

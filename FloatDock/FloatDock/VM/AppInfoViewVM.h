@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 static CGFloat AppWidth  = 48;
 static CGFloat AppHeight = 58;
 static CGFloat AppGap    = 10;
+static CGFloat AppY      = 10;
 
 static CGFloat VcHeight  = 70;
 
@@ -43,8 +44,14 @@ static CGFloat VcHeight  = 70;
 // 清空 dock 上面的 APP icon.
 - (void)clearDockAppAction;
 
+// 删除该 dock
+- (void)deleteDockAction;
+
 // 检查 Dock 上面的 APP icon 状态.
 - (void)checkDockAppActive:(NSSet *)appRunningSet dic:(NSMutableDictionary *)dic;
+
+// 对外: 增加 APP icon 事件
+- (void)addAppAction;
 
 @end
 
