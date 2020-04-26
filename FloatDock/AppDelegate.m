@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "FloatWindow.h"
 #import "ViewController.h"
+#import "DataSavePath.h"
 
 @interface AppDelegate ()
 
@@ -120,6 +121,17 @@
     [self.appInfoTool.appInfoArrayEntity.windowArray addObject:entity];
     
     [self showNewDock:entity window:nil];
+}
+
+- (IBAction)openDbFolder:(id)sender {
+    DataSavePath * db = [DataSavePath share];
+    [self openPath:db.DBPath];
+}
+
+- (void)openPath:(NSString *)path {
+    NSURL * url = [NSURL fileURLWithPath:path];
+    NSString * folder = [path substringToIndex:path.length - url.lastPathComponent.length];
+    [[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:folder];
 }
 
 - (void)showNewDock:(AppInfoEntity *)appInfoEntity window:(NSWindow *)window {

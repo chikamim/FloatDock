@@ -21,6 +21,7 @@
 - (IBAction)alphaDown:(id)sender;
 
 - (IBAction)createNewDock:(id)sender;
+- (IBAction)openDbFolder:(id)sender;
 
 @end
 

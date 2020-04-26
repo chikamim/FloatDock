@@ -63,9 +63,15 @@
                                                 <action selector="createNewDock:" target="Voe-Tx-rLC" id="FWK-VD-aRl"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
+                                        <menuItem title="Open DB Folder" id="IAo-SY-fd9">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="openDocument:" target="Ady-hI-5gd" id="bVn-NM-KNZ"/>
+                                                <action selector="openDbFolder:" target="Voe-Tx-rLC" id="Sl7-oh-GtF"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Open…" keyEquivalent="o" id="0Zc-rG-Bk9">
+                                            <connections>
+                                                <action selector="openDocument:" target="Ady-hI-5gd" id="Bbp-wF-ccj"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Open Recent" id="tXI-mr-wws">

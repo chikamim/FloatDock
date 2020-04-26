@@ -53,9 +53,12 @@
 
 + (AppInfoArrayEntity *)getAppInfoArrayEntity {
     DataSavePath * path = [DataSavePath share];
-    NSData * data = [NSData dataWithContentsOfFile:path.DBPath];
-    if (data) {
-        AppInfoArrayEntity * entity = [[AppInfoArrayEntity alloc] initWithData:data error:nil];
+    //NSData * data = [NSData dataWithContentsOfFile:path.DBPath];
+    NSString * txt = [NSString stringWithContentsOfFile:path.DBPath encoding:NSUTF8StringEncoding error:nil];
+    if (txt) {
+        //NSString * txt = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        //AppInfoArrayEntity * entity = [[AppInfoArrayEntity alloc] initWithData:data error:nil];
+        AppInfoArrayEntity * entity = [[AppInfoArrayEntity alloc] initWithString:txt error:nil];
         if (entity) {
             return entity;
         } else {
@@ -75,7 +78,10 @@
         DataSavePath * path = [DataSavePath share];
         [[NSFileManager defaultManager] createDirectoryAtPath:path.cachesPath withIntermediateDirectories:YES attributes:nil error:nil];
         
-        [entity.toJSONData writeToFile:path.DBPath atomically:YES];
+        //[entity.toJSONData writeToFile:path.DBPath atomically:YES];
+        //[entity.toDictionary writeToFile:path.DBPath atomically:YES];
+        //[entity.toJSONString writeToFile:path.DBPath atomically:YES];// writeToFile:atomically:error: instead
+        [entity.toJSONString writeToFile:path.DBPath atomically:yearMask encoding:NSUTF8StringEncoding error:nil];
     }
 }
 

@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-#define DBFileNameDefault @"AppDB.data"
+#define DBFileNameDefault @"AppDB.txt"
 
 @interface DataSavePath : NSObject
 
