@@ -55,7 +55,7 @@
 }
 
 - (void)addDockAction {
-    [[AppWindowTool share] createNewDockEvent];
+    [[AppWindowTool share] createNewDockEvent:self.view.window.frame.origin];
 }
 
 - (void)clearDockAppAction { }

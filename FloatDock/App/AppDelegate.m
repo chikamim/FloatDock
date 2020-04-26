@@ -49,7 +49,7 @@
 }
 
 - (IBAction)createNewDock:(id)sender {
-    [self.appWindowTool createNewDockEvent];
+    [self.appWindowTool createNewDockEvent:CGPointZero];
     // 1. 创建视图控制器，加载xib文件
     // 原文链接：https://blog.csdn.net/fl2011sx/article/details/73252859
     // let sub1ViewController = NSViewController(nibName: "sub1ViewController", bundle: Bundle.main)

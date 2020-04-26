@@ -20,7 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)share;
 
 - (void)showBeforeWindows;
-- (void)createNewDockEvent;
+- (void)createNewDockEvent:(CGPoint)origin;
 
 - (void)alphaUpEvent;
 - (void)alphaDownEvent;

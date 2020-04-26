@@ -34,7 +34,7 @@
     }
 }
 
-- (void)createNewDockEvent {
+- (void)createNewDockEvent:(CGPoint)origin {
     // 1. 创建视图控制器，加载xib文件
     // 原文链接：https://blog.csdn.net/fl2011sx/article/details/73252859
     // let sub1ViewController = NSViewController(nibName: "sub1ViewController", bundle: Bundle.main)
@@ -54,6 +54,12 @@
     
     
     AppInfoEntity * entity = [AppInfoEntity new];
+    if (CGPointEqualToPoint(origin, CGPointZero)) {
+        CGSize size = [NSScreen mainScreen].frame.size;
+        origin = CGPointMake(size.width/2, size.height/2);
+    }
+    entity.x = origin.x + 10;
+    entity.y = origin.y + 10;
     [entity.appPathArray addObject:@""];
     [self.appInfoTool.appInfoArrayEntity.windowArray addObject:entity];
     
