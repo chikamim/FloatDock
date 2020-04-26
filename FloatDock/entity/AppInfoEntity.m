@@ -47,14 +47,19 @@
     dispatch_once(&once, ^{
         instance = [self new];
         instance.appInfoArrayEntity = [AppInfoTool getAppInfoArrayEntity];
+        
+        DataSavePath * path = [DataSavePath share];
+        // 预先创建一次路径
+        [[NSFileManager defaultManager] createDirectoryAtPath:path.cachesPath withIntermediateDirectories:YES attributes:nil error:nil];
+        
     });
     return instance;
 }
 
 + (AppInfoArrayEntity *)getAppInfoArrayEntity {
-    DataSavePath * path = [DataSavePath share];
+    //DataSavePath * path = [DataSavePath share];
     //NSData * data = [NSData dataWithContentsOfFile:path.DBPath];
-    NSString * txt = [NSString stringWithContentsOfFile:path.DBPath encoding:NSUTF8StringEncoding error:nil];
+    NSString * txt = [NSString stringWithContentsOfFile:[self savePath] encoding:NSUTF8StringEncoding error:nil];
     if (txt) {
         //NSString * txt = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         //AppInfoArrayEntity * entity = [[AppInfoArrayEntity alloc] initWithData:data error:nil];
@@ -75,15 +80,18 @@
 
 + (void)saveAppInfoArrayEntity:(AppInfoArrayEntity *)entity {
     if (entity) {
-        DataSavePath * path = [DataSavePath share];
-        [[NSFileManager defaultManager] createDirectoryAtPath:path.cachesPath withIntermediateDirectories:YES attributes:nil error:nil];
-        
-        //[entity.toJSONData writeToFile:path.DBPath atomically:YES];
-        //[entity.toDictionary writeToFile:path.DBPath atomically:YES];
-        //[entity.toJSONString writeToFile:path.DBPath atomically:YES];// writeToFile:atomically:error: instead
-        [entity.toJSONString writeToFile:path.DBPath atomically:yearMask encoding:NSUTF8StringEncoding error:nil];
+        [entity.toJSONString writeToFile:[self savePath] atomically:yearMask encoding:NSUTF8StringEncoding error:nil];
+        //[[NSFileManager defaultManager] createDirectoryAtPath:path.cachesPath withIntermediateDirectories:YES attributes:nil error:nil]; // 放在单例中执行
     }
 }
 
++ (NSString *)savePath {
+    DataSavePath * path = [DataSavePath share];
+#if DEBUG
+    return [NSString stringWithFormat:@"%@/%@", path.cachesPath, @"AppDbDebug.txt"];
+#else
+    return path.DBPath;
+#endif
+}
 
 @end
