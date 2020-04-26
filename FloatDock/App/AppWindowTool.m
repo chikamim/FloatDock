@@ -91,7 +91,16 @@
     [window setMovableByWindowBackground:YES]; // 整体都可以拖拽
     window.hasShadow = NO; // 关闭阴影
     
-    [window.contentView.layer setBackgroundColor:[[NSColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:208.0/255.0 alpha:1]CGColor]];
+    window.contentView.layer.cornerRadius = 12;
+    //[window setOpaque:YES];
+    //window.contentView.layer.masksToBounds = YES;
+    [window setBackgroundColor:[NSColor clearColor]];// 防止 设置了圆角之后, 显示为黑角.
+    
+    // 假如没有背景色, 就无法点击了...
+    CGColorRef color;
+    //color = [[NSColor colorWithRed:204.0/255.0 green:204.0/255.0 blue:208.0/255.0 alpha:0.55] CGColor];
+    color = [[NSColor colorWithRed:100.0/255.0 green:100.0/255.0 blue:100.0/255.0 alpha:0.5] CGColor];
+    [window.contentView.layer setBackgroundColor:color];
     
     [window setLevel:NSFloatingWindowLevel];
     window.alphaValue = self.windowAlpha;
