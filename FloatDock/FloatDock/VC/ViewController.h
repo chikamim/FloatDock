@@ -9,14 +9,11 @@
 #import <Cocoa/Cocoa.h>
 #import "AppInfoEntity.h"
 
-static CGFloat VcHeight = 70;
-
-typedef void(^FloatDockBlockPVoid) (void);
+#import "AppInfoMenuVM.h"
 
 @interface ViewController : NSViewController
 
 @property (nonatomic, weak  ) AppInfoEntity * appInfoEntity;
-@property (nonatomic, copy  ) FloatDockBlockPVoid addDockBlock;
 
 - (void)checkActive:(NSSet *)appRunningSet dic:(NSMutableDictionary *)dic;
 
