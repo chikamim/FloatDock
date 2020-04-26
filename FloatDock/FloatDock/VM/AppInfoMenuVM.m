@@ -51,7 +51,7 @@
 
 // MARK: 右键menu
 - (void)addFinderAppPath {
-    [self addAppPathArray:@[@"/System/Library/CoreServices/Finder.app/"]];
+    [self addAppUrlArray:@[[NSURL URLWithString:AppInfoUrl_Finder]]];
 }
 
 - (void)addDockAction {

@@ -10,6 +10,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+static NSString * AppInfoUrl_Finder = @"file:///System/Library/CoreServices/Finder.app";
+
 @protocol AppInfoEntity;
 @interface AppInfoEntity : JSONModel
 
