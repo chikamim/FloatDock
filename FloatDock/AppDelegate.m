@@ -10,6 +10,7 @@
 #import "FloatWindow.h"
 #import "ViewController.h"
 #import "DataSavePath.h"
+#import <ReactiveObjC/ReactiveObjC.h>
 
 @interface AppDelegate ()
 
@@ -183,19 +184,21 @@
         NSArray<NSRunningApplication *> * appAppArray =[work runningApplications];
         //NSMutableArray * appNormalArray = [NSMutableArray new];
         NSMutableSet * appSet = [NSMutableSet new];
+        NSMutableDictionary * dic = [NSMutableDictionary new];
         for (NSRunningApplication * oneApp in appAppArray) {
                if (oneApp.activationPolicy == NSApplicationActivationPolicyRegular) {
                    //NSLog(@"oneApp: %@ _ %@", oneApp.description, oneApp.bundleURL);
                    //NSLog(@"oneApp: %@", oneApp.bundleURL);
                    //[appNormalArray addObject:oneApp];
                    [appSet addObject:oneApp.bundleURL.absoluteString];
+                   [dic setObject:oneApp forKey:oneApp.bundleURL.absoluteString];
                }
         }
         //NSLog(@"appSet: %@", appSet);
         NSArray * windowArray = [NSApplication sharedApplication].windows;
         for (FloatWindow * window in windowArray) {
             ViewController * vc = (ViewController *)window.contentViewController;
-            [vc checkActive:appSet];
+            [vc checkActive:appSet dic:dic];
         }
     }];
 }

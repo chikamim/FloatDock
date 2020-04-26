@@ -293,6 +293,15 @@ static CGFloat AppGap    = 10;
 }
 
 // MARK: AIV 的 delegate
+- (void)exit:(AppInfoView *)appInfoView {
+    //[appInfoView.runningApp terminate];
+    //NSLog(@"appInfoView.runningApp.processIdentifier: %i", appInfoView.runningApp.processIdentifier);
+    //NSApplication * app = [NSRunningApplication runningApplicationWithProcessIdentifier:appInfoView.runningApp.processIdentifier];
+    
+    // https://stackoverrun.com/cn/q/3714068
+    //CFArrayRef windowList = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements, kCGNullWindowID);
+}
+
 - (void)delete:(AppInfoView *)appInfoView {
     [self.appInfoEntity.appPathArray removeObjectAtIndex:appInfoView.appBT.tag];
     [self.aivArray removeObject:appInfoView];
@@ -340,7 +349,7 @@ static CGFloat AppGap    = 10;
 
 - (void)exchangeAIV:(AppInfoView *)aiv1 withIndex:(NSInteger)exchangeTag {
     AppInfoView * changeAIV = self.aivArray[exchangeTag];
-           
+    
     [self.appInfoEntity.appPathArray exchangeObjectAtIndex:aiv1.appBT.tag withObjectAtIndex:exchangeTag];
     [self.aivArray exchangeObjectAtIndex:aiv1.appBT.tag withObjectAtIndex:exchangeTag];
     
@@ -353,11 +362,51 @@ static CGFloat AppGap    = 10;
     aiv1.appBT.tag = tag;
 }
 
+- (void)getPid:(AppInfoView *)appInfoView {
+    //NSLog(@"appInfoView.runningApp.processIdentifier: %i", appInfoView.runningApp.processIdentifier);
+    NSString * pid = [NSString stringWithFormat:@"%i", appInfoView.runningApp.processIdentifier];
+    
+    NSPasteboard * pb = [NSPasteboard generalPasteboard];
+    [pb clearContents];
+    [pb setString:pid forType:NSPasteboardTypeString];
+}
+
+- (void)lldbFront:(AppInfoView *)appInfoView {
+    NSString * lldb =
+    [NSString stringWithFormat:@"\
+     process attach --pid %i \n\
+     e NSApplication $app = [NSApplication sharedApplication];\n\
+     e NSWindow $win = $app.windows[0];\n\
+     e [$win setLevel: 3];\n\
+     exit \n\
+     y \n", appInfoView.runningApp.processIdentifier];
+    
+    NSPasteboard * pb = [NSPasteboard generalPasteboard];
+    [pb clearContents];
+    [pb setString:lldb forType:NSPasteboardTypeString];
+}
+
+- (void)lldbNormal:(AppInfoView *)appInfoView {
+    NSString * lldb =
+    [NSString stringWithFormat:@"\
+     process attach --pid %i \n\
+     e NSApplication $app = [NSApplication sharedApplication];\n\
+     e NSWindow $win = $app.windows[0];\n\
+     e [$win setLevel: 0];\n\
+     exit \n\
+     y \n", appInfoView.runningApp.processIdentifier];
+    
+    NSPasteboard * pb = [NSPasteboard generalPasteboard];
+    [pb clearContents];
+    [pb setString:lldb forType:NSPasteboardTypeString];
+}
+
 // MARK: 检查 APP 运行状态
-- (void)checkActive:(NSSet *)appRunningSet {
+- (void)checkActive:(NSSet *)appRunningSet dic:(NSMutableDictionary *)dic {
     for (AppInfoView * aiv in self.aivArray) {
         //NSLog(@"aiv.appPath: %@", aiv.appUrlPath);
         if ([appRunningSet containsObject:aiv.appUrlPath]) {
+            aiv.runningApp = dic[aiv.appUrlPath];
             aiv.activeIV.hidden = NO;
         } else{
             aiv.activeIV.hidden = YES;
@@ -370,12 +419,14 @@ static CGFloat AppGap    = 10;
     NSWorkspace * work = [NSWorkspace sharedWorkspace];
     NSArray<NSRunningApplication *> * appAppArray =[work runningApplications];
     NSMutableSet * appSet = [NSMutableSet new];
+    NSMutableDictionary * dic = [NSMutableDictionary new];
     for (NSRunningApplication * oneApp in appAppArray) {
-           if (oneApp.activationPolicy == NSApplicationActivationPolicyRegular) {
-               [appSet addObject:oneApp.bundleURL.absoluteString];
-           }
+        if (oneApp.activationPolicy == NSApplicationActivationPolicyRegular) {
+            [appSet addObject:oneApp.bundleURL.absoluteString];
+            [dic setObject:oneApp forKey:oneApp.bundleURL.absoluteString];
+        }
     }
-    [self checkActive:appSet];
+    [self checkActive:appSet dic:dic];
 }
 
 @end

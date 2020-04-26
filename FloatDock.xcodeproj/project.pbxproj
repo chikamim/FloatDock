@@ -150,18 +150,18 @@
 			children = (
 				E43782242454862E00AA785B /* bake */,
 				E43781F12454572900AA785B /* DragView */,
-				E43781E624543EF700AA785B /* NSButton */,
+				E43781E624543EF700AA785B /* AppInfoView */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		E43781E624543EF700AA785B /* NSButton */ = {
+		E43781E624543EF700AA785B /* AppInfoView */ = {
 			isa = PBXGroup;
 			children = (
 				E437822124547BB700AA785B /* AppInfoView.h */,
 				E437822224547BB700AA785B /* AppInfoView.m */,
 			);
-			path = NSButton;
+			path = AppInfoView;
 			sourceTree = "<group>";
 		};
 		E43781F12454572900AA785B /* DragView */ = {
@@ -470,13 +470,13 @@
 				CODE_SIGN_ENTITLEMENTS = FloatDock/FloatDock.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				INFOPLIST_FILE = FloatDock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.popor.FloatDock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -490,13 +490,13 @@
 				CODE_SIGN_ENTITLEMENTS = FloatDock/FloatDock.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				INFOPLIST_FILE = FloatDock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.popor.FloatDock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

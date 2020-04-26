@@ -14,9 +14,15 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol AppInfoViewProtocol <NSObject>
 
+- (void)exit:(AppInfoView *)appInfoView;
+
 - (void)delete:(AppInfoView *)appInfoView;
 - (void)moveLeft:(AppInfoView *)appInfoView;
 - (void)moveRight:(AppInfoView *)appInfoView;
+
+- (void)getPid:(AppInfoView *)appInfoView;
+- (void)lldbFront:(AppInfoView *)appInfoView;
+- (void)lldbNormal:(AppInfoView *)appInfoView;
 
 @end
 
@@ -26,6 +32,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy  ) NSString    * appUrlPath;
 @property (nonatomic, strong) NSButton    * appBT;
 @property (nonatomic, strong) NSImageView * activeIV;
+@property (nonatomic, weak  ) NSRunningApplication * runningApp;
 
 @property (nonatomic, weak  ) id<AppInfoViewProtocol> delegate;
 
