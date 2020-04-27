@@ -45,7 +45,8 @@
     self.activeIV = ({
         NSImageView * iv = [NSImageView new];
         iv.image = [NSImage imageNamed:@"whitePoint"];
-        //[self addSubview:iv];
+        // TODO: wkq, 如何 使得 NSImageVIew 点击穿透?
+        
         [self addSubview:iv];
         iv;
     });

@@ -117,7 +117,9 @@
         NSArray * windowArray = [NSApplication sharedApplication].windows;
         for (FloatWindow * window in windowArray) {
             ViewController * vc = (ViewController *)window.contentViewController;
-            [vc checkActive:appSet dic:dic];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [vc checkActive:appSet dic:dic];
+            });
         }
     }];
 }
