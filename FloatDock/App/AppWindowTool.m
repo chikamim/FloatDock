@@ -24,6 +24,9 @@
 - (void)showBeforeWindows {
     if (self.appInfoTool.appInfoArrayEntity.windowArray.count == 0) {
         AppInfoEntity * entity = [AppInfoEntity new];
+        CGSize size = [NSScreen mainScreen].frame.size;
+        entity.x = size.width/2.0;
+        entity.y = size.height/2.0;
         [entity.appPathArray addObject:@""];
         
         [self.appInfoTool.appInfoArrayEntity.windowArray addObject:entity];
