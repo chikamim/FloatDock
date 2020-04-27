@@ -144,9 +144,18 @@
         NSURL * url = [NSURL URLWithString:str];
         
         if (url) {
-            NSWorkspaceOpenConfiguration * config = [NSWorkspaceOpenConfiguration configuration];
-            config.activates = YES;
-            [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:config completionHandler:nil];
+            if ([NSEvent modifierFlags] & NSEventModifierFlagCommand) {
+                // NSLog(@"按下了 command");
+                // https://stackoom.com/question/39rQu/如果用户在应用程序开始运行之前将其按下-该如何检测是否按下了Shift, 判断command键代码
+                
+                NSString * path = [url.absoluteString substringFromIndex:7].stringByRemovingPercentEncoding;
+                NSString * folder = [path substringToIndex:path.length - url.lastPathComponent.length-1];
+                [[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:folder];
+            } else {
+                NSWorkspaceOpenConfiguration * config = [NSWorkspaceOpenConfiguration configuration];
+                config.activates = YES;
+                [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:config completionHandler:nil];
+            }
         }
     }
     // [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[url]]; // 打开文件夹
