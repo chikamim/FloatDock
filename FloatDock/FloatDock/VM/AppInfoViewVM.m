@@ -7,6 +7,7 @@
 //
 
 #import "AppInfoViewVM.h"
+#import <ReactiveObjC/ReactiveObjC.h>
 
 @interface AppInfoViewVM ()
 
@@ -100,8 +101,19 @@
         
         AppInfoView * oneAIV = [AppInfoView new];
         oneAIV.delegate     = self;
-        oneAIV.appBT.target = self;
-        oneAIV.appBT.action = @selector(btAction:);
+        //oneAIV.appBT.target = self;
+        //oneAIV.appBT.action = @selector(btAction:aiv:);
+        
+        @weakify(self);
+        @weakify(oneAIV);
+        oneAIV.appBT.rac_command = [[RACCommand alloc] initWithSignalBlock:^RACSignal * _Nonnull(id  _Nullable input) {
+            @strongify(self);
+            @strongify(oneAIV);
+            
+            [self btAction_AppInfoView:oneAIV];
+            return [RACSignal empty];
+        }];
+        
         
         if (str.length == 0) {
             [oneAIV.appBT setImage:[NSImage imageNamed:@"icon48"]];
@@ -133,10 +145,11 @@
     return CGRectGetMaxX(aiv.frame) + AppGap;
 }
 
-- (void)btAction:(NSButton *)bt {
+//- (void)btAction:(NSButton *)bt aiv:(AppInfoView *)aiv {
+- (void)btAction_AppInfoView:(AppInfoView *)aiv {
     //NSURL * url = [NSURL URLWithString:@"file:///Applications/Google%20Chrome.app/"];
     
-    NSString * str = self.appInfoEntity.appPathArray[bt.tag];
+    NSString * str = self.appInfoEntity.appPathArray[aiv.appBT.tag];
     if (str.length == 0) {
         [self addAppAction];
     } else {
@@ -146,12 +159,15 @@
         if (url) {
             if ([NSEvent modifierFlags] & NSEventModifierFlagCommand) {
                 // NSLog(@"按下了 command");
-                // https://stackoom.com/question/39rQu/如果用户在应用程序开始运行之前将其按下-该如何检测是否按下了Shift, 判断command键代码
-                
-                NSString * path = [url.absoluteString substringFromIndex:7].stringByRemovingPercentEncoding;
+                // https://stackoom.com/question/39rQu/如果用户在应用程序开始运行之前将其按下-该如何检测是否按下了Shift 判断command键代码
+                NSString * path   = [url.absoluteString substringFromIndex:7].stringByRemovingPercentEncoding;
                 NSString * folder = [path substringToIndex:path.length - url.lastPathComponent.length-1];
                 [[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:folder];
             } else {
+                // 1. 假如有多个窗口, 则打开所有窗口
+                [aiv.runningApp unhide];
+                
+                // 2. 如果没有运行APP, 则打开最后一个窗口
                 NSWorkspaceOpenConfiguration * config = [NSWorkspaceOpenConfiguration configuration];
                 config.activates = YES;
                 [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:config completionHandler:nil];
@@ -209,6 +225,11 @@
     
     // https://stackoverrun.com/cn/q/3714068
     //CFArrayRef windowList = CGWindowListCopyWindowInfo(kCGWindowListOptionOnScreenOnly | kCGWindowListExcludeDesktopElements, kCGNullWindowID);
+    
+    // 无效的代码, 不知为何.
+    if (appInfoView.runningApp) {
+        [appInfoView.runningApp forceTerminate];
+    }
 }
 
 - (void)delete:(AppInfoView *)appInfoView {

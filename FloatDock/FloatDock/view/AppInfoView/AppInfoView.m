@@ -75,8 +75,9 @@
         
         NSMenuItem *item_2 = [NSMenuItem separatorItem];
         NSMenuItem *item21 = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"获取 PID: %i", self.runningApp.processIdentifier] action:@selector(getPid) keyEquivalent:@""];
-        NSMenuItem *item22 = [[NSMenuItem alloc] initWithTitle:@"置顶LLDB" action:@selector(lldbFront) keyEquivalent:@""];
-        NSMenuItem *item23 = [[NSMenuItem alloc] initWithTitle:@"普通LLDB" action:@selector(lldbNormal) keyEquivalent:@""];
+        NSMenuItem *item22 = [[NSMenuItem alloc] initWithTitle:@"退出" action:@selector(exit) keyEquivalent:@""];
+        NSMenuItem *item23 = [[NSMenuItem alloc] initWithTitle:@"置顶LLDB" action:@selector(lldbFront) keyEquivalent:@""];
+        NSMenuItem *item24 = [[NSMenuItem alloc] initWithTitle:@"普通LLDB" action:@selector(lldbNormal) keyEquivalent:@""];
         
         //[item01 setTarget:self];
         [item11 setTarget:self];
@@ -86,6 +87,7 @@
         [item21 setTarget:self];
         [item22 setTarget:self];
         [item23 setTarget:self];
+        [item24 setTarget:self];
         
         // if (!self.activeIV.hidden) {
         //     [self.clickMenu addItem:item01];
@@ -99,8 +101,9 @@
         if (!self.activeIV.hidden) {
             [self.clickMenu addItem:item_2];
             //[self.clickMenu addItem:item21];
-            [self.clickMenu addItem:item22];
+            //[self.clickMenu addItem:item22];
             [self.clickMenu addItem:item23];
+            [self.clickMenu addItem:item24];
         }
     }
     self.appBT.menu = self.clickMenu;
