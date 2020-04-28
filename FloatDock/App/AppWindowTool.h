@@ -9,13 +9,19 @@
 #import <Foundation/Foundation.h>
 #import "FloatWindow.h"
 #import "ViewController.h"
+#import "AlphaVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface AppWindowTool : NSObject
 
 @property (nonatomic, weak  ) AppInfoTool * appInfoTool;
-@property (nonatomic        ) CGFloat windowAlpha;
+@property (nonatomic, strong) NSDecimalNumber * windowAlphaNum;
+@property (nonatomic, strong) NSDecimalNumber * num05;
+@property (nonatomic, strong) NSDecimalNumber * num100;
+
+@property (nonatomic, strong) NSWindow * alphaWindow;
+@property (nonatomic, strong) AlphaVC  * alphaVC;
 
 + (instancetype)share;
 

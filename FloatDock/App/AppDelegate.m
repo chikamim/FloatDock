@@ -116,10 +116,12 @@
         //NSLog(@"appSet: %@", appSet);
         NSArray * windowArray = [NSApplication sharedApplication].windows;
         for (FloatWindow * window in windowArray) {
-            ViewController * vc = (ViewController *)window.contentViewController;
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [vc checkActive:appSet dic:dic];
-            });
+            if ([window isMemberOfClass:[FloatWindow class]]) {
+                ViewController * vc = (ViewController *)window.contentViewController;
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    [vc checkActive:appSet dic:dic];
+                });
+            }
         }
     }];
 }
