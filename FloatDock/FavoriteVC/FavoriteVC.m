@@ -381,10 +381,10 @@ static int CellHeight = 32;
     self.editHotkeyDisposable = [[signal skip:1] subscribeNext:^(NSString *  _Nullable x) {
         @strongify(cellBT);
         @strongify(self);
+        FavoriteAppEntity * entity = (FavoriteAppEntity *)cellBT.weakEntity;
         
         if ([x hasSuffix:HotKeyEnd] ) {
             if (x.length> HotKeyEnd.length+1) {
-                FavoriteAppEntity * entity = (FavoriteAppEntity *)cellBT.weakEntity;
                 
                 cellBT.defaultTitle = [x substringToIndex:x.length - HotKeyEnd.length];
                 entity.hotKey       = cellBT.defaultTitle;
@@ -396,7 +396,11 @@ static int CellHeight = 32;
                 cellBT.defaultTitle = [x substringToIndex:x.length - HotKeyEnd.length];
             }
             
-        } else {
+        }
+        else if (x.length == 0) {
+            cellBT.defaultTitle = entity.hotKey;
+        }
+        else {
             cellBT.defaultTitle = x;
         }
     }];
