@@ -33,6 +33,7 @@ static int CellHeight = 32;
 @property (nonatomic, weak  ) HotKeyTool      * hotKeyTool;
 
 @property (nonatomic, strong) RACDisposable   * editHotkeyDisposable;
+@property (nonatomic, weak  ) LLCustomBT * editHotkeyCellBT;
 
 @end
 
@@ -373,6 +374,9 @@ static int CellHeight = 32;
 - (void)cellViewBTSetHotkeyAction:(LLCustomBT *)cellBT {
     
     [self closeEditHotkey];
+    self.editHotkeyCellBT = cellBT;
+    cellBT.defaultBackgroundColor = [NSColor selectedTextBackgroundColor];
+    //cellBT.defaultTitleColor      = [NSColor selectedTextColor];
     
     RACSignal * signal;
     signal = RACObserve(self.hotKeyTool, currentKeyboard);
@@ -390,8 +394,7 @@ static int CellHeight = 32;
                 entity.hotKey       = cellBT.defaultTitle;
                 [FavoriteAppTool updateEntity];
                 
-                [self.editHotkeyDisposable dispose];
-                self.editHotkeyDisposable = nil;
+                [self closeEditHotkey];
             } else {
                 cellBT.defaultTitle = [x substringToIndex:x.length - HotKeyEnd.length];
             }
@@ -407,6 +410,10 @@ static int CellHeight = 32;
 }
 
 - (void)closeEditHotkey {
+    if (self.editHotkeyCellBT) {
+        self.editHotkeyCellBT.defaultBackgroundColor = [NSColor clearColor];
+        //self.editHotkeyCellBT.defaultTitleColor      = [NSColor textColor];
+    }
     if (self.editHotkeyDisposable) {
         [self.editHotkeyDisposable dispose];
         self.editHotkeyDisposable = nil;
