@@ -12,6 +12,7 @@
 #import "DataSavePath.h"
 
 #import <ReactiveObjC/ReactiveObjC.h>
+#import <Carbon/Carbon.h> // kVK_Space; 识别键盘类型 // https://blog.csdn.net/weixin_33862514/article/details/89664156
 
 @interface AppDelegate ()
 
@@ -28,6 +29,7 @@
         [[NSBundle bundleWithPath:macOSInjectionPath] load];
     }
 #endif
+    [self bindHotKey:aNotification];
     self.appWindowTool = [AppWindowTool share];
     [self.appWindowTool showBeforeWindows];
     
@@ -105,13 +107,13 @@
         NSMutableSet * appSet = [NSMutableSet new];
         NSMutableDictionary * dic = [NSMutableDictionary new];
         for (NSRunningApplication * oneApp in appAppArray) {
-               if (oneApp.activationPolicy == NSApplicationActivationPolicyRegular) {
-                   //NSLog(@"oneApp: %@ _ %@", oneApp.description, oneApp.bundleURL);
-                   //NSLog(@"oneApp: %@", oneApp.bundleURL);
-                   //[appNormalArray addObject:oneApp];
-                   [appSet addObject:oneApp.bundleURL.absoluteString];
-                   [dic setObject:oneApp forKey:oneApp.bundleURL.absoluteString];
-               }
+            if (oneApp.activationPolicy == NSApplicationActivationPolicyRegular) {
+                //NSLog(@"oneApp: %@ _ %@", oneApp.description, oneApp.bundleURL);
+                //NSLog(@"oneApp: %@", oneApp.bundleURL);
+                //[appNormalArray addObject:oneApp];
+                [appSet addObject:oneApp.bundleURL.absoluteString];
+                [dic setObject:oneApp forKey:oneApp.bundleURL.absoluteString];
+            }
         }
         //NSLog(@"appSet: %@", appSet);
         NSArray * windowArray = [NSApplication sharedApplication].windows;
@@ -124,6 +126,53 @@
             }
         }
     }];
+}
+
+
+- (void)bindHotKey:(NSNotification *)aNotification {
+    // 全局监听事件 链接：https://blog.csdn.net/ZhangWangYang/article/details/95952046
+
+    // 全局
+    [NSEvent addGlobalMonitorForEventsMatchingMask:NSEventMaskFlagsChanged handler:^(NSEvent * event) {
+        //NSLog(@"event: %@\n\n", event);
+        NSLog(@"全局 修饰符 event: %li", event.modifierFlags);
+    }];
+    
+    [NSEvent addGlobalMonitorForEventsMatchingMask: NSEventMaskKeyDown | NSEventMaskRightMouseUp handler:^(NSEvent *event){
+        NSLog(@"全局 键盘 event: %@", event.characters);
+    }];
+    
+    // 本地 修饰符
+    [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskFlagsChanged handler:^NSEvent * _Nullable(NSEvent * _Nonnull aEvent) {
+        //NSLog(@"本地 1 event: %li", aEvent.modifierFlags);
+        NSLog(@"本地 修饰符 event: %li", aEvent.modifierFlags);
+        return aEvent;
+    }];
+    
+    // 本地 键盘
+    [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskKeyDown handler:^NSEvent * _Nullable(NSEvent * _Nonnull aEvent) {
+        //NSLog(@"本地 1 event: %li", aEvent.modifierFlags);
+        NSLog(@"本地 键盘 event: '%@'", aEvent.characters);
+        return aEvent;
+    }];
+}
+
+/**
+ 1. 如果没有系统权限, 是无法获得全局点击键盘功能的.
+ 2. 除此之外, mac app 还需打开 app > target > Signing & Capabilities > Signing Certificate.
+ */
+- (void)alertUserGetSystemKeyboardPermission {
+    // MacOS获取辅助功能权限控制鼠标点击事件
+    // https://blog.csdn.net/cocos2der/article/details/53393026
+    //    let opts = NSDictionary(object: kCFBooleanTrue,
+    //                            forKey: kAXTrustedCheckOptionPrompt.takeUnretainedValue() as NSString
+    //                ) as CFDictionary
+    //
+    //    guard AXIsProcessTrustedWithOptions(opts) == true else { return }
+    
+    NSDictionary *options = @{(__bridge id) kAXTrustedCheckOptionPrompt : @YES};
+    BOOL accessibilityEnabled = AXIsProcessTrustedWithOptions((__bridge CFDictionaryRef) options);
+    NSLog(@"acc : %i", accessibilityEnabled);
 }
 
 @end

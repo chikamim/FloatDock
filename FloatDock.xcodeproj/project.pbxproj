@@ -26,6 +26,9 @@
 		E437823024556C5900AA785B /* AppInfoMenuVM.m in Sources */ = {isa = PBXBuildFile; fileRef = E437822F24556C5900AA785B /* AppInfoMenuVM.m */; };
 		E4378235245582D900AA785B /* AppWindowTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4378234245582D900AA785B /* AppWindowTool.m */; };
 		E4C7F07C24585F3E00B73296 /* AlphaSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F07B24585F3E00B73296 /* AlphaSetVC.m */; };
+		E4C7F1372459317F00B73296 /* FavoriteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1362459317F00B73296 /* FavoriteVC.m */; };
+		E4C7F13A2459321500B73296 /* FavoriteAppEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1392459321500B73296 /* FavoriteAppEntity.m */; };
+		E4C7F13D245932FD00B73296 /* HotKeyTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F13C245932FD00B73296 /* HotKeyTool.m */; };
 		E97881DF951C3A94C79F92A5 /* Pods_FloatDock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4376660DB09AC0CFCDE5409 /* Pods_FloatDock.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +71,12 @@
 		E4378234245582D900AA785B /* AppWindowTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppWindowTool.m; sourceTree = "<group>"; };
 		E4C7F07A24585F3E00B73296 /* AlphaSetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlphaSetVC.h; sourceTree = "<group>"; };
 		E4C7F07B24585F3E00B73296 /* AlphaSetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlphaSetVC.m; sourceTree = "<group>"; };
+		E4C7F1352459317F00B73296 /* FavoriteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteVC.h; sourceTree = "<group>"; };
+		E4C7F1362459317F00B73296 /* FavoriteVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteVC.m; sourceTree = "<group>"; };
+		E4C7F1382459321500B73296 /* FavoriteAppEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteAppEntity.h; sourceTree = "<group>"; };
+		E4C7F1392459321500B73296 /* FavoriteAppEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteAppEntity.m; sourceTree = "<group>"; };
+		E4C7F13B245932FD00B73296 /* HotKeyTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotKeyTool.h; sourceTree = "<group>"; };
+		E4C7F13C245932FD00B73296 /* HotKeyTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotKeyTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +126,7 @@
 				E437823124557D5200AA785B /* App */,
 				E437823224557D7900AA785B /* FloatDock */,
 				E4C7F07924585F1D00B73296 /* AlphaSetVC */,
+				E4C7F1342459312D00B73296 /* FavoriteVC */,
 			);
 			path = FloatDock;
 			sourceTree = "<group>";
@@ -254,6 +264,19 @@
 			path = AlphaSetVC;
 			sourceTree = "<group>";
 		};
+		E4C7F1342459312D00B73296 /* FavoriteVC */ = {
+			isa = PBXGroup;
+			children = (
+				E4C7F1352459317F00B73296 /* FavoriteVC.h */,
+				E4C7F1362459317F00B73296 /* FavoriteVC.m */,
+				E4C7F1382459321500B73296 /* FavoriteAppEntity.h */,
+				E4C7F1392459321500B73296 /* FavoriteAppEntity.m */,
+				E4C7F13B245932FD00B73296 /* HotKeyTool.h */,
+				E4C7F13C245932FD00B73296 /* HotKeyTool.m */,
+			);
+			path = FavoriteVC;
+			sourceTree = "<group>";
+		};
 		FF76C8A160FF392FDD2F7FA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -384,11 +407,14 @@
 				E4C7F07C24585F3E00B73296 /* AlphaSetVC.m in Sources */,
 				E43781E924543F1800AA785B /* AppInfoBT.m in Sources */,
 				E43781D82453306900AA785B /* AppInfoEntity.m in Sources */,
+				E4C7F1372459317F00B73296 /* FavoriteVC.m in Sources */,
 				E43781EC2454418E00AA785B /* AppInfoMenuBT.m in Sources */,
 				E43781C42453291B00AA785B /* ViewController.m in Sources */,
+				E4C7F13D245932FD00B73296 /* HotKeyTool.m in Sources */,
 				E43781CC2453291C00AA785B /* main.m in Sources */,
 				E43781C12453291B00AA785B /* AppDelegate.m in Sources */,
 				E43781F524545A1900AA785B /* FloatWindow.m in Sources */,
+				E4C7F13A2459321500B73296 /* FavoriteAppEntity.m in Sources */,
 				E43781E324542D6A00AA785B /* DataSavePath.m in Sources */,
 				E43781DD2453FC3500AA785B /* DragView.m in Sources */,
 				E437823024556C5900AA785B /* AppInfoMenuVM.m in Sources */,
@@ -524,9 +550,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FloatDock/FloatDock.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 11;
+				DEVELOPMENT_TEAM = L46H79EBBC;
 				INFOPLIST_FILE = FloatDock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -544,9 +572,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FloatDock/FloatDock.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 11;
+				DEVELOPMENT_TEAM = L46H79EBBC;
 				INFOPLIST_FILE = FloatDock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
