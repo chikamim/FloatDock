@@ -17,10 +17,6 @@
 
 @implementation FloatWindow
 
-//- (void)mouseDown:(NSEvent *)event {
-//    //NSLog(@"3");
-//}
-
 - (void)mouseDragged:(NSEvent *)event {
     //NSLog(@"1");
     self.moved = YES;

@@ -88,7 +88,18 @@
 }
 
 - (void)setWindowStyle:(NSWindow *)window {
-    [window setStyleMask:NSWindowStyleMaskBorderless];
+    {
+        // 设置 style
+        NSUInteger style;
+        //style = NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable | NSWindowStyleMaskResizable;
+        //[window setStyleMask:style];
+        
+        //style = NSWindowStyleMaskResizable;
+        
+        style = NSWindowStyleMaskBorderless;// NSWindowStyleMaskBorderless
+        
+        [window setStyleMask:style];
+    }
     
     //CGRect rect =CGRectMake(window.frame.origin.x, window.frame.origin.y, 400, 60);
     //[window setFrame:rect display:YES];
