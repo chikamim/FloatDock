@@ -24,6 +24,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSWindow * alphaWindow;
 @property (nonatomic, strong) AlphaSetVC  * alphaVC;
 
+@property (nonatomic, strong) NSWindowController * favoriteWC;
 @property (nonatomic, strong) NSWindow * favoriteWindow;
 @property (nonatomic, strong) FavoriteVC  * favoriteVC;
 

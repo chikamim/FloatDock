@@ -400,14 +400,10 @@
         //NSLog(@"监测结果 : %@", x);
         for (FavoriteAppEntity * entity in self.favoriteAppTool.arrayEntity.appArray) {
             if ([entity.hotKey isEqualTo:x]) {
-                NSLog(@"找到了");
-                [self openAppPath:entity.appPath];
-//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                    [self openAppPath:entity.appPath];
-//                });
-//                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//                    [self openAppPath:entity.appPath];
-//                });
+                if (entity.receive) {
+                    [self openAppPath:entity.appPath];
+                }
+                break;
             }
         }
         self.currentKeyboard = x;

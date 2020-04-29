@@ -192,9 +192,16 @@
         NSWindow * window = [NSWindow new];
         [window setContentViewController:vc];
         
-        [self setWindowStyle:window];
-        [window setStyleMask:NSWindowStyleMaskUtilityWindow]; // 风格
-        //[window setMovableByWindowBackground:NO];
+        window.title = @"收藏";
+        window.titlebarAppearsTransparent = NO; // 默认值 NO
+        
+        [window setLevel:NSFloatingWindowLevel];
+        [window setMovableByWindowBackground:YES]; // 整体都可以拖拽
+        
+        // style 设置 https://www.jianshu.com/p/a8846aac8c1d
+        NSUInteger style = NSWindowStyleMaskTitled | NSWindowStyleMaskClosable | NSWindowStyleMaskMiniaturizable | NSWindowStyleMaskResizable;
+        [window setStyleMask:style];
+        
         window.alphaValue = 1;
         
         NSWindowController * wc = [[NSWindowController alloc] initWithWindow:window];
@@ -212,8 +219,9 @@
         
         self.favoriteVC     = vc;
         self.favoriteWindow = window;
+        self.favoriteWC     = wc;
     }
-    
+    [self.favoriteWC showWindow:nil];
 }
 
 @end

@@ -84,7 +84,7 @@ static int CellHeight = 23;
     eName.width = 100;
     eName.miniWidth = 70;
     
-    eHotkey.title = @"快捷键";
+    eHotkey.title = @"全局快捷键";
     eHotkey.columnID = @"3";
     eHotkey.tip = @"APP 快捷键";
     eHotkey.width = 90;
@@ -166,7 +166,7 @@ static int CellHeight = 23;
         NSLog(@"self.interactor.moveEntityArray count: %li", self.favoriteAppTool.arrayEntity.appArray.count);
         return nil;
     }
-    NSLog(@"%li - %li", row, column);
+    //NSLog(@"%li - %li", row, column);
     switch (column) {
         case 1:{
             NSButton * cellBT = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self.view];
