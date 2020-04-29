@@ -147,7 +147,7 @@
 
 - (void)updateAlphaWindowInfo {
     if (!self.alphaWindow) {
-        AlphaVC * vc = [[AlphaVC alloc] init];
+        AlphaSetVC * vc = [[AlphaSetVC alloc] init];
         
         NSWindow * window = [NSWindow new];
         [window setContentViewController:vc];

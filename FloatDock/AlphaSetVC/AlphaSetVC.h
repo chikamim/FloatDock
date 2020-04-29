@@ -1,5 +1,5 @@
 //
-//  AlphaVC.h
+//  AlphaSetVC.h
 //  FloatDock
 //
 //  Created by 王凯庆 on 2020/4/28.
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface AlphaVC : NSViewController
+@interface AlphaSetVC : NSViewController
 
 @property (nonatomic, strong) NSTextField * alphaTF;;
 

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "FloatWindow.h"
 #import "ViewController.h"
-#import "AlphaVC.h"
+#import "AlphaSetVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDecimalNumber * num100;
 
 @property (nonatomic, strong) NSWindow * alphaWindow;
-@property (nonatomic, strong) AlphaVC  * alphaVC;
+@property (nonatomic, strong) AlphaSetVC  * alphaVC;
 
 + (instancetype)share;
 

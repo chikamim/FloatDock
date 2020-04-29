@@ -1,19 +1,19 @@
 //
-//  AlphaVC.m
+//  AlphaSetVC.m
 //  FloatDock
 //
 //  Created by 王凯庆 on 2020/4/28.
 //  Copyright © 2020 王凯庆. All rights reserved.
 //
 
-#import "AlphaVC.h"
+#import "AlphaSetVC.h"
 #import <Masonry/Masonry.h>
 
-@interface AlphaVC ()
+@interface AlphaSetVC ()
 
 @end
 
-@implementation AlphaVC
+@implementation AlphaSetVC
 
 // 没有 使用 xib 的话, 需要自己创建
 - (void)loadView {
