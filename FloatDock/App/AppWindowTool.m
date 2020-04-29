@@ -184,4 +184,36 @@
     self.alphaWindow.alphaValue = 0;
 }
 
+
+- (void)openFavoriteWindows {
+    if (!self.favoriteWindow) {
+        FavoriteVC * vc = [[FavoriteVC alloc] init];
+        
+        NSWindow * window = [NSWindow new];
+        [window setContentViewController:vc];
+        
+        [self setWindowStyle:window];
+        [window setStyleMask:NSWindowStyleMaskUtilityWindow]; // 风格
+        //[window setMovableByWindowBackground:NO];
+        window.alphaValue = 1;
+        
+        NSWindowController * wc = [[NSWindowController alloc] initWithWindow:window];
+        [wc showWindow:nil];
+        
+        // frame
+        CGFloat width   = 520;
+        CGFloat height  = 300;
+        CGSize size    = [NSScreen mainScreen].frame.size;
+        CGPoint origin = CGPointMake(size.width/2 - width/2, size.height/2 - height/2);
+        //CGPoint origin = CGPointMake(size.width/2 - width/2, width);
+        CGRect rect    = CGRectMake(origin.x, origin.y, width, height);
+        
+        [window setFrame:rect display:YES];
+        
+        self.favoriteVC     = vc;
+        self.favoriteWindow = window;
+    }
+    
+}
+
 @end

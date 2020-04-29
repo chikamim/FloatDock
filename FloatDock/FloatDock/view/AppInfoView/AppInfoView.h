@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)moveLeft:(AppInfoView *)appInfoView;
 - (void)moveRight:(AppInfoView *)appInfoView;
 
+- (void)favorite:(AppInfoView *)appInfoView;
 - (void)getPid:(AppInfoView *)appInfoView;
 - (void)lldbFront:(AppInfoView *)appInfoView;
 - (void)lldbNormal:(AppInfoView *)appInfoView;
@@ -29,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface AppInfoView : NSView
 
 @property (nonatomic, copy  ) NSString    * appPath;
-@property (nonatomic, copy  ) NSString    * appUrlPath;
+@property (nonatomic, copy  ) NSString    * appUrlPath; // 用于比较Set数据
 @property (nonatomic, strong) NSButton    * appBT;
 @property (nonatomic, strong) NSImageView * activeIV;
 @property (nonatomic, weak  ) NSRunningApplication * runningApp;

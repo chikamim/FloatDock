@@ -29,6 +29,12 @@
 		E4C7F1372459317F00B73296 /* FavoriteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1362459317F00B73296 /* FavoriteVC.m */; };
 		E4C7F13A2459321500B73296 /* FavoriteAppEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1392459321500B73296 /* FavoriteAppEntity.m */; };
 		E4C7F13D245932FD00B73296 /* HotKeyTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F13C245932FD00B73296 /* HotKeyTool.m */; };
+		E4C7F1402459729900B73296 /* FavoriteColumnEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F13F2459729900B73296 /* FavoriteColumnEntity.m */; };
+		E4C7F14C2459751700B73296 /* NSView+Address.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1422459751700B73296 /* NSView+Address.m */; };
+		E4C7F14D2459751700B73296 /* JHLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1442459751700B73296 /* JHLabel.m */; };
+		E4C7F14F2459751700B73296 /* LLCustomBT.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F14A2459751700B73296 /* LLCustomBT.m */; };
+		E4C7F1502459751700B73296 /* EditableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F14B2459751700B73296 /* EditableTextField.m */; };
+		E4C7F1522459A3F000B73296 /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C7F1512459A3F000B73296 /* delete@2x.png */; };
 		E97881DF951C3A94C79F92A5 /* Pods_FloatDock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4376660DB09AC0CFCDE5409 /* Pods_FloatDock.framework */; };
 /* End PBXBuildFile section */
 
@@ -77,6 +83,17 @@
 		E4C7F1392459321500B73296 /* FavoriteAppEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteAppEntity.m; sourceTree = "<group>"; };
 		E4C7F13B245932FD00B73296 /* HotKeyTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotKeyTool.h; sourceTree = "<group>"; };
 		E4C7F13C245932FD00B73296 /* HotKeyTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotKeyTool.m; sourceTree = "<group>"; };
+		E4C7F13E2459729900B73296 /* FavoriteColumnEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteColumnEntity.h; sourceTree = "<group>"; };
+		E4C7F13F2459729900B73296 /* FavoriteColumnEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteColumnEntity.m; sourceTree = "<group>"; };
+		E4C7F1422459751700B73296 /* NSView+Address.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+Address.m"; sourceTree = "<group>"; };
+		E4C7F1442459751700B73296 /* JHLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JHLabel.m; sourceTree = "<group>"; };
+		E4C7F1452459751700B73296 /* EditableTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableTextField.h; sourceTree = "<group>"; };
+		E4C7F1462459751700B73296 /* LLCustomBT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LLCustomBT.h; sourceTree = "<group>"; };
+		E4C7F1472459751700B73296 /* NSView+Address.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+Address.h"; sourceTree = "<group>"; };
+		E4C7F1482459751700B73296 /* JHLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHLabel.h; sourceTree = "<group>"; };
+		E4C7F14A2459751700B73296 /* LLCustomBT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCustomBT.m; sourceTree = "<group>"; };
+		E4C7F14B2459751700B73296 /* EditableTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableTextField.m; sourceTree = "<group>"; };
+		E4C7F1512459A3F000B73296 /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +151,7 @@
 		E43781D32453292B00AA785B /* other */ = {
 			isa = PBXGroup;
 			children = (
+				E4C7F1512459A3F000B73296 /* delete@2x.png */,
 				E437822824549E8400AA785B /* icon48@2x.png */,
 				E437821F2454777100AA785B /* whitePoint@2x.png */,
 				E43781D92453F07800AA785B /* icon.png */,
@@ -267,14 +285,32 @@
 		E4C7F1342459312D00B73296 /* FavoriteVC */ = {
 			isa = PBXGroup;
 			children = (
+				E4C7F1412459751700B73296 /* cell */,
 				E4C7F1352459317F00B73296 /* FavoriteVC.h */,
 				E4C7F1362459317F00B73296 /* FavoriteVC.m */,
 				E4C7F1382459321500B73296 /* FavoriteAppEntity.h */,
 				E4C7F1392459321500B73296 /* FavoriteAppEntity.m */,
 				E4C7F13B245932FD00B73296 /* HotKeyTool.h */,
 				E4C7F13C245932FD00B73296 /* HotKeyTool.m */,
+				E4C7F13E2459729900B73296 /* FavoriteColumnEntity.h */,
+				E4C7F13F2459729900B73296 /* FavoriteColumnEntity.m */,
 			);
 			path = FavoriteVC;
+			sourceTree = "<group>";
+		};
+		E4C7F1412459751700B73296 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				E4C7F1472459751700B73296 /* NSView+Address.h */,
+				E4C7F1422459751700B73296 /* NSView+Address.m */,
+				E4C7F1482459751700B73296 /* JHLabel.h */,
+				E4C7F1442459751700B73296 /* JHLabel.m */,
+				E4C7F1452459751700B73296 /* EditableTextField.h */,
+				E4C7F14B2459751700B73296 /* EditableTextField.m */,
+				E4C7F1462459751700B73296 /* LLCustomBT.h */,
+				E4C7F14A2459751700B73296 /* LLCustomBT.m */,
+			);
+			path = cell;
 			sourceTree = "<group>";
 		};
 		FF76C8A160FF392FDD2F7FA6 /* Frameworks */ = {
@@ -345,6 +381,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E43781C62453291C00AA785B /* Assets.xcassets in Resources */,
+				E4C7F1522459A3F000B73296 /* delete@2x.png in Resources */,
 				E43782202454777100AA785B /* whitePoint@2x.png in Resources */,
 				E43781C92453291C00AA785B /* Main.storyboard in Resources */,
 				E43781DA2453F07800AA785B /* icon.png in Resources */,
@@ -401,18 +438,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4C7F14C2459751700B73296 /* NSView+Address.m in Sources */,
 				E4378235245582D900AA785B /* AppWindowTool.m in Sources */,
 				E437822324547BB700AA785B /* AppInfoView.m in Sources */,
 				E437822D24555EF500AA785B /* AppInfoViewVM.m in Sources */,
+				E4C7F1502459751700B73296 /* EditableTextField.m in Sources */,
 				E4C7F07C24585F3E00B73296 /* AlphaSetVC.m in Sources */,
 				E43781E924543F1800AA785B /* AppInfoBT.m in Sources */,
+				E4C7F14D2459751700B73296 /* JHLabel.m in Sources */,
 				E43781D82453306900AA785B /* AppInfoEntity.m in Sources */,
+				E4C7F14F2459751700B73296 /* LLCustomBT.m in Sources */,
 				E4C7F1372459317F00B73296 /* FavoriteVC.m in Sources */,
 				E43781EC2454418E00AA785B /* AppInfoMenuBT.m in Sources */,
 				E43781C42453291B00AA785B /* ViewController.m in Sources */,
 				E4C7F13D245932FD00B73296 /* HotKeyTool.m in Sources */,
 				E43781CC2453291C00AA785B /* main.m in Sources */,
 				E43781C12453291B00AA785B /* AppDelegate.m in Sources */,
+				E4C7F1402459729900B73296 /* FavoriteColumnEntity.m in Sources */,
 				E43781F524545A1900AA785B /* FloatWindow.m in Sources */,
 				E4C7F13A2459321500B73296 /* FavoriteAppEntity.m in Sources */,
 				E43781E324542D6A00AA785B /* DataSavePath.m in Sources */,

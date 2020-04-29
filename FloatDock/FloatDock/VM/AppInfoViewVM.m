@@ -7,6 +7,7 @@
 //
 
 #import "AppInfoViewVM.h"
+#import "FavoriteAppEntity.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 
 @interface AppInfoViewVM ()
@@ -299,6 +300,17 @@
     NSPasteboard * pb = [NSPasteboard generalPasteboard];
     [pb clearContents];
     [pb setString:pid forType:NSPasteboardTypeString];
+}
+
+- (void)favorite:(AppInfoView *)appInfoView {
+    FavoriteAppEntity * entity = [FavoriteAppEntity new];
+    entity.appPath = appInfoView.appPath;
+    entity.appName = entity.appPath.lastPathComponent;
+    entity.appName = entity.appName.stringByDeletingPathExtension;
+    
+    [[FavoriteAppTool share] addFavoriteAppEntity:entity];
+    //self.favoriteAppTool.arrayEntity
+    //[[FavoriteAppTool share].arrayEntity.appArray addObject:entity];
 }
 
 - (void)lldbFront:(AppInfoView *)appInfoView {

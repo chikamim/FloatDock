@@ -22,5 +22,7 @@
 - (IBAction)createNewDock:(id)sender;
 - (IBAction)openDbFolder:(id)sender;
 
+- (IBAction)openFavoriteWindows:(id)sender;
+
 @end
 

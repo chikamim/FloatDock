@@ -75,7 +75,8 @@
         
         NSMenuItem *item_2 = [NSMenuItem separatorItem];
         NSMenuItem *item21 = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"获取 PID: %i", self.runningApp.processIdentifier] action:@selector(getPid) keyEquivalent:@""];
-        NSMenuItem *item22 = [[NSMenuItem alloc] initWithTitle:@"退出" action:@selector(exit) keyEquivalent:@""];
+        //NSMenuItem *item22 = [[NSMenuItem alloc] initWithTitle:@"退出" action:@selector(exit) keyEquivalent:@""];
+        NSMenuItem *item22 = [[NSMenuItem alloc] initWithTitle:@"收藏" action:@selector(favorite) keyEquivalent:@""];
         NSMenuItem *item23 = [[NSMenuItem alloc] initWithTitle:@"置顶LLDB" action:@selector(lldbFront) keyEquivalent:@""];
         NSMenuItem *item24 = [[NSMenuItem alloc] initWithTitle:@"普通LLDB" action:@selector(lldbNormal) keyEquivalent:@""];
         
@@ -101,7 +102,7 @@
         if (!self.activeIV.hidden) {
             [self.clickMenu addItem:item_2];
             //[self.clickMenu addItem:item21];
-            //[self.clickMenu addItem:item22];
+            [self.clickMenu addItem:item22];
             [self.clickMenu addItem:item23];
             [self.clickMenu addItem:item24];
         }
@@ -145,6 +146,12 @@
 - (void)getPid {
     if (self.delegate && [self.delegate respondsToSelector:@selector(getPid:)]) {
          [self.delegate getPid:self];
+    }
+}
+
+- (void)favorite {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(favorite:)]) {
+         [self.delegate favorite:self];
     }
 }
 

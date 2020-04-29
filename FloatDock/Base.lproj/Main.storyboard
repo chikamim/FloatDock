@@ -21,6 +21,11 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
+                                        <menuItem title="Favorite" keyEquivalent="f" id="CS0-x3-9LN">
+                                            <connections>
+                                                <action selector="openFavoriteWindows:" target="Voe-Tx-rLC" id="09S-QV-9Yc"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
@@ -69,7 +74,8 @@
                                                 <action selector="openDbFolder:" target="Voe-Tx-rLC" id="Sl7-oh-GtF"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Open…" keyEquivalent="o" id="0Zc-rG-Bk9">
+                                        <menuItem title="Open…" id="0Zc-rG-Bk9">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="openDocument:" target="Ady-hI-5gd" id="Bbp-wF-ccj"/>
                                             </connections>
@@ -175,7 +181,8 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <menu key="submenu" title="Find" id="1b7-l0-nxx">
                                                 <items>
-                                                    <menuItem title="Find…" tag="1" keyEquivalent="f" id="Xz5-n4-O0W">
+                                                    <menuItem title="Find…" tag="1" id="Xz5-n4-O0W">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
                                                             <action selector="performFindPanelAction:" target="Ady-hI-5gd" id="cD7-Qs-BN4"/>
                                                         </connections>

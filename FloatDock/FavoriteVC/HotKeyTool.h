@@ -7,10 +7,24 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AppKit/AppKit.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
+static NSString * HotKeyEnd = @"end";
+
 @interface HotKeyTool : NSObject
+
+@property (nonatomic        ) NSEventModifierFlags flags;
+@property (nonatomic, copy  ) NSString * characters;
+@property (nonatomic, copy  ) NSString * currentKeyboard;
+
+@property (nonatomic, copy  ) NSSet * runningAppsSet;
+@property (nonatomic, copy  ) NSDictionary * runningAppsDic;
+
++ (instancetype)share;
+
+- (void)bindHotKey:(NSNotification *)aNotification;
 
 @end
 

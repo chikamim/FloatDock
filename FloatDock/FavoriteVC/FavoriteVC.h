@@ -16,6 +16,8 @@ static NSInteger FavoriteVCHeight = 300;
 
 @interface FavoriteVC : NSViewController
 
+- (void)closeEditHotkey;
+
 @end
 
 NS_ASSUME_NONNULL_END

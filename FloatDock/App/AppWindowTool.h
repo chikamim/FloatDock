@@ -10,6 +10,7 @@
 #import "FloatWindow.h"
 #import "ViewController.h"
 #import "AlphaSetVC.h"
+#import "FavoriteVC.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -23,6 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSWindow * alphaWindow;
 @property (nonatomic, strong) AlphaSetVC  * alphaVC;
 
+@property (nonatomic, strong) NSWindow * favoriteWindow;
+@property (nonatomic, strong) FavoriteVC  * favoriteVC;
+
 + (instancetype)share;
 
 - (void)showBeforeWindows;
@@ -30,6 +34,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)alphaUpEvent;
 - (void)alphaDownEvent;
+
+- (void)openFavoriteWindows;
+
 @end
 
 NS_ASSUME_NONNULL_END
