@@ -19,6 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy  ) NSString * appPath;
 @property (nonatomic, copy  ) NSString * hotKey;  // 快捷键
 @property (nonatomic, weak  ) NSRunningApplication<Ignore> * runningApp;
+@property (nonatomic, strong) NSImage<Ignore> * appImage;
 
 //---
 @property (nonatomic        ) BOOL receive;

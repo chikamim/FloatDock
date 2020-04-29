@@ -21,7 +21,7 @@
 
 typedef void(^BlockPDic) (NSDictionary * dic);
 
-static int CellHeight = 23;
+static int CellHeight = 32;
 
 @interface FavoriteVC () <NSTableViewDelegate, NSTableViewDataSource>
 
@@ -77,11 +77,12 @@ static int CellHeight = 23;
     FavoriteColumnEntity * eSwitch = [FavoriteColumnEntity new];
     FavoriteColumnEntity * ePath = [FavoriteColumnEntity new];
     FavoriteColumnEntity * eDelete = [FavoriteColumnEntity new];
+    FavoriteColumnEntity * eIcon  = [FavoriteColumnEntity new];
     
     eName.title = @"名称";
     eName.columnID = @"2";
     eName.tip = @"APP 名称";
-    eName.width = 100;
+    eName.width = 200;
     eName.miniWidth = 70;
     
     eHotkey.title = @"全局快捷键";
@@ -109,8 +110,14 @@ static int CellHeight = 23;
     eDelete.width = 30;
     eDelete.miniWidth = 30;
     
+    eIcon.title = @"图标";
+    eIcon.columnID = @"6";
+    eIcon.tip = @"图标";
+    eIcon.width = CellHeight;
+    eIcon.miniWidth = CellHeight;
     
-    NSArray * array = @[eSwitch, eName, eHotkey, eDelete, ePath];
+    
+    NSArray * array = @[eSwitch, eIcon, eName, eHotkey, eDelete]; //ePath
     
     for (int i=0; i<array.count; i++) {
         FavoriteColumnEntity * entity = array[i];
@@ -168,7 +175,7 @@ static int CellHeight = 23;
     }
     //NSLog(@"%li - %li", row, column);
     switch (column) {
-        case 1:{
+        case 1:{ // 开关
             NSButton * cellBT = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self.view];
             if (!cellBT) {
                 cellBT = [[NSButton alloc] initWithFrame:CGRectMake(0, 0, tableColumn.width, CellHeight)];
@@ -186,13 +193,13 @@ static int CellHeight = 23;
             break;
         }
             
-        case 2:{
+        case 2:{ // 名称
             LLCustomBT * cellBT = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self.view];
             if (!cellBT) {
                 //使用方法
                 cellBT = [[LLCustomBT alloc] initWithFrame:CGRectMake(0, 0, tableColumn.width, CellHeight)];
                 cellBT.isHandCursor = YES;
-                cellBT.defaultTitle = @"单独查看";
+                cellBT.defaultTitle = @"";
                 //cellBT.selectedTitle = @"已选中";
                 cellBT.defaultTitleColor  = [NSColor textColor]; //[NSColor whiteColor];
                 //cellBT.selectedTitleColor = [NSColor blackColor];
@@ -218,7 +225,7 @@ static int CellHeight = 23;
             
             break;
         }
-        case 3:{
+        case 3:{ // 快捷键
             LLCustomBT * cellBT = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self.view];
             if (!cellBT) {
                 //使用方法
@@ -253,7 +260,7 @@ static int CellHeight = 23;
             cell = cellBT;
             break;
         }
-        case 4:{
+        case 4:{// 路径
             NSTextField * cellTF = [self tableView:tableView cellTFForColumn:tableColumn row:row edit:NO initBlock:^(NSDictionary *dic) {
                 NSTextField * tf = dic[@"tf"];
                 tf.alignment = NSTextAlignmentLeft;
@@ -262,7 +269,7 @@ static int CellHeight = 23;
             cell = cellTF;
             break;
         }
-        case 5:{
+        case 5:{//删除
             NSButton * cellBT = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self.view];
             if (!cellBT) {
                 cellBT = [[NSButton alloc] initWithFrame:CGRectMake(0, 0, tableColumn.width, CellHeight)];
@@ -276,6 +283,33 @@ static int CellHeight = 23;
             cell = cellBT;
             
             cellBT.weakEntity = entity;
+            
+            break;
+        }
+            
+        case 6:{// 图标
+            NSButton * cellBT = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self.view];
+            if (!cellBT) {
+                cellBT = [[NSButton alloc] initWithFrame:CGRectMake(0, 0, tableColumn.width, CellHeight)];
+                //[cellBT setTarget:self];
+                //[cellBT setAction:@selector(cellBtDeleteAction:)];
+                
+                cellBT.layer.backgroundColor = [NSColor clearColor].CGColor;
+            }
+            cellBT.tag = row;
+            cell = cellBT;
+            
+            cellBT.weakEntity = entity;
+            if (!entity.appImage) {
+                NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
+                NSImage *finderIcon;
+                //= [workspace iconForFile:[workspace absolutePathForAppBundleWithIdentifier:@"com.apple.Finder"]];
+                finderIcon = [workspace iconForFile:[entity.appPath substringFromIndex:7]];
+                [finderIcon setSize:NSMakeSize(CellHeight, CellHeight)];
+                
+                entity.appImage = finderIcon;
+            }
+            [cellBT setImage:entity.appImage];
             
             break;
         }
