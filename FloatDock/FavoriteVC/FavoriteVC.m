@@ -539,7 +539,7 @@ static NSString * HotKeyDefaultText = @"请设置";
     //FavoriteAppEntity * entity = (FavoriteAppEntity *)cellBT.weakEntity;
 }
 
-// 设置快捷键
+// !!!: 设置快捷键
 - (void)cellViewBTSetHotkeyAction:(LLCustomBT *)cellBT {
     
     [self closeEditHotkey];
