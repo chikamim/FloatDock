@@ -25,6 +25,9 @@ static int CellHeight = 32;
 
 @interface FavoriteVC () <NSTableViewDelegate, NSTableViewDataSource>
 
+//@property (nonatomic, strong) NSTextField  * tipTF;
+@property (nonatomic, strong) NSTextView   * tipTextView;
+
 @property (nonatomic, strong) NSTableView  * infoTV;
 @property (nonatomic, strong) NSScrollView * infoTV_CSV;
 @property (nonatomic, strong) NSMenu       * infoTVClickMenu;
@@ -47,6 +50,8 @@ static int CellHeight = 32;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do view setup here.
+    //[self addTFs];
+    [self addTextViews];
     
     self.favoriteAppTool = [FavoriteAppTool share];
     self.hotKeyTool      = [HotKeyTool share];
@@ -62,8 +67,74 @@ static int CellHeight = 32;
         
         [self.infoTV reloadData];
     }];
+    
+    [self.view needsLayout];
 }
 
+/*
+- (void)addTFs {
+    self.tipTF = ({
+        NSTextField * tf = [NSTextField new];
+        tf.backgroundColor = [NSColor clearColor];//[NSColor textBackgroundColor];
+        tf.textColor       = [NSColor textColor];
+        tf.alignment       = NSTextAlignmentLeft;
+        tf.font            = [NSFont systemFontOfSize:14];
+        tf.bordered        = NO;
+        tf.lineBreakMode   = NSLineBreakByTruncatingMiddle;
+        tf.editable        = NO;
+
+        tf.maximumNumberOfLines = 3;
+
+        [self.view addSubview:tf];
+        tf;
+    });
+
+    self.tipTF.stringValue = @"全局快捷键需要您在 [系统偏好设置] > [安全与隐私] > [辅助功能] 中选中 FloatDock, 并且重启APP.";
+
+    [self.tipTF mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(5);
+        make.left.mas_equalTo(15);
+        //make.bottom.mas_equalTo(-20);
+        //make.height.mas_equalTo(60);
+        make.right.mas_equalTo(-15);
+    }];
+}
+//*/
+
+- (void)addTextViews {
+    
+    self.tipTextView = ({
+        NSTextView * tv = [NSTextView new];
+        tv.backgroundColor = [NSColor clearColor];//[NSColor textBackgroundColor];
+        tv.textColor       = [NSColor textColor];
+        tv.alignment       = NSTextAlignmentLeft;
+        tv.font            = [NSFont systemFontOfSize:13];
+        //tf.bordered        = NO;
+        //tf.lineBreakMode   = NSLineBreakByTruncatingMiddle;
+        tv.editable        = NO;
+        
+        
+        //tf.maximumNumberOfLines = 3;
+        
+        [self.view addSubview:tv];
+        tv;
+    });
+    
+    [self.tipTextView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(5);
+        make.left.mas_equalTo(5);
+        //make.bottom.mas_equalTo(-20);
+        //make.height.mas_equalTo(60);
+        make.right.mas_equalTo(-5);
+        make.height.mas_lessThanOrEqualTo(40);
+        make.height.mas_greaterThanOrEqualTo(20);
+    }];
+    
+    self.tipTextView.string = @"全局快捷键需要您在 [系统偏好设置] > [安全与隐私] > [辅助功能] 中选中 FloatDock, 并且重启APP.";
+    //[self.tipTextView sizeToFit];
+    NSClickGestureRecognizer *click = [[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(closeEditHotkey)];
+    [self.tipTextView addGestureRecognizer:click];
+}
 
 // MARK: tv
 - (NSScrollView *)addTagTVs {
@@ -78,6 +149,7 @@ static int CellHeight = 32;
     FavoriteColumnEntity * eSwitch = [FavoriteColumnEntity new];
     FavoriteColumnEntity * ePath = [FavoriteColumnEntity new];
     FavoriteColumnEntity * eDelete = [FavoriteColumnEntity new];
+    FavoriteColumnEntity * eFavorite = [FavoriteColumnEntity new];
     FavoriteColumnEntity * eIcon  = [FavoriteColumnEntity new];
     
     eName.title = @"名称(拖拽排序)";
@@ -105,11 +177,11 @@ static int CellHeight = 32;
     ePath.miniWidth = 100;
 
     
-    eDelete.title = @"删除";
+    eDelete.title = @"删除快捷键";
     eDelete.columnID = @"5";
-    eDelete.tip = @"取消收藏";
-    eDelete.width = 30;
-    eDelete.miniWidth = 30;
+    eDelete.tip = @"删除快捷键";
+    eDelete.width = 60;
+    eDelete.miniWidth = 60;
     
     eIcon.title = @"图标";
     eIcon.columnID = @"6";
@@ -117,8 +189,13 @@ static int CellHeight = 32;
     eIcon.width = CellHeight;
     eIcon.miniWidth = CellHeight;
     
+    eFavorite.title = @"取消收藏";
+    eFavorite.columnID = @"7";
+    eFavorite.tip = @"取消收藏";
+    eFavorite.width = 60;
+    eFavorite.miniWidth = 60;
     
-    NSArray * array = @[eSwitch, eIcon, eName, eHotkey, eDelete]; //ePath
+    NSArray * array = @[eSwitch, eIcon, eName, eHotkey, eDelete, eFavorite]; //ePath
     
     for (int i=0; i<array.count; i++) {
         FavoriteColumnEntity * entity = array[i];
@@ -146,7 +223,7 @@ static int CellHeight = 32;
     [tableContainer mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
         make.right.mas_equalTo(-10);
-        make.top.mas_equalTo(30);
+        make.top.mas_equalTo(self.tipTextView.mas_bottom).mas_offset(10);
         make.bottom.mas_equalTo(-10);
     }];
     
@@ -279,15 +356,18 @@ static int CellHeight = 32;
             cell = cellTF;
             break;
         }
-        case 5:{//删除
+        case 5:{//删除快捷键
             NSButton * cellBT = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self.view];
             if (!cellBT) {
                 cellBT = [[NSButton alloc] initWithFrame:CGRectMake(0, 0, tableColumn.width, CellHeight)];
                 [cellBT setTarget:self];
-                [cellBT setAction:@selector(cellBtDeleteAction:)];
-                
+                [cellBT setAction:@selector(cellBtDeleteHotKeyAction:)];
                 [cellBT setImage:[NSImage imageNamed:@"delete"]];
-                cellBT.layer.backgroundColor = [NSColor clearColor].CGColor;
+                
+                //[cellBT set]
+                //cellBT.layer.backgroundColor = [NSColor redColor].CGColor;
+                //cellBT.cell.backgroundStyle = NSBackgroundStyleLowered;
+                
             }
             cellBT.tag = row;
             cell = cellBT;
@@ -302,7 +382,7 @@ static int CellHeight = 32;
             if (!cellBT) {
                 cellBT = [[NSButton alloc] initWithFrame:CGRectMake(0, 0, tableColumn.width, CellHeight)];
                 //[cellBT setTarget:self];
-                //[cellBT setAction:@selector(cellBtDeleteAction:)];
+                //[cellBT setAction:@selector(cellBtDeleteHotKeyAction:)];
                 
                 cellBT.layer.backgroundColor = [NSColor clearColor].CGColor;
             }
@@ -320,6 +400,24 @@ static int CellHeight = 32;
                 entity.appImage = finderIcon;
             }
             [cellBT setImage:entity.appImage];
+            
+            break;
+        }
+            
+        case 7:{//删除收藏
+            NSButton * cellBT = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self.view];
+            if (!cellBT) {
+                cellBT = [[NSButton alloc] initWithFrame:CGRectMake(0, 0, tableColumn.width, CellHeight)];
+                [cellBT setTarget:self];
+                [cellBT setAction:@selector(cellBtFavoriteAction:)];
+                [cellBT setTitle:@"❤️"];
+                //[cellBT setImage:[NSImage imageNamed:@"delete"]];
+                cellBT.layer.backgroundColor = [NSColor clearColor].CGColor;
+            }
+            cellBT.tag = row;
+            cell = cellBT;
+            
+            cellBT.weakEntity = entity;
             
             break;
         }
@@ -372,7 +470,7 @@ static int CellHeight = 32;
 // https://juejin.im/entry/5795deb90a2b580061c7eb74
 - (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
     if (tableView == self.infoTV) {
-        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:rowIndexes];
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:rowIndexes requiringSecureCoding:NO error:nil];
         //NSString * str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
         [pboard declareTypes:@[NSPasteboardNameDrag] owner:self];
         
@@ -490,7 +588,16 @@ static int CellHeight = 32;
     }
 }
 
-- (void)cellBtDeleteAction:(NSButton *)cellBT {
+- (void)cellBtDeleteHotKeyAction:(NSButton *)cellBT {
+    [self closeEditHotkey];
+    FavoriteAppEntity * entity = (FavoriteAppEntity *)cellBT.weakEntity;
+    entity.hotKey = nil;
+    [FavoriteAppTool updateEntity];
+    [self.infoTV reloadData];
+}
+
+- (void)cellBtFavoriteAction:(NSButton *)cellBT {
+    [self closeEditHotkey];
     [[FavoriteAppTool share] removeFavoriteAppEntity:cellBT.weakEntity];
 }
 

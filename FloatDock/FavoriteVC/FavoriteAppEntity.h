@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 //@property (nonatomic        ) NSInteger  index;
 @property (nonatomic, copy  ) NSString * appName;
 @property (nonatomic, copy  ) NSString * appPath;
-@property (nonatomic, copy  ) NSString * hotKey;  // 快捷键
+@property (nonatomic, copy  , nullable) NSString * hotKey;  // 快捷键
 @property (nonatomic, weak  ) NSRunningApplication<Ignore> * runningApp;
 @property (nonatomic, strong) NSImage<Ignore> * appImage;
 
