@@ -22,6 +22,7 @@
 typedef void(^BlockPDic) (NSDictionary * dic);
 
 static int CellHeight = 32;
+static NSString * HotKeyDefaultText = @"请设置";
 
 @interface FavoriteVC () <NSTableViewDelegate, NSTableViewDataSource>
 
@@ -318,7 +319,7 @@ static int CellHeight = 32;
                 //使用方法
                 cellBT = [[LLCustomBT alloc] initWithFrame:CGRectMake(0, 0, tableColumn.width, CellHeight)];
                 cellBT.isHandCursor = YES;
-                //cellBT.defaultTitle = @"请设置";
+                //cellBT.defaultTitle = HotKeyDefaultText;
                 //cellBT.selectedTitle = @"已选中";
                 cellBT.defaultTitleColor  = [NSColor textColor]; //[NSColor whiteColor];
                 //cellBT.selectedTitleColor = [NSColor blackColor];
@@ -339,7 +340,7 @@ static int CellHeight = 32;
             }
             cellBT.weakEntity = entity;
             if (entity.hotKey.length == 0) {
-                cellBT.defaultTitle = @"请设置";
+                cellBT.defaultTitle = HotKeyDefaultText;
             } else {
                 cellBT.defaultTitle = entity.hotKey;
             }
@@ -554,7 +555,7 @@ static int CellHeight = 32;
         @strongify(cellBT);
         @strongify(self);
         FavoriteAppEntity * entity = (FavoriteAppEntity *)cellBT.weakEntity;
-        
+        NSLog(@"设置快捷键 : %@", x);
         if ([x hasSuffix:HotKeyEnd] ) {
             if (x.length> HotKeyEnd.length+1) {
                 
@@ -566,10 +567,10 @@ static int CellHeight = 32;
             } else {
                 cellBT.defaultTitle = [x substringToIndex:x.length - HotKeyEnd.length];
             }
-            
+            NSLog(@"1");
         }
         else if (x.length == 0) {
-            cellBT.defaultTitle = entity.hotKey;
+            cellBT.defaultTitle = entity.hotKey ? :HotKeyDefaultText;
         }
         else {
             cellBT.defaultTitle = x;

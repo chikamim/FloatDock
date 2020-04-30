@@ -200,7 +200,8 @@
     if (!self.favoriteWindow) {
         FavoriteVC * vc = [[FavoriteVC alloc] init];
         
-        NSWindow * window = [NSWindow new];
+        FavoriteWindow * window = [FavoriteWindow new];
+        [window setupWindowForEvents];
         [window setContentViewController:vc];
         
         window.title = @"收藏";
@@ -231,6 +232,8 @@
         self.favoriteVC     = vc;
         self.favoriteWindow = window;
         self.favoriteWC     = wc;
+        
+        self.favoriteWindow.favoriteVC = self.favoriteVC;
     }
     [self.favoriteWC showWindow:nil];
 }

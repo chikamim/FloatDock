@@ -99,10 +99,11 @@
         [self.clickMenu addItem:item12];
         [self.clickMenu addItem:item13];
         
+        [self.clickMenu addItem:item_2];
+        [self.clickMenu addItem:item22]; // 收藏
+        
         if (!self.activeIV.hidden) {
-            [self.clickMenu addItem:item_2];
             //[self.clickMenu addItem:item21];
-            [self.clickMenu addItem:item22];
             [self.clickMenu addItem:item23];
             [self.clickMenu addItem:item24];
         }

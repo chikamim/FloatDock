@@ -11,6 +11,7 @@
 #import "ViewController.h"
 #import "AlphaSetVC.h"
 #import "FavoriteVC.h"
+#import "FavoriteWindow.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -25,7 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) AlphaSetVC  * alphaVC;
 
 @property (nonatomic, strong) NSWindowController * favoriteWC;
-@property (nonatomic, strong) NSWindow * favoriteWindow;
+@property (nonatomic, strong) FavoriteWindow * favoriteWindow;
 @property (nonatomic, strong) FavoriteVC  * favoriteVC;
 
 + (instancetype)share;

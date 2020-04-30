@@ -41,4 +41,19 @@
     }
 }
 
+/*
+ 下面2个是为了配合 FavoriteWindow.
+ == 如何 判断是否失去焦点
+ == https://mlog.club/article/1508723
+*/
+
+- (BOOL)canBecomeKeyWindow {
+    return YES;
+}
+
+- (BOOL)canBecomeMainWindow {
+    return YES;
+}
+
+
 @end

@@ -36,6 +36,7 @@
 		E4C7F1502459751700B73296 /* EditableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F14B2459751700B73296 /* EditableTextField.m */; };
 		E4C7F1522459A3F000B73296 /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C7F1512459A3F000B73296 /* delete@2x.png */; };
 		E4C7F1592459DAED00B73296 /* NSWindow+beep.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1582459DAED00B73296 /* NSWindow+beep.m */; };
+		E4C7F162245A819B00B73296 /* FavoriteWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F161245A819B00B73296 /* FavoriteWindow.m */; };
 		E97881DF951C3A94C79F92A5 /* Pods_FloatDock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4376660DB09AC0CFCDE5409 /* Pods_FloatDock.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +98,8 @@
 		E4C7F1512459A3F000B73296 /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = SOURCE_ROOT; };
 		E4C7F1572459DAED00B73296 /* NSWindow+beep.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSWindow+beep.h"; sourceTree = "<group>"; };
 		E4C7F1582459DAED00B73296 /* NSWindow+beep.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+beep.m"; sourceTree = "<group>"; };
+		E4C7F160245A819B00B73296 /* FavoriteWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteWindow.h; sourceTree = "<group>"; };
+		E4C7F161245A819B00B73296 /* FavoriteWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,6 +302,8 @@
 				E4C7F13C245932FD00B73296 /* HotKeyTool.m */,
 				E4C7F13E2459729900B73296 /* FavoriteColumnEntity.h */,
 				E4C7F13F2459729900B73296 /* FavoriteColumnEntity.m */,
+				E4C7F160245A819B00B73296 /* FavoriteWindow.h */,
+				E4C7F161245A819B00B73296 /* FavoriteWindow.m */,
 			);
 			path = FavoriteVC;
 			sourceTree = "<group>";
@@ -446,6 +451,7 @@
 				E4C7F14C2459751700B73296 /* NSView+Address.m in Sources */,
 				E4378235245582D900AA785B /* AppWindowTool.m in Sources */,
 				E437822324547BB700AA785B /* AppInfoView.m in Sources */,
+				E4C7F162245A819B00B73296 /* FavoriteWindow.m in Sources */,
 				E437822D24555EF500AA785B /* AppInfoViewVM.m in Sources */,
 				E4C7F1502459751700B73296 /* EditableTextField.m in Sources */,
 				E4C7F07C24585F3E00B73296 /* AlphaSetVC.m in Sources */,
@@ -601,7 +607,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = L46H79EBBC;
 				INFOPLIST_FILE = FloatDock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -623,7 +629,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = L46H79EBBC;
 				INFOPLIST_FILE = FloatDock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
