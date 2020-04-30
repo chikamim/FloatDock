@@ -80,7 +80,7 @@ static int CellHeight = 32;
     FavoriteColumnEntity * eDelete = [FavoriteColumnEntity new];
     FavoriteColumnEntity * eIcon  = [FavoriteColumnEntity new];
     
-    eName.title = @"名称";
+    eName.title = @"名称(拖拽排序)";
     eName.columnID = @"2";
     eName.tip = @"APP 名称";
     eName.width = 200;
@@ -135,6 +135,7 @@ static int CellHeight = 32;
     
     tableView.delegate                   = self;
     tableView.dataSource                 = self;
+    [tableView registerForDraggedTypes:@[NSPasteboardNameDrag]]; // 注册可拖拽
     tableContainer.documentView          = tableView;
     tableContainer.hasVerticalScroller   = YES;
     tableContainer.hasHorizontalScroller = YES;
@@ -195,34 +196,42 @@ static int CellHeight = 32;
         }
             
         case 2:{ // 名称
-            LLCustomBT * cellBT = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self.view];
-            if (!cellBT) {
-                //使用方法
-                cellBT = [[LLCustomBT alloc] initWithFrame:CGRectMake(0, 0, tableColumn.width, CellHeight)];
-                cellBT.isHandCursor = YES;
-                cellBT.defaultTitle = @"";
-                //cellBT.selectedTitle = @"已选中";
-                cellBT.defaultTitleColor  = [NSColor textColor]; //[NSColor whiteColor];
-                //cellBT.selectedTitleColor = [NSColor blackColor];
-                cellBT.defaultFont  = [NSFont systemFontOfSize:15];
-                //cellBT.selectedFont = [NSFont systemFontOfSize:10];
-                cellBT.defaultBackgroundColor  = [NSColor clearColor];
-                cellBT.selectedBackgroundColor = [NSColor selectedTextBackgroundColor];
-                cellBT.defaultBackgroundImage  = [NSImage imageNamed:@""];
-                cellBT.selectedBackgroundImage = [NSImage imageNamed:@""];
-                //cellBT.rectCorners = LLRectCornerTopLeft|LLRectCornerBottomLeft;
-                //cellBT.radius = 15;
-                cellBT.textAlignment = LLTextAlignmentLeft;
-                //cellBT.textUnderLineStyle = LLTextUnderLineStyleDeleteDouble;
-               
-                [cellBT setTarget:self];
-                [cellBT setAction:@selector(cellViewBTAction:)];
-                
-            }
-            cellBT.weakEntity = entity;
-            cellBT.defaultTitle = entity.appName;
-            //cellBT.state = entity.move ? NSControlStateValueOn:NSControlStateValueOff;
-            cell = cellBT;
+            NSTextField * cellTF = [self tableView:tableView cellTFForColumn:tableColumn row:row edit:YES initBlock:^(NSDictionary *dic) {
+                NSTextField * tf = dic[@"tf"];
+                tf.alignment = NSTextAlignmentLeft;
+                tf.editable  = NO;
+            }];
+            cellTF.stringValue = entity.appName;
+            cell = cellTF;
+            
+            //            LLCustomBT * cellBT = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self.view];
+            //            if (!cellBT) {
+            //                //使用方法
+            //                cellBT = [[LLCustomBT alloc] initWithFrame:CGRectMake(0, 0, tableColumn.width, CellHeight)];
+            //                cellBT.isHandCursor = YES;
+            //                cellBT.defaultTitle = @"";
+            //                //cellBT.selectedTitle = @"已选中";
+            //                cellBT.defaultTitleColor  = [NSColor textColor]; //[NSColor whiteColor];
+            //                //cellBT.selectedTitleColor = [NSColor blackColor];
+            //                cellBT.defaultFont  = [NSFont systemFontOfSize:15];
+            //                //cellBT.selectedFont = [NSFont systemFontOfSize:10];
+            //                cellBT.defaultBackgroundColor  = [NSColor clearColor];
+            //                cellBT.selectedBackgroundColor = [NSColor selectedTextBackgroundColor];
+            //                cellBT.defaultBackgroundImage  = [NSImage imageNamed:@""];
+            //                cellBT.selectedBackgroundImage = [NSImage imageNamed:@""];
+            //                //cellBT.rectCorners = LLRectCornerTopLeft|LLRectCornerBottomLeft;
+            //                //cellBT.radius = 15;
+            //                cellBT.textAlignment = LLTextAlignmentLeft;
+            //                //cellBT.textUnderLineStyle = LLTextUnderLineStyleDeleteDouble;
+            //
+            //                [cellBT setTarget:self];
+            //                [cellBT setAction:@selector(cellViewBTAction:)];
+            //
+            //            }
+            //            cellBT.weakEntity = entity;
+            //            cellBT.defaultTitle = entity.appName;
+            //            //cellBT.state = entity.move ? NSControlStateValueOn:NSControlStateValueOff;
+            //            cell = cellBT;
             
             break;
         }
@@ -351,6 +360,67 @@ static int CellHeight = 32;
 - (void)tableView:(NSTableView *)tableView didClickTableColumn:(NSTableColumn *)tableColumn {
     //NSLog(@"clumn : %@", tableColumn.identifier);
     [self closeEditHotkey];
+}
+
+// 是否允许点击
+- (BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row {
+    return NO;
+}
+
+// !!!: row 排序模块
+// [tableView registerForDraggedTypes:@[NSPasteboardNameDrag]];
+// https://juejin.im/entry/5795deb90a2b580061c7eb74
+- (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
+    if (tableView == self.infoTV) {
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:rowIndexes];
+        //NSString * str = [[NSString alloc]initWithData:data encoding:NSUTF8StringEncoding];
+        [pboard declareTypes:@[NSPasteboardNameDrag] owner:self];
+        
+        [pboard setData:data forType:NSPasteboardNameDrag];
+        [pboard setString:[NSString stringWithFormat:@"%li", [rowIndexes firstIndex]] forType:NSPasteboardNameDrag];
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
+    if (tableView == self.infoTV) {
+        if (dropOperation == NSTableViewDropAbove) {
+            return NSDragOperationMove;
+        }else{
+            return NSDragOperationNone;
+        }
+    }else{
+        return NSDragOperationNone;
+    }
+}
+
+- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id <NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation {
+    NSString * currencyCode = [info.draggingPasteboard stringForType:NSPasteboardNameDrag];
+    NSInteger from = [currencyCode integerValue];
+    if(tableView == self.infoTV){
+        [self resortTV:tableView form:from to:row array:self.favoriteAppTool.arrayEntity.appArray];
+        
+        [FavoriteAppTool updateEntity];
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+- (void)resortTV:(NSTableView *)tableView form:(NSInteger)from to:(NSInteger)to array:(NSMutableArray *)array {
+    if (array.count > 1 && from != to && (from-to) != -1) {
+        //NSLog(@"move tableview cell from: %li, to:%li", from, to);
+        id entity = array[from];
+        [array removeObject:entity];
+        if (from > to) {
+            [array insertObject:entity atIndex:to];
+        }else{
+            [array insertObject:entity atIndex:to-1];
+        }
+        [tableView reloadData];
+    }
 }
 
 // 开关
