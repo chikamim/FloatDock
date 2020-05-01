@@ -33,7 +33,6 @@ static NSString * HotKeyDefaultText = @"请设置";
 @property (nonatomic, strong) NSScrollView * infoTV_CSV;
 @property (nonatomic, strong) NSMenu       * infoTVClickMenu;
 
-@property (nonatomic, weak  ) FavoriteAppTool * favoriteAppTool;
 @property (nonatomic, weak  ) HotKeyTool      * hotKeyTool;
 
 @property (nonatomic, strong) RACDisposable   * editHotkeyDisposable;
@@ -54,8 +53,7 @@ static NSString * HotKeyDefaultText = @"请设置";
     //[self addTFs];
     [self addTextViews];
     
-    self.favoriteAppTool = [FavoriteAppTool share];
-    self.hotKeyTool      = [HotKeyTool share];
+    self.hotKeyTool = [HotKeyTool share];
     [self addTagTVs];
     [self.infoTV reloadData];
     
@@ -63,7 +61,7 @@ static NSString * HotKeyDefaultText = @"请设置";
     [self.infoTV setAction:@selector(tvClickAction)];
     
     @weakify(self);
-    [RACObserve(self.favoriteAppTool.arrayEntity, appArray) subscribeNext:^(id  _Nullable x) {
+    [RACObserve(self.hotKeyTool.favoriteApps, array) subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         
         [self.infoTV reloadData];
@@ -133,7 +131,7 @@ static NSString * HotKeyDefaultText = @"请设置";
     
     self.tipTextView.string = @"全局快捷键需要您在 [系统偏好设置] > [安全与隐私] > [辅助功能] 中选中 FloatDock, 并且重启APP.";
     //[self.tipTextView sizeToFit];
-    NSClickGestureRecognizer *click = [[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(closeEditHotkey)];
+    NSClickGestureRecognizer *click = [[NSClickGestureRecognizer alloc] initWithTarget:self action:@selector(closeEditHotkeyInner)];
     [self.tipTextView addGestureRecognizer:click];
 }
 
@@ -235,7 +233,7 @@ static NSString * HotKeyDefaultText = @"请设置";
 
 // MARK: NSTV delegate
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
-    return self.favoriteAppTool.arrayEntity.appArray.count;
+    return self.hotKeyTool.favoriteApps.array.count;
 }
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
@@ -248,9 +246,9 @@ static NSString * HotKeyDefaultText = @"请设置";
     NSInteger column = [[tableColumn.identifier substringFromIndex:tableColumn.identifier.length-1] intValue];
     //NSLog(@"column: %li", column);
     NSView *cell;
-    FavoriteAppEntity * entity = self.favoriteAppTool.arrayEntity.appArray[row];
+    FavoriteAppEntity * entity = self.hotKeyTool.favoriteApps.array[row];
     if (!entity) {
-        NSLog(@"self.interactor.moveEntityArray count: %li", self.favoriteAppTool.arrayEntity.appArray.count);
+        NSLog(@"self.interactor.moveEntityArray count: %li", self.hotKeyTool.favoriteApps.array.count);
         return nil;
     }
     //NSLog(@"%li - %li", row, column);
@@ -279,7 +277,7 @@ static NSString * HotKeyDefaultText = @"请设置";
                 tf.alignment = NSTextAlignmentLeft;
                 tf.editable  = NO;
             }];
-            cellTF.stringValue = entity.appName;
+            cellTF.stringValue = entity.name;
             cell = cellTF;
             
             //            LLCustomBT * cellBT = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self.view];
@@ -353,7 +351,7 @@ static NSString * HotKeyDefaultText = @"请设置";
                 NSTextField * tf = dic[@"tf"];
                 tf.alignment = NSTextAlignmentLeft;
             }];
-            cellTF.stringValue = entity.appPath ? :@"";
+            cellTF.stringValue = entity.path ? :@"";
             cell = cellTF;
             break;
         }
@@ -391,16 +389,16 @@ static NSString * HotKeyDefaultText = @"请设置";
             cell = cellBT;
             
             cellBT.weakEntity = entity;
-            if (!entity.appImage) {
+            if (!entity.image) {
                 NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
                 NSImage *finderIcon;
                 //= [workspace iconForFile:[workspace absolutePathForAppBundleWithIdentifier:@"com.apple.Finder"]];
-                finderIcon = [workspace iconForFile:[entity.appPath substringFromIndex:7]];
+                finderIcon = [workspace iconForFile:[entity.path substringFromIndex:7]];
                 [finderIcon setSize:NSMakeSize(CellHeight, CellHeight)];
                 
-                entity.appImage = finderIcon;
+                entity.image = finderIcon;
             }
-            [cellBT setImage:entity.appImage];
+            [cellBT setImage:entity.image];
             
             break;
         }
@@ -458,7 +456,7 @@ static NSString * HotKeyDefaultText = @"请设置";
 // 点击 column
 - (void)tableView:(NSTableView *)tableView didClickTableColumn:(NSTableColumn *)tableColumn {
     //NSLog(@"clumn : %@", tableColumn.identifier);
-    [self closeEditHotkey];
+    [self closeEditHotkeyInner];
 }
 
 // 是否允许点击
@@ -499,9 +497,9 @@ static NSString * HotKeyDefaultText = @"请设置";
     NSString * currencyCode = [info.draggingPasteboard stringForType:NSPasteboardNameDrag];
     NSInteger from = [currencyCode integerValue];
     if(tableView == self.infoTV){
-        [self resortTV:tableView form:from to:row array:self.favoriteAppTool.arrayEntity.appArray];
+        [self resortTV:tableView form:from to:row array:self.hotKeyTool.favoriteApps.array];
         
-        [FavoriteAppTool updateEntity];
+        [self.hotKeyTool updateEntity];
         return YES;
     }else{
         return NO;
@@ -524,31 +522,32 @@ static NSString * HotKeyDefaultText = @"请设置";
 
 // 开关
 - (void)cellBtSwitchAction:(NSButton *)cellBT {
-    [self closeEditHotkey];
+    [self closeEditHotkeyInner];
     
     FavoriteAppEntity * entity = (FavoriteAppEntity *)cellBT.weakEntity;
     //cellBT.state = entity.receive ? NSControlStateValueOn:NSControlStateValueOff;
     entity.receive = cellBT.state==NSControlStateValueOn ? YES:NO;
     
-    [FavoriteAppTool updateEntity];
+    [self.hotKeyTool updateEntity];
 }
 
 // 名称APP
 - (void)cellViewBTAction:(LLCustomBT *)cellBT {
-    [self closeEditHotkey];
+    [self closeEditHotkeyInner];
     //FavoriteAppEntity * entity = (FavoriteAppEntity *)cellBT.weakEntity;
 }
 
 // !!!: 设置快捷键
 - (void)cellViewBTSetHotkeyAction:(LLCustomBT *)cellBT {
     
-    [self closeEditHotkey];
+    [self closeEditHotkeyInner];
+    [self.hotKeyTool updateLocalMonitorKeyboardEvent:YES];
     self.editHotkeyCellBT = cellBT;
     cellBT.defaultBackgroundColor = [NSColor selectedTextBackgroundColor];
     //cellBT.defaultTitleColor      = [NSColor selectedTextColor];
     
     RACSignal * signal;
-    signal = RACObserve(self.hotKeyTool, currentKeyboard);
+    signal = RACObserve(self.hotKeyTool, currentKeyboardLocal);
     @weakify(cellBT);
     @weakify(self);
     self.editHotkeyDisposable = [[signal skip:1] subscribeNext:^(NSString *  _Nullable x) {
@@ -561,9 +560,9 @@ static NSString * HotKeyDefaultText = @"请设置";
                 
                 cellBT.defaultTitle = [x substringToIndex:x.length - HotKeyEnd.length];
                 entity.hotKey       = cellBT.defaultTitle;
-                [FavoriteAppTool updateEntity];
+                [self.hotKeyTool updateEntity];
                 
-                [self closeEditHotkey];
+                [self closeEditHotkeyInner];
             } else {
                 cellBT.defaultTitle = [x substringToIndex:x.length - HotKeyEnd.length];
             }
@@ -578,7 +577,16 @@ static NSString * HotKeyDefaultText = @"请设置";
     }];
 }
 
-- (void)closeEditHotkey {
+// 关闭监测键盘输入事件 和 本地键盘监测事件
+- (void)closeEditHotkeyInner {
+    [self closeEditHotkey:NO];
+}
+
+- (void)closeEditHotkeyOuter {
+    [self closeEditHotkey:YES];
+}
+
+- (void)closeEditHotkey:(BOOL)andMoniter {
     if (self.editHotkeyCellBT) {
         self.editHotkeyCellBT.defaultBackgroundColor = [NSColor clearColor];
         //self.editHotkeyCellBT.defaultTitleColor      = [NSColor textColor];
@@ -587,27 +595,30 @@ static NSString * HotKeyDefaultText = @"请设置";
         [self.editHotkeyDisposable dispose];
         self.editHotkeyDisposable = nil;
     }
+    if (andMoniter) {
+        [self.hotKeyTool updateLocalMonitorKeyboardEvent:NO];
+    }
 }
 
 - (void)cellBtDeleteHotKeyAction:(NSButton *)cellBT {
-    [self closeEditHotkey];
+    [self closeEditHotkeyInner];
     FavoriteAppEntity * entity = (FavoriteAppEntity *)cellBT.weakEntity;
     entity.hotKey = nil;
-    [FavoriteAppTool updateEntity];
+    [self.hotKeyTool updateEntity];
     [self.infoTV reloadData];
 }
 
 - (void)cellBtFavoriteAction:(NSButton *)cellBT {
-    [self closeEditHotkey];
-    [[FavoriteAppTool share] removeFavoriteAppEntity:cellBT.weakEntity];
+    [self closeEditHotkeyInner];
+    [self.hotKeyTool removeFavoriteAppEntity:cellBT.weakEntity];
 }
 
 - (void)mouseDown:(NSEvent *)event {
-    [self closeEditHotkey];
+    [self closeEditHotkeyInner];
 }
 
 - (void)tvClickAction {
-    [self closeEditHotkey];
+    [self closeEditHotkeyInner];
 }
 
 @end

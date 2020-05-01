@@ -34,7 +34,7 @@
 }
 
 - (void)resignEvent {
-    [self.favoriteVC closeEditHotkey];
+    [self.favoriteVC closeEditHotkeyOuter];
     //[self close];
 }
 

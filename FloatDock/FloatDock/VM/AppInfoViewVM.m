@@ -7,7 +7,7 @@
 //
 
 #import "AppInfoViewVM.h"
-#import "FavoriteAppEntity.h"
+#import "HotKeyTool.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 
 @interface AppInfoViewVM ()
@@ -304,11 +304,11 @@
 
 - (void)favorite:(AppInfoView *)appInfoView {
     FavoriteAppEntity * entity = [FavoriteAppEntity new];
-    entity.appPath = appInfoView.appPath;
-    entity.appName = entity.appPath.lastPathComponent;
-    entity.appName = entity.appName.stringByDeletingPathExtension;
+    entity.path = appInfoView.appPath;
+    entity.name = entity.path.lastPathComponent;
+    entity.name = entity.name.stringByDeletingPathExtension;
     
-    [[FavoriteAppTool share] addFavoriteAppEntity:entity];
+    [[HotKeyTool share] addFavoriteAppEntity:entity];
     //self.favoriteAppTool.arrayEntity
     //[[FavoriteAppTool share].arrayEntity.appArray addObject:entity];
 }

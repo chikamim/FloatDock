@@ -31,7 +31,6 @@
     }
 #endif
     self.hotKeyTool = [HotKeyTool share];
-    [self.hotKeyTool bindHotKey:aNotification];
     
     self.appWindowTool = [AppWindowTool share];
     [self.appWindowTool showBeforeWindows];
