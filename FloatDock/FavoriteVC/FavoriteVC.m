@@ -499,7 +499,7 @@ static NSString * HotKeyDefaultText = @"请设置";
     if(tableView == self.infoTV){
         [self resortTV:tableView form:from to:row array:self.hotKeyTool.favoriteApps.array];
         
-        [self.hotKeyTool updateEntity];
+        [self.hotKeyTool updateEntitySaveJson];
         return YES;
     }else{
         return NO;
@@ -528,7 +528,7 @@ static NSString * HotKeyDefaultText = @"请设置";
     //cellBT.state = entity.receive ? NSControlStateValueOn:NSControlStateValueOff;
     entity.receive = cellBT.state==NSControlStateValueOn ? YES:NO;
     
-    [self.hotKeyTool updateEntity];
+    [self.hotKeyTool updateEntitySaveJson];
 }
 
 // 名称APP
@@ -554,19 +554,18 @@ static NSString * HotKeyDefaultText = @"请设置";
         @strongify(cellBT);
         @strongify(self);
         FavoriteAppEntity * entity = (FavoriteAppEntity *)cellBT.weakEntity;
-        NSLog(@"设置快捷键 : %@", x);
+        //NSLog(@"设置快捷键 : %@", x);
         if ([x hasSuffix:HotKeyEnd] ) {
             if (x.length> HotKeyEnd.length+1) {
                 
                 cellBT.defaultTitle = [x substringToIndex:x.length - HotKeyEnd.length];
                 entity.hotKey       = cellBT.defaultTitle;
-                [self.hotKeyTool updateEntity];
+                [self.hotKeyTool updateEntitySaveJson];
                 
                 [self closeEditHotkeyInner];
             } else {
                 cellBT.defaultTitle = [x substringToIndex:x.length - HotKeyEnd.length];
             }
-            NSLog(@"1");
         }
         else if (x.length == 0) {
             cellBT.defaultTitle = entity.hotKey ? :HotKeyDefaultText;
@@ -604,7 +603,7 @@ static NSString * HotKeyDefaultText = @"请设置";
     [self closeEditHotkeyInner];
     FavoriteAppEntity * entity = (FavoriteAppEntity *)cellBT.weakEntity;
     entity.hotKey = nil;
-    [self.hotKeyTool updateEntity];
+    [self.hotKeyTool updateEntitySaveJson];
     [self.infoTV reloadData];
 }
 

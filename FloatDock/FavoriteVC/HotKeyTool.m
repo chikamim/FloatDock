@@ -37,6 +37,7 @@ static NSString * FavoriteDBPath = @"favority";
         
         instance.favoriteApps      = [instance getFavoriteAppArrayEntity];
         instance.favoriteHotkeyDic = [NSMutableDictionary new];
+        [instance updateHotkeyDic];
         
     });
     return instance;
@@ -136,18 +137,21 @@ static NSString * FavoriteDBPath = @"favority";
     RACSignal * signalGlobal = [RACSignal combineLatest:@[RACObserve(self, flagsGlobal), RACObserve(self, charactersGlobal)] reduce:^id (id flags, NSString * characters){
         @strongify(self);
         //NSLog(@"%@ - %@", flags, characters);
-        NSString * key = [NSString stringWithFormat:@"%@%@", [self checkFlag:[flags integerValue]], [characters uppercaseString]];
-        return key;
+        NSString * flagText = [self checkFlag:[flags integerValue]];
+        NSString * keyText  = [characters uppercaseString];
+        if (flagText.length > 0 && keyText.length>0) {
+            return [NSString stringWithFormat:@"%@%@", flagText, keyText];
+        } else {
+            return nil;
+        }
     }];
     [signalGlobal subscribeNext:^(id  _Nullable x) {
         @strongify(self);
-        //NSLog(@"监测结果 : %@", x);
-        for (FavoriteAppEntity * entity in self.favoriteApps.array) {
-            if ([entity.hotKey isEqualTo:x]) {
-                if (entity.receive) {
-                    [self openAppWindows:entity.path];
-                }
-                break;
+        //NSLog(@"全局监测结果 : %@", x);
+        if (x) {
+            FavoriteAppEntity * entity = self.favoriteHotkeyDic[x];
+            if (entity) {
+                [self openAppWindows:entity.path];
             }
         }
     }];
@@ -155,7 +159,7 @@ static NSString * FavoriteDBPath = @"favority";
     // 本地
     RAC(self, currentKeyboardLocal) = [RACSignal combineLatest:@[RACObserve(self, flagsLocal), RACObserve(self, charactersLocal)] reduce:^id (id flags, NSString * characters){
         @strongify(self);
-        NSLog(@"本地 %@ - %@", flags, characters);
+        //NSLog(@"本地 %@ - %@", flags, characters);
         NSString * key = [NSString stringWithFormat:@"%@%@", [self checkFlag:[flags integerValue]], [characters uppercaseString]];
         return key;
     }];
@@ -444,17 +448,20 @@ static NSString * FavoriteDBPath = @"favority";
     }
 }
 
-- (void)updateEntity {
+- (void)updateEntitySaveJson {
     [self saveAppInfoArrayEntity:self.favoriteApps];
+    [self updateHotkeyDic];
 }
 
 - (void)updateHotkeyDic {
     [self.favoriteHotkeyDic removeAllObjects];
     for (FavoriteAppEntity * app in self.favoriteApps.array) {
-        if (app.hotKey.length > 0) {
+        if (app.hotKey.length > 0 && app.receive) {
             [self.favoriteHotkeyDic setObject:app forKey:app.hotKey];
         }
     }
+    
+    [self updateGlobalMonitorKeyboardEvent:self.favoriteHotkeyDic.count > 0 ? YES:NO ];
 }
 
 - (void)saveAppInfoArrayEntity:(FavoriteAppArrayEntity *)entity {
@@ -476,13 +483,13 @@ static NSString * FavoriteDBPath = @"favority";
 - (void)addFavoriteAppEntity:(FavoriteAppEntity *)entity {
     [[self.favoriteApps mutableArrayValueForKey:RacObserverFavoriteArrayKey] addObject:entity];
     
-    [self updateEntity];
+    [self updateEntitySaveJson];
 }
 
 - (void)removeFavoriteAppEntity:(FavoriteAppEntity *)entity {
     [[self.favoriteApps mutableArrayValueForKey:RacObserverFavoriteArrayKey] removeObject:entity];
     
-    [self updateEntity];
+    [self updateEntitySaveJson];
 }
 
 

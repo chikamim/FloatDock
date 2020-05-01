@@ -40,7 +40,9 @@ static NSString * HotKeyEnd = @"#";
 - (void)addFavoriteAppEntity:(FavoriteAppEntity *)entity;
 - (void)removeFavoriteAppEntity:(FavoriteAppEntity *)entity;
 
-- (void)updateEntity;
+- (void)updateEntitySaveJson;
+
+//- (void)updateHotkeyDic; // 考虑到代码复杂度, 改为内置函数
 
 
 @end
