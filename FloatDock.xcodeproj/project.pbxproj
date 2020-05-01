@@ -25,6 +25,7 @@
 		E437822D24555EF500AA785B /* AppInfoViewVM.m in Sources */ = {isa = PBXBuildFile; fileRef = E437822C24555EF500AA785B /* AppInfoViewVM.m */; };
 		E437823024556C5900AA785B /* AppInfoMenuVM.m in Sources */ = {isa = PBXBuildFile; fileRef = E437822F24556C5900AA785B /* AppInfoMenuVM.m */; };
 		E4378235245582D900AA785B /* AppWindowTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4378234245582D900AA785B /* AppWindowTool.m */; };
+		E48A584D245BD1E8008B8C08 /* FavoriteVM.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A584C245BD1E8008B8C08 /* FavoriteVM.m */; };
 		E4C7F07C24585F3E00B73296 /* AlphaSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F07B24585F3E00B73296 /* AlphaSetVC.m */; };
 		E4C7F1372459317F00B73296 /* FavoriteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1362459317F00B73296 /* FavoriteVC.m */; };
 		E4C7F13A2459321500B73296 /* FavoriteAppEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1392459321500B73296 /* FavoriteAppEntity.m */; };
@@ -77,6 +78,8 @@
 		E437822F24556C5900AA785B /* AppInfoMenuVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInfoMenuVM.m; sourceTree = "<group>"; };
 		E4378233245582D900AA785B /* AppWindowTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppWindowTool.h; sourceTree = "<group>"; };
 		E4378234245582D900AA785B /* AppWindowTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppWindowTool.m; sourceTree = "<group>"; };
+		E48A584B245BD1E8008B8C08 /* FavoriteVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteVM.h; sourceTree = "<group>"; };
+		E48A584C245BD1E8008B8C08 /* FavoriteVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteVM.m; sourceTree = "<group>"; };
 		E4C7F07A24585F3E00B73296 /* AlphaSetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlphaSetVC.h; sourceTree = "<group>"; };
 		E4C7F07B24585F3E00B73296 /* AlphaSetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlphaSetVC.m; sourceTree = "<group>"; };
 		E4C7F1352459317F00B73296 /* FavoriteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteVC.h; sourceTree = "<group>"; };
@@ -301,6 +304,15 @@
 			path = window;
 			sourceTree = "<group>";
 		};
+		E48A584A245BD197008B8C08 /* FavoriteVM */ = {
+			isa = PBXGroup;
+			children = (
+				E48A584B245BD1E8008B8C08 /* FavoriteVM.h */,
+				E48A584C245BD1E8008B8C08 /* FavoriteVM.m */,
+			);
+			path = FavoriteVM;
+			sourceTree = "<group>";
+		};
 		E4C7F07924585F1D00B73296 /* AlphaSetVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -317,6 +329,7 @@
 				E4C7F1362459317F00B73296 /* FavoriteVC.m */,
 				E4C7F13B245932FD00B73296 /* HotKeyTool.h */,
 				E4C7F13C245932FD00B73296 /* HotKeyTool.m */,
+				E48A584A245BD197008B8C08 /* FavoriteVM */,
 				E48A5847245BC6C3008B8C08 /* entity */,
 				E4C7F1412459751700B73296 /* view */,
 				E48A5849245BC723008B8C08 /* window */,
@@ -475,6 +488,7 @@
 				E4C7F1592459DAED00B73296 /* NSWindow+beep.m in Sources */,
 				E4C7F14D2459751700B73296 /* JHLabel.m in Sources */,
 				E43781D82453306900AA785B /* AppInfoEntity.m in Sources */,
+				E48A584D245BD1E8008B8C08 /* FavoriteVM.m in Sources */,
 				E4C7F14F2459751700B73296 /* LLCustomBT.m in Sources */,
 				E4C7F1372459317F00B73296 /* FavoriteVC.m in Sources */,
 				E43781EC2454418E00AA785B /* AppInfoMenuBT.m in Sources */,

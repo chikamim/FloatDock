@@ -18,7 +18,7 @@ static NSInteger FavoriteVCHeight = 300;
 
 // 关闭监测键盘输入事件 和 本地键盘监测事件, 外部调运通常为YES.
 - (void)closeEditHotkeyOuter;
-- (void)closeEditHotkey:(BOOL)andMoniter;
+//- (void)closeEditHotkey:(BOOL)andMoniter;
 
 @end
 
