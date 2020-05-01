@@ -281,6 +281,26 @@
 			path = FloatDock;
 			sourceTree = "<group>";
 		};
+		E48A5847245BC6C3008B8C08 /* entity */ = {
+			isa = PBXGroup;
+			children = (
+				E4C7F1382459321500B73296 /* FavoriteAppEntity.h */,
+				E4C7F1392459321500B73296 /* FavoriteAppEntity.m */,
+				E4C7F13E2459729900B73296 /* FavoriteColumnEntity.h */,
+				E4C7F13F2459729900B73296 /* FavoriteColumnEntity.m */,
+			);
+			path = entity;
+			sourceTree = "<group>";
+		};
+		E48A5849245BC723008B8C08 /* window */ = {
+			isa = PBXGroup;
+			children = (
+				E4C7F160245A819B00B73296 /* FavoriteWindow.h */,
+				E4C7F161245A819B00B73296 /* FavoriteWindow.m */,
+			);
+			path = window;
+			sourceTree = "<group>";
+		};
 		E4C7F07924585F1D00B73296 /* AlphaSetVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,22 +313,18 @@
 		E4C7F1342459312D00B73296 /* FavoriteVC */ = {
 			isa = PBXGroup;
 			children = (
-				E4C7F1412459751700B73296 /* cell */,
 				E4C7F1352459317F00B73296 /* FavoriteVC.h */,
 				E4C7F1362459317F00B73296 /* FavoriteVC.m */,
-				E4C7F1382459321500B73296 /* FavoriteAppEntity.h */,
-				E4C7F1392459321500B73296 /* FavoriteAppEntity.m */,
 				E4C7F13B245932FD00B73296 /* HotKeyTool.h */,
 				E4C7F13C245932FD00B73296 /* HotKeyTool.m */,
-				E4C7F13E2459729900B73296 /* FavoriteColumnEntity.h */,
-				E4C7F13F2459729900B73296 /* FavoriteColumnEntity.m */,
-				E4C7F160245A819B00B73296 /* FavoriteWindow.h */,
-				E4C7F161245A819B00B73296 /* FavoriteWindow.m */,
+				E48A5847245BC6C3008B8C08 /* entity */,
+				E4C7F1412459751700B73296 /* view */,
+				E48A5849245BC723008B8C08 /* window */,
 			);
 			path = FavoriteVC;
 			sourceTree = "<group>";
 		};
-		E4C7F1412459751700B73296 /* cell */ = {
+		E4C7F1412459751700B73296 /* view */ = {
 			isa = PBXGroup;
 			children = (
 				E4C7F1472459751700B73296 /* NSView+Address.h */,
@@ -320,7 +336,7 @@
 				E4C7F1462459751700B73296 /* LLCustomBT.h */,
 				E4C7F14A2459751700B73296 /* LLCustomBT.m */,
 			);
-			path = cell;
+			path = view;
 			sourceTree = "<group>";
 		};
 		FF76C8A160FF392FDD2F7FA6 /* Frameworks */ = {
