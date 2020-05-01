@@ -149,10 +149,15 @@ static NSString * FavoriteDBPath = @"favority";
         @strongify(self);
         //NSLog(@"全局监测结果 : %@", x);
         if (x) {
-            FavoriteAppEntity * entity = self.favoriteHotkeyDic[x];
-            if (entity) {
-                [self openAppWindows:entity.path];
+            NSMutableArray * array = self.favoriteHotkeyDic[x];
+            for (NSInteger i = 0; i<array.count; i++) {
+                FavoriteAppEntity * entity = array[i];
+                NSLog(@"name: %@", entity.name);
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1* i * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self openAppWindows:entity.path];
+                });
             }
+            //NSLog(@"全局监测结果 : %@ ---------2 \n", x);
         }
     }];
     
@@ -182,7 +187,7 @@ static NSString * FavoriteDBPath = @"favority";
     // 1. 假如有多个窗口, 则打开所有窗口, 全局运行的需要调换下顺序.
     NSRunningApplication * runningApp = self.runningAppsDic[appPath];
     if (runningApp) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [runningApp unhide];
         });
     }
@@ -457,7 +462,15 @@ static NSString * FavoriteDBPath = @"favority";
     [self.favoriteHotkeyDic removeAllObjects];
     for (FavoriteAppEntity * app in self.favoriteApps.array) {
         if (app.hotKey.length > 0 && app.receive) {
-            [self.favoriteHotkeyDic setObject:app forKey:app.hotKey];
+            NSMutableArray * array = [self.favoriteHotkeyDic objectForKey:app.hotKey];
+            if (array) {
+                [array addObject:app];
+            } else {
+                array = [NSMutableArray new];
+                [array addObject:app];
+                [self.favoriteHotkeyDic setObject:array forKey:app.hotKey];
+            }
+            
         }
     }
     

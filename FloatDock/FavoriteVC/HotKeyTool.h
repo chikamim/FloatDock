@@ -34,7 +34,10 @@ static NSString * HotKeyEnd = @"#";
 //已经完成数据转移, 还剩余什么时候控制全局本地监听键盘
 // MARK: 收藏数据部分
 @property (nonatomic, strong) FavoriteAppArrayEntity * favoriteApps;
+
+// key:hotkey, value: NSMutableArray<FavoriteAppEntity>, 采用数据是因为可能同一个快捷键对应多个APP.
 @property (nonatomic, strong) NSMutableDictionary    * favoriteHotkeyDic;
+
 // 更新数组, 内置方法可以触发RACObserver
 - (void)addFavoriteAppEntity:(FavoriteAppEntity *)entity;
 - (void)removeFavoriteAppEntity:(FavoriteAppEntity *)entity;
