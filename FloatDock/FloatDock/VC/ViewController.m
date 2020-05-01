@@ -112,8 +112,8 @@
 }
 
 // MARK: 检查 APP 运行状态
-- (void)checkActive:(NSSet *)appRunningSet dic:(NSMutableDictionary *)dic {
-    [self.appInfoViewVM checkDockAppActive:appRunningSet dic:dic];
+- (void)checkDockAppActive:(NSMutableDictionary *)dic {
+    [self.appInfoViewVM checkDockAppActive:dic];
 }
 
 @end

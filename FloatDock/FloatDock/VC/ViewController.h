@@ -13,7 +13,7 @@
 
 @property (nonatomic, weak  ) AppInfoEntity * appInfoEntity;
 
-- (void)checkActive:(NSSet *)appRunningSet dic:(NSMutableDictionary *)dic;
+- (void)checkDockAppActive:(NSMutableDictionary *)dic;
 
 
 @end

@@ -46,7 +46,7 @@ static NSString * FavoriteDBPath = @"favority";
 /**
  // 全局监听事件 链接：https://blog.csdn.net/ZhangWangYang/article/details/95952046
  */
-- (void)updateLocalMonitorKeyboardEvent:(BOOL)enable {
+- (void)updateLocalMonitorKeyboard:(BOOL)enable {
     if (!enable) {
         if (self.localEvent1) {
             [NSEvent removeMonitor:self.localEvent1];
@@ -87,7 +87,7 @@ static NSString * FavoriteDBPath = @"favority";
     }
 }
 
-- (void)updateGlobalMonitorKeyboardEvent:(BOOL)enable {
+- (void)updateGlobalMonitorKeyboard:(BOOL)enable {
     if (!enable) {
         if (self.globalEvent1) {
             [NSEvent removeMonitor:self.globalEvent1];
@@ -180,8 +180,8 @@ static NSString * FavoriteDBPath = @"favority";
     }
     
     // 1. 假如有多个窗口, 则打开所有窗口, 全局运行的需要调换下顺序.
-    if ([self.runningAppsSet containsObject:appPath]) {
-        NSRunningApplication * runningApp = self.runningAppsDic[appPath];
+    NSRunningApplication * runningApp = self.runningAppsDic[appPath];
+    if (runningApp) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [runningApp unhide];
         });
@@ -461,7 +461,7 @@ static NSString * FavoriteDBPath = @"favority";
         }
     }
     
-    [self updateGlobalMonitorKeyboardEvent:self.favoriteHotkeyDic.count > 0 ? YES:NO ];
+    [self updateGlobalMonitorKeyboard:self.favoriteHotkeyDic.count > 0 ? YES:NO ];
 }
 
 - (void)saveAppInfoArrayEntity:(FavoriteAppArrayEntity *)entity {

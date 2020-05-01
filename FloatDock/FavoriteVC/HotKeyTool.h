@@ -24,13 +24,12 @@ static NSString * HotKeyEnd = @"#";
 @property (nonatomic, copy  ) NSString * currentKeyboardLocal;
 
 // !!!: wkq 应该移除掉
-@property (nonatomic, copy  ) NSSet * runningAppsSet;
 @property (nonatomic, copy  ) NSDictionary * runningAppsDic;
 
 + (instancetype)share;
 
-- (void)updateGlobalMonitorKeyboardEvent:(BOOL)enable;
-- (void)updateLocalMonitorKeyboardEvent:(BOOL)enable;
+- (void)updateGlobalMonitorKeyboard:(BOOL)enable;
+- (void)updateLocalMonitorKeyboard:(BOOL)enable;
 
 //已经完成数据转移, 还剩余什么时候控制全局本地监听键盘
 // MARK: 收藏数据部分

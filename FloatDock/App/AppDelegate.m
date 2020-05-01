@@ -113,18 +113,15 @@
         //NSLog(@"111");
         NSArray<NSRunningApplication *> * appAppArray =[work runningApplications];
         //NSMutableArray * appNormalArray = [NSMutableArray new];
-        NSMutableSet * appSet = [NSMutableSet new];
         NSMutableDictionary * dic = [NSMutableDictionary new];
         for (NSRunningApplication * oneApp in appAppArray) {
             if (oneApp.activationPolicy == NSApplicationActivationPolicyRegular) {
                 //NSLog(@"oneApp: %@ _ %@", oneApp.description, oneApp.bundleURL);
                 //NSLog(@"oneApp: %@", oneApp.bundleURL);
                 //[appNormalArray addObject:oneApp];
-                [appSet addObject:oneApp.bundleURL.absoluteString];
                 [dic setObject:oneApp forKey:oneApp.bundleURL.absoluteString];
             }
         }
-        self.hotKeyTool.runningAppsSet = appSet;
         self.hotKeyTool.runningAppsDic = dic;
         
         //NSLog(@"appSet: %@", appSet);
@@ -133,7 +130,7 @@
             if ([window isMemberOfClass:[FloatWindow class]]) {
                 ViewController * vc = (ViewController *)window.contentViewController;
                 dispatch_async(dispatch_get_main_queue(), ^{
-                    [vc checkActive:appSet dic:dic];
+                    [vc checkDockAppActive:dic];
                 });
             }
         }

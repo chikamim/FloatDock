@@ -352,21 +352,20 @@
 - (void)checkActiveSelf {
     NSWorkspace * work = [NSWorkspace sharedWorkspace];
     NSArray<NSRunningApplication *> * appAppArray =[work runningApplications];
-    NSMutableSet * appSet = [NSMutableSet new];
     NSMutableDictionary * dic = [NSMutableDictionary new];
     for (NSRunningApplication * oneApp in appAppArray) {
         if (oneApp.activationPolicy == NSApplicationActivationPolicyRegular) {
-            [appSet addObject:oneApp.bundleURL.absoluteString];
             [dic setObject:oneApp forKey:oneApp.bundleURL.absoluteString];
         }
     }
-    [self checkDockAppActive:appSet dic:dic];
+    [self checkDockAppActive:dic];
 }
 
-- (void)checkDockAppActive:(NSSet *)appRunningSet dic:(NSMutableDictionary *)dic {
+- (void)checkDockAppActive:(NSMutableDictionary *)dic {
     for (AppInfoView * aiv in self.aivArray) {
         //NSLog(@"aiv.appPath: %@", aiv.appUrlPath);
-        if ([appRunningSet containsObject:aiv.appUrlPath]) {
+        NSRunningApplication * runningApp = dic[aiv.appUrlPath];
+        if (runningApp) {
             aiv.runningApp = dic[aiv.appUrlPath];
             aiv.activeIV.hidden = NO;
         } else{

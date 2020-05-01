@@ -48,7 +48,7 @@ static CGFloat VcHeight  = 70;
 - (void)deleteDockAction;
 
 // 检查 Dock 上面的 APP icon 状态.
-- (void)checkDockAppActive:(NSSet *)appRunningSet dic:(NSMutableDictionary *)dic;
+- (void)checkDockAppActive:(NSMutableDictionary *)dic;
 
 // 对外: 增加 APP icon 事件
 - (void)addAppAction;

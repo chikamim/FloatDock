@@ -541,7 +541,7 @@ static NSString * HotKeyDefaultText = @"请设置";
 - (void)cellViewBTSetHotkeyAction:(LLCustomBT *)cellBT {
     
     [self closeEditHotkeyInner];
-    [self.hotKeyTool updateLocalMonitorKeyboardEvent:YES];
+    [self.hotKeyTool updateLocalMonitorKeyboard:YES];
     self.editHotkeyCellBT = cellBT;
     cellBT.defaultBackgroundColor = [NSColor selectedTextBackgroundColor];
     //cellBT.defaultTitleColor      = [NSColor selectedTextColor];
@@ -595,7 +595,7 @@ static NSString * HotKeyDefaultText = @"请设置";
         self.editHotkeyDisposable = nil;
     }
     if (andMoniter) {
-        [self.hotKeyTool updateLocalMonitorKeyboardEvent:NO];
+        [self.hotKeyTool updateLocalMonitorKeyboard:NO];
     }
 }
 
