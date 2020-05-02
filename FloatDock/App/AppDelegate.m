@@ -39,7 +39,33 @@
         [self check1];
     });
     
+    // 增加Finder右键方法: http://www.cocoachina.com/articles/430358
+    [NSApp setServicesProvider:self];
+    NSUpdateDynamicServices();
 }
+
+// http://www.cocoachina.com/articles/430358 
+//handleServices:userData:error:
+- (void)handleServices:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error {
+    if([[pboard types] containsObject:NSFilenamesPboardType]){
+        NSArray* fileArray=[pboard propertyListForType:NSFilenamesPboardType];
+        // do something...
+        NSLog(@"12");
+    }
+}
+
+- (void)handleServices:(NSPasteboard *)pboard {
+    
+}
+
+// 在 dock 中新增Menu
+//- (NSMenu *)applicationDockMenu:(NSApplication *)sender {
+//    NSMenu * menu = [NSMenu new];
+//    NSMenuItem *item1   = [[NSMenuItem alloc] initWithTitle:@"新增APP" action:@selector(addAppAction) keyEquivalent:@""];
+//    [menu addItem:item1];
+//
+//    return menu;
+//}
 
 - (IBAction)alphaUp:(id)sender {
     [self.appWindowTool alphaUpEvent];
