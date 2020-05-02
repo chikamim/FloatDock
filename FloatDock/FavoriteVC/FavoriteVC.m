@@ -60,7 +60,7 @@
     [self.tipTextView addGestureRecognizer:click];
     
     @weakify(self);
-    [RACObserve(self.hotKeyTool.favoriteApps, array) subscribeNext:^(id  _Nullable x) {
+    [RACObserve(self.hotKeyTool.favoriteAppArrayEntity, array) subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         
         [self.infoTV reloadData];

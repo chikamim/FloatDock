@@ -37,7 +37,7 @@ typedef void(^BlockPDic) (NSDictionary * dic);
 
 // MARK: NSTV delegate
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)aTableView {
-    return self.hotKeyTool.favoriteApps.array.count;
+    return self.hotKeyTool.favoriteAppArrayEntity.array.count;
 }
 
 - (CGFloat)tableView:(NSTableView *)tableView heightOfRow:(NSInteger)row {
@@ -50,9 +50,9 @@ typedef void(^BlockPDic) (NSDictionary * dic);
     NSInteger column = [[tableColumn.identifier substringFromIndex:tableColumn.identifier.length-1] intValue];
     //NSLog(@"column: %li", column);
     NSView *cell;
-    FavoriteAppEntity * entity = self.hotKeyTool.favoriteApps.array[row];
+    FavoriteAppEntity * entity = self.hotKeyTool.favoriteAppArrayEntity.array[row];
     if (!entity) {
-        NSLog(@"self.interactor.moveEntityArray count: %li", self.hotKeyTool.favoriteApps.array.count);
+        NSLog(@"self.interactor.moveEntityArray count: %li", self.hotKeyTool.favoriteAppArrayEntity.array.count);
         return nil;
     }
     //NSLog(@"%li - %li", row, column);
@@ -293,7 +293,7 @@ typedef void(^BlockPDic) (NSDictionary * dic);
     NSString * currencyCode = [info.draggingPasteboard stringForType:NSPasteboardNameDrag];
     NSInteger from = [currencyCode integerValue];
     
-    [self resortTV:tableView form:from to:row array:self.hotKeyTool.favoriteApps.array];
+    [self resortTV:tableView form:from to:row array:self.hotKeyTool.favoriteAppArrayEntity.array];
     
     [self.hotKeyTool updateEntitySaveJson];
     return YES;

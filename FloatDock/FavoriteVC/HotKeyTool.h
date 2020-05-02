@@ -13,6 +13,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 static NSString * HotKeyEnd = @"#";
+static NSString * FavoriteAppsSigleArrayKey =  @"favoriteAppsSigleArray";
 
 @interface HotKeyTool : NSObject
 
@@ -23,7 +24,6 @@ static NSString * HotKeyEnd = @"#";
 @property (nonatomic, copy  ) NSString * charactersLocal;
 @property (nonatomic, copy  ) NSString * currentKeyboardLocal;
 
-// !!!: wkq 应该移除掉
 @property (nonatomic, copy  ) NSDictionary * runningAppsDic;
 
 + (instancetype)share;
@@ -33,7 +33,8 @@ static NSString * HotKeyEnd = @"#";
 
 //已经完成数据转移, 还剩余什么时候控制全局本地监听键盘
 // MARK: 收藏数据部分
-@property (nonatomic, strong) FavoriteAppArrayEntity * favoriteApps;
+@property (nonatomic, strong) FavoriteAppArrayEntity * favoriteAppArrayEntity;
+@property (nonatomic, strong) NSMutableArray<FavoriteAppEntity> * favoriteAppsSigleArray;// 不重复的APP记录数组
 
 // key:hotkey, value: NSMutableArray<FavoriteAppEntity>, 采用数据是因为可能同一个快捷键对应多个APP.
 @property (nonatomic, strong) NSMutableDictionary    * favoriteHotkeyDic;

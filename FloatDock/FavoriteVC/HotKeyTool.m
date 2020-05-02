@@ -35,9 +35,11 @@ static NSString * FavoriteDBPath = @"favority";
         instance = [self new];
         [instance racBindEvent];
         
-        instance.favoriteApps      = [instance getFavoriteAppArrayEntity];
-        instance.favoriteHotkeyDic = [NSMutableDictionary new];
+        instance.favoriteAppArrayEntity = [instance getFavoriteAppArrayEntity];
+        instance.favoriteAppsSigleArray = [NSMutableArray<FavoriteAppEntity> new];
+        instance.favoriteHotkeyDic      = [NSMutableDictionary new];
         [instance updateHotkeyDic];
+        [instance updateFavoriteAppsSigleArray];
         
     });
     return instance;
@@ -454,13 +456,13 @@ static NSString * FavoriteDBPath = @"favority";
 }
 
 - (void)updateEntitySaveJson {
-    [self saveAppInfoArrayEntity:self.favoriteApps];
+    [self saveAppInfoArrayEntity:self.favoriteAppArrayEntity];
     [self updateHotkeyDic];
 }
 
 - (void)updateHotkeyDic {
     [self.favoriteHotkeyDic removeAllObjects];
-    for (FavoriteAppEntity * app in self.favoriteApps.array) {
+    for (FavoriteAppEntity * app in self.favoriteAppArrayEntity.array) {
         if (app.hotKey.length > 0 && app.receive) {
             NSMutableArray * array = [self.favoriteHotkeyDic objectForKey:app.hotKey];
             if (array) {
@@ -493,17 +495,35 @@ static NSString * FavoriteDBPath = @"favority";
 #endif
 }
 
+// 新增APP, 需要顺带更新favoriteAppsSigleArray
 - (void)addFavoriteAppEntity:(FavoriteAppEntity *)entity {
-    [[self.favoriteApps mutableArrayValueForKey:RacObserverFavoriteArrayKey] addObject:entity];
+    [[self.favoriteAppArrayEntity mutableArrayValueForKey:RacObserverFavoriteArrayKey] addObject:entity];
     
     [self updateEntitySaveJson];
+    [self updateFavoriteAppsSigleArray];
 }
 
+// 删除APP, 需要顺带更新favoriteAppsSigleArray
 - (void)removeFavoriteAppEntity:(FavoriteAppEntity *)entity {
-    [[self.favoriteApps mutableArrayValueForKey:RacObserverFavoriteArrayKey] removeObject:entity];
+    [[self.favoriteAppArrayEntity mutableArrayValueForKey:RacObserverFavoriteArrayKey] removeObject:entity];
     
     [self updateEntitySaveJson];
+    [self updateFavoriteAppsSigleArray];
 }
 
+- (void)updateFavoriteAppsSigleArray {
+    
+    //NSMutableArray * array = [NSMutableArray<FavoriteAppEntity> new];
+    [self.favoriteAppsSigleArray removeAllObjects];
+    NSMutableSet * set = [NSMutableSet new];
+    for (FavoriteAppEntity * app in self.favoriteAppArrayEntity.array) {
+        if (![set containsObject:app.name]) {
+            [set addObject:app.name];
+            //[array addObject:app];
+            [[self mutableArrayValueForKey:FavoriteAppsSigleArrayKey] addObject:app];
+        }
+    }
+    
+}
 
 @end
