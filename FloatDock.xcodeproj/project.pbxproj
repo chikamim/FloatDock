@@ -26,6 +26,7 @@
 		E437823024556C5900AA785B /* AppInfoMenuVM.m in Sources */ = {isa = PBXBuildFile; fileRef = E437822F24556C5900AA785B /* AppInfoMenuVM.m */; };
 		E4378235245582D900AA785B /* AppWindowTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4378234245582D900AA785B /* AppWindowTool.m */; };
 		E48A584D245BD1E8008B8C08 /* FavoriteVM.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A584C245BD1E8008B8C08 /* FavoriteVM.m */; };
+		E48A5859245DB6C3008B8C08 /* NSParameterName.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A5858245DB6C3008B8C08 /* NSParameterName.m */; };
 		E4C7F07C24585F3E00B73296 /* AlphaSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F07B24585F3E00B73296 /* AlphaSetVC.m */; };
 		E4C7F1372459317F00B73296 /* FavoriteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1362459317F00B73296 /* FavoriteVC.m */; };
 		E4C7F13A2459321500B73296 /* FavoriteAppEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1392459321500B73296 /* FavoriteAppEntity.m */; };
@@ -80,6 +81,9 @@
 		E4378234245582D900AA785B /* AppWindowTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppWindowTool.m; sourceTree = "<group>"; };
 		E48A584B245BD1E8008B8C08 /* FavoriteVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteVM.h; sourceTree = "<group>"; };
 		E48A584C245BD1E8008B8C08 /* FavoriteVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteVM.m; sourceTree = "<group>"; };
+		E48A5855245DAF6E008B8C08 /* work.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = work.txt; sourceTree = "<group>"; };
+		E48A5857245DB6C3008B8C08 /* NSParameterName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSParameterName.h; sourceTree = "<group>"; };
+		E48A5858245DB6C3008B8C08 /* NSParameterName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSParameterName.m; sourceTree = "<group>"; };
 		E4C7F07A24585F3E00B73296 /* AlphaSetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlphaSetVC.h; sourceTree = "<group>"; };
 		E4C7F07B24585F3E00B73296 /* AlphaSetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlphaSetVC.m; sourceTree = "<group>"; };
 		E4C7F1352459317F00B73296 /* FavoriteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteVC.h; sourceTree = "<group>"; };
@@ -148,7 +152,9 @@
 		E43781BE2453291B00AA785B /* FloatDock */ = {
 			isa = PBXGroup;
 			children = (
+				E48A5855245DAF6E008B8C08 /* work.txt */,
 				E43781D32453292B00AA785B /* other */,
+				E48A5856245DB62E008B8C08 /* Public */,
 				E437823124557D5200AA785B /* App */,
 				E437823224557D7900AA785B /* FloatDock */,
 				E4C7F07924585F1D00B73296 /* AlphaSetVC */,
@@ -311,6 +317,15 @@
 				E48A584C245BD1E8008B8C08 /* FavoriteVM.m */,
 			);
 			path = FavoriteVM;
+			sourceTree = "<group>";
+		};
+		E48A5856245DB62E008B8C08 /* Public */ = {
+			isa = PBXGroup;
+			children = (
+				E48A5857245DB6C3008B8C08 /* NSParameterName.h */,
+				E48A5858245DB6C3008B8C08 /* NSParameterName.m */,
+			);
+			path = Public;
 			sourceTree = "<group>";
 		};
 		E4C7F07924585F1D00B73296 /* AlphaSetVC */ = {
@@ -478,6 +493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E4C7F14C2459751700B73296 /* NSView+Address.m in Sources */,
+				E48A5859245DB6C3008B8C08 /* NSParameterName.m in Sources */,
 				E4378235245582D900AA785B /* AppWindowTool.m in Sources */,
 				E437822324547BB700AA785B /* AppInfoView.m in Sources */,
 				E4C7F162245A819B00B73296 /* FavoriteWindow.m in Sources */,
@@ -637,7 +653,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = L46H79EBBC;
 				INFOPLIST_FILE = FloatDock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -659,7 +675,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 16;
+				CURRENT_PROJECT_VERSION = 17;
 				DEVELOPMENT_TEAM = L46H79EBBC;
 				INFOPLIST_FILE = FloatDock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -1,0 +1,2 @@
+1. 右键APP添加到收藏: osx ObjectiveC Finder 右键 菜单
+2. runtime获取参数名字 完成

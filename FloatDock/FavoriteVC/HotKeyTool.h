@@ -13,7 +13,6 @@
 NS_ASSUME_NONNULL_BEGIN
 
 static NSString * HotKeyEnd = @"#";
-static NSString * FavoriteAppsSigleArrayKey =  @"favoriteAppsSigleArray";
 
 @interface HotKeyTool : NSObject
 

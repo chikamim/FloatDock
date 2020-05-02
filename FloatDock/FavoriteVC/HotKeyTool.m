@@ -12,6 +12,8 @@
 #import "FavoriteAppEntity.h"
 
 #import "DataSavePath.h"
+#import "NSParameterName.h"
+
 static NSString * FavoriteDBPath = @"favority";
 
 @interface HotKeyTool ()
@@ -497,7 +499,12 @@ static NSString * FavoriteDBPath = @"favority";
 
 // 新增APP, 需要顺带更新favoriteAppsSigleArray
 - (void)addFavoriteAppEntity:(FavoriteAppEntity *)entity {
-    [[self.favoriteAppArrayEntity mutableArrayValueForKey:RacObserverFavoriteArrayKey] addObject:entity];
+    static NSString * mKey;
+    if (!mKey) {
+        mKey = [NSParameterName entity:self.favoriteAppArrayEntity equalTo:self.favoriteAppArrayEntity.array];
+    }
+    
+    [[self.favoriteAppArrayEntity mutableArrayValueForKey:mKey] addObject:entity];
     
     [self updateEntitySaveJson];
     [self updateFavoriteAppsSigleArray];
@@ -505,13 +512,22 @@ static NSString * FavoriteDBPath = @"favority";
 
 // 删除APP, 需要顺带更新favoriteAppsSigleArray
 - (void)removeFavoriteAppEntity:(FavoriteAppEntity *)entity {
-    [[self.favoriteAppArrayEntity mutableArrayValueForKey:RacObserverFavoriteArrayKey] removeObject:entity];
+    static NSString * mKey;
+    if (!mKey) {
+        mKey = [NSParameterName entity:self.favoriteAppArrayEntity equalTo:self.favoriteAppArrayEntity.array];
+    }
+    
+    [[self.favoriteAppArrayEntity mutableArrayValueForKey:mKey] removeObject:entity];
     
     [self updateEntitySaveJson];
     [self updateFavoriteAppsSigleArray];
 }
 
 - (void)updateFavoriteAppsSigleArray {
+    static NSString * mKey;
+    if (!mKey) {
+        mKey = [NSParameterName entity:self equalTo:self.favoriteAppsSigleArray];
+    }
     
     //NSMutableArray * array = [NSMutableArray<FavoriteAppEntity> new];
     [self.favoriteAppsSigleArray removeAllObjects];
@@ -520,7 +536,7 @@ static NSString * FavoriteDBPath = @"favority";
         if (![set containsObject:app.name]) {
             [set addObject:app.name];
             //[array addObject:app];
-            [[self mutableArrayValueForKey:FavoriteAppsSigleArrayKey] addObject:app];
+            [[self mutableArrayValueForKey:mKey] addObject:app];
         }
     }
     

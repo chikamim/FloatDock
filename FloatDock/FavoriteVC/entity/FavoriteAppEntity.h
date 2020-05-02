@@ -11,9 +11,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-// !!!: rac 监听数组名字key, 目前无法自动生成.
-static NSString * RacObserverFavoriteArrayKey = @"array";
-
 @protocol FavoriteAppEntity;
 @interface FavoriteAppEntity : JSONModel
 
