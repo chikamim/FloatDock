@@ -70,17 +70,17 @@
         //NSMenuItem *item01 = [[NSMenuItem alloc] initWithTitle:@"extra" action:@selector(exit) keyEquivalent:@""];
         //NSMenuItem *item_1 = [NSMenuItem separatorItem];
         
-        NSMenuItem *item11 = [[NSMenuItem alloc] initWithTitle:@"删除" action:@selector(delete) keyEquivalent:@""];
-        NSMenuItem *item12 = [[NSMenuItem alloc] initWithTitle:@"前移" action:@selector(moveLeft) keyEquivalent:@""];
-        NSMenuItem *item13 = [[NSMenuItem alloc] initWithTitle:@"后移" action:@selector(moveRight) keyEquivalent:@""];
+        NSMenuItem *item11 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_Delete") action:@selector(delete) keyEquivalent:@""];
+        NSMenuItem *item12 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_MoveLeft") action:@selector(moveLeft) keyEquivalent:@""];
+        NSMenuItem *item13 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_MoveRight") action:@selector(moveRight) keyEquivalent:@""];
         
         NSMenuItem *item_2 = [NSMenuItem separatorItem];
         NSMenuItem *item21 = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"获取 PID: %i", self.runningApp.processIdentifier] action:@selector(getPid) keyEquivalent:@""];
         //NSMenuItem *item22 = [[NSMenuItem alloc] initWithTitle:@"退出" action:@selector(exit) keyEquivalent:@""];
-        NSMenuItem *item22 = [[NSMenuItem alloc] initWithTitle:@"收藏" action:@selector(favorite) keyEquivalent:@""];
-        NSMenuItem *item23  = [[NSMenuItem alloc] initWithTitle:@"收藏页面 ⌘F" action:@selector(openFavoriteWindow) keyEquivalent:@""];
-        NSMenuItem *item24 = [[NSMenuItem alloc] initWithTitle:@"置顶LLDB" action:@selector(lldbFront) keyEquivalent:@""];
-        NSMenuItem *item25 = [[NSMenuItem alloc] initWithTitle:@"普通LLDB" action:@selector(lldbNormal) keyEquivalent:@""];
+        NSMenuItem *item22 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_Favorite") action:@selector(favorite) keyEquivalent:@""];
+        NSMenuItem *item23 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_FavoriteWindow") action:@selector(openFavoriteWindow) keyEquivalent:@""];
+        NSMenuItem *item24 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_FrontLLDB") action:@selector(lldbFront) keyEquivalent:@""];
+        NSMenuItem *item25 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_NormalLLDB") action:@selector(lldbNormal) keyEquivalent:@""];
         
         //[item01 setTarget:self];
         [item11 setTarget:self];

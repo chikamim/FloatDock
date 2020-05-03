@@ -128,7 +128,7 @@
         make.height.mas_greaterThanOrEqualTo(20);
     }];
     
-    self.tipTextView.string = @"全局快捷键需要您在 [系统偏好设置] > [安全与隐私] > [辅助功能] 中选中 FloatDock, 并且重启APP.";
+    self.tipTextView.string = NSLS(@"FD_TipGlobalHotkey");
     //[self.tipTextView sizeToFit];
 }
 
@@ -140,54 +140,54 @@
     NSTableView * tableView        = [[NSTableView alloc] initWithFrame:tableContainer.bounds];
     tableView.tag = 0;
     
-    FavoriteColumnEntity * eName = [FavoriteColumnEntity new];
-    FavoriteColumnEntity * eHotkey = [FavoriteColumnEntity new];
-    FavoriteColumnEntity * eSwitch = [FavoriteColumnEntity new];
-    FavoriteColumnEntity * ePath = [FavoriteColumnEntity new];
-    FavoriteColumnEntity * eDelete = [FavoriteColumnEntity new];
+    FavoriteColumnEntity * eName     = [FavoriteColumnEntity new];
+    FavoriteColumnEntity * eHotkey   = [FavoriteColumnEntity new];
+    FavoriteColumnEntity * eSwitch   = [FavoriteColumnEntity new];
+    FavoriteColumnEntity * ePath     = [FavoriteColumnEntity new];
+    FavoriteColumnEntity * eDelete   = [FavoriteColumnEntity new];
     FavoriteColumnEntity * eFavorite = [FavoriteColumnEntity new];
-    FavoriteColumnEntity * eIcon  = [FavoriteColumnEntity new];
+    FavoriteColumnEntity * eIcon     = [FavoriteColumnEntity new];
     
-    eName.title = @"名称(拖拽排序)";
+    eName.title = NSLS(@"FDTV_title");
     eName.columnID = @"2";
-    eName.tip = @"APP 名称";
+    eName.tip = NSLS(@"FDTV_titleTip");
     eName.width = 200;
     eName.miniWidth = 70;
     
-    eHotkey.title = @"全局快捷键";
+    eHotkey.title = NSLS(@"FDTV_hotkey");
     eHotkey.columnID = @"3";
-    eHotkey.tip = @"APP 快捷键";
+    eHotkey.tip = NSLS(@"FDTV_hotkeyTip");
     eHotkey.width = 90;
     eHotkey.miniWidth = 50;
     
-    eSwitch.title = @"开关";
+    eSwitch.title = NSLS(@"FDTV_enable");
     eSwitch.columnID = @"1";
-    eSwitch.tip = @"快捷键开关";
+    eSwitch.tip = NSLS(@"FDTV_enableTip");
     eSwitch.width = 30;
     eSwitch.miniWidth = 30;
     
-    ePath.title = @"路径";
+    ePath.title = NSLS(@"FDTV_path");
     ePath.columnID = @"4";
-    ePath.tip = @"APP 路径";
+    ePath.tip = NSLS(@"FDTV_pathTip");
     ePath.width = 300;
     ePath.miniWidth = 100;
 
     
-    eDelete.title = @"删除快捷键";
+    eDelete.title = NSLS(@"FDTV_cancle");
     eDelete.columnID = @"5";
-    eDelete.tip = @"删除快捷键";
+    eDelete.tip = NSLS(@"FDTV_cancleTip");
     eDelete.width = 60;
     eDelete.miniWidth = 60;
     
-    eIcon.title = @"图标";
+    eIcon.title = NSLS(@"FDTV_icon");
     eIcon.columnID = @"6";
-    eIcon.tip = @"图标";
+    eIcon.tip = NSLS(@"FDTV_iconTip");
     eIcon.width = FavoriteCellHeight;
     eIcon.miniWidth = FavoriteCellHeight;
     
-    eFavorite.title = @"取消收藏";
+    eFavorite.title = NSLS(@"FDTV_remove");
     eFavorite.columnID = @"7";
-    eFavorite.tip = @"取消收藏";
+    eFavorite.tip = NSLS(@"FDTV_removeTip");
     eFavorite.width = 60;
     eFavorite.miniWidth = 60;
     

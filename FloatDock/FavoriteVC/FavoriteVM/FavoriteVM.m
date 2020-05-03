@@ -14,8 +14,6 @@
 #import "LLCustomBT.h"
 #import "HotKeyTool.h"
 
-static NSString * HotKeyDefaultText = @"请设置";
-
 typedef void(^BlockPDic) (NSDictionary * dic);
 
 @interface FavoriteVM ()
@@ -23,7 +21,7 @@ typedef void(^BlockPDic) (NSDictionary * dic);
 @property (nonatomic, weak  ) HotKeyTool * hotKeyTool;
 @property (nonatomic, weak  ) LLCustomBT * editHotkeyCellBT;
 @property (nonatomic, strong) RACDisposable   * editHotkeyDisposable;
-
+@property (nonatomic, copy  ) NSString * hotKeyDefaultText;
 @end
 
 @implementation FavoriteVM
@@ -31,6 +29,7 @@ typedef void(^BlockPDic) (NSDictionary * dic);
 - (id)init {
     if (self = [super init]) {
         _hotKeyTool = [HotKeyTool share];
+        _hotKeyDefaultText = NSLS(@"FD_DefaultHotkey");
     }
     return self;
 }
@@ -142,7 +141,7 @@ typedef void(^BlockPDic) (NSDictionary * dic);
             }
             cellBT.weakEntity = entity;
             if (entity.hotKey.length == 0) {
-                cellBT.defaultTitle = HotKeyDefaultText;
+                cellBT.defaultTitle = self.hotKeyDefaultText;
             } else {
                 cellBT.defaultTitle = entity.hotKey;
             }
@@ -362,7 +361,7 @@ typedef void(^BlockPDic) (NSDictionary * dic);
             }
         }
         else if (x.length == 0) {
-            cellBT.defaultTitle = entity.hotKey ? :HotKeyDefaultText;
+            cellBT.defaultTitle = entity.hotKey ? :self.hotKeyDefaultText;
         }
         else {
             cellBT.defaultTitle = x;

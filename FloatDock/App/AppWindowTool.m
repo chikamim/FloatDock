@@ -204,7 +204,7 @@
         [window setupWindowForEvents];
         [window setContentViewController:vc];
         
-        window.title = @"收藏";
+        window.title = NSLS(@"FDFavoriteWindowTitle");//@"收藏";
         window.titlebarAppearsTransparent = NO; // 默认值 NO
         
         [window setLevel:NSFloatingWindowLevel];

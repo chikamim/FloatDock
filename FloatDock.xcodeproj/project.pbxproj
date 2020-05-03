@@ -28,6 +28,7 @@
 		E48A584D245BD1E8008B8C08 /* FavoriteVM.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A584C245BD1E8008B8C08 /* FavoriteVM.m */; };
 		E48A5859245DB6C3008B8C08 /* NSParameterName.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A5858245DB6C3008B8C08 /* NSParameterName.m */; };
 		E48A585C245EBD73008B8C08 /* KeyboardConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A585B245EBD73008B8C08 /* KeyboardConvert.m */; };
+		E48A5869245EF546008B8C08 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E48A586B245EF546008B8C08 /* Localizable.strings */; };
 		E4C7F07C24585F3E00B73296 /* AlphaSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F07B24585F3E00B73296 /* AlphaSetVC.m */; };
 		E4C7F1372459317F00B73296 /* FavoriteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1362459317F00B73296 /* FavoriteVC.m */; };
 		E4C7F13A2459321500B73296 /* FavoriteAppEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1392459321500B73296 /* FavoriteAppEntity.m */; };
@@ -88,6 +89,10 @@
 		E48A585A245EBD73008B8C08 /* KeyboardConvert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardConvert.h; sourceTree = "<group>"; };
 		E48A585B245EBD73008B8C08 /* KeyboardConvert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardConvert.m; sourceTree = "<group>"; };
 		E48A585E245EEF5B008B8C08 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
+		E48A5866245EF463008B8C08 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		E48A586A245EF546008B8C08 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		E48A586C245EF54B008B8C08 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		E48A586E245EF796008B8C08 /* FloatDock-prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FloatDock-prefix.pch"; sourceTree = "<group>"; };
 		E4C7F07A24585F3E00B73296 /* AlphaSetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlphaSetVC.h; sourceTree = "<group>"; };
 		E4C7F07B24585F3E00B73296 /* AlphaSetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlphaSetVC.m; sourceTree = "<group>"; };
 		E4C7F1352459317F00B73296 /* FavoriteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteVC.h; sourceTree = "<group>"; };
@@ -156,8 +161,8 @@
 		E43781BE2453291B00AA785B /* FloatDock */ = {
 			isa = PBXGroup;
 			children = (
-				E48A585D245EEEE5008B8C08 /* StringsFile */,
 				E48A5855245DAF6E008B8C08 /* work.txt */,
+				E48A586B245EF546008B8C08 /* Localizable.strings */,
 				E43781D32453292B00AA785B /* other */,
 				E48A5856245DB62E008B8C08 /* Public */,
 				E437823124557D5200AA785B /* App */,
@@ -171,6 +176,7 @@
 		E43781D32453292B00AA785B /* other */ = {
 			isa = PBXGroup;
 			children = (
+				E48A586E245EF796008B8C08 /* FloatDock-prefix.pch */,
 				E4C7F1512459A3F000B73296 /* delete@2x.png */,
 				E437822824549E8400AA785B /* icon48@2x.png */,
 				E437821F2454777100AA785B /* whitePoint@2x.png */,
@@ -335,13 +341,6 @@
 			path = Public;
 			sourceTree = "<group>";
 		};
-		E48A585D245EEEE5008B8C08 /* StringsFile */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = StringsFile;
-			sourceTree = "<group>";
-		};
 		E4C7F07924585F1D00B73296 /* AlphaSetVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -453,6 +452,7 @@
 				E4C7F1522459A3F000B73296 /* delete@2x.png in Resources */,
 				E43782202454777100AA785B /* whitePoint@2x.png in Resources */,
 				E43781C92453291C00AA785B /* Main.storyboard in Resources */,
+				E48A5869245EF546008B8C08 /* Localizable.strings in Resources */,
 				E43781DA2453F07800AA785B /* icon.png in Resources */,
 				E437822924549E8400AA785B /* icon48@2x.png in Resources */,
 			);
@@ -545,8 +545,18 @@
 			children = (
 				E43781C82453291C00AA785B /* Base */,
 				E48A585E245EEF5B008B8C08 /* zh-Hans */,
+				E48A5866245EF463008B8C08 /* en */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E48A586B245EF546008B8C08 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E48A586A245EF546008B8C08 /* en */,
+				E48A586C245EF54B008B8C08 /* zh-Hans */,
+			);
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -672,8 +682,9 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = L46H79EBBC;
+				GCC_PREFIX_HEADER = "FloatDock/FloatDock-prefix.pch";
 				INFOPLIST_FILE = FloatDock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -694,8 +705,9 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 18;
+				CURRENT_PROJECT_VERSION = 19;
 				DEVELOPMENT_TEAM = L46H79EBBC;
+				GCC_PREFIX_HEADER = "FloatDock/FloatDock-prefix.pch";
 				INFOPLIST_FILE = FloatDock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

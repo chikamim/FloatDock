@@ -1,0 +1,19 @@
+//
+//  FD-prefix.pch
+//  FloatDock
+//
+//  Created by 王凯庆 on 2020/5/3.
+//  Copyright © 2020 王凯庆. All rights reserved.
+//
+
+#ifndef FD_prefix_h
+#define FD_prefix_h
+
+// NSLocalizedStringFromTable(<#key#>, <#tbl#>, <#comment#>) // tbl == Localizable 名字
+//#define NSLocalizedString(key, comment) [[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:nil]
+//#define NSLS(key, comment) [[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:nil]
+#define NSLS(key) [[NSBundle mainBundle] localizedStringForKey:(key) value:@"" table:nil]
+
+
+
+#endif /* FD_prefix_h */

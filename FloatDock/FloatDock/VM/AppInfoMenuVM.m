@@ -40,19 +40,19 @@
     if (!self.clickMenu) {
         NSMenu * menu = [NSMenu new];
         
-        NSMenuItem *item1   = [[NSMenuItem alloc] initWithTitle:@"新增APP" action:@selector(addAppAction) keyEquivalent:@""];
-        NSMenuItem *item1_0 = [[NSMenuItem alloc] initWithTitle:@"新增Finder" action:@selector(addFinderAppPath) keyEquivalent:@""];
-        NSMenuItem *item1_1 = [[NSMenuItem alloc] initWithTitle:@"新增自收藏" action:nil keyEquivalent:@""];
+        NSMenuItem *item1   = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_AddApp") action:@selector(addAppAction) keyEquivalent:@""];
+        NSMenuItem *item1_0 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_AddFinder") action:@selector(addFinderAppPath) keyEquivalent:@""];
+        NSMenuItem *item1_1 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_AddAppFromFavorite") action:nil keyEquivalent:@""];
         item1_1.submenu = self.favoriteMenu;
         
-        NSMenuItem *item2   = [[NSMenuItem alloc] initWithTitle:@"新增Dock" action:@selector(addDockAction) keyEquivalent:@""];
+        NSMenuItem *item2   = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_AddDock") action:@selector(addDockAction) keyEquivalent:@""];
         NSMenuItem *item_0  = [NSMenuItem separatorItem];
-        NSMenuItem *item30  = [[NSMenuItem alloc] initWithTitle:@"收藏页面 ⌘F" action:@selector(openFavoriteWindow) keyEquivalent:@""];
-        NSMenuItem *item31  = [[NSMenuItem alloc] initWithTitle:@"清空Dock" action:@selector(clearDockAppAction) keyEquivalent:@""];
-        NSMenuItem *item32  = [[NSMenuItem alloc] initWithTitle:@"删除Dock" action:@selector(deleteDockAction) keyEquivalent:@""];
+        NSMenuItem *item30  = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_FavoriteWindow") action:@selector(openFavoriteWindow) keyEquivalent:@""];
+        NSMenuItem *item31  = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_ClearDock") action:@selector(clearDockAppAction) keyEquivalent:@""];
+        NSMenuItem *item32  = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_DeleteDock") action:@selector(deleteDockAction) keyEquivalent:@""];
         
-        NSMenuItem *item41  = [[NSMenuItem alloc] initWithTitle:@"增减透明度 ⌘↑" action:@selector(alphaUpEvent) keyEquivalent:@""];
-        NSMenuItem *item42  = [[NSMenuItem alloc] initWithTitle:@"降低透明度 ⌘↓" action:@selector(alphaDownEvent) keyEquivalent:@""];
+        NSMenuItem *item41  = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_UpAlpha") action:@selector(alphaUpEvent) keyEquivalent:@""];
+        NSMenuItem *item42  = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_DownAlpha") action:@selector(alphaDownEvent) keyEquivalent:@""];
         
         [item1 setTarget:self];
         [item1_0 setTarget:self];

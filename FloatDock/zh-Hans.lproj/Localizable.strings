@@ -1,0 +1,45 @@
+/* 
+ Localizable.strings
+ FloatDock
+ 
+ Created by 王凯庆 on 2020/5/3.
+ Copyright © 2020 王凯庆. All rights reserved.
+ https://www.jianshu.com/p/88c1b65e3ddb
+ */
+
+"FDFavoriteWindowTitle" = "收藏";
+
+"FD_AddApp"             = "新增APP";
+"FD_AddFinder"          = "新增Finder";
+"FD_AddAppFromFavorite" = "新增自收藏❤️";
+"FD_AddDock"            = "新增Dock";
+
+"FD_FavoriteWindow"     = "收藏页面 ⌘F";
+"FD_ClearDock"          = "清空Dock";
+"FD_DeleteDock"         = "删除Dock";
+"FD_UpAlpha"            = "增减透明度 ⌘↑";
+"FD_DownAlpha"          = "降低透明度 ⌘↓";
+
+"FD_Delete"             = "删除";
+"FD_MoveLeft"           = "前移";
+"FD_MoveRight"          = "后移";
+"FD_Favorite"           = "收藏❤️";
+"FD_FrontLLDB"          = "置顶LLDB";
+"FD_NormalLLDB"         = "普通LLDB";
+"FD_TipGlobalHotkey"    = "全局快捷键需要您在 [系统偏好设置] > [安全与隐私] > [辅助功能] 中选中 FloatDock, 并且重启APP.";
+"FD_DefaultHotkey"      = "请设置";
+
+"FDTV_title"     = "名称";
+"FDTV_titleTip"  = "点击名称进行拖拽排序";
+"FDTV_hotkey"    = "全局快捷键";
+"FDTV_hotkeyTip" = "APP 快捷键";
+"FDTV_enable"    = "开关";
+"FDTV_enableTip" = "是否启用";
+"FDTV_path"      = "路径";
+"FDTV_pathTip"   = "App 路径";
+"FDTV_cancle"    = "删除快捷键";
+"FDTV_cancleTip" = "删除快捷键";
+"FDTV_icon"      = "图标";
+"FDTV_iconTip"   = "";
+"FDTV_remove"    = "移除";
+"FDTV_removeTip" = "取消收藏";
