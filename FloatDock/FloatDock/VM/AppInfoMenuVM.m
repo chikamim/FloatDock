@@ -12,11 +12,13 @@
 #import "AppWindowTool.h"
 #import "HotKeyTool.h"
 #import <ReactiveObjC/ReactiveObjC.h>
+#import "AppWindowTool.h"
 
 @interface AppInfoMenuVM ()
 @property (nonatomic, strong) NSMenu * clickMenu;
 @property (nonatomic, strong) NSMenu * favoriteMenu;
 @property (nonatomic, weak  ) HotKeyTool * hotKeyTool;
+@property (nonatomic, weak  ) AppWindowTool * appWindowTool;
 
 @end
 
@@ -25,6 +27,7 @@
 - (instancetype)init {
     if (self = [super init]) {
         _hotKeyTool = [HotKeyTool share];
+        _appWindowTool = [AppWindowTool share];
     }
     return self;
 }
@@ -44,15 +47,23 @@
         
         NSMenuItem *item2   = [[NSMenuItem alloc] initWithTitle:@"新增Dock" action:@selector(addDockAction) keyEquivalent:@""];
         NSMenuItem *item_0  = [NSMenuItem separatorItem];
-        NSMenuItem *item3   = [[NSMenuItem alloc] initWithTitle:@"清空Dock" action:@selector(clearDockAppAction) keyEquivalent:@""];
-        NSMenuItem *item4   = [[NSMenuItem alloc] initWithTitle:@"删除Dock" action:@selector(deleteDockAction) keyEquivalent:@""];
+        NSMenuItem *item30  = [[NSMenuItem alloc] initWithTitle:@"收藏页面 ⌘F" action:@selector(openFavoriteWindow) keyEquivalent:@""];
+        NSMenuItem *item31  = [[NSMenuItem alloc] initWithTitle:@"清空Dock" action:@selector(clearDockAppAction) keyEquivalent:@""];
+        NSMenuItem *item32  = [[NSMenuItem alloc] initWithTitle:@"删除Dock" action:@selector(deleteDockAction) keyEquivalent:@""];
+        
+        NSMenuItem *item41  = [[NSMenuItem alloc] initWithTitle:@"增减透明度 ⌘↑" action:@selector(alphaUpEvent) keyEquivalent:@""];
+        NSMenuItem *item42  = [[NSMenuItem alloc] initWithTitle:@"降低透明度 ⌘↓" action:@selector(alphaDownEvent) keyEquivalent:@""];
         
         [item1 setTarget:self];
         [item1_0 setTarget:self];
         [item1_1 setTarget:self];
         [item2 setTarget:self];
-        [item3 setTarget:self];
-        [item4 setTarget:self];
+        [item30 setTarget:self];
+        [item31 setTarget:self];
+        [item32 setTarget:self];
+        
+        [item41 setTarget:self.appWindowTool];
+        [item42 setTarget:self.appWindowTool];
         
         [menu addItem:item1];
         [menu addItem:item1_0];
@@ -61,8 +72,12 @@
         
         [menu addItem:item_0];
         
-        [menu addItem:item3];
-        [menu addItem:item4];
+        [menu addItem:item30];
+        [menu addItem:item31];
+        [menu addItem:item32];
+        
+        [menu addItem:item41];
+        [menu addItem:item42];
         
         self.clickMenu = menu;
     }
@@ -106,6 +121,11 @@
 - (void)addAppUrlArray:(NSArray *)array { }
 
 - (void)addAppPathArray:(NSArray *)array { }
+
+- (void)openFavoriteWindow {
+    AppWindowTool * tool = [AppWindowTool share];
+    [tool openFavoriteWindows];
+}
 
 // MARK: 打开系统文件件事件
 - (void)addAppAction {
