@@ -465,14 +465,14 @@ static NSString * FavoriteDBPath = @"favority";
 - (void)updateHotkeyDic {
     [self.favoriteHotkeyDic removeAllObjects];
     for (FavoriteAppEntity * app in self.favoriteAppArrayEntity.array) {
-        if (app.hotKeyVisual.length > 0 && app.receive) {
-            NSMutableArray * array = [self.favoriteHotkeyDic objectForKey:app.hotKeyVisual];
+        if (app.hotKey.length > 0 && app.receive) {
+            NSMutableArray * array = [self.favoriteHotkeyDic objectForKey:app.hotKey];
             if (array) {
                 [array addObject:app];
             } else {
                 array = [NSMutableArray new];
                 [array addObject:app];
-                [self.favoriteHotkeyDic setObject:array forKey:app.hotKeyVisual];
+                [self.favoriteHotkeyDic setObject:array forKey:app.hotKey];
             }
             
         }
