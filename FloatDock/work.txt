@@ -1,2 +1,3 @@
 1. 右键APP添加到收藏: osx ObjectiveC Finder 右键 菜单: http://www.cocoachina.com/articles/430358, 暂时不考虑了
 2. runtime获取参数名字 完成
+3. rac性能查看

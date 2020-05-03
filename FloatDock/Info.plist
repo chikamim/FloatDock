@@ -28,28 +28,27 @@
 	<string>Main</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSServices</key>
+	<array>
+		<dict>
+			<key>NSMenuItem</key>
+			<dict>
+				<key>default</key>
+				<string>Service Handling Demo</string>
+			</dict>
+			<key>NSMessage</key>
+			<string>handleServices:</string>
+			<key>NSPortName</key>
+			<string>FLoatDock</string>
+			<key>NSSendTypes</key>
+			<array>
+				<string>NSFilenamesPboardType</string>
+			</array>
+		</dict>
+	</array>
 	<key>NSSupportsAutomaticTermination</key>
 	<true/>
 	<key>NSSupportsSuddenTermination</key>
 	<true/>
-    <key>NSServices</key>
-    <array>
-        <dict>
-            <key>NSMenuItem</key>
-            <dict>
-                <key>default</key>
-                <string>Service Handling Demo</string>
-            </dict>
-            <key>NSMessage</key>
-            <string>handleServices:</string>
-            <key>NSPortName</key>
-            <string>FLoatDock</string>
-            <key>NSSendTypes</key>
-            <array>
-                <string>NSFilenamesPboardType</string>
-            </array>
-        </dict>
-    </array>
-
 </dict>
 </plist>
