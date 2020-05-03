@@ -16,19 +16,19 @@ static NSString * HotKeyEnd = @"#";
 
 @interface HotKeyTool : NSObject
 
-@property (nonatomic        ) NSEventModifierFlags flagsGlobal;
-@property (nonatomic, copy  ) NSString * charactersGlobal;
+@property (nonatomic        ) NSEventModifierFlags globalFlags;
+@property (nonatomic, copy  ) NSString * globalKey;
 
-@property (nonatomic        ) NSEventModifierFlags flagsLocal;
-@property (nonatomic, copy  ) NSString * charactersLocal;
-@property (nonatomic, copy  ) NSString * currentKeyboardLocal;
+@property (nonatomic        ) NSEventModifierFlags localFlags;
+@property (nonatomic, copy  ) NSString * localKey;
+@property (nonatomic, copy  ) NSString * localFlagsKey;
 
 @property (nonatomic, copy  ) NSDictionary * runningAppsDic;
 
 + (instancetype)share;
 
-- (void)updateGlobalMonitorKeyboard:(BOOL)enable;
-- (void)updateLocalMonitorKeyboard:(BOOL)enable;
+- (void)globalMonitorKeyboard:(BOOL)enable;
+- (void)localMonitorKeyboard:(BOOL)enable;
 
 //已经完成数据转移, 还剩余什么时候控制全局本地监听键盘
 // MARK: 收藏数据部分
@@ -39,8 +39,8 @@ static NSString * HotKeyEnd = @"#";
 @property (nonatomic, strong) NSMutableDictionary    * favoriteHotkeyDic;
 
 // 更新数组, 内置方法可以触发RACObserver
-- (void)addFavoriteAppEntity:(FavoriteAppEntity *)entity;
-- (void)removeFavoriteAppEntity:(FavoriteAppEntity *)entity;
+- (void)racAddFavoriteAppEntity:(FavoriteAppEntity *)entity;
+- (void)racRemoveFavoriteAppEntity:(FavoriteAppEntity *)entity;
 
 - (void)updateEntitySaveJson;
 

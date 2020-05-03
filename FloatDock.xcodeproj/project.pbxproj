@@ -27,6 +27,7 @@
 		E4378235245582D900AA785B /* AppWindowTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4378234245582D900AA785B /* AppWindowTool.m */; };
 		E48A584D245BD1E8008B8C08 /* FavoriteVM.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A584C245BD1E8008B8C08 /* FavoriteVM.m */; };
 		E48A5859245DB6C3008B8C08 /* NSParameterName.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A5858245DB6C3008B8C08 /* NSParameterName.m */; };
+		E48A585C245EBD73008B8C08 /* KeyboardConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A585B245EBD73008B8C08 /* KeyboardConvert.m */; };
 		E4C7F07C24585F3E00B73296 /* AlphaSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F07B24585F3E00B73296 /* AlphaSetVC.m */; };
 		E4C7F1372459317F00B73296 /* FavoriteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1362459317F00B73296 /* FavoriteVC.m */; };
 		E4C7F13A2459321500B73296 /* FavoriteAppEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1392459321500B73296 /* FavoriteAppEntity.m */; };
@@ -84,6 +85,8 @@
 		E48A5855245DAF6E008B8C08 /* work.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = work.txt; sourceTree = "<group>"; };
 		E48A5857245DB6C3008B8C08 /* NSParameterName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSParameterName.h; sourceTree = "<group>"; };
 		E48A5858245DB6C3008B8C08 /* NSParameterName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSParameterName.m; sourceTree = "<group>"; };
+		E48A585A245EBD73008B8C08 /* KeyboardConvert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardConvert.h; sourceTree = "<group>"; };
+		E48A585B245EBD73008B8C08 /* KeyboardConvert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardConvert.m; sourceTree = "<group>"; };
 		E4C7F07A24585F3E00B73296 /* AlphaSetVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlphaSetVC.h; sourceTree = "<group>"; };
 		E4C7F07B24585F3E00B73296 /* AlphaSetVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlphaSetVC.m; sourceTree = "<group>"; };
 		E4C7F1352459317F00B73296 /* FavoriteVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteVC.h; sourceTree = "<group>"; };
@@ -293,6 +296,8 @@
 		E48A5847245BC6C3008B8C08 /* entity */ = {
 			isa = PBXGroup;
 			children = (
+				E48A585A245EBD73008B8C08 /* KeyboardConvert.h */,
+				E48A585B245EBD73008B8C08 /* KeyboardConvert.m */,
 				E4C7F1382459321500B73296 /* FavoriteAppEntity.h */,
 				E4C7F1392459321500B73296 /* FavoriteAppEntity.m */,
 				E4C7F13E2459729900B73296 /* FavoriteColumnEntity.h */,
@@ -499,6 +504,7 @@
 				E4C7F162245A819B00B73296 /* FavoriteWindow.m in Sources */,
 				E437822D24555EF500AA785B /* AppInfoViewVM.m in Sources */,
 				E4C7F1502459751700B73296 /* EditableTextField.m in Sources */,
+				E48A585C245EBD73008B8C08 /* KeyboardConvert.m in Sources */,
 				E4C7F07C24585F3E00B73296 /* AlphaSetVC.m in Sources */,
 				E43781E924543F1800AA785B /* AppInfoBT.m in Sources */,
 				E4C7F1592459DAED00B73296 /* NSWindow+beep.m in Sources */,

@@ -335,13 +335,13 @@ typedef void(^BlockPDic) (NSDictionary * dic);
 - (void)cellViewBTSetHotkeyAction:(LLCustomBT *)cellBT {
     
     [self closeEditHotkeyInner];
-    [self.hotKeyTool updateLocalMonitorKeyboard:YES];
+    [self.hotKeyTool localMonitorKeyboard:YES];
     self.editHotkeyCellBT = cellBT;
     cellBT.defaultBackgroundColor = [NSColor selectedTextBackgroundColor];
     //cellBT.defaultTitleColor      = [NSColor selectedTextColor];
     
     RACSignal * signal;
-    signal = RACObserve(self.hotKeyTool, currentKeyboardLocal);
+    signal = RACObserve(self.hotKeyTool, localFlagsKey);
     @weakify(cellBT);
     @weakify(self);
     self.editHotkeyDisposable = [[signal skip:1] subscribeNext:^(NSString *  _Nullable x) {
@@ -389,7 +389,7 @@ typedef void(^BlockPDic) (NSDictionary * dic);
         self.editHotkeyDisposable = nil;
     }
     if (andMoniter) {
-        [self.hotKeyTool updateLocalMonitorKeyboard:NO];
+        [self.hotKeyTool localMonitorKeyboard:NO];
     }
 }
 
@@ -403,7 +403,7 @@ typedef void(^BlockPDic) (NSDictionary * dic);
 
 - (void)cellBtFavoriteAction:(NSButton *)cellBT {
     [self closeEditHotkeyInner];
-    [self.hotKeyTool removeFavoriteAppEntity:cellBT.weakEntity];
+    [self.hotKeyTool racRemoveFavoriteAppEntity:cellBT.weakEntity];
 }
 
 - (void)mouseDown:(NSEvent *)event {

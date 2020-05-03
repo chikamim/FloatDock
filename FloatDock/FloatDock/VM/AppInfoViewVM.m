@@ -308,7 +308,7 @@
     entity.name = entity.path.lastPathComponent;
     entity.name = entity.name.stringByDeletingPathExtension;
     
-    [[HotKeyTool share] addFavoriteAppEntity:entity];
+    [[HotKeyTool share] racAddFavoriteAppEntity:entity];
     //self.favoriteAppTool.arrayEntity
     //[[FavoriteAppTool share].arrayEntity.appArray addObject:entity];
 }

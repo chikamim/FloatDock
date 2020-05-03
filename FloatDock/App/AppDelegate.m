@@ -24,12 +24,12 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
-#if TARGET_OS_MAC//模拟器
-    NSString * macOSInjectionPath = @"/Applications/InjectionIII.app/Contents/Resources/macOSInjection.bundle";
-    if ([[NSFileManager defaultManager] fileExistsAtPath:macOSInjectionPath]) {
-        [[NSBundle bundleWithPath:macOSInjectionPath] load];
-    }
-#endif
+    //#if TARGET_OS_MAC//模拟器
+    //    NSString * macOSInjectionPath = @"/Applications/InjectionIII.app/Contents/Resources/macOSInjection.bundle";
+    //    if ([[NSFileManager defaultManager] fileExistsAtPath:macOSInjectionPath]) {
+    //        [[NSBundle bundleWithPath:macOSInjectionPath] load];
+    //    }
+    //#endif
     self.hotKeyTool = [HotKeyTool share];
     
     self.appWindowTool = [AppWindowTool share];

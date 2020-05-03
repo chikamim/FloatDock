@@ -8,11 +8,12 @@
 
 #import "HotKeyTool.h"
 #import <ReactiveObjC/ReactiveObjC.h>
-#import <Carbon/Carbon.h> // kVK_Space; 识别键盘类型 // https://blog.csdn.net/weixin_33862514/article/details/89664156
 #import "FavoriteAppEntity.h"
 
 #import "DataSavePath.h"
 #import "NSParameterName.h"
+#import "KeyboardConvert.h"
+
 
 static NSString * FavoriteDBPath = @"favority";
 
@@ -41,7 +42,7 @@ static NSString * FavoriteDBPath = @"favority";
         instance.favoriteAppsSigleArray = [NSMutableArray<FavoriteAppEntity> new];
         instance.favoriteHotkeyDic      = [NSMutableDictionary new];
         [instance updateHotkeyDic];
-        [instance updateFavoriteAppsSigleArray];
+        [instance racUpdateFavoriteAppsSigleArray];
         
     });
     return instance;
@@ -50,7 +51,7 @@ static NSString * FavoriteDBPath = @"favority";
 /**
  // 全局监听事件 链接：https://blog.csdn.net/ZhangWangYang/article/details/95952046
  */
-- (void)updateLocalMonitorKeyboard:(BOOL)enable {
+- (void)localMonitorKeyboard:(BOOL)enable {
     if (!enable) {
         if (self.localEvent1) {
             [NSEvent removeMonitor:self.localEvent1];
@@ -69,15 +70,15 @@ static NSString * FavoriteDBPath = @"favority";
         // 本地 修饰符
         self.localEvent1 = [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskFlagsChanged handler:^NSEvent * _Nullable(NSEvent * _Nonnull event) {
             @strongify(self);
-            self.flagsLocal = event.modifierFlags;
+            self.localFlags = event.modifierFlags;
             return event;
         }];
         
         // 本地 键盘
         self.localEvent2 = [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskKeyDown handler:^NSEvent * _Nullable(NSEvent * _Nonnull event) {
             @strongify(self);
-            NSString * key = [self convertKeyboard:event.keyCode];
-            self.charactersLocal = key ? [NSString stringWithFormat:@"%@%@", key, HotKeyEnd] : @"";
+            NSString * key = [KeyboardConvert convertKeyboard:event.keyCode];
+            self.localKey = key ? [NSString stringWithFormat:@"%@%@", key, HotKeyEnd] : @"";
             //NSLog(@"设置字符: %@", event.charactersIgnoringModifiers);
             //NSLog(@"设置字符: %@", self.characters);
             return event;
@@ -85,13 +86,13 @@ static NSString * FavoriteDBPath = @"favority";
         
         self.localEvent3 = [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskKeyUp handler:^NSEvent * _Nullable(NSEvent * _Nonnull event) {
             @strongify(self);
-            self.charactersLocal = @"";
+            self.localKey = @"";
             return event;
         }];
     }
 }
 
-- (void)updateGlobalMonitorKeyboard:(BOOL)enable {
+- (void)globalMonitorKeyboard:(BOOL)enable {
     if (!enable) {
         if (self.globalEvent1) {
             [NSEvent removeMonitor:self.globalEvent1];
@@ -113,21 +114,21 @@ static NSString * FavoriteDBPath = @"favority";
             //NSLog(@"event: %@\n\n", event);
             //NSLog(@"全局 修饰符 event: %li", event.modifierFlags);
             
-            self.flagsGlobal = event.modifierFlags;
+            self.globalFlags = event.modifierFlags;
         }];
         
         self.globalEvent2 = [NSEvent addGlobalMonitorForEventsMatchingMask: NSEventMaskKeyDown handler:^(NSEvent *event){
             //NSLog(@"全局 键盘 event: %@", event.characters);
             @strongify(self);
             
-            self.charactersGlobal = [self convertKeyboard:event.keyCode];
+            self.globalKey = [KeyboardConvert convertKeyboard:event.keyCode];
             //NSLog(@"设置字符: %@", event.charactersIgnoringModifiers);
             //NSLog(@"设置字符: %@", self.characters);
         }];
         self.globalEvent3 = [NSEvent addGlobalMonitorForEventsMatchingMask: NSEventMaskKeyUp handler:^(NSEvent *event){
             //NSLog(@"全局 键盘 event: %@", event.characters);
             @strongify(self);
-            self.charactersGlobal = @"";
+            self.globalKey = @"";
             
         }];
     }
@@ -138,13 +139,13 @@ static NSString * FavoriteDBPath = @"favority";
     
     @weakify(self);
     // 全局
-    RACSignal * signalGlobal = [RACSignal combineLatest:@[RACObserve(self, flagsGlobal), RACObserve(self, charactersGlobal)] reduce:^id (id flags, NSString * characters){
-        @strongify(self);
-        NSString * flagText = [self convertFlag:[flags integerValue]];
-        NSString * keyText  = [characters uppercaseString];
-        NSLog(@"%@:%@ - %@", flags, flagText, characters);
-        if (flagText.length > 0 && keyText.length>0) {
-            return [NSString stringWithFormat:@"%@%@", flagText, keyText];
+    RACSignal * signalGlobal = [RACSignal combineLatest:@[RACObserve(self, globalFlags), RACObserve(self, globalKey)] reduce:^id (id flags, NSString * key){
+        //@strongify(self);
+        NSString * flagText = [KeyboardConvert convertFlag:[flags integerValue]];
+        //NSLog(@"全局RAC结果 %@:%@ - %@", flags, flagText, key);
+        //NSLog(@"全局RAC结果:%@-%@", flagText, key);
+        if (flagText.length > 0 && key.length>0) {
+            return [NSString stringWithFormat:@"%@%@", flagText, key];
         } else {
             return nil;
         }
@@ -156,7 +157,7 @@ static NSString * FavoriteDBPath = @"favority";
             NSMutableArray * array = self.favoriteHotkeyDic[x];
             for (NSInteger i = 0; i<array.count; i++) {
                 FavoriteAppEntity * entity = array[i];
-                NSLog(@"name: %@", entity.name);
+                //NSLog(@"name: %@", entity.name);
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1* i * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                     [self openAppWindows:entity.path];
                 });
@@ -166,11 +167,12 @@ static NSString * FavoriteDBPath = @"favority";
     }];
     
     // 本地
-    RAC(self, currentKeyboardLocal) = [RACSignal combineLatest:@[RACObserve(self, flagsLocal), RACObserve(self, charactersLocal)] reduce:^id (id flags, NSString * characters){
-        @strongify(self);
+    RAC(self, localFlagsKey) = [RACSignal combineLatest:@[RACObserve(self, localFlags), RACObserve(self, localKey)] reduce:^id (id flags, NSString * key){
+        //@strongify(self);
+        return [NSString stringWithFormat:@"%@%@", [KeyboardConvert convertFlag:[flags integerValue]], key];
         //NSLog(@"本地 %@ - %@", flags, characters);
-        NSString * key = [NSString stringWithFormat:@"%@%@", [self convertFlag:[flags integerValue]], [characters uppercaseString]];
-        return key;
+        //NSString * hotKey = [NSString stringWithFormat:@"%@%@", [self convertFlag:[flags integerValue]], key];
+        //return hotKey;
     }];
 }
 
@@ -198,225 +200,6 @@ static NSString * FavoriteDBPath = @"favority";
 }
 
 // MARK: TOOLS
-// 键盘修饰符 https://www.jianshu.com/p/f46a5f5dfed7
-- (NSMutableString *)convertFlag:(NSEventModifierFlags)flags {
-    NSMutableString * flagsString = [NSMutableString new];
-    if (flags & NSEventModifierFlagFunction) {
-        [flagsString appendString:@"Fn"];
-    }
-    if (flags & NSEventModifierFlagShift) {
-        [flagsString appendString:@"⇧"];
-    }
-    if (flags & NSEventModifierFlagControl) {
-        [flagsString appendString:@"⌃"];
-    }
-    if (flags & NSEventModifierFlagOption) {
-        [flagsString appendString:@"⌥"];
-    }
-    if (flags & NSEventModifierFlagCommand) {
-        [flagsString appendString:@"⌘"];
-    }
-    return flagsString;
-}
-
-// 键盘字母符 https://blog.csdn.net/weixin_33862514/article/details/89664156
-- (NSString *)convertKeyboard:(int)keycode {
-    NSString * str;
-    switch (keycode) {
-        case kVK_ANSI_A:{
-            str = @"A";
-            break;
-        }
-        case kVK_ANSI_B:{
-            str = @"B";
-            break;
-        }
-        case kVK_ANSI_C:{
-            str = @"C";
-            break;
-        }
-        case kVK_ANSI_D:{
-            str = @"D";
-            break;
-        }
-        case kVK_ANSI_E:{
-            str = @"E";
-            break;
-        }
-        case kVK_ANSI_F:{
-            str = @"F";
-            break;
-        }
-        case kVK_ANSI_G:{
-            str = @"G";
-            break;
-        }
-        case kVK_ANSI_H:{
-            str = @"H";
-            break;
-        }
-        case kVK_ANSI_I:{
-            str = @"I";
-            break;
-        }
-        case kVK_ANSI_J:{
-            str = @"J";
-            break;
-        }
-        case kVK_ANSI_K:{
-            str = @"K";
-            break;
-        }
-        case kVK_ANSI_L:{
-            str = @"L";
-            break;
-        }case kVK_ANSI_M:{
-            str = @"M";
-            break;
-        }
-        case kVK_ANSI_N:{
-            str = @"N";
-            break;
-        }
-        case kVK_ANSI_O:{
-            str = @"O";
-            break;
-        }
-        case kVK_ANSI_P:{
-            str = @"P";
-            break;
-        }
-        case kVK_ANSI_Q:{
-            str = @"Q";
-            break;
-        }
-        case kVK_ANSI_R:{
-            str = @"R";
-            break;
-        }
-        case kVK_ANSI_S:{
-            str = @"S";
-            break;
-        }
-        case kVK_ANSI_T:{
-            str = @"T";
-            break;
-        }
-        case kVK_ANSI_U:{
-            str = @"U";
-            break;
-        }
-        case kVK_ANSI_V:{
-            str = @"V";
-            break;
-        }
-        case kVK_ANSI_W:{
-            str = @"W";
-            break;
-        }
-        case kVK_ANSI_X:{
-            str = @"X";
-            break;
-        }
-        case kVK_ANSI_Y:{
-            str = @"Y";
-            break;
-        }
-        case kVK_ANSI_Z:{
-            str = @"Z";
-            break;
-        }
-        case kVK_ANSI_0:{
-            str = @"0";
-            break;
-        }
-        case kVK_ANSI_1:{
-            str = @"1";
-            break;
-        }
-        case kVK_ANSI_2:{
-            str = @"2";
-            break;
-        }
-        case kVK_ANSI_3:{
-            str = @"3";
-            break;
-        }
-        case kVK_ANSI_4:{
-            str = @"4";
-            break;
-        }
-        case kVK_ANSI_5:{
-            str = @"5";
-            break;
-        }
-        case kVK_ANSI_6:{
-            str = @"6";
-            break;
-        }
-        case kVK_ANSI_7:{
-            str = @"7";
-            break;
-        }
-        case kVK_ANSI_8:{
-            str = @"8";
-            break;
-        }
-        case kVK_ANSI_9:{
-            str = @"9";
-            break;
-        }
-        case kVK_ANSI_Minus:{
-            str = @"_";
-            break;
-        }
-        case kVK_ANSI_Equal:{
-            str = @"=";
-            break;
-        }
-        case kVK_ANSI_LeftBracket:{
-            str = @"[";
-            break;
-        }
-        case kVK_ANSI_RightBracket:{
-            str = @"]";
-            break;
-        }
-        case kVK_ANSI_Semicolon:{
-            str = @";";
-            break;
-        }
-        case kVK_ANSI_Quote:{
-            str = @"'";
-            break;
-        }
-        case kVK_ANSI_Comma:{
-            str = @",";
-            break;
-        }
-        case kVK_ANSI_Period:{
-            str = @".";
-            break;
-        }
-        case kVK_ANSI_Slash:{
-            str = @"/";
-            break;
-        }
-        case kVK_ANSI_Backslash:{
-            //str = @"/"; 删除
-            break;
-        }
-        case kVK_Delete:{
-            str = @"⌫";
-            break;
-        }
-            
-        default:
-            break;
-    }
-    //NSLog(@"keycode: %i, str: %@", keycode, str);
-    return str;
-}
 
 /**
  1. 如果没有系统权限, 是无法获得全局点击键盘功能的.
@@ -478,7 +261,7 @@ static NSString * FavoriteDBPath = @"favority";
         }
     }
     
-    [self updateGlobalMonitorKeyboard:self.favoriteHotkeyDic.count > 0 ? YES:NO ];
+    [self globalMonitorKeyboard:self.favoriteHotkeyDic.count > 0 ? YES:NO ];
 }
 
 - (void)saveAppInfoArrayEntity:(FavoriteAppArrayEntity *)entity {
@@ -498,7 +281,7 @@ static NSString * FavoriteDBPath = @"favority";
 }
 
 // 新增APP, 需要顺带更新favoriteAppsSigleArray
-- (void)addFavoriteAppEntity:(FavoriteAppEntity *)entity {
+- (void)racAddFavoriteAppEntity:(FavoriteAppEntity *)entity {
     static NSString * mKey;
     if (!mKey) {
         mKey = [NSParameterName entity:self.favoriteAppArrayEntity equalTo:self.favoriteAppArrayEntity.array];
@@ -507,11 +290,11 @@ static NSString * FavoriteDBPath = @"favority";
     [[self.favoriteAppArrayEntity mutableArrayValueForKey:mKey] addObject:entity];
     
     [self updateEntitySaveJson];
-    [self updateFavoriteAppsSigleArray];
+    [self racUpdateFavoriteAppsSigleArray];
 }
 
 // 删除APP, 需要顺带更新favoriteAppsSigleArray
-- (void)removeFavoriteAppEntity:(FavoriteAppEntity *)entity {
+- (void)racRemoveFavoriteAppEntity:(FavoriteAppEntity *)entity {
     static NSString * mKey;
     if (!mKey) {
         mKey = [NSParameterName entity:self.favoriteAppArrayEntity equalTo:self.favoriteAppArrayEntity.array];
@@ -520,10 +303,10 @@ static NSString * FavoriteDBPath = @"favority";
     [[self.favoriteAppArrayEntity mutableArrayValueForKey:mKey] removeObject:entity];
     
     [self updateEntitySaveJson];
-    [self updateFavoriteAppsSigleArray];
+    [self racUpdateFavoriteAppsSigleArray];
 }
 
-- (void)updateFavoriteAppsSigleArray {
+- (void)racUpdateFavoriteAppsSigleArray {
     static NSString * mKey;
     if (!mKey) {
         mKey = [NSParameterName entity:self equalTo:self.favoriteAppsSigleArray];
