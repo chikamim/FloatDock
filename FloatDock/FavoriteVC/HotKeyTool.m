@@ -76,7 +76,7 @@ static NSString * FavoriteDBPath = @"favority";
         // 本地 键盘
         self.localEvent2 = [NSEvent addLocalMonitorForEventsMatchingMask:NSEventMaskKeyDown handler:^NSEvent * _Nullable(NSEvent * _Nonnull event) {
             @strongify(self);
-            NSString * key = [self keyboard:event.keyCode];
+            NSString * key = [self convertKeyboard:event.keyCode];
             self.charactersLocal = key ? [NSString stringWithFormat:@"%@%@", key, HotKeyEnd] : @"";
             //NSLog(@"设置字符: %@", event.charactersIgnoringModifiers);
             //NSLog(@"设置字符: %@", self.characters);
@@ -120,7 +120,7 @@ static NSString * FavoriteDBPath = @"favority";
             //NSLog(@"全局 键盘 event: %@", event.characters);
             @strongify(self);
             
-            self.charactersGlobal = [self keyboard:event.keyCode];
+            self.charactersGlobal = [self convertKeyboard:event.keyCode];
             //NSLog(@"设置字符: %@", event.charactersIgnoringModifiers);
             //NSLog(@"设置字符: %@", self.characters);
         }];
@@ -140,9 +140,9 @@ static NSString * FavoriteDBPath = @"favority";
     // 全局
     RACSignal * signalGlobal = [RACSignal combineLatest:@[RACObserve(self, flagsGlobal), RACObserve(self, charactersGlobal)] reduce:^id (id flags, NSString * characters){
         @strongify(self);
-        //NSLog(@"%@ - %@", flags, characters);
-        NSString * flagText = [self checkFlag:[flags integerValue]];
+        NSString * flagText = [self convertFlag:[flags integerValue]];
         NSString * keyText  = [characters uppercaseString];
+        NSLog(@"%@:%@ - %@", flags, flagText, characters);
         if (flagText.length > 0 && keyText.length>0) {
             return [NSString stringWithFormat:@"%@%@", flagText, keyText];
         } else {
@@ -169,7 +169,7 @@ static NSString * FavoriteDBPath = @"favority";
     RAC(self, currentKeyboardLocal) = [RACSignal combineLatest:@[RACObserve(self, flagsLocal), RACObserve(self, charactersLocal)] reduce:^id (id flags, NSString * characters){
         @strongify(self);
         //NSLog(@"本地 %@ - %@", flags, characters);
-        NSString * key = [NSString stringWithFormat:@"%@%@", [self checkFlag:[flags integerValue]], [characters uppercaseString]];
+        NSString * key = [NSString stringWithFormat:@"%@%@", [self convertFlag:[flags integerValue]], [characters uppercaseString]];
         return key;
     }];
 }
@@ -199,7 +199,7 @@ static NSString * FavoriteDBPath = @"favority";
 
 // MARK: TOOLS
 // 键盘修饰符 https://www.jianshu.com/p/f46a5f5dfed7
-- (NSMutableString *)checkFlag:(NSEventModifierFlags)flags {
+- (NSMutableString *)convertFlag:(NSEventModifierFlags)flags {
     NSMutableString * flagsString = [NSMutableString new];
     if (flags & NSEventModifierFlagFunction) {
         [flagsString appendString:@"Fn"];
@@ -220,7 +220,7 @@ static NSString * FavoriteDBPath = @"favority";
 }
 
 // 键盘字母符 https://blog.csdn.net/weixin_33862514/article/details/89664156
-- (NSString *)keyboard:(int)keycode {
+- (NSString *)convertKeyboard:(int)keycode {
     NSString * str;
     switch (keycode) {
         case kVK_ANSI_A:{
@@ -465,14 +465,14 @@ static NSString * FavoriteDBPath = @"favority";
 - (void)updateHotkeyDic {
     [self.favoriteHotkeyDic removeAllObjects];
     for (FavoriteAppEntity * app in self.favoriteAppArrayEntity.array) {
-        if (app.hotKey.length > 0 && app.receive) {
-            NSMutableArray * array = [self.favoriteHotkeyDic objectForKey:app.hotKey];
+        if (app.hotKeyVisual.length > 0 && app.receive) {
+            NSMutableArray * array = [self.favoriteHotkeyDic objectForKey:app.hotKeyVisual];
             if (array) {
                 [array addObject:app];
             } else {
                 array = [NSMutableArray new];
                 [array addObject:app];
-                [self.favoriteHotkeyDic setObject:array forKey:app.hotKey];
+                [self.favoriteHotkeyDic setObject:array forKey:app.hotKeyVisual];
             }
             
         }

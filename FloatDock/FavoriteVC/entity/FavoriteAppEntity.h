@@ -18,7 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy  ) NSString * name;
 @property (nonatomic, copy  ) NSString * path;
 @property (nonatomic, strong) NSImage<Ignore> * image;
-@property (nonatomic, copy  , nullable) NSString * hotKey;  // 快捷键
+@property (nonatomic, copy  , nullable) NSString * hotKeyVisual;  // 快捷键可视化
+@property (nonatomic, copy  , nullable) NSString * hotKeyCode;  // 快捷键Code
 @property (nonatomic, weak  ) NSRunningApplication<Ignore> * runningApp;
 
 //---

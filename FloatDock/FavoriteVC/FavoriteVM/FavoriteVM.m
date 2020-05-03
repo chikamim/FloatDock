@@ -141,10 +141,10 @@ typedef void(^BlockPDic) (NSDictionary * dic);
                 
             }
             cellBT.weakEntity = entity;
-            if (entity.hotKey.length == 0) {
+            if (entity.hotKeyVisual.length == 0) {
                 cellBT.defaultTitle = HotKeyDefaultText;
             } else {
-                cellBT.defaultTitle = entity.hotKey;
+                cellBT.defaultTitle = entity.hotKeyVisual;
             }
             //cellBT.state = entity.move ? NSControlStateValueOn:NSControlStateValueOff;
             cell = cellBT;
@@ -353,7 +353,7 @@ typedef void(^BlockPDic) (NSDictionary * dic);
             if (x.length> HotKeyEnd.length+1) {
                 
                 cellBT.defaultTitle = [x substringToIndex:x.length - HotKeyEnd.length];
-                entity.hotKey       = cellBT.defaultTitle;
+                entity.hotKeyVisual       = cellBT.defaultTitle;
                 [self.hotKeyTool updateEntitySaveJson];
                 
                 [self closeEditHotkeyInner];
@@ -362,7 +362,7 @@ typedef void(^BlockPDic) (NSDictionary * dic);
             }
         }
         else if (x.length == 0) {
-            cellBT.defaultTitle = entity.hotKey ? :HotKeyDefaultText;
+            cellBT.defaultTitle = entity.hotKeyVisual ? :HotKeyDefaultText;
         }
         else {
             cellBT.defaultTitle = x;
@@ -396,7 +396,7 @@ typedef void(^BlockPDic) (NSDictionary * dic);
 - (void)cellBtDeleteHotKeyAction:(NSButton *)cellBT {
     [self closeEditHotkeyInner];
     FavoriteAppEntity * entity = (FavoriteAppEntity *)cellBT.weakEntity;
-    entity.hotKey = nil;
+    entity.hotKeyVisual = nil;
     [self.hotKeyTool updateEntitySaveJson];
     [self.infoTV reloadData];
 }
