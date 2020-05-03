@@ -60,7 +60,8 @@
     [self.tipTextView addGestureRecognizer:click];
     
     @weakify(self);
-    [RACObserve(self.hotKeyTool.favoriteAppArrayEntity, array) subscribeNext:^(id  _Nullable x) {
+    // 主线程内刷新, 不会导致布局错位
+    [[RACObserve(self.hotKeyTool.favoriteAppArrayEntity, array) deliverOn:[RACScheduler mainThreadScheduler]] subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         
         [self.infoTV reloadData];
@@ -214,7 +215,6 @@
     tableContainer.hasHorizontalScroller = YES;
     
     [self.view addSubview:tableContainer];
-    [tableView reloadData];
     
     [tableContainer mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);

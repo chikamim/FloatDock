@@ -44,7 +44,14 @@ typedef void(^BlockPDic) (NSDictionary * dic);
 }
 
 - (NSView *)tableView:(NSTableView *)tableView viewForTableColumn:(NSTableColumn *)tableColumn row:(NSInteger)row {
-    
+    static NSColor * TextColorNormal;
+    static NSColor * TextColorEnable;
+    static NSColor * TextColorUnable;
+    if (!TextColorNormal) {
+        TextColorNormal = [NSColor textColor];
+        TextColorEnable = [NSColor colorWithRed:252/255.0 green:65/255.0 blue:58/255.0 alpha:1];
+        TextColorUnable = [NSColor yellowColor];
+    }
     //__weak typeof(self) weakSelf = self;
     NSInteger column = [[tableColumn.identifier substringFromIndex:tableColumn.identifier.length-1] intValue];
     //NSLog(@"column: %li", column);
@@ -66,7 +73,7 @@ typedef void(^BlockPDic) (NSDictionary * dic);
                 cellBT.title = @"";
             }
             cellBT.tag = row;
-            cellBT.state = entity.receive ? NSControlStateValueOn:NSControlStateValueOff;
+            cellBT.state = entity.enable ? NSControlStateValueOn:NSControlStateValueOff;
             cell = cellBT;
             
             cellBT.weakEntity = entity;
@@ -83,35 +90,7 @@ typedef void(^BlockPDic) (NSDictionary * dic);
             cellTF.stringValue = entity.name;
             cell = cellTF;
             
-            //            LLCustomBT * cellBT = [tableView makeViewWithIdentifier:tableColumn.identifier owner:self.view];
-            //            if (!cellBT) {
-            //                //使用方法
-            //                cellBT = [[LLCustomBT alloc] initWithFrame:CGRectMake(0, 0, tableColumn.width, CellHeight)];
-            //                cellBT.isHandCursor = YES;
-            //                cellBT.defaultTitle = @"";
-            //                //cellBT.selectedTitle = @"已选中";
-            //                cellBT.defaultTitleColor  = [NSColor textColor]; //[NSColor whiteColor];
-            //                //cellBT.selectedTitleColor = [NSColor blackColor];
-            //                cellBT.defaultFont  = [NSFont systemFontOfSize:15];
-            //                //cellBT.selectedFont = [NSFont systemFontOfSize:10];
-            //                cellBT.defaultBackgroundColor  = [NSColor clearColor];
-            //                cellBT.selectedBackgroundColor = [NSColor selectedTextBackgroundColor];
-            //                cellBT.defaultBackgroundImage  = [NSImage imageNamed:@""];
-            //                cellBT.selectedBackgroundImage = [NSImage imageNamed:@""];
-            //                //cellBT.rectCorners = LLRectCornerTopLeft|LLRectCornerBottomLeft;
-            //                //cellBT.radius = 15;
-            //                cellBT.textAlignment = LLTextAlignmentLeft;
-            //                //cellBT.textUnderLineStyle = LLTextUnderLineStyleDeleteDouble;
-            //
-            //                [cellBT setTarget:self];
-            //                [cellBT setAction:@selector(cellViewBTAction:)];
-            //
-            //            }
-            //            cellBT.weakEntity = entity;
-            //            cellBT.defaultTitle = entity.appName;
-            //            //cellBT.state = entity.move ? NSControlStateValueOn:NSControlStateValueOff;
-            //            cell = cellBT;
-            
+            cellTF.textColor = entity.enable ? TextColorEnable:TextColorNormal ;
             break;
         }
         case 3:{ // 快捷键
@@ -142,9 +121,12 @@ typedef void(^BlockPDic) (NSDictionary * dic);
             cellBT.weakEntity = entity;
             if (entity.hotKey.length == 0) {
                 cellBT.defaultTitle = self.hotKeyDefaultText;
+                cellBT.defaultTitleColor = entity.enable ? TextColorUnable:TextColorNormal;
             } else {
                 cellBT.defaultTitle = entity.hotKey;
+                cellBT.defaultTitleColor = entity.enable ? TextColorEnable:TextColorNormal;
             }
+            
             //cellBT.state = entity.move ? NSControlStateValueOn:NSControlStateValueOff;
             cell = cellBT;
             break;
@@ -319,9 +301,10 @@ typedef void(^BlockPDic) (NSDictionary * dic);
     
     FavoriteAppEntity * entity = (FavoriteAppEntity *)cellBT.weakEntity;
     //cellBT.state = entity.receive ? NSControlStateValueOn:NSControlStateValueOff;
-    entity.receive = cellBT.state==NSControlStateValueOn ? YES:NO;
+    entity.enable = cellBT.state==NSControlStateValueOn ? YES:NO;
     
     [self.hotKeyTool updateEntitySaveJson];
+    [self.infoTV reloadData];
 }
 
 // 名称APP

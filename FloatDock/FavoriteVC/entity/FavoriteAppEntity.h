@@ -23,7 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, weak  ) NSRunningApplication<Ignore> * runningApp;
 
 //---
-@property (nonatomic        ) BOOL receive;
+@property (nonatomic        ) BOOL enable;
 
 @end
 
