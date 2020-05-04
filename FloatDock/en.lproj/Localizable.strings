@@ -28,8 +28,8 @@ FD_NormalLLDB         = "Normal LLDB";
 FD_TipGlobalHotkey    = "Global Hotkey need your authorization, please select FloatDock In [System Preferences] > [Security & Privacy] > [Accessibility], then reload FloatDock.";
 FD_DefaultHotkey      = "Please Set";
 
-FDTV_title     = "Name(Drag to sort)";
-FDTV_titleTip  = "";
+FDTV_title     = "Name(sort)";
+FDTV_titleTip  = "Drag name to sort";
 FDTV_hotkey    = "Global HotKey";
 FDTV_hotkeyTip = "";
 FDTV_enable    = "On";

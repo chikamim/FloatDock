@@ -72,7 +72,7 @@ typedef void(^BlockPDic) (NSDictionary * dic);
                 [cellBT setAction:@selector(cellBtSwitchAction:)];
                 cellBT.title = @"";
             }
-            cellBT.tag = row;
+            cellBT.tag   = row;
             cellBT.state = entity.enable ? NSControlStateValueOn:NSControlStateValueOff;
             cell = cellBT;
             
@@ -167,6 +167,8 @@ typedef void(^BlockPDic) (NSDictionary * dic);
                 cellBT = [[NSButton alloc] initWithFrame:CGRectMake(0, 0, tableColumn.width, FavoriteCellHeight)];
                 
                 cellBT.layer.backgroundColor = [NSColor clearColor].CGColor;
+                [cellBT setTarget:self];
+                [cellBT setAction:@selector(closeEditHotkeyInner)];
             }
             cellBT.tag = row;
             cell = cellBT;

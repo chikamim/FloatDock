@@ -29,8 +29,8 @@
 "FD_TipGlobalHotkey"    = "全局快捷键需要您在 [系统偏好设置] > [安全与隐私] > [辅助功能] 中选中 FloatDock, 并且重启APP.";
 "FD_DefaultHotkey"      = "请设置";
 
-"FDTV_title"     = "名称";
-"FDTV_titleTip"  = "点击名称进行拖拽排序";
+"FDTV_title"     = "名称(排序)";
+"FDTV_titleTip"  = "拖拽名称排序";
 "FDTV_hotkey"    = "全局快捷键";
 "FDTV_hotkeyTip" = "APP 快捷键";
 "FDTV_enable"    = "开关";

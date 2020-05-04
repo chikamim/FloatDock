@@ -147,6 +147,53 @@
     NSTableView * tableView        = [[NSTableView alloc] initWithFrame:tableContainer.bounds];
     tableView.tag = 0;
     
+    NSArray * array = [self columnArray];
+    for (int i=0; i<array.count; i++) {
+        FavoriteColumnEntity * entity = array[i];
+        NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:entity.columnID];
+        column.width         = entity.width;
+        column.minWidth      = entity.miniWidth;
+        if (entity.maxWidth > 0) {
+            column.maxWidth      = entity.maxWidth;
+        }
+        column.resizingMask = NSTableColumnAutoresizingMask;
+        
+        column.title         = entity.title;
+        column.headerToolTip = entity.tip;
+        
+        [tableView addTableColumn:column];
+        
+        width = entity.width;
+    }
+    
+    tableView.delegate      = self.favoriteVM;
+    tableView.dataSource    = self.favoriteVM;
+    tableView.gridStyleMask = NSTableViewSolidHorizontalGridLineMask; // cell 之间横线
+    
+    [tableView registerForDraggedTypes:@[NSPasteboardNameDrag]]; // 注册可拖拽
+    
+    
+    tableContainer.documentView          = tableView;
+    tableContainer.hasVerticalScroller   = YES;
+    tableContainer.hasHorizontalScroller = NO;
+    
+    
+    [self.view addSubview:tableContainer];
+    
+    [tableContainer mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(10);
+        make.right.mas_equalTo(-10);
+        make.top.mas_equalTo(self.tipTextView.mas_bottom).mas_offset(0);
+        make.bottom.mas_equalTo(-10);
+    }];
+    
+    self.infoTV = tableView;
+    
+    tableContainer.scrollerStyle = NSScrollerStyleLegacy;
+    return tableContainer;
+}
+
+- (NSArray *)columnArray {
     FavoriteColumnEntity * eName     = [FavoriteColumnEntity new];
     FavoriteColumnEntity * eHotkey   = [FavoriteColumnEntity new];
     FavoriteColumnEntity * eSwitch   = [FavoriteColumnEntity new];
@@ -205,44 +252,7 @@
     eFavorite.maxWidth = 40;
     
     NSArray * array = @[eSwitch, eIcon, eName, eHotkey, eDelete, eFavorite]; //ePath
-    
-    for (int i=0; i<array.count; i++) {
-        FavoriteColumnEntity * entity = array[i];
-        NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:entity.columnID];
-        column.width         = entity.width;
-        column.minWidth      = entity.miniWidth;
-        if (entity.maxWidth > 0) {
-            column.maxWidth      = entity.maxWidth;
-        }
-        column.resizingMask = NSTableColumnAutoresizingMask;
-        
-        column.title         = entity.title;
-        column.headerToolTip = entity.tip;
-        
-        [tableView addTableColumn:column];
-        
-        width = entity.width;
-    }
-    
-    tableView.delegate                   = self.favoriteVM;
-    tableView.dataSource                 = self.favoriteVM;
-    [tableView registerForDraggedTypes:@[NSPasteboardNameDrag]]; // 注册可拖拽
-    tableContainer.documentView          = tableView;
-    tableContainer.hasVerticalScroller   = YES;
-    tableContainer.hasHorizontalScroller = YES;
-    
-    [self.view addSubview:tableContainer];
-    
-    [tableContainer mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(10);
-        make.right.mas_equalTo(-10);
-        make.top.mas_equalTo(self.tipTextView.mas_bottom).mas_offset(0);
-        make.bottom.mas_equalTo(-10);
-    }];
-    
-    self.infoTV = tableView;
-    
-    return tableContainer;
+    return array;
 }
 
 - (void)closeEditHotkeyOuter {

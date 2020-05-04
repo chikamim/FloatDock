@@ -218,7 +218,7 @@
             break;
         }
         case kVK_ANSI_Backslash:{
-            //str = @"/"; 删除
+            str = @"\\";
             break;
         }
         case kVK_Delete:{
