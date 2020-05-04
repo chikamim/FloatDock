@@ -143,7 +143,8 @@
 
 - (void)addAppFromFavority:(NSMenuItem *)item {
     FavoriteAppEntity * app = self.hotKeyTool.favoriteAppsSigleArray[item.tag];
-    [self addAppUrlArray:@[[NSURL URLWithString:app.path]]];
+    NSString * url = [app.path stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+    [self addAppUrlArray:@[[NSURL URLWithString:url]]];
 }
 
 @end
