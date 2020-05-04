@@ -341,6 +341,7 @@ typedef void(^BlockPDic) (NSDictionary * dic);
                 [self.hotKeyTool updateEntitySaveJson];
                 
                 [self closeEditHotkeyInner];
+                [self.infoTV reloadData];
             } else {
                 cellBT.defaultTitle = [x substringToIndex:x.length - HotKeyEnd.length];
             }
