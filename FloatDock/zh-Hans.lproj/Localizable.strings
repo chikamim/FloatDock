@@ -37,8 +37,8 @@
 "FDTV_enableTip" = "是否启用";
 "FDTV_path"      = "路径";
 "FDTV_pathTip"   = "App 路径";
-"FDTV_cancle"    = "删除快捷键";
-"FDTV_cancleTip" = "删除快捷键";
+"FDTV_reset"    = "重置";
+"FDTV_resetTip" = "删除快捷键";
 "FDTV_icon"      = "图标";
 "FDTV_iconTip"   = "";
 "FDTV_remove"    = "移除";

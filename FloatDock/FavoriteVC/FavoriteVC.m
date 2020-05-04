@@ -68,6 +68,12 @@
     }];
     
     //2[self.view needsLayout];
+    //    [self.view mas_makeConstraints:^(MASConstraintMaker *make) {
+    //        make.top.mas_equalTo(0);
+    //        make.left.mas_equalTo(0);
+    //        make.bottom.mas_equalTo(0);
+    //        make.right.mas_equalTo(0);
+    //    }];
 }
 
 /*
@@ -144,7 +150,7 @@
     FavoriteColumnEntity * eName     = [FavoriteColumnEntity new];
     FavoriteColumnEntity * eHotkey   = [FavoriteColumnEntity new];
     FavoriteColumnEntity * eSwitch   = [FavoriteColumnEntity new];
-    FavoriteColumnEntity * ePath     = [FavoriteColumnEntity new];
+    //FavoriteColumnEntity * ePath     = [FavoriteColumnEntity new];
     FavoriteColumnEntity * eDelete   = [FavoriteColumnEntity new];
     FavoriteColumnEntity * eFavorite = [FavoriteColumnEntity new];
     FavoriteColumnEntity * eIcon     = [FavoriteColumnEntity new];
@@ -154,43 +160,49 @@
     eName.tip = NSLS(@"FDTV_titleTip");
     eName.width = 200;
     eName.miniWidth = 70;
+    eName.maxWidth = 400;
     
     eHotkey.title = NSLS(@"FDTV_hotkey");
     eHotkey.columnID = @"3";
     eHotkey.tip = NSLS(@"FDTV_hotkeyTip");
-    eHotkey.width = 90;
+    eHotkey.width = 120;
     eHotkey.miniWidth = 50;
+    eHotkey.maxWidth = 120;
     
     eSwitch.title = NSLS(@"FDTV_enable");
     eSwitch.columnID = @"1";
     eSwitch.tip = NSLS(@"FDTV_enableTip");
     eSwitch.width = 30;
-    eSwitch.miniWidth = 30;
+    eSwitch.miniWidth = eSwitch.width;
+    eSwitch.maxWidth  = eSwitch.width;
     
-    ePath.title = NSLS(@"FDTV_path");
-    ePath.columnID = @"4";
-    ePath.tip = NSLS(@"FDTV_pathTip");
-    ePath.width = 300;
-    ePath.miniWidth = 100;
+    //    ePath.title = NSLS(@"FDTV_path");
+    //    ePath.columnID = @"4";
+    //    ePath.tip = NSLS(@"FDTV_pathTip");
+    //    ePath.width = 300;
+    //    ePath.miniWidth = 100;
 
     
-    eDelete.title = NSLS(@"FDTV_cancle");
+    eDelete.title = NSLS(@"FDTV_reset");
     eDelete.columnID = @"5";
-    eDelete.tip = NSLS(@"FDTV_cancleTip");
-    eDelete.width = 60;
-    eDelete.miniWidth = 60;
+    eDelete.tip = NSLS(@"FDTV_resetTip");
+    eDelete.width = 40;
+    eDelete.miniWidth = eDelete.width;
+    eDelete.maxWidth = eDelete.width;
     
     eIcon.title = NSLS(@"FDTV_icon");
     eIcon.columnID = @"6";
     eIcon.tip = NSLS(@"FDTV_iconTip");
     eIcon.width = FavoriteCellHeight;
     eIcon.miniWidth = FavoriteCellHeight;
+    eIcon.maxWidth = FavoriteCellHeight;
     
     eFavorite.title = NSLS(@"FDTV_remove");
     eFavorite.columnID = @"7";
     eFavorite.tip = NSLS(@"FDTV_removeTip");
-    eFavorite.width = 60;
-    eFavorite.miniWidth = 60;
+    eFavorite.width = 40;
+    eFavorite.miniWidth = 40;
+    eFavorite.maxWidth = 40;
     
     NSArray * array = @[eSwitch, eIcon, eName, eHotkey, eDelete, eFavorite]; //ePath
     
@@ -199,6 +211,11 @@
         NSTableColumn * column = [[NSTableColumn alloc] initWithIdentifier:entity.columnID];
         column.width         = entity.width;
         column.minWidth      = entity.miniWidth;
+        if (entity.maxWidth > 0) {
+            column.maxWidth      = entity.maxWidth;
+        }
+        column.resizingMask = NSTableColumnAutoresizingMask;
+        
         column.title         = entity.title;
         column.headerToolTip = entity.tip;
         
@@ -219,7 +236,7 @@
     [tableContainer mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
         make.right.mas_equalTo(-10);
-        make.top.mas_equalTo(self.tipTextView.mas_bottom).mas_offset(10);
+        make.top.mas_equalTo(self.tipTextView.mas_bottom).mas_offset(0);
         make.bottom.mas_equalTo(-10);
     }];
     

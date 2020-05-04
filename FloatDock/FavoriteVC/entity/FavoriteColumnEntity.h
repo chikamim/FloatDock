@@ -17,6 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy  ) NSString * tip;
 @property (nonatomic        ) NSInteger  width;
 @property (nonatomic        ) NSInteger  miniWidth;
+@property (nonatomic        ) NSInteger  maxWidth;
 
 @end
 
