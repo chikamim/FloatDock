@@ -36,6 +36,7 @@ static NSString * FavoriteDBPath = @"favority";
     static HotKeyTool * instance;
     dispatch_once(&once, ^{
         instance = [self new];
+        [instance alertUserGetSystemKeyboardPermission];
         [instance racBindEvent];
         
         instance.favoriteAppArrayEntity = [instance getFavoriteAppArrayEntity];
@@ -183,11 +184,14 @@ static NSString * FavoriteDBPath = @"favority";
     str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     NSURL * url = [NSURL URLWithString:str];
         
-    {
+    if (@available(macOS 10.15, *)) {
         // 2. 如果没有运行APP, 则打开最后一个窗口
         NSWorkspaceOpenConfiguration * config = [NSWorkspaceOpenConfiguration configuration];
         config.activates = YES;
         [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:config completionHandler:nil];
+    } else {
+        // 2. 如果没有运行APP, 则打开最后一个窗口
+        [[NSWorkspace sharedWorkspace] openURL:url];
     }
     
     // 1. 假如有多个窗口, 则打开所有窗口, 全局运行的需要调换下顺序.

@@ -169,9 +169,15 @@
                 [aiv.runningApp unhide];
                 
                 // 2. 如果没有运行APP, 则打开最后一个窗口
-                NSWorkspaceOpenConfiguration * config = [NSWorkspaceOpenConfiguration configuration];
-                config.activates = YES;
-                [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:config completionHandler:nil];
+                if (@available(macOS 10.15, *)) {
+                    // 2. 如果没有运行APP, 则打开最后一个窗口
+                    NSWorkspaceOpenConfiguration * config = [NSWorkspaceOpenConfiguration configuration];
+                    config.activates = YES;
+                    [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:config completionHandler:nil];
+                } else {
+                    // 2. 如果没有运行APP, 则打开最后一个窗口
+                    [[NSWorkspace sharedWorkspace] openURL:url];
+                }
             }
         }
     }
