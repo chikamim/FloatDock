@@ -46,17 +46,17 @@
 
 // http://www.cocoachina.com/articles/430358 
 //handleServices:userData:error:
-- (void)handleServices:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error {
-    if([[pboard types] containsObject:NSFilenamesPboardType]){
-        NSArray* fileArray=[pboard propertyListForType:NSFilenamesPboardType];
-        // do something...
-        NSLog(@"12");
-    }
-}
-
-- (void)handleServices:(NSPasteboard *)pboard {
-    
-}
+//- (void)handleServices:(NSPasteboard *)pboard userData:(NSString *)userData error:(NSString **)error {
+//    if([[pboard types] containsObject:NSFilenamesPboardType]){
+//        NSArray* fileArray=[pboard propertyListForType:NSFilenamesPboardType];
+//        // do something...
+//        NSLog(@"12");
+//    }
+//}
+//
+//- (void)handleServices:(NSPasteboard *)pboard {
+//    
+//}
 
 // 在 dock 中新增Menu
 //- (NSMenu *)applicationDockMenu:(NSApplication *)sender {
