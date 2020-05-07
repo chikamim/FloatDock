@@ -174,16 +174,16 @@ typedef void(^BlockPDic) (NSDictionary * dic);
             cell = cellBT;
             
             cellBT.weakEntity = entity;
-            if (!entity.image) {
+            if (!entity.imageFavorite) {
                 NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
                 NSImage *finderIcon;
                 //= [workspace iconForFile:[workspace absolutePathForAppBundleWithIdentifier:@"com.apple.Finder"]];
                 finderIcon = [workspace iconForFile:[entity.path substringFromIndex:7]];
                 [finderIcon setSize:NSMakeSize(FavoriteCellHeight, FavoriteCellHeight)];
                 
-                entity.image = finderIcon;
+                entity.imageFavorite = finderIcon;
             }
-            [cellBT setImage:entity.image];
+            [cellBT setImage:entity.imageFavorite];
             
             break;
         }
