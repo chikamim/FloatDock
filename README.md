@@ -1,8 +1,6 @@
-[toc]
-
 # FloatDock : Mac 悬浮 Dock
 
-#### 1.5
+#### 版本:1.5
 1. 创建多个浮动 dock, 可以右键增加 APP、把 APP 拖动到 dock 上、从收藏列表中添加 APP。
 2. 收藏 APP 并且为 APP 创建全局快捷键， 支持单个快捷键打开多个 APP。
 3. ⌘↑和⌘↓调整所有 dock 透明度，最低为0，背景透明度初始值为0.5。⌘F打开收藏页面。
@@ -22,4 +20,10 @@ y
 
 5. 暂时不支持 Mac10.14，手边没有测试机器。
 
-<p> <img src="https://github.com/popor/PoporNetRecordMac/blob/master/image/image2.png" width="100%" height="100%"> </p>
+#### 使用截图
+<p> <img src="https://github.com/popor/FloatDock/blob/master/info/info1.png" 
+width="100%" height="100%"> </p>
+<p> <img src="https://github.com/popor/FloatDock/blob/master/info/info2.png" width="100%" height="100%"> </p>
+<p> <img src="https://github.com/popor/FloatDock/blob/master/info/info3.png" width="100%" height="100%"> </p>
+<p> <img src="https://github.com/popor/FloatDock/blob/master/info/info4.png" width="100%" height="100%"> </p>
+<p> <img src="https://github.com/popor/FloatDock/blob/master/info/info5.png" width="100%" height="100%"> </p>
