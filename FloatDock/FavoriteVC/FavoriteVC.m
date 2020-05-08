@@ -27,7 +27,7 @@
 @property (nonatomic, strong) NSScrollView * infoTV_CSV;
 @property (nonatomic, strong) NSMenu       * infoTVClickMenu;
 
-@property (nonatomic, weak  ) HotKeyTool      * hotKeyTool;
+@property (nonatomic, weak  ) HotKeyTool   * hotKeyTool;
 
 
 @property (nonatomic, strong) FavoriteVM   * favoriteVM;
