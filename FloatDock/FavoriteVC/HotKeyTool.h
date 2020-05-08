@@ -44,6 +44,8 @@ static NSString * HotKeyEnd = @"#";
 
 - (void)updateEntitySaveJson;
 
+- (void)openAppWindows:(NSString *)appPath;
+
 //- (void)updateHotkeyDic; // 考虑到代码复杂度, 改为内置函数
 
 

@@ -7,40 +7,41 @@
  https://www.jianshu.com/p/88c1b65e3ddb
  */
 
-FDFavoriteWindowTitle = "Favorite";
+"FDFavoriteWindowTitle"  = "Favorite";
 
-FD_AddApp             = "Add APP";
-FD_AddFinder          = "Add Finder";
-FD_AddAppFromFavorite = "Add From Favorite❤️";
-FD_AddDock            = "Add Dock";
+"FD_AddApp"              = "Add APP";
+"FD_AddFinder"           = "Add Finder";
+"FD_AddAppFromFavorite"  = "Add From Favorite❤️";
+"FD_OpenAppFromFavorite" = "Open From Favorite❤️";
+"FD_AddDock"             = "Add Dock";
 
-FD_FavoriteWindow     = "Favorite Window ⌘F";
-FD_ClearDock          = "Clear Dock";
-FD_DeleteDock         = "Delete Dock";
-FD_UpAlpha            = "Up Alpha ⌘↑";
-FD_DownAlpha          = "Down Alpha ⌘↓";
+"FD_FavoriteWindow"      = "Favorite Window ⌘F";
+"FD_ClearDock"           = "Clear Dock";
+"FD_DeleteDock"          = "Delete Dock";
+"FD_UpAlpha"             = "Up Alpha ⌘↑";
+"FD_DownAlpha"           = "Down Alpha ⌘↓";
 
-FD_MoveLeft           = "Move Left";
-FD_MoveRight          = "Move Right";
-FD_Favorite           = "Favorite❤️";
-FD_FrontLLDB          = "Front LLDB";
-FD_NormalLLDB         = "Normal LLDB";
-FD_TipGlobalHotkey    = "Global Hotkey need your authorization, please select FloatDock In [System Preferences] > [Security & Privacy] > [Accessibility], then reload FloatDock.";
-FD_DefaultHotkey      = "Please Set";
+"FD_MoveLeft"            = "Move Left";
+"FD_MoveRight"           = "Move Right";
+"FD_Favorite"            = "Favorite❤️";
+"FD_FrontLLDB"           = "Front LLDB";
+"FD_NormalLLDB"          = "Normal LLDB";
+"FD_TipGlobalHotkey"     = "Global Hotkey need your authorization, please select FloatDock In [System Preferences] > [Security & Privacy] > [Accessibility], then reload FloatDock.";
+"FD_DefaultHotkey"       = "Please Set";
 
-FDTV_title     = "Name(sort)";
-FDTV_titleTip  = "Drag name to sort";
-FDTV_hotkey    = "Global HotKey";
-FDTV_hotkeyTip = "";
-FDTV_enable    = "On";
-FDTV_enableTip = "";
-FDTV_path      = "Path";
-FDTV_pathTip   = "App Path";
-FDTV_reset    = "Reset";
-FDTV_resetTip = "Reset HotKey";
-FDTV_icon      = "Icon";
-FDTV_iconTip   = "";
-FDTV_remove    = "Remove";
-FDTV_removeTip = "Remove From Favorite";
+"FDTV_title"     = "Name(sort)";
+"FDTV_titleTip"  = "Drag name to sort";
+"FDTV_hotkey"    = "Global HotKey";
+"FDTV_hotkeyTip" = "";
+"FDTV_enable"    = "On";
+"FDTV_enableTip" = "";
+"FDTV_path"      = "Path";
+"FDTV_pathTip"   = "App Path";
+"FDTV_reset"    = "Reset";
+"FDTV_resetTip" = "Reset HotKey";
+"FDTV_icon"      = "Icon";
+"FDTV_iconTip"   = "";
+"FDTV_remove"    = "Remove";
+"FDTV_removeTip" = "Remove From Favorite";
 
 

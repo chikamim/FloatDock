@@ -16,7 +16,8 @@
 
 @interface AppInfoMenuVM ()
 @property (nonatomic, strong) NSMenu * clickMenu;
-@property (nonatomic, strong) NSMenu * favoriteMenu;
+@property (nonatomic, strong) NSMenu * addFavoriteMenu;
+@property (nonatomic, strong) NSMenu * openFavoriteMenu;
 @property (nonatomic, weak  ) HotKeyTool * hotKeyTool;
 @property (nonatomic, weak  ) AppWindowTool * appWindowTool;
 
@@ -33,51 +34,66 @@
 }
 
 - (void)addMenus {
-    if (!self.favoriteMenu) {
+    if (!self.addFavoriteMenu) {
         NSMenu * menu = [NSMenu new];
-        self.favoriteMenu = menu;
+        self.addFavoriteMenu = menu;
+    }
+    if (!self.openFavoriteMenu) {
+        NSMenu * menu = [NSMenu new];
+        self.openFavoriteMenu = menu;
     }
     if (!self.clickMenu) {
         NSMenu * menu = [NSMenu new];
+        NSMenuItem *line_0  = [NSMenuItem separatorItem];
+        NSMenuItem *line_1  = [NSMenuItem separatorItem];
+        NSMenuItem *line_2  = [NSMenuItem separatorItem];
         
-        NSMenuItem *item1   = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_AddApp") action:@selector(addAppAction) keyEquivalent:@""];
-        NSMenuItem *item1_0 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_AddFinder") action:@selector(addFinderAppPath) keyEquivalent:@""];
-        NSMenuItem *item1_1 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_AddAppFromFavorite") action:nil keyEquivalent:@""];
-        item1_1.submenu = self.favoriteMenu;
+        NSMenuItem *itemAddApp   = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_AddApp") action:@selector(addAppAction) keyEquivalent:@""];
+        NSMenuItem *itemAddFinder = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_AddFinder") action:@selector(addFinderAppPath) keyEquivalent:@""];
+        NSMenuItem *itemAddFromFav = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_AddAppFromFavorite") action:nil keyEquivalent:@""];
+        itemAddFromFav.submenu = self.addFavoriteMenu;
+        NSMenuItem *itemOpenFromFav = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_OpenAppFromFavorite") action:nil keyEquivalent:@""];
+        itemOpenFromFav.submenu = self.openFavoriteMenu;
         
-        NSMenuItem *item2   = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_AddDock") action:@selector(addDockAction) keyEquivalent:@""];
-        NSMenuItem *item_0  = [NSMenuItem separatorItem];
-        NSMenuItem *item30  = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_FavoriteWindow") action:@selector(openFavoriteWindow) keyEquivalent:@""];
-        NSMenuItem *item31  = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_ClearDock") action:@selector(clearDockAppAction) keyEquivalent:@""];
-        NSMenuItem *item32  = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_DeleteDock") action:@selector(deleteDockAction) keyEquivalent:@""];
+        NSMenuItem *itemAddDock   = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_AddDock") action:@selector(addDockAction) keyEquivalent:@""];
         
-        NSMenuItem *item41  = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_UpAlpha") action:@selector(alphaUpEvent) keyEquivalent:@""];
-        NSMenuItem *item42  = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_DownAlpha") action:@selector(alphaDownEvent) keyEquivalent:@""];
+        NSMenuItem *itemOpenFav  = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_FavoriteWindow") action:@selector(openFavoriteWindow) keyEquivalent:@""];
+        NSMenuItem *itemClearDock  = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_ClearDock") action:@selector(clearDockAppAction) keyEquivalent:@""];
+        NSMenuItem *itemDeleteDock  = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_DeleteDock") action:@selector(deleteDockAction) keyEquivalent:@""];
         
-        [item1 setTarget:self];
-        [item1_0 setTarget:self];
-        [item1_1 setTarget:self];
-        [item2 setTarget:self];
-        [item30 setTarget:self];
-        [item31 setTarget:self];
-        [item32 setTarget:self];
+        NSMenuItem *itemUpAlpha  = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_UpAlpha") action:@selector(alphaUpEvent) keyEquivalent:@""];
+        NSMenuItem *itemDownAlpha  = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_DownAlpha") action:@selector(alphaDownEvent) keyEquivalent:@""];
         
-        [item41 setTarget:self.appWindowTool];
-        [item42 setTarget:self.appWindowTool];
+        [itemAddApp setTarget:self];
+        [itemAddFinder setTarget:self];
+        //[item1_1 setTarget:self];
+        [itemAddDock setTarget:self];
+        [itemOpenFav setTarget:self];
+        [itemClearDock setTarget:self];
+        [itemDeleteDock setTarget:self];
         
-        [menu addItem:item1];
-        [menu addItem:item1_0];
-        [menu addItem:item1_1];
-        [menu addItem:item2];
+        [itemUpAlpha setTarget:self.appWindowTool];
+        [itemDownAlpha setTarget:self.appWindowTool];
         
-        [menu addItem:item_0];
+        // ------- menu排序
+        [menu addItem:itemOpenFromFav];
+        [menu addItem:line_0];
         
-        [menu addItem:item30];
-        [menu addItem:item31];
-        [menu addItem:item32];
+        [menu addItem:itemAddFromFav];
         
-        [menu addItem:item41];
-        [menu addItem:item42];
+        [menu addItem:itemAddApp];
+        [menu addItem:itemAddFinder];
+        [menu addItem:itemAddDock];
+        
+        [menu addItem:line_1];
+        
+        [menu addItem:itemOpenFav];
+        [menu addItem:itemClearDock];
+        [menu addItem:itemDeleteDock];
+        
+        [menu addItem:line_2];
+        [menu addItem:itemUpAlpha];
+        [menu addItem:itemDownAlpha];
         
         self.clickMenu = menu;
     }
@@ -95,25 +111,36 @@
 }
 
 - (void)updateFavoriteMenuEvent {
-    [self.favoriteMenu removeAllItems];
+    [self.addFavoriteMenu removeAllItems];
+    [self.openFavoriteMenu removeAllItems];
     for (NSInteger i = 0; i < self.hotKeyTool.favoriteAppsSigleArray.count; i++) {
         FavoriteAppEntity * app = self.hotKeyTool.favoriteAppsSigleArray[i];
-        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:app.name action:@selector(addAppFromFavority:) keyEquivalent:@""];
-        item.tag = i;
-        item.target = self;
-        if (!app.imageMenu) {
-            NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
-            NSImage *finderIcon;
-            //= [workspace iconForFile:[workspace absolutePathForAppBundleWithIdentifier:@"com.apple.Finder"]];
-            finderIcon = [workspace iconForFile:[app.path substringFromIndex:7]];
-            [finderIcon setSize:NSMakeSize(18, 18)];
-            
-            app.imageMenu = finderIcon;
+        {
+            NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:app.name action:@selector(addAppFromFavority:) keyEquivalent:@""];
+            item.tag = i;
+            item.target = self;
+            if (!app.imageMenu) {
+                NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
+                NSImage *finderIcon;
+                //= [workspace iconForFile:[workspace absolutePathForAppBundleWithIdentifier:@"com.apple.Finder"]];
+                finderIcon = [workspace iconForFile:[app.path substringFromIndex:7]];
+                [finderIcon setSize:NSMakeSize(18, 18)];
+                
+                app.imageMenu = finderIcon;
+            }
+            item.image = app.imageMenu;
+            //NSData *imageData = [app.smallImage TIFFRepresentation];
+            [self.addFavoriteMenu addItem:item];
         }
-        item.image = app.imageMenu;
-        //NSData *imageData = [app.smallImage TIFFRepresentation];
-        [self.favoriteMenu addItem:item];
+        {
+            NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:app.name action:@selector(openAppFromFavority:) keyEquivalent:@""];
+            item.tag = i;
+            item.target = self;
+            item.image = app.imageMenu;
+            [self.openFavoriteMenu addItem:item];
+        }
     }
+    
 }
 
 // MARK: 右键menu
@@ -156,6 +183,11 @@
     FavoriteAppEntity * app = self.hotKeyTool.favoriteAppsSigleArray[item.tag];
     NSString * url = [app.path stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     [self addAppUrlArray:@[[NSURL URLWithString:url]]];
+}
+
+- (void)openAppFromFavority:(NSMenuItem *)item {
+    FavoriteAppEntity * app = self.hotKeyTool.favoriteAppsSigleArray[item.tag];
+    [self.hotKeyTool openAppWindows:app.path];
 }
 
 @end
