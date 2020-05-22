@@ -25,10 +25,10 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
     //#if TARGET_OS_MAC//模拟器
-    //    NSString * macOSInjectionPath = @"/Applications/InjectionIII.app/Contents/Resources/macOSInjection.bundle";
-    //    if ([[NSFileManager defaultManager] fileExistsAtPath:macOSInjectionPath]) {
-    //        [[NSBundle bundleWithPath:macOSInjectionPath] load];
-    //    }
+    NSString * macOSInjectionPath = @"/Applications/InjectionIII.app/Contents/Resources/macOSInjection.bundle";
+    if ([[NSFileManager defaultManager] fileExistsAtPath:macOSInjectionPath]) {
+        [[NSBundle bundleWithPath:macOSInjectionPath] load];
+    }
     //#endif
     self.hotKeyTool = [HotKeyTool share];
     
@@ -97,14 +97,14 @@
 
 - (IBAction)openDbFolder:(id)sender {
     DataSavePath * db = [DataSavePath share];
-    [self openPath:db.DBPath];
+    [[NSWorkspace sharedWorkspace] openFile:db.cachesPath];
 }
 
-- (void)openPath:(NSString *)path {
-    NSURL * url = [NSURL fileURLWithPath:path];
-    NSString * folder = [path substringToIndex:path.length - url.lastPathComponent.length];
-    [[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:folder];
-}
+//- (void)openPath:(NSString *)path {
+//    NSURL * url = [NSURL fileURLWithPath:path];
+//    NSString * folder = [path substringToIndex:path.length - url.lastPathComponent.length];
+//    [[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:folder];
+//}
 
 - (IBAction)openFavoriteWindows:(id)sender {
     [self.appWindowTool openFavoriteWindows];
