@@ -151,7 +151,7 @@ static NSString * FavoriteDBPath = @"favority";
             return nil;
         }
     }];
-    [signalGlobal subscribeNext:^(id  _Nullable x) {
+    [[signalGlobal distinctUntilChanged] subscribeNext:^(id  _Nullable x) {
         @strongify(self);
         //NSLog(@"全局监测结果 : %@", x);
         if (x) {
@@ -189,6 +189,9 @@ static NSString * FavoriteDBPath = @"favority";
         NSWorkspaceOpenConfiguration * config = [NSWorkspaceOpenConfiguration configuration];
         config.activates = YES;
         [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:config completionHandler:nil];
+        
+        // 通过某个APP打开某个文件.
+        // [[NSWorkspace sharedWorkspace] openFile:@"/Myfiles/README" withApplication:@"TextEdit"];
     } else {
         // 2. 如果没有运行APP, 则打开最后一个窗口
         [[NSWorkspace sharedWorkspace] openURL:url];
@@ -284,7 +287,7 @@ static NSString * FavoriteDBPath = @"favority";
 
 - (void)saveAppInfoArrayEntity:(FavoriteAppArrayEntity *)entity {
     if (entity) {
-        [entity.toJSONString writeToFile:[self savePath] atomically:yearMask encoding:NSUTF8StringEncoding error:nil];
+        [entity.toJSONString writeToFile:[self savePath] atomically:YES encoding:NSUTF8StringEncoding error:nil];
         //[[NSFileManager defaultManager] createDirectoryAtPath:path.cachesPath withIntermediateDirectories:YES attributes:nil error:nil]; // 放在单例中执行
     }
 }
