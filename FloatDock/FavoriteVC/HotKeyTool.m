@@ -284,7 +284,7 @@ static NSString * FavoriteDBPath = @"favority";
 
 - (void)saveAppInfoArrayEntity:(FavoriteAppArrayEntity *)entity {
     if (entity) {
-        [entity.toJSONString writeToFile:[self savePath] atomically:yearMask encoding:NSUTF8StringEncoding error:nil];
+        [entity.toJSONString writeToFile:[self savePath] atomically:YES encoding:NSUTF8StringEncoding error:nil];
         //[[NSFileManager defaultManager] createDirectoryAtPath:path.cachesPath withIntermediateDirectories:YES attributes:nil error:nil]; // 放在单例中执行
     }
 }
