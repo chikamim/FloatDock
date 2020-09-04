@@ -329,6 +329,8 @@
      exit \n\
      y \n", appInfoView.runningApp.processIdentifier];
     
+    lldb = [lldb stringByReplacingOccurrencesOfString:@"     " withString:@""];
+    
     NSPasteboard * pb = [NSPasteboard generalPasteboard];
     [pb clearContents];
     [pb setString:lldb forType:NSPasteboardTypeString];
@@ -343,6 +345,8 @@
      e [$win setLevel: 0];\n\
      exit \n\
      y \n", appInfoView.runningApp.processIdentifier];
+    
+    lldb = [lldb stringByReplacingOccurrencesOfString:@"     " withString:@""];
     
     NSPasteboard * pb = [NSPasteboard generalPasteboard];
     [pb clearContents];
