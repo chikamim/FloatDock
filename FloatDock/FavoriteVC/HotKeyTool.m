@@ -178,31 +178,36 @@ static NSString * FavoriteDBPath = @"favority";
 }
 
 // MARK: 打开APP
-- (void)openAppWindows:(NSString *)appPath {
-    NSString * str = appPath;
-    
-    str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
-    NSURL * url = [NSURL URLWithString:str];
-    
-    if (@available(macOS 10.15, *)) {
-        // 2. 如果没有运行APP, 则打开最后一个窗口
-        NSWorkspaceOpenConfiguration * config = [NSWorkspaceOpenConfiguration configuration];
-        config.activates = YES;
-        [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:config completionHandler:nil];
-        
-        // 通过某个APP打开某个文件.
-        // [[NSWorkspace sharedWorkspace] openFile:@"/Myfiles/README" withApplication:@"TextEdit"];
-    } else {
-        // 2. 如果没有运行APP, 则打开最后一个窗口
-        [[NSWorkspace sharedWorkspace] openURL:url];
+- (void)openAppWindows:(NSString * _Nullable)appPath {
+    if (!appPath) {
+        return;
     }
     
-    // 1. 假如有多个窗口, 则打开所有窗口, 全局运行的需要调换下顺序.
-    NSRunningApplication * runningApp = self.runningAppsDic[appPath];
-    if (runningApp) {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [runningApp unhide];
-        });
+    NSURL * url = [NSURL URLWithString:[appPath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]]];
+    
+    if (url) {
+        if (@available(macOS 10.15, *)) {
+            // 2. 如果没有运行APP, 则打开最后一个窗口
+            NSWorkspaceOpenConfiguration * config = [NSWorkspaceOpenConfiguration configuration];
+            config.activates = YES;
+            [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:config completionHandler:nil];
+            
+            // 通过某个APP打开某个文件.
+            // [[NSWorkspace sharedWorkspace] openFile:@"/Myfiles/README" withApplication:@"TextEdit"];
+        } else {
+            // 2. 如果没有运行APP, 则打开最后一个窗口
+            [[NSWorkspace sharedWorkspace] openURL:url];
+        }
+    }
+    
+    if (appPath) {
+        // 1. 假如有多个窗口, 则打开所有窗口, 全局运行的需要调换下顺序.
+        NSRunningApplication * runningApp = self.runningAppsDic[appPath];
+        if (runningApp) {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [runningApp unhide];
+            });
+        }
     }
 }
 

@@ -10,6 +10,8 @@
 #import "HotKeyTool.h"
 #import <ReactiveObjC/ReactiveObjC.h>
 
+#import <Carbon/Carbon.h>
+
 @interface AppInfoViewVM ()
 
 @property (nonatomic        ) BOOL initFrame;
@@ -154,6 +156,7 @@
     if (str.length == 0) {
         [self addAppAction];
     } else {
+        
         str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
         NSURL * url = [NSURL URLWithString:str];
         
@@ -165,23 +168,37 @@
                 NSString * folder = [path substringToIndex:path.length - url.lastPathComponent.length-1];
                 [[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:folder];
             } else {
-                // 1. 假如有多个窗口, 则打开所有窗口
-                [aiv.runningApp unhide];
-                
-                // 2. 如果没有运行APP, 则打开最后一个窗口
-                if (@available(macOS 10.15, *)) {
-                    // 2. 如果没有运行APP, 则打开最后一个窗口
-                    NSWorkspaceOpenConfiguration * config = [NSWorkspaceOpenConfiguration configuration];
-                    config.activates = YES;
-                    [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:config completionHandler:nil];
-                } else {
-                    // 2. 如果没有运行APP, 则打开最后一个窗口
-                    [[NSWorkspace sharedWorkspace] openURL:url];
-                }
+                [[HotKeyTool share] openAppWindows:url.absoluteString];
             }
         }
     }
     // [[NSWorkspace sharedWorkspace] activateFileViewerSelectingURLs:@[url]]; // 打开文件夹
+}
+
+// 注册快捷键
+- (void)costomHotKey {
+    
+    // 1、声明相关参数
+    EventHotKeyRef myHotKeyRef;
+    EventHotKeyID myHotKeyID;
+    EventTypeSpec myEvenType;
+    myEvenType.eventClass = kEventClassKeyboard;    // 键盘类型
+    myEvenType.eventKind = kEventHotKeyPressed;     // 按压事件
+    
+    // 2、定义快捷键
+    myHotKeyID.signature = 'yuus';  // 自定义签名
+    myHotKeyID.id = 4;              // 快捷键ID
+    
+    // 3、注册快捷键
+    // 参数一：keyCode; 如18代表1，19代表2，21代表4，49代表空格键，36代表回车键
+    // 快捷键：command+4
+    RegisterEventHotKey(21, cmdKey, myHotKeyID, GetApplicationEventTarget(), 0, &myHotKeyRef);
+    
+    // 快捷键：command+option+4
+    //    RegisterEventHotKey(21, cmdKey + optionKey, myHotKeyID, GetApplicationEventTarget(), 0, &myHotKeyRef);
+    
+    // 5、注册回调函数，响应快捷键
+    // InstallApplicationEventHandler(&hotKeyHandler, 1, &myEvenType, NULL, NULL);
 }
 
 - (void)addAppAction {
