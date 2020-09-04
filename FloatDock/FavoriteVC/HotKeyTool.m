@@ -180,10 +180,10 @@ static NSString * FavoriteDBPath = @"favority";
 // MARK: 打开APP
 - (void)openAppWindows:(NSString *)appPath {
     NSString * str = appPath;
-
+    
     str = [str stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     NSURL * url = [NSURL URLWithString:str];
-        
+    
     if (@available(macOS 10.15, *)) {
         // 2. 如果没有运行APP, 则打开最后一个窗口
         NSWorkspaceOpenConfiguration * config = [NSWorkspaceOpenConfiguration configuration];
