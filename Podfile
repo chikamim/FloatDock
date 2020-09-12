@@ -29,5 +29,6 @@ target 'FloatDock' do
   pod 'Masonry'
   pod 'JSONModel'
   pod 'ReactiveObjC'
+  pod 'PoporAFN'
   
 end

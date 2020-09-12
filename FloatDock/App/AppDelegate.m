@@ -13,6 +13,11 @@
 
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "HotKeyTool.h"
+#import "PoporUncaughtExceptionHandler.h"
+
+void UncaughtExceptionHandler(NSException *exception) {
+    [PoporUncaughtExceptionHandler saveException:exception];
+}
 
 @interface AppDelegate ()
 
@@ -23,6 +28,8 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+    
+    NSSetUncaughtExceptionHandler (&UncaughtExceptionHandler); // 异常捕捉
     
     //#if TARGET_OS_MAC//模拟器
     NSString * macOSInjectionPath = @"/Applications/InjectionIII.app/Contents/Resources/macOSInjection.bundle";

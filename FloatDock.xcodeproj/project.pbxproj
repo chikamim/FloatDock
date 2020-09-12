@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C3F2BB30250CA91600543FDF /* PoporUncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F2BB2F250CA91600543FDF /* PoporUncaughtExceptionHandler.m */; };
 		E43781C12453291B00AA785B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781C02453291B00AA785B /* AppDelegate.m */; };
 		E43781C42453291B00AA785B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781C32453291B00AA785B /* ViewController.m */; };
 		E43781C62453291C00AA785B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E43781C52453291C00AA785B /* Assets.xcassets */; };
@@ -48,6 +49,8 @@
 		22E4C7C8E957AAAC7DDFCE41 /* Pods-FloatDock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloatDock.debug.xcconfig"; path = "Target Support Files/Pods-FloatDock/Pods-FloatDock.debug.xcconfig"; sourceTree = "<group>"; };
 		361A4F474278B8AD5E137ECE /* Pods-FloatDock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloatDock.release.xcconfig"; path = "Target Support Files/Pods-FloatDock/Pods-FloatDock.release.xcconfig"; sourceTree = "<group>"; };
 		B4376660DB09AC0CFCDE5409 /* Pods_FloatDock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FloatDock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3F2BB2E250CA91600543FDF /* PoporUncaughtExceptionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PoporUncaughtExceptionHandler.h; sourceTree = "<group>"; };
+		C3F2BB2F250CA91600543FDF /* PoporUncaughtExceptionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PoporUncaughtExceptionHandler.m; sourceTree = "<group>"; };
 		E43781BC2453291B00AA785B /* FloatDock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatDock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E43781BF2453291B00AA785B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E43781C02453291B00AA785B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -337,6 +340,8 @@
 			children = (
 				E48A5857245DB6C3008B8C08 /* NSParameterName.h */,
 				E48A5858245DB6C3008B8C08 /* NSParameterName.m */,
+				C3F2BB2E250CA91600543FDF /* PoporUncaughtExceptionHandler.h */,
+				C3F2BB2F250CA91600543FDF /* PoporUncaughtExceptionHandler.m */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -529,6 +534,7 @@
 				E43781CC2453291C00AA785B /* main.m in Sources */,
 				E43781C12453291B00AA785B /* AppDelegate.m in Sources */,
 				E4C7F1402459729900B73296 /* FavoriteColumnEntity.m in Sources */,
+				C3F2BB30250CA91600543FDF /* PoporUncaughtExceptionHandler.m in Sources */,
 				E43781F524545A1900AA785B /* FloatWindow.m in Sources */,
 				E4C7F13A2459321500B73296 /* FavoriteAppEntity.m in Sources */,
 				E43781E324542D6A00AA785B /* DataSavePath.m in Sources */,
@@ -682,7 +688,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = L46H79EBBC;
 				GCC_PREFIX_HEADER = "FloatDock/FloatDock-prefix.pch";
 				INFOPLIST_FILE = FloatDock/Info.plist;
@@ -706,7 +712,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 26;
+				CURRENT_PROJECT_VERSION = 27;
 				DEVELOPMENT_TEAM = L46H79EBBC;
 				GCC_PREFIX_HEADER = "FloatDock/FloatDock-prefix.pch";
 				INFOPLIST_FILE = FloatDock/Info.plist;

@@ -1,0 +1,6 @@
+framework module PoporAFN {
+  umbrella header "PoporAFN-umbrella.h"
+
+  export *
+  module * { export * }
+}
