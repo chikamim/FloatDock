@@ -182,33 +182,83 @@ static NSString * FavoriteDBPath = @"favority";
     if (!appPath) {
         return;
     }
+    appPath                           = appPath.stringByRemovingPercentEncoding;
+    NSURL                * url        = [NSURL URLWithString:[appPath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]]];
+    NSRunningApplication * runningApp = self.runningAppsDic[appPath];
     
-    NSURL * url = [NSURL URLWithString:[appPath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]]];
-    
-    if (url) {
-        if (@available(macOS 10.15, *)) {
-            // 2. 如果没有运行APP, 则打开最后一个窗口
-            NSWorkspaceOpenConfiguration * config = [NSWorkspaceOpenConfiguration configuration];
-            config.activates = YES;
-            [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:config completionHandler:nil];
-            
-            // 通过某个APP打开某个文件.
-            // [[NSWorkspace sharedWorkspace] openFile:@"/Myfiles/README" withApplication:@"TextEdit"];
-        } else {
-            // 2. 如果没有运行APP, 则打开最后一个窗口
-            [[NSWorkspace sharedWorkspace] openURL:url];
+    if (runningApp && !runningApp.hidden) { // 隐藏APP窗口
+        [runningApp hide];
+    } else { // 显示APP窗口
+        if (url) {
+            if (@available(macOS 10.15, *)) {
+                // 2. 如果没有运行APP, 则打开最后一个窗口
+                NSWorkspaceOpenConfiguration * config = [NSWorkspaceOpenConfiguration configuration];
+                config.activates = YES;
+                [[NSWorkspace sharedWorkspace] openApplicationAtURL:url configuration:config completionHandler:nil];
+                
+                // 通过某个APP打开某个文件.
+                // [[NSWorkspace sharedWorkspace] openFile:@"/Myfiles/README" withApplication:@"TextEdit"];
+            } else {
+                // 2. 如果没有运行APP, 则打开最后一个窗口
+                [[NSWorkspace sharedWorkspace] openURL:url];
+            }
         }
-    }
-    
-    if (appPath) {
+        
         // 1. 假如有多个窗口, 则打开所有窗口, 全局运行的需要调换下顺序.
-        NSRunningApplication * runningApp = self.runningAppsDic[appPath];
         if (runningApp) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 [runningApp unhide];
             });
         }
     }
+}
+
+- (void)javaScriptDemo {
+    //    BOOL scriptSuccess = YES;
+    //    {   // 执行 脚本语言, 这个可以设置打开隐藏, 但是还不能拦截系统按键.
+    //        NSString * appName = [appPath lastPathComponent];//.stringByRemovingPercentEncoding
+    //        if ([appName hasSuffix:@".app"]) {
+    //            appName = [appName substringToIndex:appName.length -4];
+    //
+    //            NSString * script =
+    //            [NSString stringWithFormat:@"\n\
+    //             tell application \"System Events\" to tell process \"%@\" \n\
+    //             if visible is true then \n\
+    //             set visible to false \n\
+    //             else \n\
+    //             tell application \"%@\" to activate \n\
+    //             end if \n\
+    //             end tell", appName, appName];
+    //            NSLog(@"%@", script);
+    //
+    //            NSAppleScript* scriptObject = [[NSAppleScript alloc] initWithSource:script];
+    //
+    //            NSDictionary * errorDic;
+    //            NSAppleEventDescriptor * returnDescriptor = [scriptObject executeAndReturnError:&errorDic];
+    //
+    //            if (errorDic) {
+    //                scriptSuccess = NO;
+    //            }
+    //            if (returnDescriptor != NULL) {
+    //                // successful execution
+    //                if (kAENullEvent != [returnDescriptor descriptorType]) {
+    //                    // script returned an AppleScript result
+    //                    if (cAEList == [returnDescriptor descriptorType]) {
+    //                        // result is a list of other descriptors
+    //                    } else {
+    //                        // coerce the result to the appropriate ObjC typeŒ
+    //                    }
+    //                }
+    //            } else {
+    //                // no script result, handle error here
+    //                scriptSuccess = NO;
+    //            }
+    //
+    //        } else {
+    //
+    //        }
+    //    }
+    //    //return;
 }
 
 // 一个设置快捷键的方法, 好像是APP内部的.
