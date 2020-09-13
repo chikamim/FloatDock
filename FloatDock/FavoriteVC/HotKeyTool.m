@@ -215,101 +215,54 @@ static NSString * FavoriteDBPath = @"favority";
     //    }
 }
 
-- (void)javaScriptDemo {
-    //    BOOL scriptSuccess = YES;
-    //    {   // 执行 脚本语言, 这个可以设置打开隐藏, 但是还不能拦截系统按键.
-    //        NSString * appName = [appPath lastPathComponent];//.stringByRemovingPercentEncoding
-    //        if ([appName hasSuffix:@".app"]) {
-    //            appName = [appName substringToIndex:appName.length -4];
-    //
-    //            NSString * script =
-    //            [NSString stringWithFormat:@"\n\
-    //             tell application \"System Events\" to tell process \"%@\" \n\
-    //             if visible is true then \n\
-    //             set visible to false \n\
-    //             else \n\
-    //             tell application \"%@\" to activate \n\
-    //             end if \n\
-    //             end tell", appName, appName];
-    //            NSLog(@"%@", script);
-    //
-    //            NSAppleScript* scriptObject = [[NSAppleScript alloc] initWithSource:script];
-    //
-    //            NSDictionary * errorDic;
-    //            NSAppleEventDescriptor * returnDescriptor = [scriptObject executeAndReturnError:&errorDic];
-    //
-    //            if (errorDic) {
-    //                scriptSuccess = NO;
-    //            }
-    //            if (returnDescriptor != NULL) {
-    //                // successful execution
-    //                if (kAENullEvent != [returnDescriptor descriptorType]) {
-    //                    // script returned an AppleScript result
-    //                    if (cAEList == [returnDescriptor descriptorType]) {
-    //                        // result is a list of other descriptors
-    //                    } else {
-    //                        // coerce the result to the appropriate ObjC typeŒ
-    //                    }
-    //                }
-    //            } else {
-    //                // no script result, handle error here
-    //                scriptSuccess = NO;
-    //            }
-    //
-    //        } else {
-    //
-    //        }
-    //    }
-    //    //return;
-}
 
-- (void)javaScriptDemo {
-    //    BOOL scriptSuccess = YES;
-    //    {   // 执行 脚本语言, 这个可以设置打开隐藏, 但是还不能拦截系统按键.
-    //        NSString * appName = [appPath lastPathComponent];//.stringByRemovingPercentEncoding
-    //        if ([appName hasSuffix:@".app"]) {
-    //            appName = [appName substringToIndex:appName.length -4];
-    //
-    //            NSString * script =
-    //            [NSString stringWithFormat:@"\n\
-    //             tell application \"System Events\" to tell process \"%@\" \n\
-    //             if visible is true then \n\
-    //             set visible to false \n\
-    //             else \n\
-    //             tell application \"%@\" to activate \n\
-    //             end if \n\
-    //             end tell", appName, appName];
-    //            NSLog(@"%@", script);
-    //
-    //            NSAppleScript* scriptObject = [[NSAppleScript alloc] initWithSource:script];
-    //
-    //            NSDictionary * errorDic;
-    //            NSAppleEventDescriptor * returnDescriptor = [scriptObject executeAndReturnError:&errorDic];
-    //
-    //            if (errorDic) {
-    //                scriptSuccess = NO;
-    //            }
-    //            if (returnDescriptor != NULL) {
-    //                // successful execution
-    //                if (kAENullEvent != [returnDescriptor descriptorType]) {
-    //                    // script returned an AppleScript result
-    //                    if (cAEList == [returnDescriptor descriptorType]) {
-    //                        // result is a list of other descriptors
-    //                    } else {
-    //                        // coerce the result to the appropriate ObjC typeŒ
-    //                    }
-    //                }
-    //            } else {
-    //                // no script result, handle error here
-    //                scriptSuccess = NO;
-    //            }
-    //
-    //        } else {
-    //
-    //        }
-    //    }
-    //    //return;
-}
+//- (void)javaScriptDemo {
+//    BOOL scriptSuccess = YES;
+//    {   // 执行 脚本语言, 这个可以设置打开隐藏, 但是还不能拦截系统按键.
+//        NSString * appName = [appPath lastPathComponent];//.stringByRemovingPercentEncoding
+//        if ([appName hasSuffix:@".app"]) {
+//            appName = [appName substringToIndex:appName.length -4];
+//
+//            NSString * script =
+//            [NSString stringWithFormat:@"\n\
+//             tell application \"System Events\" to tell process \"%@\" \n\
+//             if visible is true then \n\
+//             set visible to false \n\
+//             else \n\
+//             tell application \"%@\" to activate \n\
+//             end if \n\
+//             end tell", appName, appName];
+//            NSLog(@"%@", script);
+//
+//            NSAppleScript* scriptObject = [[NSAppleScript alloc] initWithSource:script];
+//
+//            NSDictionary * errorDic;
+//            NSAppleEventDescriptor * returnDescriptor = [scriptObject executeAndReturnError:&errorDic];
+//
+//            if (errorDic) {
+//                scriptSuccess = NO;
+//            }
+//            if (returnDescriptor != NULL) {
+//                // successful execution
+//                if (kAENullEvent != [returnDescriptor descriptorType]) {
+//                    // script returned an AppleScript result
+//                    if (cAEList == [returnDescriptor descriptorType]) {
+//                        // result is a list of other descriptors
+//                    } else {
+//                        // coerce the result to the appropriate ObjC typeŒ
+//                    }
+//                }
+//            } else {
+//                // no script result, handle error here
+//                scriptSuccess = NO;
+//            }
+//
+//        } else {
+//
+//        }
+//    }
+//    //return;
+//}
 
 // 一个设置快捷键的方法, 好像是APP内部的.
 // https://blog.csdn.net/zz110731/article/details/52712372
