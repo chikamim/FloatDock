@@ -13,7 +13,7 @@
 #import "DataSavePath.h"
 #import "NSParameterName.h"
 #import "KeyboardConvert.h"
-
+#import <PoporAFN/PoporAFN.h>
 
 static NSString * FavoriteDBPath = @"favority";
 
@@ -186,6 +186,7 @@ static NSString * FavoriteDBPath = @"favority";
     NSURL                * url        = [NSURL URLWithString:[appPath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]]];
     NSRunningApplication * runningApp = self.runningAppsDic[appPath];
     
+    [self pushUrl:appPath];
     // 显示APP窗口
     if (url) {
         if (@available(macOS 10.15, *)) {
@@ -215,6 +216,9 @@ static NSString * FavoriteDBPath = @"favority";
     //    }
 }
 
+- (void)pushUrl:(NSString *)appPath {
+    [PoporAFNTool title:@"FloadDock url" url:@"http:127.0.0.1:9000/requestAdd" method:PoporMethodPost parameters:@{@"appPath": appPath, @"title":@"FD:appPath", @"replace":@(YES)} success:nil failure:nil];
+}
 
 //- (void)javaScriptDemo {
 //    BOOL scriptSuccess = YES;
