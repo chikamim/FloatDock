@@ -29,14 +29,17 @@ void UncaughtExceptionHandler(NSException *exception) {
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     
-    NSSetUncaughtExceptionHandler (&UncaughtExceptionHandler); // 异常捕捉
+    // NSSetUncaughtExceptionHandler (&UncaughtExceptionHandler); // 异常捕捉, 暂时关闭
     
-    //#if TARGET_OS_MAC//模拟器
+#ifndef __OPTIMIZE__ //测试
     NSString * macOSInjectionPath = @"/Applications/InjectionIII.app/Contents/Resources/macOSInjection.bundle";
     if ([[NSFileManager defaultManager] fileExistsAtPath:macOSInjectionPath]) {
         [[NSBundle bundleWithPath:macOSInjectionPath] load];
     }
-    //#endif
+#else //正式
+    
+#endif
+    
     self.hotKeyTool = [HotKeyTool share];
     
     self.appWindowTool = [AppWindowTool share];
