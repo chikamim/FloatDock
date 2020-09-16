@@ -7,28 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <AppKit/AppKit.h>
 #import "FavoriteAppEntity.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
-static NSString * HotKeyEnd = @"#";
-
 @interface HotKeyTool : NSObject
-
-@property (nonatomic        ) NSEventModifierFlags globalFlags;
-@property (nonatomic, copy  ) NSString * globalKey;
-
-@property (nonatomic        ) NSEventModifierFlags localFlags;
-@property (nonatomic, copy  ) NSString * localKey;
-@property (nonatomic, copy  ) NSString * localFlagsKey;
 
 @property (nonatomic, copy  ) NSDictionary * runningAppsDic;
 
 + (instancetype)share;
-
-- (void)globalMonitorKeyboard:(BOOL)enable;
-- (void)localMonitorKeyboard:(BOOL)enable;
 
 //已经完成数据转移, 还剩余什么时候控制全局本地监听键盘
 // MARK: 收藏数据部分

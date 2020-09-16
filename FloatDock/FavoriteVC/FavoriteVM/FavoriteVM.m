@@ -13,12 +13,18 @@
 #import "NSView+Address.h"
 #import "LLCustomBT.h"
 #import "HotKeyTool.h"
+#import "HotKeyLocal.h"
+#import "HotKeyMas.h"
 
 typedef void(^BlockPDic) (NSDictionary * dic);
 
 @interface FavoriteVM ()
 
 @property (nonatomic, weak  ) HotKeyTool * hotKeyTool;
+@property (nonatomic, weak  ) HotKeyLocal * hotKeyLocal;
+@property (nonatomic, weak  ) HotKeyMas * hotKeyMas;
+
+
 @property (nonatomic, weak  ) LLCustomBT * editHotkeyCellBT;
 @property (nonatomic, strong) RACDisposable   * editHotkeyDisposable;
 @property (nonatomic, copy  ) NSString * hotKeyDefaultText;
@@ -28,7 +34,10 @@ typedef void(^BlockPDic) (NSDictionary * dic);
 
 - (id)init {
     if (self = [super init]) {
-        _hotKeyTool = [HotKeyTool share];
+        _hotKeyTool  = [HotKeyTool share];
+        _hotKeyLocal = [HotKeyLocal share];
+        _hotKeyMas   = [HotKeyMas share];
+        
         _hotKeyDefaultText = NSLS(@"FD_DefaultHotkey");
     }
     return self;
@@ -319,13 +328,15 @@ typedef void(^BlockPDic) (NSDictionary * dic);
 - (void)cellViewBTSetHotkeyAction:(LLCustomBT *)cellBT {
     
     [self closeEditHotkeyInner];
-    [self.hotKeyTool localMonitorKeyboard:YES];
+    [self.hotKeyLocal monitorKeyboard:YES];
+    [self.hotKeyMas monitorKeyboard:NO];
+    
     self.editHotkeyCellBT = cellBT;
     cellBT.defaultBackgroundColor = [NSColor selectedTextBackgroundColor];
     //cellBT.defaultTitleColor      = [NSColor selectedTextColor];
     
     RACSignal * signal;
-    signal = RACObserve(self.hotKeyTool, localFlagsKey);
+    signal = RACObserve(self.hotKeyLocal, localFlagsKey);
     @weakify(cellBT);
     @weakify(self);
     self.editHotkeyDisposable = [[signal skip:1] subscribeNext:^(NSString *  _Nullable x) {
@@ -338,8 +349,8 @@ typedef void(^BlockPDic) (NSDictionary * dic);
                 
                 cellBT.defaultTitle = [x substringToIndex:x.length - HotKeyEnd.length];
                 entity.hotKey       = cellBT.defaultTitle;
-                entity.codeNum      = self.hotKeyTool.localCode;
-                entity.flagNum      = self.hotKeyTool.localFlags;
+                entity.codeNum      = self.hotKeyLocal.localCode;
+                entity.flagNum      = self.hotKeyLocal.localFlags;
                 
                 [self.hotKeyTool updateEntitySaveJson];
                 
@@ -377,7 +388,8 @@ typedef void(^BlockPDic) (NSDictionary * dic);
         self.editHotkeyDisposable = nil;
     }
     if (andMoniter) {
-        [self.hotKeyTool localMonitorKeyboard:NO];
+        [self.hotKeyLocal monitorKeyboard:NO];
+        [self.hotKeyMas monitorKeyboard:YES];
     }
 }
 

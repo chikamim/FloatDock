@@ -6,6 +6,8 @@
 //  Copyright © 2020 王凯庆. All rights reserved.
 //
 
+// 后面使用 #import <MASShortcut/MASShortcut.h> 替换
+
 #import <Foundation/Foundation.h>
 #import <AppKit/AppKit.h>
 #import <Carbon/Carbon.h> // kVK_Space; 识别键盘类型 // https://blog.csdn.net/weixin_33862514/article/details/89664156

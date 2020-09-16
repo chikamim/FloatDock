@@ -31,14 +31,14 @@ void UncaughtExceptionHandler(NSException *exception) {
     
     // NSSetUncaughtExceptionHandler (&UncaughtExceptionHandler); // 异常捕捉, 暂时关闭
     
-#ifndef __OPTIMIZE__ //测试
-    NSString * macOSInjectionPath = @"/Applications/InjectionIII.app/Contents/Resources/macOSInjection.bundle";
-    if ([[NSFileManager defaultManager] fileExistsAtPath:macOSInjectionPath]) {
-        [[NSBundle bundleWithPath:macOSInjectionPath] load];
-    }
-#else //正式
-    
-#endif
+    //#ifndef __OPTIMIZE__ //测试
+    //    NSString * macOSInjectionPath = @"/Applications/InjectionIII.app/Contents/Resources/macOSInjection.bundle";
+    //    if ([[NSFileManager defaultManager] fileExistsAtPath:macOSInjectionPath]) {
+    //        [[NSBundle bundleWithPath:macOSInjectionPath] load];
+    //    }
+    //#else //正式
+    //    
+    //#endif
     
     self.hotKeyTool = [HotKeyTool share];
     
