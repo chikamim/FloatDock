@@ -17,8 +17,12 @@
         instance = [self new];
         instance.appInfoTool = [AppInfoTool share];
         instance.windowAlphaNum = [[NSDecimalNumber alloc] initWithFloat:0.6];
+        
+        instance.num1           = [[NSDecimalNumber alloc] initWithFloat:1];
         instance.num05          = [[NSDecimalNumber alloc] initWithFloat:0.05];
         instance.num100         = [[NSDecimalNumber alloc] initWithInt:100];
+        
+        instance.appIconWidthNum = [[NSDecimalNumber alloc] initWithInt:45];
     });
     return instance;
 }
@@ -73,7 +77,7 @@
 
 - (void)showNewDock:(AppInfoEntity *)appInfoEntity {
     // 设置 wc
-    ViewController * vc = [[ViewController alloc] init];
+    FloatDockVC * vc = [[FloatDockVC alloc] init];
     vc.appInfoEntity = appInfoEntity;
     
     //vc.view.frame = CGRectMake(0, 0, 400, 60);
@@ -157,37 +161,35 @@
 }
 
 - (void)sizeUpEvent {
-    if (self.windowAlphaNum.floatValue < 1.0) {
-        self.windowAlphaNum = [self.windowAlphaNum decimalNumberByAdding:self.num05];
-        
-        for (int i = 0; i<[NSApplication sharedApplication].windows.count; i++) {
-            NSWindow * oneWin = [NSApplication sharedApplication].windows[i];
-            if ([oneWin isMemberOfClass:[FloatWindow class]]) {
-                oneWin.alphaValue = self.windowAlphaNum.floatValue;
-            }
-        }
+    if (self.appIconWidthNum.floatValue < 45) {
+        self.appIconWidthNum = [self.appIconWidthNum decimalNumberByAdding:self.num1];
+        [self updateFloatVCAppIconSize];
     }
-    //NSLog(@"self.windowAlpha: %.02f", self.windowAlphaNum.floatValue);
-    
-    [self updateAlphaWindowInfo:[NSString stringWithFormat:@"%i", [self.windowAlphaNum decimalNumberByMultiplyingBy:self.num100].intValue]];
 }
 
 - (void)sizeDownEvent {
-    if (self.windowAlphaNum.floatValue > 0.05) {
-        self.windowAlphaNum = [self.windowAlphaNum decimalNumberBySubtracting:self.num05];
-        
-        for (int i = 0; i<[NSApplication sharedApplication].windows.count; i++) {
-            NSWindow * oneWin = [NSApplication sharedApplication].windows[i];
-            if ([oneWin isMemberOfClass:[FloatWindow class]]) {
-                oneWin.alphaValue = self.windowAlphaNum.floatValue;
+    if (self.appIconWidthNum.floatValue > 20) {
+        self.appIconWidthNum = [self.appIconWidthNum decimalNumberBySubtracting:self.num1];
+        [self updateFloatVCAppIconSize];
+    }
+}
+
+
+- (void)updateFloatVCAppIconSize {
+    for (int i = 0; i<[NSApplication sharedApplication].windows.count; i++) {
+        NSWindow * oneWin = [NSApplication sharedApplication].windows[i];
+        if ([oneWin isMemberOfClass:[FloatWindow class]]) {
+            NSViewController * vc = oneWin.contentViewController;
+            if ([vc isKindOfClass:[FloatDockVC class]]) {
+                FloatDockVC * fvc = (FloatDockVC *)vc;
+                [fvc updateAppIconWidth];
             }
         }
     }
-    //NSLog(@"self.windowAlpha: %.02f", self.windowAlphaNum.floatValue);
     
-    [self updateAlphaWindowInfo:[NSString stringWithFormat:@"%i", [self.windowAlphaNum decimalNumberByMultiplyingBy:self.num100].intValue]];
+    //NSLog(@"self.windowAlpha: %.02f", self.windowAlphaNum.floatValue);
+    [self updateAlphaWindowInfo:[NSString stringWithFormat:@"%ipx", self.appIconWidthNum.intValue]];
 }
-
 
 - (void)updateAlphaWindowInfo:(NSString *)text {
     if (!self.alphaWindow) {
@@ -204,7 +206,7 @@
         [wc showWindow:nil];
         
         // frame
-        CGFloat width  = 120;
+        CGFloat width  = 130;
         CGSize size    = [NSScreen mainScreen].frame.size;
         // CGPoint origin = CGPointMake(size.width/2 - width/2, size.height/2 - width/2);
         CGPoint origin = CGPointMake(size.width/2 - width/2, width);

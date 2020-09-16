@@ -7,7 +7,7 @@
 //
 
 #import "FloatWindow.h"
-#import "ViewController.h"
+#import "FloatDockVC.h"
 
 @interface FloatWindow ()
 
@@ -32,7 +32,7 @@
         self.moved = NO;
         
         //NSLog(@"更新 frame");
-        ViewController * vc = (ViewController *)self.contentViewController;
+        FloatDockVC * vc = (FloatDockVC *)self.contentViewController;
         
         vc.appInfoEntity.x = self.frame.origin.x;
         vc.appInfoEntity.y = self.frame.origin.y;

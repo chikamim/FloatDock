@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "FloatWindow.h"
-#import "ViewController.h"
+#import "FloatDockVC.h"
 #import "AlphaSetVC.h"
 #import "FavoriteVC.h"
 #import "FavoriteWindow.h"
@@ -19,6 +19,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak  ) AppInfoTool * appInfoTool;
 @property (nonatomic, strong) NSDecimalNumber * windowAlphaNum;
+@property (nonatomic, strong) NSDecimalNumber * appIconWidthNum;
+
+@property (nonatomic, strong) NSDecimalNumber * num1;
 @property (nonatomic, strong) NSDecimalNumber * num05;
 @property (nonatomic, strong) NSDecimalNumber * num100;
 

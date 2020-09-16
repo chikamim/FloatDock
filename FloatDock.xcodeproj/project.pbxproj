@@ -12,9 +12,12 @@
 		C3D1D0892511A87000D7A596 /* TestJsCode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D0882511A87000D7A596 /* TestJsCode.m */; };
 		C3D1D08C2511A8F000D7A596 /* HotKeyLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D08B2511A8F000D7A596 /* HotKeyLocal.m */; };
 		C3D1D08F2511B39100D7A596 /* HotKeyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D08E2511B39100D7A596 /* HotKeyPermission.m */; };
+		C3D1D0A12511DB9E00D7A596 /* FloatDockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D0992511DB9E00D7A596 /* FloatDockVC.m */; };
+		C3D1D0A22511DB9E00D7A596 /* FloatDockVCInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D09D2511DB9E00D7A596 /* FloatDockVCInteractor.m */; };
+		C3D1D0A32511DB9E00D7A596 /* FloatDockVCPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D09F2511DB9E00D7A596 /* FloatDockVCPresenter.m */; };
+		C3D1D0A92511E10600D7A596 /* AppIconItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D0A82511E10600D7A596 /* AppIconItem.m */; };
 		C3F2BB30250CA91600543FDF /* PoporUncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F2BB2F250CA91600543FDF /* PoporUncaughtExceptionHandler.m */; };
 		E43781C12453291B00AA785B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781C02453291B00AA785B /* AppDelegate.m */; };
-		E43781C42453291B00AA785B /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781C32453291B00AA785B /* ViewController.m */; };
 		E43781C62453291C00AA785B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E43781C52453291C00AA785B /* Assets.xcassets */; };
 		E43781C92453291C00AA785B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E43781C72453291C00AA785B /* Main.storyboard */; };
 		E43781CC2453291C00AA785B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781CB2453291C00AA785B /* main.m */; };
@@ -64,13 +67,20 @@
 		C3D1D08B2511A8F000D7A596 /* HotKeyLocal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotKeyLocal.m; sourceTree = "<group>"; };
 		C3D1D08D2511B39100D7A596 /* HotKeyPermission.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotKeyPermission.h; sourceTree = "<group>"; };
 		C3D1D08E2511B39100D7A596 /* HotKeyPermission.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotKeyPermission.m; sourceTree = "<group>"; };
+		C3D1D0982511DB9E00D7A596 /* FloatDockVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatDockVC.h; sourceTree = "<group>"; };
+		C3D1D0992511DB9E00D7A596 /* FloatDockVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatDockVC.m; sourceTree = "<group>"; };
+		C3D1D09A2511DB9E00D7A596 /* FloatDockVCProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatDockVCProtocol.h; sourceTree = "<group>"; };
+		C3D1D09C2511DB9E00D7A596 /* FloatDockVCInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatDockVCInteractor.h; sourceTree = "<group>"; };
+		C3D1D09D2511DB9E00D7A596 /* FloatDockVCInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatDockVCInteractor.m; sourceTree = "<group>"; };
+		C3D1D09F2511DB9E00D7A596 /* FloatDockVCPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatDockVCPresenter.m; sourceTree = "<group>"; };
+		C3D1D0A02511DB9E00D7A596 /* FloatDockVCPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatDockVCPresenter.h; sourceTree = "<group>"; };
+		C3D1D0A72511E10600D7A596 /* AppIconItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppIconItem.h; sourceTree = "<group>"; };
+		C3D1D0A82511E10600D7A596 /* AppIconItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppIconItem.m; sourceTree = "<group>"; };
 		C3F2BB2E250CA91600543FDF /* PoporUncaughtExceptionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PoporUncaughtExceptionHandler.h; sourceTree = "<group>"; };
 		C3F2BB2F250CA91600543FDF /* PoporUncaughtExceptionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PoporUncaughtExceptionHandler.m; sourceTree = "<group>"; };
 		E43781BC2453291B00AA785B /* FloatDock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatDock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E43781BF2453291B00AA785B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E43781C02453291B00AA785B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E43781C22453291B00AA785B /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		E43781C32453291B00AA785B /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		E43781C52453291C00AA785B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E43781C82453291C00AA785B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E43781CA2453291C00AA785B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -172,6 +182,77 @@
 			path = backup;
 			sourceTree = "<group>";
 		};
+		C3D1D0902511DB7C00D7A596 /* FloatDockVC */ = {
+			isa = PBXGroup;
+			children = (
+				E43781E424543BE900AA785B /* tool */,
+				E43781D52453305300AA785B /* entity */,
+				C3D1D0972511DB9E00D7A596 /* View */,
+				C3D1D09E2511DB9E00D7A596 /* Presenter */,
+				C3D1D09B2511DB9E00D7A596 /* Interactor */,
+			);
+			path = FloatDockVC;
+			sourceTree = "<group>";
+		};
+		C3D1D0972511DB9E00D7A596 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C3D1D0A42511DBB800D7A596 /* cell */,
+				C3D1D0982511DB9E00D7A596 /* FloatDockVC.h */,
+				C3D1D0992511DB9E00D7A596 /* FloatDockVC.m */,
+				C3D1D09A2511DB9E00D7A596 /* FloatDockVCProtocol.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		C3D1D09B2511DB9E00D7A596 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				C3D1D09C2511DB9E00D7A596 /* FloatDockVCInteractor.h */,
+				C3D1D09D2511DB9E00D7A596 /* FloatDockVCInteractor.m */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		C3D1D09E2511DB9E00D7A596 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				C3D1D0A02511DB9E00D7A596 /* FloatDockVCPresenter.h */,
+				C3D1D09F2511DB9E00D7A596 /* FloatDockVCPresenter.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		C3D1D0A42511DBB800D7A596 /* cell */ = {
+			isa = PBXGroup;
+			children = (
+				C3D1D0A62511DFB700D7A596 /* cc */,
+				E43781E624543EF700AA785B /* AppInfoView */,
+				E43781F2245459EC00AA785B /* FloatWindow */,
+				E43781F12454572900AA785B /* DragView */,
+				C3D1D0A52511DCF300D7A596 /* NSWindow */,
+			);
+			path = cell;
+			sourceTree = "<group>";
+		};
+		C3D1D0A52511DCF300D7A596 /* NSWindow */ = {
+			isa = PBXGroup;
+			children = (
+				E4C7F1572459DAED00B73296 /* NSWindow+beep.h */,
+				E4C7F1582459DAED00B73296 /* NSWindow+beep.m */,
+			);
+			path = NSWindow;
+			sourceTree = "<group>";
+		};
+		C3D1D0A62511DFB700D7A596 /* cc */ = {
+			isa = PBXGroup;
+			children = (
+				C3D1D0A72511E10600D7A596 /* AppIconItem.h */,
+				C3D1D0A82511E10600D7A596 /* AppIconItem.m */,
+			);
+			path = cc;
+			sourceTree = "<group>";
+		};
 		E43781B32453291B00AA785B = {
 			isa = PBXGroup;
 			children = (
@@ -199,7 +280,8 @@
 				E43781D32453292B00AA785B /* other */,
 				E48A5856245DB62E008B8C08 /* Public */,
 				E437823124557D5200AA785B /* App */,
-				E437823224557D7900AA785B /* FloatDock */,
+				C3D1D0902511DB7C00D7A596 /* FloatDockVC */,
+				E437823224557D7900AA785B /* FloatDock1 */,
 				E4C7F07924585F1D00B73296 /* AlphaSetVC */,
 				E4C7F1342459312D00B73296 /* FavoriteVC */,
 			);
@@ -241,16 +323,6 @@
 			path = tool;
 			sourceTree = "<group>";
 		};
-		E43781E524543EED00AA785B /* view */ = {
-			isa = PBXGroup;
-			children = (
-				E43781F2245459EC00AA785B /* FloatWindow */,
-				E43781F12454572900AA785B /* DragView */,
-				E43781E624543EF700AA785B /* AppInfoView */,
-			);
-			path = view;
-			sourceTree = "<group>";
-		};
 		E43781E624543EF700AA785B /* AppInfoView */ = {
 			isa = PBXGroup;
 			children = (
@@ -289,17 +361,6 @@
 			path = bake;
 			sourceTree = "<group>";
 		};
-		E4378225245493C000AA785B /* VC */ = {
-			isa = PBXGroup;
-			children = (
-				E43781C22453291B00AA785B /* ViewController.h */,
-				E43781C32453291B00AA785B /* ViewController.m */,
-				E4C7F1572459DAED00B73296 /* NSWindow+beep.h */,
-				E4C7F1582459DAED00B73296 /* NSWindow+beep.m */,
-			);
-			path = VC;
-			sourceTree = "<group>";
-		};
 		E437822A24555EC200AA785B /* VM */ = {
 			isa = PBXGroup;
 			children = (
@@ -322,16 +383,12 @@
 			path = App;
 			sourceTree = "<group>";
 		};
-		E437823224557D7900AA785B /* FloatDock */ = {
+		E437823224557D7900AA785B /* FloatDock1 */ = {
 			isa = PBXGroup;
 			children = (
-				E4378225245493C000AA785B /* VC */,
 				E437822A24555EC200AA785B /* VM */,
-				E43781E524543EED00AA785B /* view */,
-				E43781D52453305300AA785B /* entity */,
-				E43781E424543BE900AA785B /* tool */,
 			);
-			path = FloatDock;
+			path = FloatDock1;
 			sourceTree = "<group>";
 		};
 		E48A5847245BC6C3008B8C08 /* entity */ = {
@@ -550,6 +607,7 @@
 				E4C7F14C2459751700B73296 /* NSView+Address.m in Sources */,
 				E48A5859245DB6C3008B8C08 /* NSParameterName.m in Sources */,
 				E4378235245582D900AA785B /* AppWindowTool.m in Sources */,
+				C3D1D0A32511DB9E00D7A596 /* FloatDockVCPresenter.m in Sources */,
 				E437822324547BB700AA785B /* AppInfoView.m in Sources */,
 				E4C7F162245A819B00B73296 /* FavoriteWindow.m in Sources */,
 				C3D1D08C2511A8F000D7A596 /* HotKeyLocal.m in Sources */,
@@ -557,6 +615,7 @@
 				E4C7F1502459751700B73296 /* EditableTextField.m in Sources */,
 				E48A585C245EBD73008B8C08 /* KeyboardConvert.m in Sources */,
 				E4C7F07C24585F3E00B73296 /* AlphaSetVC.m in Sources */,
+				C3D1D0A92511E10600D7A596 /* AppIconItem.m in Sources */,
 				E43781E924543F1800AA785B /* AppInfoBT.m in Sources */,
 				E4C7F1592459DAED00B73296 /* NSWindow+beep.m in Sources */,
 				E4C7F14D2459751700B73296 /* JHLabel.m in Sources */,
@@ -566,17 +625,18 @@
 				E4C7F14F2459751700B73296 /* LLCustomBT.m in Sources */,
 				E4C7F1372459317F00B73296 /* FavoriteVC.m in Sources */,
 				E43781EC2454418E00AA785B /* AppInfoMenuBT.m in Sources */,
-				E43781C42453291B00AA785B /* ViewController.m in Sources */,
 				E4C7F13D245932FD00B73296 /* HotKeyTool.m in Sources */,
 				E43781CC2453291C00AA785B /* main.m in Sources */,
 				E43781C12453291B00AA785B /* AppDelegate.m in Sources */,
 				E4C7F1402459729900B73296 /* FavoriteColumnEntity.m in Sources */,
 				C3F2BB30250CA91600543FDF /* PoporUncaughtExceptionHandler.m in Sources */,
 				E43781F524545A1900AA785B /* FloatWindow.m in Sources */,
+				C3D1D0A22511DB9E00D7A596 /* FloatDockVCInteractor.m in Sources */,
 				E4C7F13A2459321500B73296 /* FavoriteAppEntity.m in Sources */,
 				E43781E324542D6A00AA785B /* DataSavePath.m in Sources */,
 				C309AF492510B3880029C12B /* HotKeyMas.m in Sources */,
 				E43781DD2453FC3500AA785B /* DragView.m in Sources */,
+				C3D1D0A12511DB9E00D7A596 /* FloatDockVC.m in Sources */,
 				E437823024556C5900AA785B /* AppInfoMenuVM.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

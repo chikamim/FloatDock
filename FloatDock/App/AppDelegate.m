@@ -172,7 +172,7 @@ void UncaughtExceptionHandler(NSException *exception) {
         NSArray * windowArray = [NSApplication sharedApplication].windows;
         for (FloatWindow * window in windowArray) {
             if ([window isMemberOfClass:[FloatWindow class]]) {
-                ViewController * vc = (ViewController *)window.contentViewController;
+                FloatDockVC * vc = (FloatDockVC *)window.contentViewController;
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [vc checkDockAppActive:dic];
                 });
