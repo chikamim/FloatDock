@@ -16,6 +16,9 @@ post_install do |installer|
   end
 end
 
+# 忽略pod第三方库文件警告
+inhibit_all_warnings!
+
 # 推荐继续使用 传统的 pod
 source 'https://github.com/CocoaPods/Specs.git'
 #source 'https://cdn.cocoapods.org/'
@@ -30,5 +33,7 @@ target 'FloatDock' do
   pod 'JSONModel'
   pod 'ReactiveObjC'
   pod 'PoporAFN'
+  
+  pod 'MASShortcut'
   
 end

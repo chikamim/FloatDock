@@ -14,6 +14,7 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - JSONModel (1.8.0)
   - Masonry (1.1.0)
+  - MASShortcut (2.4.0)
   - PoporAFN (1.07):
     - AFNetworking
   - ReactiveObjC (3.1.1)
@@ -21,6 +22,7 @@ PODS:
 DEPENDENCIES:
   - JSONModel
   - Masonry
+  - MASShortcut
   - PoporAFN
   - ReactiveObjC
 
@@ -29,6 +31,7 @@ SPEC REPOS:
     - AFNetworking
     - JSONModel
     - Masonry
+    - MASShortcut
     - PoporAFN
     - ReactiveObjC
 
@@ -36,9 +39,10 @@ SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   JSONModel: 02ab723958366a3fd27da57ea2af2113658762e9
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
   PoporAFN: ddce973b567ff5b8a26de6517326d74d39c4c3b3
   ReactiveObjC: 011caa393aa0383245f2dcf9bf02e86b80b36040
 
-PODFILE CHECKSUM: 264c678e2ed0373883955861759fbd79cee82629
+PODFILE CHECKSUM: d65eb0b0663c224697a3588e3549ebe4893352a3
 
 COCOAPODS: 1.10.0.beta.2
