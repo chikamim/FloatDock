@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.3"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -648,6 +648,16 @@
                                         <menuItem title="Alpha -" keyEquivalent="" id="qXU-Oo-UvV">
                                             <connections>
                                                 <action selector="alphaDown:" target="Voe-Tx-rLC" id="L7y-ny-WKY"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Size +" keyEquivalent="" id="PKU-tZ-gGo" userLabel="Size +">
+                                            <connections>
+                                                <action selector="sizeUp:" target="Voe-Tx-rLC" id="BhL-pZ-4ph"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Size -" keyEquivalent="" id="uKz-k7-iij" userLabel="Size -">
+                                            <connections>
+                                                <action selector="sizeDown:" target="Voe-Tx-rLC" id="PKS-NS-5bX"/>
                                             </connections>
                                         </menuItem>
                                     </items>

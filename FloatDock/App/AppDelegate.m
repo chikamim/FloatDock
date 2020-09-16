@@ -85,6 +85,14 @@ void UncaughtExceptionHandler(NSException *exception) {
     [self.appWindowTool alphaDownEvent];
 }
 
+- (IBAction)sizeUp:(id)sender {
+    [self.appWindowTool sizeUpEvent];
+}
+
+- (IBAction)sizeDown:(id)sender {
+    [self.appWindowTool sizeDownEvent];
+}
+
 - (IBAction)createNewDock:(id)sender {
     [self.appWindowTool createNewDockEvent:CGPointZero];
     // 1. 创建视图控制器，加载xib文件

@@ -19,6 +19,9 @@
 - (IBAction)alphaUp:(id)sender;
 - (IBAction)alphaDown:(id)sender;
 
+- (IBAction)sizeUp:(id)sender;
+- (IBAction)sizeDown:(id)sender;
+
 - (IBAction)createNewDock:(id)sender;
 - (IBAction)openDbFolder:(id)sender;
 

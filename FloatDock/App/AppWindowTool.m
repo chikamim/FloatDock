@@ -137,7 +137,7 @@
     }
     //NSLog(@"self.windowAlpha: %.02f", self.windowAlphaNum.floatValue);
     
-    [self updateAlphaWindowInfo];
+    [self updateAlphaWindowInfo:[NSString stringWithFormat:@"%i", [self.windowAlphaNum decimalNumberByMultiplyingBy:self.num100].intValue]];
 }
 
 - (void)alphaDownEvent {
@@ -153,10 +153,43 @@
     }
     //NSLog(@"self.windowAlpha: %.02f", self.windowAlphaNum.floatValue);
     
-    [self updateAlphaWindowInfo];
+    [self updateAlphaWindowInfo:[NSString stringWithFormat:@"%i", [self.windowAlphaNum decimalNumberByMultiplyingBy:self.num100].intValue]];
 }
 
-- (void)updateAlphaWindowInfo {
+- (void)sizeUpEvent {
+    if (self.windowAlphaNum.floatValue < 1.0) {
+        self.windowAlphaNum = [self.windowAlphaNum decimalNumberByAdding:self.num05];
+        
+        for (int i = 0; i<[NSApplication sharedApplication].windows.count; i++) {
+            NSWindow * oneWin = [NSApplication sharedApplication].windows[i];
+            if ([oneWin isMemberOfClass:[FloatWindow class]]) {
+                oneWin.alphaValue = self.windowAlphaNum.floatValue;
+            }
+        }
+    }
+    //NSLog(@"self.windowAlpha: %.02f", self.windowAlphaNum.floatValue);
+    
+    [self updateAlphaWindowInfo:[NSString stringWithFormat:@"%i", [self.windowAlphaNum decimalNumberByMultiplyingBy:self.num100].intValue]];
+}
+
+- (void)sizeDownEvent {
+    if (self.windowAlphaNum.floatValue > 0.05) {
+        self.windowAlphaNum = [self.windowAlphaNum decimalNumberBySubtracting:self.num05];
+        
+        for (int i = 0; i<[NSApplication sharedApplication].windows.count; i++) {
+            NSWindow * oneWin = [NSApplication sharedApplication].windows[i];
+            if ([oneWin isMemberOfClass:[FloatWindow class]]) {
+                oneWin.alphaValue = self.windowAlphaNum.floatValue;
+            }
+        }
+    }
+    //NSLog(@"self.windowAlpha: %.02f", self.windowAlphaNum.floatValue);
+    
+    [self updateAlphaWindowInfo:[NSString stringWithFormat:@"%i", [self.windowAlphaNum decimalNumberByMultiplyingBy:self.num100].intValue]];
+}
+
+
+- (void)updateAlphaWindowInfo:(NSString *)text {
     if (!self.alphaWindow) {
         AlphaSetVC * vc = [[AlphaSetVC alloc] init];
         
@@ -185,7 +218,7 @@
     
     self.alphaWindow.alphaValue = 1;
     
-    self.alphaVC.alphaTF.stringValue = [NSString stringWithFormat:@"%i", [self.windowAlphaNum decimalNumberByMultiplyingBy:self.num100].intValue];
+    self.alphaVC.alphaTF.stringValue = text;
     
     [[self class] cancelPreviousPerformRequestsWithTarget:self];
     [self performSelector:@selector(removeAlphaWindow) withObject:nil afterDelay:2];

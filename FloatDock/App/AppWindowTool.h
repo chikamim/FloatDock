@@ -37,6 +37,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)alphaUpEvent;
 - (void)alphaDownEvent;
 
+- (void)sizeUpEvent;
+- (void)sizeDownEvent;
+
 - (void)openFavoriteWindows;
 
 @end
