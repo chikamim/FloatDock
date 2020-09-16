@@ -95,7 +95,6 @@ NSString * const MMShortcutSettingLockScreen_3 = @"lockScreenShortcut_3";
     }
     
     if (enable) {
-        [HotKeyPermission alertUserGetSystemKeyboardPermission];
         @weakify(self);
         NSMutableDictionary * dic = [NSMutableDictionary new];
         for (FavoriteAppEntity * ae in self.hotKeyTool.favoriteAppArrayEntity.array) {

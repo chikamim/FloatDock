@@ -160,6 +160,8 @@
 		C3D1D0862511A80500D7A596 /* backup */ = {
 			isa = PBXGroup;
 			children = (
+				C3D1D08D2511B39100D7A596 /* HotKeyPermission.h */,
+				C3D1D08E2511B39100D7A596 /* HotKeyPermission.m */,
 				C3D1D08325119B4C00D7A596 /* HotKeyToolGlobal.h */,
 				C3D1D08425119B4C00D7A596 /* HotKeyToolGlobal.m */,
 				C3D1D0872511A87000D7A596 /* TestJsCode.h */,
@@ -392,8 +394,6 @@
 				C3D1D08B2511A8F000D7A596 /* HotKeyLocal.m */,
 				C309AF472510B3880029C12B /* HotKeyMas.h */,
 				C309AF482510B3880029C12B /* HotKeyMas.m */,
-				C3D1D08D2511B39100D7A596 /* HotKeyPermission.h */,
-				C3D1D08E2511B39100D7A596 /* HotKeyPermission.m */,
 				E48A584A245BD197008B8C08 /* FavoriteVM */,
 				E48A5847245BC6C3008B8C08 /* entity */,
 				E4C7F1412459751700B73296 /* view */,
@@ -726,7 +726,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = L46H79EBBC;
 				GCC_PREFIX_HEADER = "FloatDock/FloatDock-prefix.pch";
 				INFOPLIST_FILE = FloatDock/Info.plist;
@@ -750,7 +750,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = L46H79EBBC;
 				GCC_PREFIX_HEADER = "FloatDock/FloatDock-prefix.pch";
 				INFOPLIST_FILE = FloatDock/Info.plist;
