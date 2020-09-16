@@ -338,6 +338,9 @@ typedef void(^BlockPDic) (NSDictionary * dic);
                 
                 cellBT.defaultTitle = [x substringToIndex:x.length - HotKeyEnd.length];
                 entity.hotKey       = cellBT.defaultTitle;
+                entity.codeNum      = self.hotKeyTool.localCode;
+                entity.flagNum      = self.hotKeyTool.localFlags;
+                
                 [self.hotKeyTool updateEntitySaveJson];
                 
                 [self closeEditHotkeyInner];
