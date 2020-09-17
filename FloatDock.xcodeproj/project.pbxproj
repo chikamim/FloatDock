@@ -161,6 +161,37 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		C3B3FE092513151500642A6B /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				E4C7F13B245932FD00B73296 /* HotKeyTool.h */,
+				E4C7F13C245932FD00B73296 /* HotKeyTool.m */,
+				C3D1D08A2511A8F000D7A596 /* HotKeyLocal.h */,
+				C3D1D08B2511A8F000D7A596 /* HotKeyLocal.m */,
+				C309AF472510B3880029C12B /* HotKeyMas.h */,
+				C309AF482510B3880029C12B /* HotKeyMas.m */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		C3B3FE0A2513155600642A6B /* 异常 */ = {
+			isa = PBXGroup;
+			children = (
+				C3F2BB2E250CA91600543FDF /* PoporUncaughtExceptionHandler.h */,
+				C3F2BB2F250CA91600543FDF /* PoporUncaughtExceptionHandler.m */,
+			);
+			path = "异常";
+			sourceTree = "<group>";
+		};
+		C3B3FE0B2513155F00642A6B /* md5 */ = {
+			isa = PBXGroup;
+			children = (
+				E48A5857245DB6C3008B8C08 /* NSParameterName.h */,
+				E48A5858245DB6C3008B8C08 /* NSParameterName.m */,
+			);
+			path = md5;
+			sourceTree = "<group>";
+		};
 		C3D1D0862511A80500D7A596 /* backup */ = {
 			isa = PBXGroup;
 			children = (
@@ -397,10 +428,9 @@
 		E48A5856245DB62E008B8C08 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				E48A5857245DB6C3008B8C08 /* NSParameterName.h */,
-				E48A5858245DB6C3008B8C08 /* NSParameterName.m */,
-				C3F2BB2E250CA91600543FDF /* PoporUncaughtExceptionHandler.h */,
-				C3F2BB2F250CA91600543FDF /* PoporUncaughtExceptionHandler.m */,
+				C3B3FE0B2513155F00642A6B /* md5 */,
+				C3B3FE0A2513155600642A6B /* 异常 */,
+				C3B3FE092513151500642A6B /* Tool */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -419,12 +449,6 @@
 			children = (
 				E4C7F1352459317F00B73296 /* FavoriteVC.h */,
 				E4C7F1362459317F00B73296 /* FavoriteVC.m */,
-				E4C7F13B245932FD00B73296 /* HotKeyTool.h */,
-				E4C7F13C245932FD00B73296 /* HotKeyTool.m */,
-				C3D1D08A2511A8F000D7A596 /* HotKeyLocal.h */,
-				C3D1D08B2511A8F000D7A596 /* HotKeyLocal.m */,
-				C309AF472510B3880029C12B /* HotKeyMas.h */,
-				C309AF482510B3880029C12B /* HotKeyMas.m */,
 				E48A584A245BD197008B8C08 /* FavoriteVM */,
 				E48A5847245BC6C3008B8C08 /* entity */,
 				E4C7F1412459751700B73296 /* view */,
