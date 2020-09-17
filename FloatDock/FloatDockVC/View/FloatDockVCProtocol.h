@@ -8,6 +8,7 @@
 #import <AppKit/AppKit.h>
 #import "AppIconItem.h"
 #import "AppInfoEntity.h"
+#import "HotKeyTool.h"
 
 @class AppWindowTool;
 
@@ -27,6 +28,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSCollectionView * infoCV;
 @property (nonatomic, strong) NSCollectionViewFlowLayout *infoCvLayout;
 @property (nonatomic, weak  ) AppWindowTool * awt;
+@property (nonatomic, weak  ) HotKeyTool * hkt;
 
 // MARK: 外部注入的
 @property (nonatomic, weak  ) AppInfoEntity * appInfoEntity;
@@ -42,6 +44,12 @@ NS_ASSUME_NONNULL_BEGIN
 // MARK: UI事件
 @protocol FloatDockVCEventHandler <NSObject>
 
+#pragma mark - 新增APP
+- (void)addAppWithPanel;
+- (void)addAppUrlArray:(NSArray *)array;
+- (void)addAppPathArray:(NSArray *)array;
+- (void)addAppPath:(NSString *)path;
+    
 @end
 
 NS_ASSUME_NONNULL_END

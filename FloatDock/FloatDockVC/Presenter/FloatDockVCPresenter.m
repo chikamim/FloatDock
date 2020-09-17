@@ -8,13 +8,11 @@
 #import "FloatDockVCPresenter.h"
 #import "FloatDockVCInteractor.h"
 #import "AppWindowTool.h"
-#import "HotKeyTool.h"
 
 @interface FloatDockVCPresenter () <AppIconItemProtocol>
 
 @property (nonatomic, weak  ) id<FloatDockVCProtocol> view;
 @property (nonatomic, strong) FloatDockVCInteractor * interactor;
-@property (nonatomic, weak  ) HotKeyTool * hkt;
 
 @end
 
@@ -39,7 +37,6 @@
 
 // 开始执行事件,比如获取网络数据
 - (void)startEvent {
-    self.hkt = [HotKeyTool share];
     
 }
 
@@ -118,7 +115,7 @@
                 NSString * folder = [path substringToIndex:path.length - url.lastPathComponent.length-1];
                 [[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:folder];
             } else {
-                [self.hkt openAppWindows:url.absoluteString];
+                [self.view.hkt openAppWindows:url.absoluteString];
             }
         }
     }
