@@ -21,13 +21,13 @@ static NSInteger AppSizeWidthMin = 20;
         instance = [self new];
         instance.appInfoTool = [AppInfoTool share];
         AppInfoTool * ait    = [AppInfoTool share];
-        
-        instance.windowAlphaNum = [[NSDecimalNumber alloc] initWithFloat:ait.appInfoArrayEntity.windowAlpha == 0 ? 0.6 : ait.appInfoArrayEntity.windowAlpha];
-        
-        instance.num1           = [[NSDecimalNumber alloc] initWithFloat:1];
-        instance.num05          = [[NSDecimalNumber alloc] initWithFloat:0.05];
-        instance.num100         = [[NSDecimalNumber alloc] initWithInt:100];
-        
+
+        instance.windowAlphaNum  = [[NSDecimalNumber alloc] initWithInteger:ait.appInfoArrayEntity.windowAlpha == 0 ? 60 : ait.appInfoArrayEntity.windowAlpha];
+
+        instance.num1            = [[NSDecimalNumber alloc] initWithFloat:1];
+        instance.num5            = [[NSDecimalNumber alloc] initWithFloat:5];
+        instance.num100          = [[NSDecimalNumber alloc] initWithFloat:100];
+
         instance.appIconWidthNum = [[NSDecimalNumber alloc] initWithInteger:ait.appInfoArrayEntity.appIconWidth == 0 ? 45:ait.appInfoArrayEntity.appIconWidth];
     });
     return instance;
@@ -130,21 +130,21 @@ static NSInteger AppSizeWidthMin = 20;
     [window.contentView.layer setBackgroundColor:color];
     
     [window setLevel:NSFloatingWindowLevel];
-    window.alphaValue = self.windowAlphaNum.floatValue;
+    window.alphaValue = [self.windowAlphaNum decimalNumberByDividingBy:self.num100].floatValue;
 }
 
 
 - (void)alphaUpEvent {
-    if (self.windowAlphaNum.floatValue < 1.0) {
-        self.windowAlphaNum = [self.windowAlphaNum decimalNumberByAdding:self.num05];
+    if (self.windowAlphaNum.integerValue < 100) {
+        self.windowAlphaNum = [self.windowAlphaNum decimalNumberByAdding:self.num5];
         
         [self updateWindowData];
     }
 }
 
 - (void)alphaDownEvent {
-    if (self.windowAlphaNum.floatValue > 0.05) {
-        self.windowAlphaNum = [self.windowAlphaNum decimalNumberBySubtracting:self.num05];
+    if (self.windowAlphaNum.integerValue >= self.num5.integerValue) {
+        self.windowAlphaNum = [self.windowAlphaNum decimalNumberBySubtracting:self.num5];
         
         [self updateWindowData];
     }
@@ -154,10 +154,10 @@ static NSInteger AppSizeWidthMin = 20;
     for (int i = 0; i<[NSApplication sharedApplication].windows.count; i++) {
         NSWindow * oneWin = [NSApplication sharedApplication].windows[i];
         if ([oneWin isMemberOfClass:[FloatWindow class]]) {
-            oneWin.alphaValue = self.windowAlphaNum.floatValue;
+            oneWin.alphaValue = [self.windowAlphaNum decimalNumberByDividingBy:self.num100].floatValue;
         }
     }
-    [self updateAlphaWindowInfo:[NSString stringWithFormat:@"%i", [self.windowAlphaNum decimalNumberByMultiplyingBy:self.num100].intValue]];
+    [self updateAlphaWindowInfo:[NSString stringWithFormat:@"%i", self.windowAlphaNum.intValue]];
     
     AppInfoTool * ait = [AppInfoTool share];
     ait.appInfoArrayEntity.windowAlpha = self.windowAlphaNum.intValue;

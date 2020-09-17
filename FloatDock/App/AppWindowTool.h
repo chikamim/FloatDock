@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) NSDecimalNumber * appIconWidthNum;
 
 @property (nonatomic, strong) NSDecimalNumber * num1;
-@property (nonatomic, strong) NSDecimalNumber * num05;
+@property (nonatomic, strong) NSDecimalNumber * num5;
 @property (nonatomic, strong) NSDecimalNumber * num100;
 
 @property (nonatomic, strong) NSWindow * alphaWindow;
