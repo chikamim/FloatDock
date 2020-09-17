@@ -65,7 +65,7 @@
             [self updateBtMenu];
             //NSLog(@"更新 menu");
         }];
-        [self updateBtMenu]; NSLog(@"初始化 menu");
+        [self updateBtMenu];
     }
     //self.appBT.hidden = YES;
 }

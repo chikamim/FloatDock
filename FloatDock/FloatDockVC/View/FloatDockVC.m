@@ -93,7 +93,7 @@
     CGFloat width   = 20 + self.awt.appIconWidthNum.floatValue *count + 10*(count-1);
     CGFloat height  = self.awt.appIconWidthNum.floatValue +self.windowHeight;
     
-    [self.view.window setFrame:CGRectMake(self.appInfoEntity.x, self.appInfoEntity.y, width, height) display:YES];
+    [self.view.window setFrame:CGRectMake(self.appInfoEntity.windowX, self.appInfoEntity.windowY, width, height) display:YES];
     
     self.infoCvLayout.itemSize = CGSizeMake(self.awt.appIconWidthNum.floatValue, self.awt.appIconWidthNum.floatValue);
     
@@ -128,6 +128,7 @@
     self.hkt = [HotKeyTool share];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [self.view.window setFrame:CGRectMake(self.appInfoEntity.windowX, self.appInfoEntity.windowY, 0, 0) display:YES];
         [self updateWindowFrame];
     });
     

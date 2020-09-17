@@ -76,7 +76,7 @@
 
 + (void)updateEntity {
     [[self class] cancelPreviousPerformRequestsWithTarget:self];
-    [self performSelector:@selector(delayUpdateEntity) withObject:nil afterDelay:1.1];
+    [self performSelector:@selector(delayUpdateEntity) withObject:nil afterDelay:0.75];
 }
 
 + (void)delayUpdateEntity {

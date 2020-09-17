@@ -37,8 +37,8 @@ static NSInteger AppSizeWidthMin = 20;
     if (self.appInfoTool.appInfoArrayEntity.windowArray.count == 0) {
         AppInfoEntity * entity = [AppInfoEntity new];
         CGSize size = [NSScreen mainScreen].frame.size;
-        entity.x = size.width/2.0;
-        entity.y = size.height/2.0;
+        entity.windowX = size.width/2.0;
+        entity.windowY = size.height/2.0;
         [entity.appPathArray addObject:@""];
         
         [self.appInfoTool.appInfoArrayEntity.windowArray addObject:entity];
@@ -73,8 +73,8 @@ static NSInteger AppSizeWidthMin = 20;
         CGSize size = [NSScreen mainScreen].frame.size;
         origin = CGPointMake(size.width/2, size.height/2);
     }
-    entity.x = origin.x + 10;
-    entity.y = origin.y + 10;
+    entity.windowX = origin.x + 10;
+    entity.windowY = origin.y + 10;
     [entity.appPathArray addObject:@""];
     [self.appInfoTool.appInfoArrayEntity.windowArray addObject:entity];
     

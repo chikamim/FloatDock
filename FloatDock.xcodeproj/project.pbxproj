@@ -25,8 +25,6 @@
 		E43781DA2453F07800AA785B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E43781D92453F07800AA785B /* icon.png */; };
 		E43781DD2453FC3500AA785B /* DragView.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781DC2453FC3500AA785B /* DragView.m */; };
 		E43781E324542D6A00AA785B /* DataSavePath.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781E224542D6A00AA785B /* DataSavePath.m */; };
-		E43781E924543F1800AA785B /* AppInfoBT.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781E824543F1800AA785B /* AppInfoBT.m */; };
-		E43781EC2454418E00AA785B /* AppInfoMenuBT.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781EB2454418E00AA785B /* AppInfoMenuBT.m */; };
 		E43781F524545A1900AA785B /* FloatWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781F424545A1900AA785B /* FloatWindow.m */; };
 		E43782202454777100AA785B /* whitePoint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E437821F2454777100AA785B /* whitePoint@2x.png */; };
 		E437822324547BB700AA785B /* AppInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E437822224547BB700AA785B /* AppInfoView.m */; };
@@ -91,10 +89,6 @@
 		E43781DC2453FC3500AA785B /* DragView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragView.m; sourceTree = "<group>"; };
 		E43781E124542D6A00AA785B /* DataSavePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSavePath.h; sourceTree = "<group>"; };
 		E43781E224542D6A00AA785B /* DataSavePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSavePath.m; sourceTree = "<group>"; };
-		E43781E724543F1800AA785B /* AppInfoBT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppInfoBT.h; sourceTree = "<group>"; };
-		E43781E824543F1800AA785B /* AppInfoBT.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInfoBT.m; sourceTree = "<group>"; };
-		E43781EA2454418E00AA785B /* AppInfoMenuBT.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppInfoMenuBT.h; sourceTree = "<group>"; };
-		E43781EB2454418E00AA785B /* AppInfoMenuBT.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInfoMenuBT.m; sourceTree = "<group>"; };
 		E43781F324545A1900AA785B /* FloatWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FloatWindow.h; sourceTree = "<group>"; };
 		E43781F424545A1900AA785B /* FloatWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FloatWindow.m; sourceTree = "<group>"; };
 		E437821F2454777100AA785B /* whitePoint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whitePoint@2x.png"; sourceTree = SOURCE_ROOT; };
@@ -377,10 +371,6 @@
 		E43782242454862E00AA785B /* bake */ = {
 			isa = PBXGroup;
 			children = (
-				E43781E724543F1800AA785B /* AppInfoBT.h */,
-				E43781E824543F1800AA785B /* AppInfoBT.m */,
-				E43781EA2454418E00AA785B /* AppInfoMenuBT.h */,
-				E43781EB2454418E00AA785B /* AppInfoMenuBT.m */,
 			);
 			path = bake;
 			sourceTree = "<group>";
@@ -613,7 +603,6 @@
 				E48A585C245EBD73008B8C08 /* KeyboardConvert.m in Sources */,
 				E4C7F07C24585F3E00B73296 /* AlphaSetVC.m in Sources */,
 				C3D1D0A92511E10600D7A596 /* AppIconItem.m in Sources */,
-				E43781E924543F1800AA785B /* AppInfoBT.m in Sources */,
 				E4C7F1592459DAED00B73296 /* NSWindow+beep.m in Sources */,
 				E4C7F14D2459751700B73296 /* JHLabel.m in Sources */,
 				E43781D82453306900AA785B /* AppInfoEntity.m in Sources */,
@@ -621,7 +610,6 @@
 				E48A584D245BD1E8008B8C08 /* FavoriteVM.m in Sources */,
 				E4C7F14F2459751700B73296 /* LLCustomBT.m in Sources */,
 				E4C7F1372459317F00B73296 /* FavoriteVC.m in Sources */,
-				E43781EC2454418E00AA785B /* AppInfoMenuBT.m in Sources */,
 				E4C7F13D245932FD00B73296 /* HotKeyTool.m in Sources */,
 				E43781CC2453291C00AA785B /* main.m in Sources */,
 				E43781C12453291B00AA785B /* AppDelegate.m in Sources */,
