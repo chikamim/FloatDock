@@ -31,8 +31,6 @@
 		E43782202454777100AA785B /* whitePoint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E437821F2454777100AA785B /* whitePoint@2x.png */; };
 		E437822324547BB700AA785B /* AppInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E437822224547BB700AA785B /* AppInfoView.m */; };
 		E437822924549E8400AA785B /* icon48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E437822824549E8400AA785B /* icon48@2x.png */; };
-		E437822D24555EF500AA785B /* AppInfoViewVM.m in Sources */ = {isa = PBXBuildFile; fileRef = E437822C24555EF500AA785B /* AppInfoViewVM.m */; };
-		E437823024556C5900AA785B /* AppInfoMenuVM.m in Sources */ = {isa = PBXBuildFile; fileRef = E437822F24556C5900AA785B /* AppInfoMenuVM.m */; };
 		E4378235245582D900AA785B /* AppWindowTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4378234245582D900AA785B /* AppWindowTool.m */; };
 		E48A584D245BD1E8008B8C08 /* FavoriteVM.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A584C245BD1E8008B8C08 /* FavoriteVM.m */; };
 		E48A5859245DB6C3008B8C08 /* NSParameterName.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A5858245DB6C3008B8C08 /* NSParameterName.m */; };
@@ -103,10 +101,6 @@
 		E437822124547BB700AA785B /* AppInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppInfoView.h; sourceTree = "<group>"; };
 		E437822224547BB700AA785B /* AppInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInfoView.m; sourceTree = "<group>"; };
 		E437822824549E8400AA785B /* icon48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon48@2x.png"; sourceTree = SOURCE_ROOT; };
-		E437822B24555EF500AA785B /* AppInfoViewVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppInfoViewVM.h; sourceTree = "<group>"; };
-		E437822C24555EF500AA785B /* AppInfoViewVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInfoViewVM.m; sourceTree = "<group>"; };
-		E437822E24556C5900AA785B /* AppInfoMenuVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppInfoMenuVM.h; sourceTree = "<group>"; };
-		E437822F24556C5900AA785B /* AppInfoMenuVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInfoMenuVM.m; sourceTree = "<group>"; };
 		E4378233245582D900AA785B /* AppWindowTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppWindowTool.h; sourceTree = "<group>"; };
 		E4378234245582D900AA785B /* AppWindowTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppWindowTool.m; sourceTree = "<group>"; };
 		E48A584B245BD1E8008B8C08 /* FavoriteVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteVM.h; sourceTree = "<group>"; };
@@ -281,7 +275,6 @@
 				E48A5856245DB62E008B8C08 /* Public */,
 				E437823124557D5200AA785B /* App */,
 				C3D1D0902511DB7C00D7A596 /* FloatDockVC */,
-				E437823224557D7900AA785B /* FloatDock1 */,
 				E4C7F07924585F1D00B73296 /* AlphaSetVC */,
 				E4C7F1342459312D00B73296 /* FavoriteVC */,
 			);
@@ -361,17 +354,6 @@
 			path = bake;
 			sourceTree = "<group>";
 		};
-		E437822A24555EC200AA785B /* VM */ = {
-			isa = PBXGroup;
-			children = (
-				E437822B24555EF500AA785B /* AppInfoViewVM.h */,
-				E437822C24555EF500AA785B /* AppInfoViewVM.m */,
-				E437822E24556C5900AA785B /* AppInfoMenuVM.h */,
-				E437822F24556C5900AA785B /* AppInfoMenuVM.m */,
-			);
-			path = VM;
-			sourceTree = "<group>";
-		};
 		E437823124557D5200AA785B /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -381,14 +363,6 @@
 				E4378234245582D900AA785B /* AppWindowTool.m */,
 			);
 			path = App;
-			sourceTree = "<group>";
-		};
-		E437823224557D7900AA785B /* FloatDock1 */ = {
-			isa = PBXGroup;
-			children = (
-				E437822A24555EC200AA785B /* VM */,
-			);
-			path = FloatDock1;
 			sourceTree = "<group>";
 		};
 		E48A5847245BC6C3008B8C08 /* entity */ = {
@@ -611,7 +585,6 @@
 				E437822324547BB700AA785B /* AppInfoView.m in Sources */,
 				E4C7F162245A819B00B73296 /* FavoriteWindow.m in Sources */,
 				C3D1D08C2511A8F000D7A596 /* HotKeyLocal.m in Sources */,
-				E437822D24555EF500AA785B /* AppInfoViewVM.m in Sources */,
 				E4C7F1502459751700B73296 /* EditableTextField.m in Sources */,
 				E48A585C245EBD73008B8C08 /* KeyboardConvert.m in Sources */,
 				E4C7F07C24585F3E00B73296 /* AlphaSetVC.m in Sources */,
@@ -637,7 +610,6 @@
 				C309AF492510B3880029C12B /* HotKeyMas.m in Sources */,
 				E43781DD2453FC3500AA785B /* DragView.m in Sources */,
 				C3D1D0A12511DB9E00D7A596 /* FloatDockVC.m in Sources */,
-				E437823024556C5900AA785B /* AppInfoMenuVM.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

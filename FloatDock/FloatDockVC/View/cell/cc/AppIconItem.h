@@ -44,6 +44,8 @@ static CGFloat  AppIconItemHeight = 45;
 @property (nonatomic, weak  ) NSRunningApplication * runningApp;
 @property (nonatomic, weak  ) id<AppIconItemProtocol> delegate;
 
+- (void)updateBtMenu;
+
 @end
 
 NS_ASSUME_NONNULL_END

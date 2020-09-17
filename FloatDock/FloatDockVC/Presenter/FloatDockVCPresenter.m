@@ -58,7 +58,7 @@
     } else {
         str = self.view.appInfoEntity.appPathArray[indexPath.item];
         // NSLog(@"str: %@", str);
-        if (str.length == 0) {
+        if (str.length < 7) {
             [item.appBT setImage:[NSImage imageNamed:@"icon48"]];
             
         } else {
@@ -85,6 +85,8 @@
     item.row      = indexPath.item;
     item.delegate = self;
     
+    [item updateBtMenu];
+    
     return item;
 }
 
@@ -102,7 +104,7 @@
     //        [AppIconItem.runningApp forceTerminate];
     //    }
     
-    if (appIconItem.appPath.length == 0) {
+    if (appIconItem.appPath.length < 7) {
         [self addAppWithPanel];
     } else {
         NSString * str = [appIconItem.appPath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
@@ -123,7 +125,7 @@
 
 - (void)delete:(AppIconItem *)appIconItem {
     [self.view.appInfoEntity.appPathArray removeObjectAtIndex:appIconItem.row];
-    [self.view updateWindowFrame]; //[self.view.infoCV reloadData];
+    [self.view updateWindowFrame];
     
     [AppInfoTool updateEntity];
 }

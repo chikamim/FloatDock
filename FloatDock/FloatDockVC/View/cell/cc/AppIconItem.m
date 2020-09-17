@@ -92,6 +92,12 @@
     
     [self.clickMenu removeAllItems];
     
+    if (self.appPath.length == 0) {
+        return;
+    }
+    
+    
+    
     NSMenuItem *item01 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_Open") action:@selector(open) keyEquivalent:@""];
     //NSMenuItem *item_1 = [NSMenuItem separatorItem];
     

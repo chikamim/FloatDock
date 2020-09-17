@@ -335,7 +335,7 @@
             NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:app.name action:@selector(addAppFromFavority:) keyEquivalent:@""];
             item.tag = i;
             item.target = self;
-            if (!app.imageMenu) {
+            if (!app.imageMenu && app.path.length > 7) {
                 NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
                 NSImage *finderIcon;
                 //= [workspace iconForFile:[workspace absolutePathForAppBundleWithIdentifier:@"com.apple.Finder"]];
