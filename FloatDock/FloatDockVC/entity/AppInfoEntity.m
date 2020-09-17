@@ -75,6 +75,11 @@
 }
 
 + (void)updateEntity {
+    [[self class] cancelPreviousPerformRequestsWithTarget:self];
+    [self performSelector:@selector(delayUpdateEntity) withObject:nil afterDelay:1.1];
+}
+
++ (void)delayUpdateEntity {
     [AppInfoTool saveAppInfoArrayEntity:[AppInfoTool share].appInfoArrayEntity];
 }
 
