@@ -7,6 +7,10 @@
 //
 
 #import "AppWindowTool.h"
+#import "AppInfoEntity.h"
+
+static NSInteger AppSizeWidthMax = 100;
+static NSInteger AppSizeWidthMin = 20;
 
 @implementation AppWindowTool
 
@@ -16,13 +20,15 @@
     dispatch_once(&once, ^{
         instance = [self new];
         instance.appInfoTool = [AppInfoTool share];
-        instance.windowAlphaNum = [[NSDecimalNumber alloc] initWithFloat:0.6];
+        AppInfoTool * ait    = [AppInfoTool share];
+        
+        instance.windowAlphaNum = [[NSDecimalNumber alloc] initWithFloat:ait.appInfoArrayEntity.windowAlpha == 0 ? 0.6 : ait.appInfoArrayEntity.windowAlpha];
         
         instance.num1           = [[NSDecimalNumber alloc] initWithFloat:1];
         instance.num05          = [[NSDecimalNumber alloc] initWithFloat:0.05];
         instance.num100         = [[NSDecimalNumber alloc] initWithInt:100];
         
-        instance.appIconWidthNum = [[NSDecimalNumber alloc] initWithInt:45];
+        instance.appIconWidthNum = [[NSDecimalNumber alloc] initWithInteger:ait.appInfoArrayEntity.appIconWidth == 0 ? 45:ait.appInfoArrayEntity.appIconWidth];
     });
     return instance;
 }
@@ -132,48 +138,46 @@
     if (self.windowAlphaNum.floatValue < 1.0) {
         self.windowAlphaNum = [self.windowAlphaNum decimalNumberByAdding:self.num05];
         
-        for (int i = 0; i<[NSApplication sharedApplication].windows.count; i++) {
-            NSWindow * oneWin = [NSApplication sharedApplication].windows[i];
-            if ([oneWin isMemberOfClass:[FloatWindow class]]) {
-                oneWin.alphaValue = self.windowAlphaNum.floatValue;
-            }
-        }
+        [self updateWindowData];
     }
-    //NSLog(@"self.windowAlpha: %.02f", self.windowAlphaNum.floatValue);
-    
-    [self updateAlphaWindowInfo:[NSString stringWithFormat:@"%i", [self.windowAlphaNum decimalNumberByMultiplyingBy:self.num100].intValue]];
 }
 
 - (void)alphaDownEvent {
     if (self.windowAlphaNum.floatValue > 0.05) {
         self.windowAlphaNum = [self.windowAlphaNum decimalNumberBySubtracting:self.num05];
         
-        for (int i = 0; i<[NSApplication sharedApplication].windows.count; i++) {
-            NSWindow * oneWin = [NSApplication sharedApplication].windows[i];
-            if ([oneWin isMemberOfClass:[FloatWindow class]]) {
-                oneWin.alphaValue = self.windowAlphaNum.floatValue;
-            }
+        [self updateWindowData];
+    }
+}
+
+- (void)updateWindowData {
+    for (int i = 0; i<[NSApplication sharedApplication].windows.count; i++) {
+        NSWindow * oneWin = [NSApplication sharedApplication].windows[i];
+        if ([oneWin isMemberOfClass:[FloatWindow class]]) {
+            oneWin.alphaValue = self.windowAlphaNum.floatValue;
         }
     }
-    //NSLog(@"self.windowAlpha: %.02f", self.windowAlphaNum.floatValue);
-    
     [self updateAlphaWindowInfo:[NSString stringWithFormat:@"%i", [self.windowAlphaNum decimalNumberByMultiplyingBy:self.num100].intValue]];
+    
+    AppInfoTool * ait = [AppInfoTool share];
+    ait.appInfoArrayEntity.windowAlpha = self.windowAlphaNum.intValue;
+    
+    [AppInfoTool updateEntity];
 }
 
 - (void)sizeUpEvent {
-    if (self.appIconWidthNum.floatValue < 100) {
+    if (self.appIconWidthNum.floatValue < AppSizeWidthMax) {
         self.appIconWidthNum = [self.appIconWidthNum decimalNumberByAdding:self.num1];
         [self updateFloatVCAppIconSize];
     }
 }
 
 - (void)sizeDownEvent {
-    if (self.appIconWidthNum.floatValue > 20) {
+    if (self.appIconWidthNum.floatValue > AppSizeWidthMin) {
         self.appIconWidthNum = [self.appIconWidthNum decimalNumberBySubtracting:self.num1];
         [self updateFloatVCAppIconSize];
     }
 }
-
 
 - (void)updateFloatVCAppIconSize {
     for (int i = 0; i<[NSApplication sharedApplication].windows.count; i++) {
@@ -189,6 +193,11 @@
     
     //NSLog(@"self.windowAlpha: %.02f", self.windowAlphaNum.floatValue);
     [self updateAlphaWindowInfo:[NSString stringWithFormat:@"%ipx", self.appIconWidthNum.intValue]];
+    
+    AppInfoTool * ait = [AppInfoTool share];
+    ait.appInfoArrayEntity.appIconWidth = self.appIconWidthNum.intValue;
+    
+    [AppInfoTool updateEntity];
 }
 
 - (void)updateAlphaWindowInfo:(NSString *)text {

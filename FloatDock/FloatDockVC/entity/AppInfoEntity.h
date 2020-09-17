@@ -25,6 +25,9 @@ static NSString * AppInfoUrl_Finder = @"file:///System/Library/CoreServices/Find
 @protocol AppInfoArrayEntity;
 @interface AppInfoArrayEntity : JSONModel
 
+@property (nonatomic        ) CGFloat   windowAlpha;
+@property (nonatomic        ) NSInteger appIconWidth;
+
 @property (nonatomic, strong) NSMutableArray<AppInfoEntity> * windowArray;
 
 @end
