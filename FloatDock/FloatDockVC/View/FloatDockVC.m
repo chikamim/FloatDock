@@ -152,9 +152,18 @@
         make.right.mas_equalTo(0);
     }];
     
-    __weak typeof(self) weakSelf = self;
+    @weakify(self);
     self.dv.dragAppBlock = ^(NSArray * array) {
-        [weakSelf.appInfoViewVM addAppUrlArray:array];
+        @strongify(self);
+        
+        for (int i = 0; i<array.count; i++) {
+            NSString * path = [array[i] path];
+            path = [NSString stringWithFormat:@"file://%@/", path];
+            
+            [self.appInfoEntity.appPathArray addObject:path];
+        }
+        
+        [self updateWindowFrame];
         [AppInfoTool updateEntity];
     };
 }
