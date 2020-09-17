@@ -45,38 +45,45 @@
 
 #pragma mark - VC_DataSource
 - (NSInteger)collectionView:(NSCollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    //return self.view.appInfoEntity;
-    return self.view.appInfoEntity.appPathArray.count;
+    
+    return MAX(self.view.appInfoEntity.appPathArray.count, 1);
 }
 
 - (NSCollectionViewItem *)collectionView:(NSCollectionView *)collectionView itemForRepresentedObjectAtIndexPath:(NSIndexPath *)indexPath {
     AppIconItem *item = [collectionView makeItemWithIdentifier:AppIconItemKey forIndexPath:indexPath];
     //item.textLabel.stringValue = [NSString stringWithFormat:@"第%zi个", indexPath.item];
-    
-    NSString * str = self.view.appInfoEntity.appPathArray[indexPath.item];
-    // NSLog(@"str: %@", str);
-    if (str.length == 0) {
+    NSString * str;
+    if (self.view.appInfoEntity.appPathArray.count == 0) {
+        str = @"";
         [item.appBT setImage:[NSImage imageNamed:@"icon48"]];
-        
+        item.runningApp = nil;
+        item.activeIV.hidden = YES;
     } else {
-        // http://hk.uwenku.com/question/p-vrwwdiql-bnz.html
-        NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
-        NSImage *finderIcon;
-        //= [workspace iconForFile:[workspace absolutePathForAppBundleWithIdentifier:@"com.apple.Finder"]];
-        finderIcon = [workspace iconForFile:[str substringFromIndex:7]];
-        //[finderIcon setSize:NSMakeSize(AppWidth, AppWidth)];
-        [finderIcon setSize:NSMakeSize(self.view.awt.appIconWidthNum.floatValue, self.view.awt.appIconWidthNum.floatValue)];
+        str = self.view.appInfoEntity.appPathArray[indexPath.item];
+        // NSLog(@"str: %@", str);
+        if (str.length == 0) {
+            [item.appBT setImage:[NSImage imageNamed:@"icon48"]];
+            
+        } else {
+            // http://hk.uwenku.com/question/p-vrwwdiql-bnz.html
+            NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
+            NSImage *finderIcon;
+            //= [workspace iconForFile:[workspace absolutePathForAppBundleWithIdentifier:@"com.apple.Finder"]];
+            finderIcon = [workspace iconForFile:[str substringFromIndex:7]];
+            //[finderIcon setSize:NSMakeSize(AppWidth, AppWidth)];
+            [finderIcon setSize:NSMakeSize(self.view.awt.appIconWidthNum.floatValue, self.view.awt.appIconWidthNum.floatValue)];
+            
+            [item.appBT setImage:finderIcon];
+            
+            //self.view.appActiveDic;
+            
+            NSRunningApplication * runningApp = self.view.appActiveDic[str];
+            item.activeIV.hidden = !runningApp;
+            
+            item.runningApp = runningApp;
+        }
         
-        [item.appBT setImage:finderIcon];
-        
-        //self.view.appActiveDic;
-        
-        NSRunningApplication * runningApp = self.view.appActiveDic[str];
-        item.activeIV.hidden = !runningApp;
-        
-        item.runningApp = runningApp;
     }
-    
     item.appPath  = str;
     item.row      = indexPath.item;
     item.delegate = self;
@@ -98,7 +105,23 @@
     //        [AppIconItem.runningApp forceTerminate];
     //    }
     
-    [self.hkt openAppWindows:appIconItem.appPath];
+    if (appIconItem.appPath.length == 0) {
+        [self addAppWithPanel];
+    } else {
+        NSString * str = [appIconItem.appPath stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+        NSURL    * url = [NSURL URLWithString:str];
+        if (url) {
+            if ([NSEvent modifierFlags] & NSEventModifierFlagCommand) {
+                // NSLog(@"按下了 command");
+                // https://stackoom.com/question/39rQu/如果用户在应用程序开始运行之前将其按下-该如何检测是否按下了Shift 判断command键代码
+                NSString * path   = [url.absoluteString substringFromIndex:7].stringByRemovingPercentEncoding;
+                NSString * folder = [path substringToIndex:path.length - url.lastPathComponent.length-1];
+                [[NSWorkspace sharedWorkspace] selectFile:path inFileViewerRootedAtPath:folder];
+            } else {
+                [self.hkt openAppWindows:url.absoluteString];
+            }
+        }
+    }
 }
 
 - (void)delete:(AppIconItem *)appIconItem {
@@ -181,6 +204,43 @@
 }
 
 
+#pragma mark - 新增APP
+- (void)addAppWithPanel {
+    NSOpenPanel *panel = [NSOpenPanel openPanel];
+    
+    [panel setAllowsMultipleSelection:YES];
+    [panel setCanChooseDirectories:NO];
+    [panel setCanChooseFiles:YES];
+    [panel setAllowedFileTypes:@[@"app"]];
+    
+    if ([panel runModal] == NSModalResponseOK) {
+        [self addAppUrlArray:panel.URLs];
+        
+        [self.view updateWindowFrame];
+    }
+}
+
+- (void)addAppUrlArray:(NSArray *)array {
+    for (int i = 0; i<array.count; i++) {
+        NSString * path = [array[i] path];
+        [self addAppPath:path];
+    }
+    
+    [AppInfoTool updateEntity];
+}
+
+- (void)addAppPathArray:(NSArray *)array {
+    for (int i = 0; i<array.count; i++) {
+        NSString * path = array[i];
+        [self addAppPath:path];
+    }
+    
+    [AppInfoTool updateEntity];
+}
+
+- (void)addAppPath:(NSString *)path {
+    [self.view.appInfoEntity.appPathArray addObject:[NSString stringWithFormat:@"file://%@/", path]];
+}
 
 #pragma mark - VC_EventHandler
 
