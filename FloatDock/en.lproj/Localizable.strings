@@ -21,6 +21,7 @@
 "FD_UpAlpha"             = "Up Alpha ⌘↑";
 "FD_DownAlpha"           = "Down Alpha ⌘↓";
 
+"FD_Open"                = "Open";
 "FD_MoveLeft"            = "Move Left";
 "FD_MoveRight"           = "Move Right";
 "FD_Favorite"            = "Favorite❤️";

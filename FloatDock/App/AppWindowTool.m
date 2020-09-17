@@ -161,7 +161,7 @@
 }
 
 - (void)sizeUpEvent {
-    if (self.appIconWidthNum.floatValue < 45) {
+    if (self.appIconWidthNum.floatValue < 100) {
         self.appIconWidthNum = [self.appIconWidthNum decimalNumberByAdding:self.num1];
         [self updateFloatVCAppIconSize];
     }

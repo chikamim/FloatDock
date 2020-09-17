@@ -75,6 +75,18 @@
 }
 
 - (void)updateAppIconWidth {
+    [self updateAppIconSize];
+    [self updateWindowFrame];
+    
+}
+
+- (void)updateAppIconSize {
+    [self.infoCvSV mas_updateConstraints:^(MASConstraintMaker *make) {
+        make.height.mas_equalTo(self.awt.appIconWidthNum.floatValue +10);
+    }];
+}
+
+- (void)updateWindowFrame {
     CGFloat width  = 20 + self.awt.appIconWidthNum.floatValue *self.appInfoEntity.appPathArray.count + 10*(self.appInfoEntity.appPathArray.count-1);
     CGFloat height = self.awt.appIconWidthNum.floatValue + 20;
     [self.view.window setFrame:CGRectMake(self.appInfoEntity.x, self.appInfoEntity.y, width, height) display:YES];
@@ -82,10 +94,6 @@
     self.infoCvLayout.itemSize = CGSizeMake(self.awt.appIconWidthNum.floatValue, self.awt.appIconWidthNum.floatValue);
     
     [self.infoCV reloadData];
-    
-    [self.infoCvSV mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(self.awt.appIconWidthNum.floatValue +10);
-    }];
 }
 
 #pragma mark - viper views
@@ -251,7 +259,7 @@
         make.left.mas_equalTo(10);
         make.right.mas_equalTo(-10);
         
-        make.centerY.mas_equalTo(5);
+        make.centerY.mas_equalTo(0);
         make.height.mas_equalTo(self.awt.appIconWidthNum.floatValue +10);
         
         //make.top.mas_equalTo(0);
@@ -270,21 +278,27 @@
         //make.height.mas_equalTo(self.awt.appIconWidthNum.floatValue);
     }];
     
-    self.infoCvSV.backgroundColor   = [NSColor clearColor];
-    collectionView.backgroundColors = @[[NSColor clearColor]];
+    {   // 此为保证小白点显示出来第二步
+        self.infoCvSV.wantsLayer = YES;
+        self.infoCvSV.backgroundColor   = [NSColor clearColor];
+        self.infoCvSV.layer.masksToBounds = NO;
+        
+        collectionView.wantsLayer = YES;
+        collectionView.backgroundColors = @[[NSColor clearColor]];
+        collectionView.layer.masksToBounds = NO;
+        
+        clip.wantsLayer = YES;
+        clip.backgroundColor = [NSColor clearColor];
+        clip.layer.masksToBounds = NO;
     
+    }
     // 需要延迟处理 滑动条, 不然边缘的滑动条会影响拖拽动画
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.infoCvSV.verticalScroller.hidden = YES;
         self.infoCvSV.horizontalScroller.hidden = YES;
     });
     
-    //    scrollView.layer.masksToBounds = NO;
-    //    clip.layer.masksToBounds = NO;
-    //    collectionView.layer.masksToBounds = NO;
-    
     return collectionView;
 }
-
 
 @end

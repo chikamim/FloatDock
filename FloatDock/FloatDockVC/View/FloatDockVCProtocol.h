@@ -20,6 +20,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)updateAppIconWidth;
 
+- (void)updateWindowFrame;
+
 // MARK: 自己的
 @property (nonatomic, strong) NSScrollView * infoCvSV;
 @property (nonatomic, strong) NSCollectionView * infoCV;

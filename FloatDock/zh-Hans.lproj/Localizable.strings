@@ -21,6 +21,7 @@
 "FD_UpAlpha"             = "增减透明度 ⌘↑";
 "FD_DownAlpha"           = "降低透明度 ⌘↓";
 
+"FD_Open"                = "打开";
 "FD_Delete"              = "删除";
 "FD_MoveLeft"            = "前移";
 "FD_MoveRight"           = "后移";

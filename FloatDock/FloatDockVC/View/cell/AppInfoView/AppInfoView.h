@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol AppInfoViewProtocol <NSObject>
 
+@optional
 - (void)exit:(AppInfoView *)appInfoView;
 
 - (void)delete:(AppInfoView *)appInfoView;
