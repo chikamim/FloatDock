@@ -117,7 +117,7 @@ static NSInteger AppSizeWidthMin = 20;
     [window setMovableByWindowBackground:YES]; // 整体都可以拖拽
     window.hasShadow = NO; // 关闭阴影
     
-    window.contentView.layer.cornerRadius = 12;
+    window.contentView.layer.cornerRadius = 8;
     //[window setOpaque:YES];
     //window.contentView.layer.masksToBounds = YES;
     [window setBackgroundColor:[NSColor clearColor]];// 防止 设置了圆角之后, 显示为黑角.

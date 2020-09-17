@@ -80,7 +80,7 @@
         iv;
     });
     [self.activeIV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.bottom.mas_equalTo(8);
+        make.bottom.mas_equalTo(5);
         make.centerX.mas_equalTo(0);
         make.width.mas_equalTo(5);
         make.height.mas_equalTo(5);

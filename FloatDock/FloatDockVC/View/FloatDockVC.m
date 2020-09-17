@@ -80,21 +80,31 @@
 }
 
 - (void)updateAppIconSize {
+    CGFloat height = self.awt.appIconWidthNum.floatValue +self.windowHeight;
+    [self.view.window setFrame:CGRectMake(self.view.window.frame.origin.x, self.view.window.frame.origin.y, self.view.window.frame.size.width, height) display:YES];
+    
     [self.infoCvSV mas_updateConstraints:^(MASConstraintMaker *make) {
-        make.height.mas_equalTo(self.awt.appIconWidthNum.floatValue +10);
+        make.height.mas_equalTo(self.awt.appIconWidthNum.floatValue);
     }];
 }
 
 - (void)updateWindowFrame {
     NSInteger count = MAX(self.appInfoEntity.appPathArray.count, 1);
     CGFloat width   = 20 + self.awt.appIconWidthNum.floatValue *count + 10*(count-1);
-    CGFloat height  = self.awt.appIconWidthNum.floatValue + 20;
+    CGFloat height  = self.awt.appIconWidthNum.floatValue +self.windowHeight;
     
     [self.view.window setFrame:CGRectMake(self.appInfoEntity.x, self.appInfoEntity.y, width, height) display:YES];
     
     self.infoCvLayout.itemSize = CGSizeMake(self.awt.appIconWidthNum.floatValue, self.awt.appIconWidthNum.floatValue);
     
     [self.infoCV reloadData];
+}
+
+- (CGFloat)windowHeight {
+    CGFloat height = 0.4* self.awt.appIconWidthNum.floatValue;
+    height = MAX(height, 12);
+    height = MIN(height, 30);
+    return height;
 }
 
 #pragma mark - viper views
@@ -118,13 +128,7 @@
     self.hkt = [HotKeyTool share];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        NSInteger count = MAX(self.appInfoEntity.appPathArray.count, 1);
-        CGFloat width  = 20 + self.awt.appIconWidthNum.floatValue *count + 10*(count -1);
-        CGFloat height = self.awt.appIconWidthNum.floatValue + 20;
-        [self.view.window setFrame:CGRectMake(self.appInfoEntity.x, self.appInfoEntity.y, width, height) display:YES];
-        
-        //self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+        [self updateWindowFrame];
     });
     
     [self addDvs];
@@ -213,9 +217,8 @@
     [self.infoCvSV mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(10);
         make.right.mas_equalTo(-10);
-        
         make.centerY.mas_equalTo(0);
-        make.height.mas_equalTo(self.awt.appIconWidthNum.floatValue +10);
+        make.height.mas_equalTo(self.awt.appIconWidthNum.floatValue);
     }];
     
     [collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
