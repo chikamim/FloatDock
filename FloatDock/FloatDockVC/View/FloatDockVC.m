@@ -120,8 +120,9 @@
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.05 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
         NSInteger count = MAX(self.appInfoEntity.appPathArray.count, 1);
-        CGFloat width = 20 + self.awt.appIconWidthNum.floatValue *count + 10*(count -1);
-        [self.view.window setFrame:CGRectMake(self.appInfoEntity.x, self.appInfoEntity.y, width, 70) display:YES];
+        CGFloat width  = 20 + self.awt.appIconWidthNum.floatValue *count + 10*(count -1);
+        CGFloat height = self.awt.appIconWidthNum.floatValue + 20;
+        [self.view.window setFrame:CGRectMake(self.appInfoEntity.x, self.appInfoEntity.y, width, height) display:YES];
         
         //self.view.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     });
