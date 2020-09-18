@@ -1,14 +1,14 @@
 //
-//  DragView.m
+//  AcceptDragFileView.m
 //  FloatDock
 //
 //  Created by 王凯庆 on 2020/4/25.
 //  Copyright © 2020 王凯庆. All rights reserved.
 //
 
-#import "DragView.h"
+#import "AcceptDragFileView.h"
 
-@implementation DragView
+@implementation AcceptDragFileView
 
 - (id)initWithFrame:(NSRect)frame {
     if (self = [super initWithFrame:frame]) {

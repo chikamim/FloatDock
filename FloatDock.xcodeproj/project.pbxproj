@@ -23,7 +23,7 @@
 		E43781CC2453291C00AA785B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781CB2453291C00AA785B /* main.m */; };
 		E43781D82453306900AA785B /* AppInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781D72453306900AA785B /* AppInfoEntity.m */; };
 		E43781DA2453F07800AA785B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E43781D92453F07800AA785B /* icon.png */; };
-		E43781DD2453FC3500AA785B /* DragView.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781DC2453FC3500AA785B /* DragView.m */; };
+		E43781DD2453FC3500AA785B /* AcceptDragFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781DC2453FC3500AA785B /* AcceptDragFileView.m */; };
 		E43781E324542D6A00AA785B /* DataSavePath.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781E224542D6A00AA785B /* DataSavePath.m */; };
 		E43781F524545A1900AA785B /* FloatWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781F424545A1900AA785B /* FloatWindow.m */; };
 		E43782202454777100AA785B /* whitePoint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E437821F2454777100AA785B /* whitePoint@2x.png */; };
@@ -85,8 +85,8 @@
 		E43781D62453306900AA785B /* AppInfoEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppInfoEntity.h; sourceTree = "<group>"; };
 		E43781D72453306900AA785B /* AppInfoEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInfoEntity.m; sourceTree = "<group>"; };
 		E43781D92453F07800AA785B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = SOURCE_ROOT; };
-		E43781DB2453FC3500AA785B /* DragView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DragView.h; sourceTree = "<group>"; };
-		E43781DC2453FC3500AA785B /* DragView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DragView.m; sourceTree = "<group>"; };
+		E43781DB2453FC3500AA785B /* AcceptDragFileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AcceptDragFileView.h; sourceTree = "<group>"; };
+		E43781DC2453FC3500AA785B /* AcceptDragFileView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AcceptDragFileView.m; sourceTree = "<group>"; };
 		E43781E124542D6A00AA785B /* DataSavePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSavePath.h; sourceTree = "<group>"; };
 		E43781E224542D6A00AA785B /* DataSavePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSavePath.m; sourceTree = "<group>"; };
 		E43781F324545A1900AA785B /* FloatWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FloatWindow.h; sourceTree = "<group>"; };
@@ -248,7 +248,7 @@
 				C3D1D0A62511DFB700D7A596 /* cc */,
 				E43781E624543EF700AA785B /* AppInfoView */,
 				E43781F2245459EC00AA785B /* FloatWindow */,
-				E43781F12454572900AA785B /* DragView */,
+				E43781F12454572900AA785B /* AcceptDragFileView */,
 				C3D1D0A52511DCF300D7A596 /* NSWindow */,
 			);
 			path = cell;
@@ -350,13 +350,13 @@
 			path = AppInfoView;
 			sourceTree = "<group>";
 		};
-		E43781F12454572900AA785B /* DragView */ = {
+		E43781F12454572900AA785B /* AcceptDragFileView */ = {
 			isa = PBXGroup;
 			children = (
-				E43781DB2453FC3500AA785B /* DragView.h */,
-				E43781DC2453FC3500AA785B /* DragView.m */,
+				E43781DB2453FC3500AA785B /* AcceptDragFileView.h */,
+				E43781DC2453FC3500AA785B /* AcceptDragFileView.m */,
 			);
-			path = DragView;
+			path = AcceptDragFileView;
 			sourceTree = "<group>";
 		};
 		E43781F2245459EC00AA785B /* FloatWindow */ = {
@@ -620,7 +620,7 @@
 				E4C7F13A2459321500B73296 /* FavoriteAppEntity.m in Sources */,
 				E43781E324542D6A00AA785B /* DataSavePath.m in Sources */,
 				C309AF492510B3880029C12B /* HotKeyMas.m in Sources */,
-				E43781DD2453FC3500AA785B /* DragView.m in Sources */,
+				E43781DD2453FC3500AA785B /* AcceptDragFileView.m in Sources */,
 				C3D1D0A12511DB9E00D7A596 /* FloatDockVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

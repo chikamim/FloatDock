@@ -1,5 +1,5 @@
 //
-//  DragView.h
+//  AcceptDragFileView.h
 //  FloatDock
 //
 //  Created by 王凯庆 on 2020/4/25.
@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^DragViewBlockPString) (NSArray * array);
 
-@interface DragView : NSView
+@interface AcceptDragFileView : NSView
 
 @property (nonatomic, copy  ) DragViewBlockPString dragAppBlock;
 

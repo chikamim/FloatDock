@@ -12,7 +12,7 @@
 #import <Masonry/Masonry.h>
 #import <ReactiveObjC/ReactiveObjC.h>
 
-#import "DragView.h"
+#import "AcceptDragFileView.h"
 #import "AppInfoView.h"
 #import "AppWindowTool.h"
 
@@ -20,7 +20,7 @@
 
 @property (nonatomic, strong) FloatDockVCPresenter * present;
 
-@property (nonatomic, strong) DragView * dv;
+@property (nonatomic, strong) AcceptDragFileView * dragView;
 
 @property (nonatomic, strong) NSMenu * clickMenu;
 @property (nonatomic, strong) NSMenu * addFavoriteMenu;
@@ -150,10 +150,10 @@
 // -----------------------------------------------------------------------------
 
 - (void)addDvs {
-    self.dv = [DragView new];
+    self.dragView = [AcceptDragFileView new];
     
-    [self.view addSubview:self.dv];
-    [self.dv mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.view addSubview:self.dragView];
+    [self.dragView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(0);
         make.left.mas_equalTo(0);
         make.bottom.mas_equalTo(0);
@@ -161,7 +161,7 @@
     }];
     
     @weakify(self);
-    self.dv.dragAppBlock = ^(NSArray * array) {
+    self.dragView.dragAppBlock = ^(NSArray * array) {
         @strongify(self);
         
         for (int i = 0; i<array.count; i++) {
@@ -210,7 +210,7 @@
     self.infoCvSV = ({
         NSScrollView *scrollView = [[NSScrollView alloc] initWithFrame:CGRectZero];
         scrollView.contentView = clip;
-        [self.dv addSubview:scrollView];
+        [self.dragView addSubview:scrollView];
         
         scrollView;
     });
