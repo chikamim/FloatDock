@@ -55,6 +55,8 @@
         [item.appBT setImage:[NSImage imageNamed:@"icon48"]];
         item.runningApp = nil;
         item.activeIV.hidden = YES;
+        
+        item.appBT.toolTip = nil;
     } else {
         str = self.view.appInfoEntity.appPathArray[indexPath.item];
         // NSLog(@"str: %@", str);
@@ -80,6 +82,10 @@
             item.runningApp = runningApp;
         }
         
+        // toolTip
+        NSString * toolTip = str.lastPathComponent;
+        toolTip = [toolTip hasSuffix:@".app"] ? [toolTip substringToIndex:toolTip.length-4]: toolTip;
+        item.appBT.toolTip = toolTip;
     }
     item.appPath  = str;
     item.row      = indexPath.item;
