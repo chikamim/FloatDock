@@ -98,8 +98,10 @@ NSString * const MMShortcutSettingLockScreen_3 = @"lockScreenShortcut_3";
         @weakify(self);
         NSMutableDictionary * dic = [NSMutableDictionary new];
         for (FavoriteAppEntity * ae in self.hotKeyTool.favoriteAppArrayEntity.array) {
-            if (ae.enable) {
+            if (ae.enable && ae.hotKey) {
                 NSString * url = ae.path;
+                NSLog(@"url: %@, hotkey:%@, code:%li, flag:%li", url, ae.hotKey, ae.codeNum, ae.flagNum);
+                
                 [self.binder bindShortcutWithDefaultsKey:ae.hotKey toAction:^{
                     @strongify(self);
                     
@@ -107,7 +109,6 @@ NSString * const MMShortcutSettingLockScreen_3 = @"lockScreenShortcut_3";
                     [self.hotKeyTool openAppWindows:url];
                 }];
                 dic[ae.hotKey] = [MASShortcut shortcutWithKeyCode:ae.codeNum modifierFlags:ae.flagNum];
-                // NSLog(@"url: %@, hotkey:%@, code:%li, flag:%li", url, ae.hotKey, ae.codeNum, ae.flagNum);
             }
         }
         
