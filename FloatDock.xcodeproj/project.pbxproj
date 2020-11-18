@@ -206,6 +206,7 @@
 			children = (
 				E43781E424543BE900AA785B /* tool */,
 				E43781D52453305300AA785B /* entity */,
+				C3D1D0A42511DBB800D7A596 /* cell */,
 				C3D1D0972511DB9E00D7A596 /* View */,
 				C3D1D09E2511DB9E00D7A596 /* Presenter */,
 				C3D1D09B2511DB9E00D7A596 /* Interactor */,
@@ -216,7 +217,6 @@
 		C3D1D0972511DB9E00D7A596 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				C3D1D0A42511DBB800D7A596 /* cell */,
 				C3D1D0982511DB9E00D7A596 /* FloatDockVC.h */,
 				C3D1D0992511DB9E00D7A596 /* FloatDockVC.m */,
 				C3D1D09A2511DB9E00D7A596 /* FloatDockVCProtocol.h */,
