@@ -16,6 +16,8 @@
 #import "AppInfoView.h"
 #import "AppWindowTool.h"
 
+static CGFloat DockInfoCVLeftRight = 15;
+
 @interface FloatDockVC ()
 
 @property (nonatomic, strong) FloatDockVCPresenter * present;
@@ -90,7 +92,7 @@
 
 - (void)updateWindowFrame {
     NSInteger count = MAX(self.appInfoEntity.appPathArray.count, 1);
-    CGFloat width   = 20 + self.awt.appIconWidthNum.floatValue *count + 10*(count-1);
+    CGFloat width   = DockInfoCVLeftRight*2 + self.awt.appIconWidthNum.floatValue *count + 10*(count-1);
     CGFloat height  = self.awt.appIconWidthNum.floatValue +self.windowHeight;
     
     [self.view.window setFrame:CGRectMake(self.appInfoEntity.windowX, self.appInfoEntity.windowY, width, height) display:YES];
@@ -216,8 +218,8 @@
     });
     
     [self.infoCvSV mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(10);
-        make.right.mas_equalTo(-10);
+        make.left.mas_equalTo(DockInfoCVLeftRight);
+        make.right.mas_equalTo(-DockInfoCVLeftRight);
         make.centerY.mas_equalTo(0);
         make.height.mas_equalTo(self.awt.appIconWidthNum.floatValue);
     }];
