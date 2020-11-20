@@ -24,7 +24,6 @@
 		E43781C92453291C00AA785B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E43781C72453291C00AA785B /* Main.storyboard */; };
 		E43781CC2453291C00AA785B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781CB2453291C00AA785B /* main.m */; };
 		E43781D82453306900AA785B /* AppInfoEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781D72453306900AA785B /* AppInfoEntity.m */; };
-		E43781DA2453F07800AA785B /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E43781D92453F07800AA785B /* icon.png */; };
 		E43781DD2453FC3500AA785B /* AcceptDragFileView.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781DC2453FC3500AA785B /* AcceptDragFileView.m */; };
 		E43781E324542D6A00AA785B /* DataSavePath.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781E224542D6A00AA785B /* DataSavePath.m */; };
 		E43781F524545A1900AA785B /* FloatWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781F424545A1900AA785B /* FloatWindow.m */; };
@@ -90,7 +89,6 @@
 		E43781CD2453291C00AA785B /* FloatDock.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = FloatDock.entitlements; sourceTree = "<group>"; };
 		E43781D62453306900AA785B /* AppInfoEntity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppInfoEntity.h; sourceTree = "<group>"; };
 		E43781D72453306900AA785B /* AppInfoEntity.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInfoEntity.m; sourceTree = "<group>"; };
-		E43781D92453F07800AA785B /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = SOURCE_ROOT; };
 		E43781DB2453FC3500AA785B /* AcceptDragFileView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AcceptDragFileView.h; sourceTree = "<group>"; };
 		E43781DC2453FC3500AA785B /* AcceptDragFileView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AcceptDragFileView.m; sourceTree = "<group>"; };
 		E43781E124542D6A00AA785B /* DataSavePath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSavePath.h; sourceTree = "<group>"; };
@@ -338,7 +336,6 @@
 				E4C7F1512459A3F000B73296 /* delete@2x.png */,
 				E437822824549E8400AA785B /* icon48@2x.png */,
 				E437821F2454777100AA785B /* whitePoint@2x.png */,
-				E43781D92453F07800AA785B /* icon.png */,
 				E43781C52453291C00AA785B /* Assets.xcassets */,
 				E43781C72453291C00AA785B /* Main.storyboard */,
 				E43781CA2453291C00AA785B /* Info.plist */,
@@ -562,7 +559,6 @@
 				E43782202454777100AA785B /* whitePoint@2x.png in Resources */,
 				E43781C92453291C00AA785B /* Main.storyboard in Resources */,
 				E48A5869245EF546008B8C08 /* Localizable.strings in Resources */,
-				E43781DA2453F07800AA785B /* icon.png in Resources */,
 				E437822924549E8400AA785B /* icon48@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

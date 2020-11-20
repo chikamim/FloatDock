@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) NSStatusItem * statusItem;
 
-- (void)setStatusImage;
+- (void)updateStatusBarUI;
 
 @end
 

@@ -54,7 +54,7 @@ void UncaughtExceptionHandler(NSException *exception) {
     [NSApp setServicesProvider:self];
     NSUpdateDynamicServices();
     
-    [[StatusBarTool share] setStatusImage];
+    [[StatusBarTool share] updateStatusBarUI];
 }
 
 // http://www.cocoachina.com/articles/430358 
