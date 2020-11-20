@@ -25,6 +25,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)getPid:(AppInfoView *)appInfoView;
 - (void)lldbFront:(AppInfoView *)appInfoView;
 - (void)lldbNormal:(AppInfoView *)appInfoView;
+- (void)showStatusBarAction:(AppInfoView *)appInfoView;
 
 @end
 

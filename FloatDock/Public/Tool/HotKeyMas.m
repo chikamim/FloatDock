@@ -100,7 +100,7 @@ NSString * const MMShortcutSettingLockScreen_3 = @"lockScreenShortcut_3";
         for (FavoriteAppEntity * ae in self.hotKeyTool.favoriteAppArrayEntity.array) {
             if (ae.enable && ae.hotKey.length>0) {
                 NSString * url = ae.path;
-                NSLog(@"监听键盘点击 url: %@, hotkey:%@, code:%li, flag:%li", url, ae.hotKey, ae.codeNum, ae.flagNum);
+                //NSLog(@"监听键盘点击 url: %@, hotkey:%@, code:%li, flag:%li", url, ae.hotKey, ae.codeNum, ae.flagNum);
                 
                 [self.binder bindShortcutWithDefaultsKey:ae.hotKey toAction:^{
                     @strongify(self);

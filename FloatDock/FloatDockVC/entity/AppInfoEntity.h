@@ -27,6 +27,7 @@ static NSString * AppInfoUrl_Finder = @"file:///System/Library/CoreServices/Find
 
 @property (nonatomic        ) NSInteger windowAlpha;
 @property (nonatomic        ) NSInteger appIconWidth;
+@property (nonatomic        ) BOOL      showStatusBar;
 
 @property (nonatomic, strong) NSMutableArray<AppInfoEntity> * windowArray;
 

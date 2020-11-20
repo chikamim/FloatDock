@@ -29,6 +29,8 @@ static CGFloat  AppIconItemHeight = 45;
 - (void)lldbFront:(AppIconItem *)appIconItem;
 - (void)lldbNormal:(AppIconItem *)appIconItem;
 
+- (void)showStatusBarAction:(AppIconItem *)appIconItem;
+
 @end
 
 

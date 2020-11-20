@@ -107,6 +107,7 @@
     NSMenuItem *item21 = [[NSMenuItem alloc] initWithTitle:[NSString stringWithFormat:@"获取 PID: %i", self.runningApp.processIdentifier] action:@selector(getPid) keyEquivalent:@""];
     //NSMenuItem *item22 = [[NSMenuItem alloc] initWithTitle:@"退出" action:@selector(exit) keyEquivalent:@""];
     NSMenuItem *item22 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_Favorite") action:@selector(favorite) keyEquivalent:@""];
+    NSMenuItem *item22_0 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_StatusBarIcon") action:@selector(showStatusBar) keyEquivalent:@""];
     NSMenuItem *item23 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_FavoriteWindow") action:@selector(openFavoriteWindow) keyEquivalent:@""];
     NSMenuItem *item24 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_FrontLLDB") action:@selector(lldbFront) keyEquivalent:@""];
     NSMenuItem *item25 = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_NormalLLDB") action:@selector(lldbNormal) keyEquivalent:@""];
@@ -130,6 +131,7 @@
     
     [self.clickMenu addItem:item_2];
     [self.clickMenu addItem:item22]; // 收藏
+    [self.clickMenu addItem:item22_0]; // 状态栏图标
     [self.clickMenu addItem:item23];
     if (!self.activeIV.hidden) {
         //[self.clickMenu addItem:item21];
@@ -193,5 +195,10 @@
     }
 }
 
+- (void)showStatusBar {
+    if (self.delegate && [self.delegate respondsToSelector:@selector(showStatusBarAction:)]) {
+        [self.delegate showStatusBarAction:self];
+    }
+}
 
 @end

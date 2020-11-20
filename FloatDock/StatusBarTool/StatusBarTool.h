@@ -15,7 +15,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (instancetype)share;
 
-@property (nonatomic, strong) NSStatusItem * statusItem;
+@property (nonatomic, strong) NSStatusItem * _Nullable statusItem;
+
+// 切换显示状态栏icon
+- (void)switchShowStatusBarAction;
 
 - (void)updateStatusBarUI;
 

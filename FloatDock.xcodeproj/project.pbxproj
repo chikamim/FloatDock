@@ -794,7 +794,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = 5TP98E5R7H;
 				GCC_PREFIX_HEADER = "FloatDock/FloatDock-prefix.pch";
 				INFOPLIST_FILE = FloatDock/Info.plist;
@@ -818,7 +818,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 35;
+				CURRENT_PROJECT_VERSION = 36;
 				DEVELOPMENT_TEAM = 5TP98E5R7H;
 				GCC_PREFIX_HEADER = "FloatDock/FloatDock-prefix.pch";
 				INFOPLIST_FILE = FloatDock/Info.plist;

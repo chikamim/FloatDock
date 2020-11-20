@@ -8,6 +8,8 @@
 #import "FloatDockVCPresenter.h"
 #import "FloatDockVCInteractor.h"
 #import "AppWindowTool.h"
+#import "AppInfoEntity.h"
+#import "StatusBarTool.h"
 
 @interface FloatDockVCPresenter () <AppIconItemProtocol>
 
@@ -208,6 +210,10 @@
     [pb setString:lldb forType:NSPasteboardTypeString];
 }
 
+// 更新状态图标设置
+- (void)showStatusBarAction:(AppIconItem *)appIconItem {
+    [[StatusBarTool share] switchShowStatusBarAction];
+}
 
 #pragma mark - 新增APP
 - (void)addAppWithPanel {

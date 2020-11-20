@@ -10,6 +10,7 @@
 #import "ZLImage.h"
 #import "HotKeyTool.h"
 #import "AppWindowTool.h"
+#import "AppInfoEntity.h"
 
 #import <MASShortcut/MASShortcut.h>
 #import <MASShortcut/MASShortcutBinder.h>
@@ -29,12 +30,25 @@
 
 //MARK: 设置状态功能函数
 - (void)updateStatusBarUI {
-    if (self.statusItem) {
-        [self setStatusImage_delay];
-    } else {
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    AppInfoTool * tool = [AppInfoTool share];
+    BOOL show = tool.appInfoArrayEntity.showStatusBar;
+    
+    if (show) {
+        if (self.statusItem) {
             [self setStatusImage_delay];
-        });
+        } else {
+            HotKeyTool * hkt = [HotKeyTool share];
+            
+            if (hkt.favoriteAppArrayEntity) {
+                [self setStatusImage_delay];
+            } else {
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self setStatusImage_delay];
+                });
+            }
+        }
+    } else {
+        self.statusItem = nil;
     }
 }
 
@@ -59,16 +73,26 @@
         
         // 点击事件
         item.menu = [NSMenu new];
-        {
-            NSMenuItem * mi = [[NSMenuItem alloc] initWithTitle:@"显示收藏页" action:@selector(showFavVC:) keyEquivalent:@""];
-            mi.target = self;
+        {   // 加基础控制UI
+            {   // @"显示收藏页"
+                NSMenuItem * mi = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_OpenAppFromFavorite") action:@selector(showFavVC:) keyEquivalent:@""];
+                mi.target = self;
             
-            [item.menu addItem:mi];
+                [item.menu addItem:mi];
+            }
+            {   // "显示/关闭状态栏图标";
+                NSMenuItem * mi = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_StatusBarIcon") action:@selector(switchShowStatusBarAction) keyEquivalent:@""];
+                mi.target = self;
+                
+                [item.menu addItem:mi];
+            }
         }
         {
             NSMenuItem * mi = [NSMenuItem separatorItem];
             [item.menu addItem:mi];
         }
+        
+        // 加载APP
         for (NSInteger i = 0; i<tool.favoriteAppArrayEntity.array.count; i++) {
             FavoriteAppEntity * entity = tool.favoriteAppArrayEntity.array[i];
             
@@ -81,10 +105,12 @@
             mi.enabled = YES;
             
             if (entity.hotKey.length > 0) {
-                mi.keyEquivalentModifierMask = entity.flagNum;
-                
                 MASShortcut * shortCut = [MASShortcut shortcutWithKeyCode:entity.codeNum modifierFlags:entity.flagNum];
+                
+                mi.keyEquivalentModifierMask = shortCut.modifierFlags;
                 mi.keyEquivalent = shortCut.keyCodeString;
+                
+                //NSLog(@"App Name: %@, \t\tflag: %li, \t\tcode:%@", entity.name, shortCut.modifierFlags, shortCut.keyCodeString);
             }
             
             [item.menu addItem:mi];
@@ -98,6 +124,14 @@
 
 - (void)menuExit {
     NSLog(@"exit");
+}
+
+- (void)switchShowStatusBarAction {
+    AppInfoTool * tool = [AppInfoTool share];
+    tool.appInfoArrayEntity.showStatusBar = !tool.appInfoArrayEntity.showStatusBar;
+    [AppInfoTool updateEntity];
+    
+    [self updateStatusBarUI];
 }
 
 - (void)showFavVC:(NSMenuItem *)mi {
