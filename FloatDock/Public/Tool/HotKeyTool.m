@@ -111,6 +111,7 @@ static NSString * FavoriteDBPath = @"favority";
     [self.favoriteHotkeyDic removeAllObjects];
     for (FavoriteAppEntity * app in self.favoriteAppArrayEntity.array) {
         if (app.hotKey.length > 0 && app.enable) {
+            //NSLog(@"app.hotKey: %@", app.hotKey);
             NSMutableArray * array = [self.favoriteHotkeyDic objectForKey:app.hotKey];
             if (array) {
                 [array addObject:app];

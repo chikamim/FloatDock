@@ -98,9 +98,9 @@ NSString * const MMShortcutSettingLockScreen_3 = @"lockScreenShortcut_3";
         @weakify(self);
         NSMutableDictionary * dic = [NSMutableDictionary new];
         for (FavoriteAppEntity * ae in self.hotKeyTool.favoriteAppArrayEntity.array) {
-            if (ae.enable && ae.hotKey) {
+            if (ae.enable && ae.hotKey.length>0) {
                 NSString * url = ae.path;
-                NSLog(@"url: %@, hotkey:%@, code:%li, flag:%li", url, ae.hotKey, ae.codeNum, ae.flagNum);
+                NSLog(@"监听键盘点击 url: %@, hotkey:%@, code:%li, flag:%li", url, ae.hotKey, ae.codeNum, ae.flagNum);
                 
                 [self.binder bindShortcutWithDefaultsKey:ae.hotKey toAction:^{
                     @strongify(self);
@@ -117,7 +117,7 @@ NSString * const MMShortcutSettingLockScreen_3 = @"lockScreenShortcut_3";
     } else {
         
         for (FavoriteAppEntity * ae in self.hotKeyTool.favoriteAppArrayEntity.array) {
-            if (ae.enable) {
+            if (ae.enable && ae.hotKey.length>0) {
                 [self.binder breakBindingWithDefaultsKey:ae.hotKey];
             }
         }
