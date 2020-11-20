@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		C309AF492510B3880029C12B /* HotKeyMas.m in Sources */ = {isa = PBXBuildFile; fileRef = C309AF482510B3880029C12B /* HotKeyMas.m */; };
+		C37DA81B256773A300D67AD2 /* StatusBarTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C37DA81A256773A300D67AD2 /* StatusBarTool.m */; };
+		C37DA83325678EDB00D67AD2 /* ZLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C37DA83225678EDB00D67AD2 /* ZLImage.m */; };
 		C3D1D08525119B4C00D7A596 /* HotKeyToolGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D08425119B4C00D7A596 /* HotKeyToolGlobal.m */; };
 		C3D1D0892511A87000D7A596 /* TestJsCode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D0882511A87000D7A596 /* TestJsCode.m */; };
 		C3D1D08C2511A8F000D7A596 /* HotKeyLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D08B2511A8F000D7A596 /* HotKeyLocal.m */; };
@@ -55,6 +57,10 @@
 		B4376660DB09AC0CFCDE5409 /* Pods_FloatDock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FloatDock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C309AF472510B3880029C12B /* HotKeyMas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotKeyMas.h; sourceTree = "<group>"; };
 		C309AF482510B3880029C12B /* HotKeyMas.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotKeyMas.m; sourceTree = "<group>"; };
+		C37DA819256773A300D67AD2 /* StatusBarTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusBarTool.h; sourceTree = "<group>"; };
+		C37DA81A256773A300D67AD2 /* StatusBarTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatusBarTool.m; sourceTree = "<group>"; };
+		C37DA83125678EDB00D67AD2 /* ZLImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLImage.h; sourceTree = "<group>"; };
+		C37DA83225678EDB00D67AD2 /* ZLImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLImage.m; sourceTree = "<group>"; };
 		C3D1D08325119B4C00D7A596 /* HotKeyToolGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotKeyToolGlobal.h; sourceTree = "<group>"; };
 		C3D1D08425119B4C00D7A596 /* HotKeyToolGlobal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotKeyToolGlobal.m; sourceTree = "<group>"; };
 		C3D1D0872511A87000D7A596 /* TestJsCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestJsCode.h; sourceTree = "<group>"; };
@@ -153,6 +159,24 @@
 				361A4F474278B8AD5E137ECE /* Pods-FloatDock.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		C37DA818256772DE00D67AD2 /* StatusBarTool */ = {
+			isa = PBXGroup;
+			children = (
+				C37DA819256773A300D67AD2 /* StatusBarTool.h */,
+				C37DA81A256773A300D67AD2 /* StatusBarTool.m */,
+			);
+			path = StatusBarTool;
+			sourceTree = "<group>";
+		};
+		C37DA83025678ECB00D67AD2 /* NSImage */ = {
+			isa = PBXGroup;
+			children = (
+				C37DA83125678EDB00D67AD2 /* ZLImage.h */,
+				C37DA83225678EDB00D67AD2 /* ZLImage.m */,
+			);
+			path = NSImage;
 			sourceTree = "<group>";
 		};
 		C3B3FE092513151500642A6B /* Tool */ = {
@@ -302,6 +326,7 @@
 				C3D1D0902511DB7C00D7A596 /* FloatDockVC */,
 				E4C7F07924585F1D00B73296 /* AlphaSetVC */,
 				E4C7F1342459312D00B73296 /* FavoriteVC */,
+				C37DA818256772DE00D67AD2 /* StatusBarTool */,
 			);
 			path = FloatDock;
 			sourceTree = "<group>";
@@ -418,6 +443,7 @@
 		E48A5856245DB62E008B8C08 /* Public */ = {
 			isa = PBXGroup;
 			children = (
+				C37DA83025678ECB00D67AD2 /* NSImage */,
 				C3B3FE0B2513155F00642A6B /* md5 */,
 				C3B3FE0A2513155600642A6B /* 异常 */,
 				C3B3FE092513151500642A6B /* Tool */,
@@ -611,6 +637,8 @@
 				E4C7F14F2459751700B73296 /* LLCustomBT.m in Sources */,
 				E4C7F1372459317F00B73296 /* FavoriteVC.m in Sources */,
 				E4C7F13D245932FD00B73296 /* HotKeyTool.m in Sources */,
+				C37DA83325678EDB00D67AD2 /* ZLImage.m in Sources */,
+				C37DA81B256773A300D67AD2 /* StatusBarTool.m in Sources */,
 				E43781CC2453291C00AA785B /* main.m in Sources */,
 				E43781C12453291B00AA785B /* AppDelegate.m in Sources */,
 				E4C7F1402459729900B73296 /* FavoriteColumnEntity.m in Sources */,

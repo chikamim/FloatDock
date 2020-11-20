@@ -14,6 +14,7 @@
 #import <ReactiveObjC/ReactiveObjC.h>
 #import "HotKeyTool.h"
 #import "PoporUncaughtExceptionHandler.h"
+#import "StatusBarTool.h"
 
 void UncaughtExceptionHandler(NSException *exception) {
     [PoporUncaughtExceptionHandler saveException:exception];
@@ -52,6 +53,8 @@ void UncaughtExceptionHandler(NSException *exception) {
     // 增加Finder右键方法: http://www.cocoachina.com/articles/430358
     [NSApp setServicesProvider:self];
     NSUpdateDynamicServices();
+    
+    [[StatusBarTool share] setStatusImage];
 }
 
 // http://www.cocoachina.com/articles/430358 
