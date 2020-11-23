@@ -125,46 +125,28 @@
             // }
             
             // 设置自定义view
-            StatusBarView * view = [[StatusBarView alloc] initWithFrame:CGRectZero];
-            [view.iconBT setImage:entity.imageMenu];
-            view.nameTF.stringValue   = entity.name;
-            //view.nameTF.stringValue = @"123456789 123456789 123456789 ";
-            view.hotkeyTF.stringValue = entity.hotKey.length>0 ? entity.hotKey : @"";
-            view.statusTF.hidden      = !entity.enable || entity.hotKey.length==0;
+            StatusBarView * view = [StatusBarView new];
             
             view.number = i;
-            
-            view.selectBlock = ^(StatusBarView * _Nonnull statusBarView) {
-                @strongify(self);
-                
-                [self appAction:statusBarView.number];
-            };
+            [view.iconBT setImage:entity.imageMenu];
+            view.nameTF.stringValue   = entity.name;
+            view.hotkeyTF.stringValue = entity.hotKey.length>0 ? entity.hotKey : @"";
+            view.statusTF.hidden      = !entity.enable || entity.hotKey.length==0;
+            view.selectBlock = ^(StatusBarView * _Nonnull statusBarView) { @strongify(self); [self appAction:statusBarView.number];};
             [mi setView:view];
+            
             
             [view mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.mas_equalTo(NSEdgeInsetsZero);
                 make.height.mas_equalTo(24);
+                make.width.mas_greaterThanOrEqualTo(100);
             }];
             
-            
-            //dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            //    [mi setView:view];
-            //});
-            
-            //[view needsLayout];
-            //[view needsDisplay];
-            //[view setNeedsUpdateConstraints:YES];
-            [view updateConstraintsForSubtreeIfNeeded];
-            
             [item.menu addItem:mi];
-            
-            //NSLog(@"name: %@", entity.name);
         }
         
         item;
     });
-    
-    //[self.statusItem ]
 }
 
 //- (void)statusItemAction:(NSStatusItem *)item {NSLog(@"%s", __func__); }

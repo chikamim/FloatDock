@@ -15,18 +15,25 @@ static CGFloat StatusBarViewLeft = 6;
 
 @implementation StatusBarView
 
+- (instancetype)init {
+    if (self = [super init]) {
+        
+    }
+    return self;
+}
+
 - (id)initWithFrame:(NSRect)frame {
-    NSRect theRect = NSMakeRect(0, 0, 0, 20);
+    NSRect theRect = NSMakeRect(0, 0, 100, 20);
     self = [super initWithFrame:theRect];
     if (self) {
         [self addView];
         
-        // 监听鼠标划入事件
-        // https://stackoverrun.com/cn/q/4795031
-        NSTrackingArea * trackingArea = [[NSTrackingArea alloc] initWithRect:theRect
-                                                                     options:(NSTrackingMouseEnteredAndExited | NSTrackingActiveInKeyWindow | NSTrackingActiveAlways)
-                                                                       owner:self userInfo:nil];
-        [self addTrackingArea:trackingArea];
+        // // 监听鼠标划入事件
+        // // https://stackoverrun.com/cn/q/4795031
+        // NSTrackingArea * trackingArea = [[NSTrackingArea alloc] initWithRect:theRect
+        //                                                              options:(NSTrackingMouseEnteredAndExited | NSTrackingActiveInKeyWindow | NSTrackingActiveAlways)
+        //                                                                owner:self userInfo:nil];
+        // [self addTrackingArea:trackingArea];
     }
     return self;
 }
@@ -118,12 +125,10 @@ static CGFloat StatusBarViewLeft = 6;
         tf.textColor       = NSColor.textColor;
         tf.bordered        = NO;
         tf.editable        = NO;
-        
+        tf.stringValue     = @"•";
         [self addSubview:tf];
         tf;
     });
-    
-    self.statusTF.stringValue = @"•";
     
     CGFloat left = StatusBarViewLeft*2;
    
@@ -143,7 +148,7 @@ static CGFloat StatusBarViewLeft = 6;
         make.centerY.mas_equalTo(0);
         make.height.mas_equalTo(self.hotkeyTF.font.pointSize *1.3);
         
-        make.left.mas_equalTo(self.nameTF.mas_right).mas_offset(10);
+        make.left.mas_equalTo(self.nameTF.mas_right).mas_offset(20);
         make.right.mas_equalTo(self.statusTF.mas_left).mas_offset(0);
     }];
     [self.statusTF mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -153,8 +158,6 @@ static CGFloat StatusBarViewLeft = 6;
         make.width.mas_equalTo(16);
         make.right.mas_equalTo(2);
     }];
-    
-
 }
 
 @end
