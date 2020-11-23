@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C309AF492510B3880029C12B /* HotKeyMas.m in Sources */ = {isa = PBXBuildFile; fileRef = C309AF482510B3880029C12B /* HotKeyMas.m */; };
+		C315493E2567C9E600185918 /* StatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C315493D2567C9E600185918 /* StatusBarView.m */; };
 		C37DA81B256773A300D67AD2 /* StatusBarTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C37DA81A256773A300D67AD2 /* StatusBarTool.m */; };
 		C37DA83325678EDB00D67AD2 /* ZLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C37DA83225678EDB00D67AD2 /* ZLImage.m */; };
 		C3D1D08525119B4C00D7A596 /* HotKeyToolGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D08425119B4C00D7A596 /* HotKeyToolGlobal.m */; };
@@ -56,6 +57,8 @@
 		B4376660DB09AC0CFCDE5409 /* Pods_FloatDock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FloatDock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C309AF472510B3880029C12B /* HotKeyMas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotKeyMas.h; sourceTree = "<group>"; };
 		C309AF482510B3880029C12B /* HotKeyMas.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotKeyMas.m; sourceTree = "<group>"; };
+		C315493C2567C9E600185918 /* StatusBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusBarView.h; sourceTree = "<group>"; };
+		C315493D2567C9E600185918 /* StatusBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatusBarView.m; sourceTree = "<group>"; };
 		C37DA819256773A300D67AD2 /* StatusBarTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusBarTool.h; sourceTree = "<group>"; };
 		C37DA81A256773A300D67AD2 /* StatusBarTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatusBarTool.m; sourceTree = "<group>"; };
 		C37DA83125678EDB00D67AD2 /* ZLImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLImage.h; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 			children = (
 				C37DA819256773A300D67AD2 /* StatusBarTool.h */,
 				C37DA81A256773A300D67AD2 /* StatusBarTool.m */,
+				C315493C2567C9E600185918 /* StatusBarView.h */,
+				C315493D2567C9E600185918 /* StatusBarView.m */,
 			);
 			path = StatusBarTool;
 			sourceTree = "<group>";
@@ -624,6 +629,7 @@
 				E4C7F1502459751700B73296 /* EditableTextField.m in Sources */,
 				E48A585C245EBD73008B8C08 /* KeyboardConvert.m in Sources */,
 				E4C7F07C24585F3E00B73296 /* AlphaSetVC.m in Sources */,
+				C315493E2567C9E600185918 /* StatusBarView.m in Sources */,
 				C3D1D0A92511E10600D7A596 /* AppIconItem.m in Sources */,
 				E4C7F1592459DAED00B73296 /* NSWindow+beep.m in Sources */,
 				E4C7F14D2459751700B73296 /* JHLabel.m in Sources */,

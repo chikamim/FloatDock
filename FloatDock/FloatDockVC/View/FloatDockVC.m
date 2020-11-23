@@ -342,15 +342,6 @@ static CGFloat DockInfoCVLeftRight = 15;
             NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:app.name action:@selector(addAppFromFavority:) keyEquivalent:@""];
             item.tag = i;
             item.target = self;
-            if (!app.imageMenu && app.path.length > 7) {
-                NSWorkspace *workspace = [NSWorkspace sharedWorkspace];
-                NSImage *finderIcon;
-                //= [workspace iconForFile:[workspace absolutePathForAppBundleWithIdentifier:@"com.apple.Finder"]];
-                finderIcon = [workspace iconForFile:[app.path substringFromIndex:7]];
-                [finderIcon setSize:NSMakeSize(18, 18)];
-                
-                app.imageMenu = finderIcon;
-            }
             item.image = app.imageMenu;
             //NSData *imageData = [app.smallImage TIFFRepresentation];
             [self.addFavoriteMenu addItem:item];

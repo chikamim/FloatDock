@@ -28,7 +28,8 @@
 "FD_FrontLLDB"           = "Front LLDB";
 "FD_NormalLLDB"          = "Normal LLDB";
 
-"FD_StatusBarIcon"       = "Show/Close Status Bar Icon";
+"FD_StatusBarIconSwitch" = "Show/Close Status Bar Icon";
+"FD_StatusBarIconClose"  = "Close Status Bar Icon";
 
 
 "FD_TipGlobalHotkey"     = "Global Hotkey need your authorization, please add and select FloatDock In [System Preferences] > [Security & Privacy] > [Accessibility], then reload FloatDock.";
