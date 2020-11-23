@@ -59,6 +59,8 @@
 - (void)setStatusImage_delay {
     HotKeyTool * tool = [HotKeyTool share];
     
+    self.barViewDic   = [NSMutableDictionary new];
+    self.barViewArray = [NSMutableArray new];
     self.statusItem = ({
         NSStatusBar * statusBar = [NSStatusBar systemStatusBar];
         NSStatusItem * item = [statusBar statusItemWithLength:NSVariableStatusItemLength];
@@ -131,10 +133,17 @@
             [view.iconBT setImage:entity.imageMenu];
             view.nameTF.stringValue   = entity.name;
             view.hotkeyTF.stringValue = entity.hotKey.length>0 ? entity.hotKey : @"";
-            view.statusTF.hidden      = !entity.enable || entity.hotKey.length==0;
+            //view.statusTF.hidden      = !entity.enable || entity.hotKey.length==0;
+            BOOL hotkeyEnable = entity.enable && entity.hotKey.length>1;
+            view.hotkeyTF.textColor = hotkeyEnable ? NSColor.textColor:NSColor.selectedTextColor ;
+            
             view.selectBlock = ^(StatusBarView * _Nonnull statusBarView) { @strongify(self); [self appAction:statusBarView.number];};
+            view.weakFavoriteAppEntity = entity;
+            
             [mi setView:view];
             
+            [self.barViewDic setValue:view forKey:entity.path];
+            [self.barViewArray addObject:view];
             
             [view mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.mas_equalTo(NSEdgeInsetsZero);
@@ -172,6 +181,16 @@
     HotKeyTool * tool = [HotKeyTool share];
     FavoriteAppEntity * entity = tool.favoriteAppArrayEntity.array[tag];
     [tool openAppWindows:entity.path];
+}
+
+- (void)updateAppStatus:(NSDictionary *)dic {
+    for (StatusBarView * view in self.barViewArray) {
+        FavoriteAppEntity * entity = view.weakFavoriteAppEntity;
+        NSString * urlPath = [entity.path stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
+        NSRunningApplication * oneApp = dic[urlPath];
+        view.statusTF.hidden = !oneApp;
+    }
+    
 }
 
 @end

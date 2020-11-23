@@ -168,6 +168,7 @@
 - (void)favorite:(AppIconItem *)appIconItem {
     FavoriteAppEntity * entity = [FavoriteAppEntity new];
     entity.path = appIconItem.appPath;
+    //entity.pathUrlCode = [entity.path stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLFragmentAllowedCharacterSet]];
     entity.name = entity.path.lastPathComponent;
     entity.name = entity.name.stringByDeletingPathExtension;
     

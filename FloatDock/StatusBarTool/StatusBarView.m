@@ -55,7 +55,7 @@ static CGFloat StatusBarViewLeft = 6;
         [[NSColor clearColor] setFill];
     }
     
-    NSLog(@"witdh : %f", rect.size.width);
+    // NSLog(@"witdh : %f", rect.size.width);
     
     // 直角填充
     //CGRect fillRect = CGRectMake(self.subtitleTF.frame.origin.x, self.subtitleTF.frame.origin.y, CGRectGetMaxX(self.hotkeyTF.frame) -self.subtitleTF.frame.origin.x, rect.size.height);

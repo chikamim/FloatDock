@@ -16,11 +16,15 @@ NS_ASSUME_NONNULL_BEGIN
 + (instancetype)share;
 
 @property (nonatomic, strong) NSStatusItem * _Nullable statusItem;
+@property (nonatomic, strong) NSMutableArray * barViewArray;
+@property (nonatomic, strong) NSMutableDictionary * barViewDic;
 
 // 切换显示状态栏icon
 - (void)switchShowStatusBarAction;
 
 - (void)updateStatusBarUI;
+
+- (void)updateAppStatus:(NSDictionary *)dic;
 
 @end
 

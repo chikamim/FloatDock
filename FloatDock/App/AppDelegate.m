@@ -181,6 +181,8 @@ void UncaughtExceptionHandler(NSException *exception) {
                 });
             }
         }
+        
+        [[StatusBarTool share] updateAppStatus:dic];
     }];
 }
 

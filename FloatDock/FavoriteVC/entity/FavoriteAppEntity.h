@@ -22,6 +22,8 @@ static CGFloat ImageStatusBarWidth = 20;
 //@property (nonatomic        ) NSInteger  index;
 @property (nonatomic, copy  ) NSString * name;
 @property (nonatomic, copy  ) NSString * path;
+//@property (nonatomic, copy  ) NSString * pathUrlCode;
+
 @property (nonatomic, strong) NSImage<Ignore> * imageFavorite;// 收藏页面用的图片
 @property (nonatomic, strong) NSImage<Ignore> * imageMenu;    // menu中用的图片
 @property (nonatomic, strong) NSImage<Ignore> * imageStatusBar;    // menu中用的图片
