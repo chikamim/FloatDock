@@ -22,11 +22,14 @@ typedef void(^StatusBarViewBlockPVoid) (StatusBarView * statusBarView);
 @property (nonatomic, strong) NSTextField * nameTF;
 @property (nonatomic, strong) NSTextField * hotkeyTF;
 @property (nonatomic, strong) NSTextField * statusTF;
+@property (nonatomic        ) BOOL          hotkeyEnable;
 
 @property (nonatomic        ) NSInteger     number;
 @property (nonatomic, weak  ) FavoriteAppEntity * weakFavoriteAppEntity;
 
 @property (nonatomic, copy  ) StatusBarViewBlockPVoid selectBlock;
+
+- (void)updateHotKeyTfColor;
 
 @end
 

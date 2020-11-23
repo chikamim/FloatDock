@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 static CGFloat imageFavoriteWidth  = 32; // 和FavoriteCellHeight的值一样
 static CGFloat ImageMenuWidth      = 18;
-static CGFloat ImageStatusBarWidth = 20;
+static CGFloat ImageStatusBarWidth = 22;
 
 
 @protocol FavoriteAppEntity;

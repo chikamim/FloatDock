@@ -130,12 +130,11 @@
             StatusBarView * view = [StatusBarView new];
             
             view.number = i;
-            [view.iconBT setImage:entity.imageMenu];
+            [view.iconBT setImage:entity.imageStatusBar];
             view.nameTF.stringValue   = entity.name;
             view.hotkeyTF.stringValue = entity.hotKey.length>0 ? entity.hotKey : @"";
-            //view.statusTF.hidden      = !entity.enable || entity.hotKey.length==0;
-            BOOL hotkeyEnable = entity.enable && entity.hotKey.length>1;
-            view.hotkeyTF.textColor = hotkeyEnable ? NSColor.textColor:NSColor.selectedTextColor ;
+            view.hotkeyEnable = entity.enable && entity.hotKey.length>1;
+            [view updateHotKeyTfColor];
             
             view.selectBlock = ^(StatusBarView * _Nonnull statusBarView) { @strongify(self); [self appAction:statusBarView.number];};
             view.weakFavoriteAppEntity = entity;
@@ -147,8 +146,8 @@
             
             [view mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.mas_equalTo(NSEdgeInsetsZero);
-                make.height.mas_equalTo(24);
-                make.width.mas_greaterThanOrEqualTo(100);
+                make.height.mas_equalTo(27);
+                make.width.mas_greaterThanOrEqualTo(180);
             }];
             
             [item.menu addItem:mi];
