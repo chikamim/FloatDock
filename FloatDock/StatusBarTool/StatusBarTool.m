@@ -147,7 +147,7 @@
             [view mas_makeConstraints:^(MASConstraintMaker *make) {
                 make.edges.mas_equalTo(NSEdgeInsetsZero);
                 make.height.mas_equalTo(27);
-                make.width.mas_greaterThanOrEqualTo(180);
+                make.width.mas_greaterThanOrEqualTo(230);
             }];
             
             [item.menu addItem:mi];
