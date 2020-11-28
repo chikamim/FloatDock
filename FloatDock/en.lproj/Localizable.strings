@@ -30,6 +30,7 @@
 
 "FD_StatusBarIconSwitch" = "Show/Close Status Bar Icon";
 "FD_StatusBarIconClose"  = "Close Status Bar Icon";
+"FD_StatusBarIconQuit"   = "Quit";
 
 
 "FD_TipGlobalHotkey"     = "Global Hotkey need your authorization, please add and select FloatDock In [System Preferences] > [Security & Privacy] > [Accessibility], then reload FloatDock.";

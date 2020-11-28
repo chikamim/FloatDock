@@ -92,6 +92,12 @@
                 
                 [item.menu addItem:mi];
             }
+            {   // "退出";
+                NSMenuItem * mi = [[NSMenuItem alloc] initWithTitle:NSLS(@"FD_StatusBarIconQuit") action:@selector(menuExit) keyEquivalent:@""];
+                mi.target = self;
+                
+                [item.menu addItem:mi];
+            }
         }
         {   // 横线
             NSMenuItem * mi = [NSMenuItem separatorItem];
@@ -160,7 +166,7 @@
 //- (void)statusItemAction:(NSStatusItem *)item {NSLog(@"%s", __func__); }
 
 - (void)menuExit {
-    NSLog(@"exit");
+    exit(0);
 }
 
 - (void)switchShowStatusBarAction {

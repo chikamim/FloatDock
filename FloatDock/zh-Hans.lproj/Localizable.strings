@@ -31,6 +31,7 @@
 
 "FD_StatusBarIconSwitch" = "显示/关闭状态栏图标";
 "FD_StatusBarIconClose"  = "关闭状态栏图标";
+"FD_StatusBarIconQuit"   = "退出";
 
 "FD_TipGlobalHotkey"     = "全局快捷键需要您在 [系统偏好设置] > [安全与隐私] > [辅助功能] 中添加并且选中 FloatDock, 并且重启APP.";
 "FD_DefaultHotkey"       = "请设置";
