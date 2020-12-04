@@ -168,9 +168,15 @@ static CGFloat DockInfoCVLeftRight = 15;
         
         for (int i = 0; i<array.count; i++) {
             NSString * path = [array[i] path];
-            path = [NSString stringWithFormat:@"file://%@/", path];
-            
-            [self.appInfoEntity.appPathArray addObject:path];
+            BOOL isDir;
+            [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir];
+            if ([path hasSuffix:@".app"]) {
+                [self.appInfoEntity.appPathArray addObject:[NSString stringWithFormat:@"file://%@/", path]];
+            } else if (isDir) {
+                [[NSWorkspace sharedWorkspace] openFile:path withApplication:@"Visual Studio Code"];
+            } else  {
+                [[NSWorkspace sharedWorkspace] openFile:path withApplication:@"CotEditor"];
+            }
         }
         
         [self updateWindowFrame];

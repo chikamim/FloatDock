@@ -39,8 +39,8 @@ static NSInteger AppSizeWidthMin = 20;
         CGSize size = [NSScreen mainScreen].frame.size;
         entity.windowX = size.width/2.0;
         entity.windowY = size.height/2.0;
-        [entity.appPathArray addObject:@""];
-        
+        [entity.appPathArray addObject:@"file:///System/Library/CoreServices/Finder.app/"];
+
         [self.appInfoTool.appInfoArrayEntity.windowArray addObject:entity];
     }
     
@@ -75,7 +75,7 @@ static NSInteger AppSizeWidthMin = 20;
     }
     entity.windowX = origin.x + 10;
     entity.windowY = origin.y + 10;
-    [entity.appPathArray addObject:@""];
+    [entity.appPathArray addObject:@"file:///System/Library/CoreServices/Finder.app/"];
     [self.appInfoTool.appInfoArrayEntity.windowArray addObject:entity];
     
     [self showNewDock:entity];
