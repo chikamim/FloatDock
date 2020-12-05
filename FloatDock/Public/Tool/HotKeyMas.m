@@ -14,7 +14,7 @@
 #import <MASShortcut/MASShortcutBinder.h>
 #import <MASShortcut/MASDictionaryTransformer.h>
 
-#import "HotKeyPermission.h"
+//#import "HotKeyPermission.h"
 
 NSString * const MMShortcutSettingLockScreen = @"lockScreenShortcut";
 NSString * const MMShortcutSettingLockScreen_2 = @"lockScreenShortcut_2";

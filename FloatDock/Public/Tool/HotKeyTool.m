@@ -12,9 +12,8 @@
 
 #import "DataSavePath.h"
 #import "NSParameterName.h"
-//#import <PoporAFN/PoporAFN.h>
 #import "HotKeyMas.h"
-#import "StatusBarTool.h"
+
 
 static NSString * FavoriteDBPath = @"favority";
 
@@ -104,7 +103,7 @@ static NSString * FavoriteDBPath = @"favority";
     [self saveAppInfoArrayEntity:self.favoriteAppArrayEntity];
     [self updateHotkeyDic];
     
-    [[StatusBarTool share] updateStatusBarUI];
+    //[[StatusBarTool share] updateStatusBarUI];
 }
 
 - (void)updateHotkeyDic {

@@ -8,18 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		C309AF492510B3880029C12B /* HotKeyMas.m in Sources */ = {isa = PBXBuildFile; fileRef = C309AF482510B3880029C12B /* HotKeyMas.m */; };
-		C315493E2567C9E600185918 /* StatusBarView.m in Sources */ = {isa = PBXBuildFile; fileRef = C315493D2567C9E600185918 /* StatusBarView.m */; };
-		C37DA81B256773A300D67AD2 /* StatusBarTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C37DA81A256773A300D67AD2 /* StatusBarTool.m */; };
 		C37DA83325678EDB00D67AD2 /* ZLImage.m in Sources */ = {isa = PBXBuildFile; fileRef = C37DA83225678EDB00D67AD2 /* ZLImage.m */; };
-		C3D1D08525119B4C00D7A596 /* HotKeyToolGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D08425119B4C00D7A596 /* HotKeyToolGlobal.m */; };
-		C3D1D0892511A87000D7A596 /* TestJsCode.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D0882511A87000D7A596 /* TestJsCode.m */; };
 		C3D1D08C2511A8F000D7A596 /* HotKeyLocal.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D08B2511A8F000D7A596 /* HotKeyLocal.m */; };
-		C3D1D08F2511B39100D7A596 /* HotKeyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D08E2511B39100D7A596 /* HotKeyPermission.m */; };
 		C3D1D0A12511DB9E00D7A596 /* FloatDockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D0992511DB9E00D7A596 /* FloatDockVC.m */; };
-		C3D1D0A22511DB9E00D7A596 /* FloatDockVCInteractor.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D09D2511DB9E00D7A596 /* FloatDockVCInteractor.m */; };
 		C3D1D0A32511DB9E00D7A596 /* FloatDockVCPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D09F2511DB9E00D7A596 /* FloatDockVCPresenter.m */; };
 		C3D1D0A92511E10600D7A596 /* AppIconItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D0A82511E10600D7A596 /* AppIconItem.m */; };
-		C3F2BB30250CA91600543FDF /* PoporUncaughtExceptionHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = C3F2BB2F250CA91600543FDF /* PoporUncaughtExceptionHandler.m */; };
+		DDDABA27257B8F900025CE73 /* HotKeyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDABA25257B8F900025CE73 /* HotKeyPermission.m */; };
 		E43781C12453291B00AA785B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781C02453291B00AA785B /* AppDelegate.m */; };
 		E43781C62453291C00AA785B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E43781C52453291C00AA785B /* Assets.xcassets */; };
 		E43781C92453291C00AA785B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E43781C72453291C00AA785B /* Main.storyboard */; };
@@ -29,12 +23,9 @@
 		E43781E324542D6A00AA785B /* DataSavePath.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781E224542D6A00AA785B /* DataSavePath.m */; };
 		E43781F524545A1900AA785B /* FloatWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781F424545A1900AA785B /* FloatWindow.m */; };
 		E43782202454777100AA785B /* whitePoint@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E437821F2454777100AA785B /* whitePoint@2x.png */; };
-		E437822324547BB700AA785B /* AppInfoView.m in Sources */ = {isa = PBXBuildFile; fileRef = E437822224547BB700AA785B /* AppInfoView.m */; };
-		E437822924549E8400AA785B /* icon48@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E437822824549E8400AA785B /* icon48@2x.png */; };
 		E4378235245582D900AA785B /* AppWindowTool.m in Sources */ = {isa = PBXBuildFile; fileRef = E4378234245582D900AA785B /* AppWindowTool.m */; };
 		E48A584D245BD1E8008B8C08 /* FavoriteVM.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A584C245BD1E8008B8C08 /* FavoriteVM.m */; };
 		E48A5859245DB6C3008B8C08 /* NSParameterName.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A5858245DB6C3008B8C08 /* NSParameterName.m */; };
-		E48A585C245EBD73008B8C08 /* KeyboardConvert.m in Sources */ = {isa = PBXBuildFile; fileRef = E48A585B245EBD73008B8C08 /* KeyboardConvert.m */; };
 		E48A5869245EF546008B8C08 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = E48A586B245EF546008B8C08 /* Localizable.strings */; };
 		E4C7F07C24585F3E00B73296 /* AlphaSetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F07B24585F3E00B73296 /* AlphaSetVC.m */; };
 		E4C7F1372459317F00B73296 /* FavoriteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1362459317F00B73296 /* FavoriteVC.m */; };
@@ -46,7 +37,6 @@
 		E4C7F14F2459751700B73296 /* LLCustomBT.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F14A2459751700B73296 /* LLCustomBT.m */; };
 		E4C7F1502459751700B73296 /* EditableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F14B2459751700B73296 /* EditableTextField.m */; };
 		E4C7F1522459A3F000B73296 /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C7F1512459A3F000B73296 /* delete@2x.png */; };
-		E4C7F1592459DAED00B73296 /* NSWindow+beep.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F1582459DAED00B73296 /* NSWindow+beep.m */; };
 		E4C7F162245A819B00B73296 /* FavoriteWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F161245A819B00B73296 /* FavoriteWindow.m */; };
 		E97881DF951C3A94C79F92A5 /* Pods_FloatDock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4376660DB09AC0CFCDE5409 /* Pods_FloatDock.framework */; };
 /* End PBXBuildFile section */
@@ -57,31 +47,19 @@
 		B4376660DB09AC0CFCDE5409 /* Pods_FloatDock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FloatDock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C309AF472510B3880029C12B /* HotKeyMas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotKeyMas.h; sourceTree = "<group>"; };
 		C309AF482510B3880029C12B /* HotKeyMas.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotKeyMas.m; sourceTree = "<group>"; };
-		C315493C2567C9E600185918 /* StatusBarView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusBarView.h; sourceTree = "<group>"; };
-		C315493D2567C9E600185918 /* StatusBarView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatusBarView.m; sourceTree = "<group>"; };
-		C37DA819256773A300D67AD2 /* StatusBarTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StatusBarTool.h; sourceTree = "<group>"; };
-		C37DA81A256773A300D67AD2 /* StatusBarTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StatusBarTool.m; sourceTree = "<group>"; };
 		C37DA83125678EDB00D67AD2 /* ZLImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLImage.h; sourceTree = "<group>"; };
 		C37DA83225678EDB00D67AD2 /* ZLImage.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ZLImage.m; sourceTree = "<group>"; };
-		C3D1D08325119B4C00D7A596 /* HotKeyToolGlobal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotKeyToolGlobal.h; sourceTree = "<group>"; };
-		C3D1D08425119B4C00D7A596 /* HotKeyToolGlobal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotKeyToolGlobal.m; sourceTree = "<group>"; };
-		C3D1D0872511A87000D7A596 /* TestJsCode.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestJsCode.h; sourceTree = "<group>"; };
-		C3D1D0882511A87000D7A596 /* TestJsCode.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TestJsCode.m; sourceTree = "<group>"; };
 		C3D1D08A2511A8F000D7A596 /* HotKeyLocal.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotKeyLocal.h; sourceTree = "<group>"; };
 		C3D1D08B2511A8F000D7A596 /* HotKeyLocal.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotKeyLocal.m; sourceTree = "<group>"; };
-		C3D1D08D2511B39100D7A596 /* HotKeyPermission.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotKeyPermission.h; sourceTree = "<group>"; };
-		C3D1D08E2511B39100D7A596 /* HotKeyPermission.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotKeyPermission.m; sourceTree = "<group>"; };
 		C3D1D0982511DB9E00D7A596 /* FloatDockVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatDockVC.h; sourceTree = "<group>"; };
 		C3D1D0992511DB9E00D7A596 /* FloatDockVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatDockVC.m; sourceTree = "<group>"; };
 		C3D1D09A2511DB9E00D7A596 /* FloatDockVCProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatDockVCProtocol.h; sourceTree = "<group>"; };
-		C3D1D09C2511DB9E00D7A596 /* FloatDockVCInteractor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatDockVCInteractor.h; sourceTree = "<group>"; };
-		C3D1D09D2511DB9E00D7A596 /* FloatDockVCInteractor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatDockVCInteractor.m; sourceTree = "<group>"; };
 		C3D1D09F2511DB9E00D7A596 /* FloatDockVCPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FloatDockVCPresenter.m; sourceTree = "<group>"; };
 		C3D1D0A02511DB9E00D7A596 /* FloatDockVCPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatDockVCPresenter.h; sourceTree = "<group>"; };
 		C3D1D0A72511E10600D7A596 /* AppIconItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppIconItem.h; sourceTree = "<group>"; };
 		C3D1D0A82511E10600D7A596 /* AppIconItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppIconItem.m; sourceTree = "<group>"; };
-		C3F2BB2E250CA91600543FDF /* PoporUncaughtExceptionHandler.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PoporUncaughtExceptionHandler.h; sourceTree = "<group>"; };
-		C3F2BB2F250CA91600543FDF /* PoporUncaughtExceptionHandler.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PoporUncaughtExceptionHandler.m; sourceTree = "<group>"; };
+		DDDABA25257B8F900025CE73 /* HotKeyPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HotKeyPermission.m; path = FloatDock/Public/Tool/HotKeyPermission.m; sourceTree = SOURCE_ROOT; };
+		DDDABA26257B8F900025CE73 /* HotKeyPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HotKeyPermission.h; path = FloatDock/Public/Tool/HotKeyPermission.h; sourceTree = SOURCE_ROOT; };
 		E43781BC2453291B00AA785B /* FloatDock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatDock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E43781BF2453291B00AA785B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E43781C02453291B00AA785B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -98,19 +76,13 @@
 		E43781E224542D6A00AA785B /* DataSavePath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSavePath.m; sourceTree = "<group>"; };
 		E43781F324545A1900AA785B /* FloatWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FloatWindow.h; sourceTree = "<group>"; };
 		E43781F424545A1900AA785B /* FloatWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FloatWindow.m; sourceTree = "<group>"; };
-		E437821F2454777100AA785B /* whitePoint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "whitePoint@2x.png"; sourceTree = SOURCE_ROOT; };
-		E437822124547BB700AA785B /* AppInfoView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppInfoView.h; sourceTree = "<group>"; };
-		E437822224547BB700AA785B /* AppInfoView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppInfoView.m; sourceTree = "<group>"; };
-		E437822824549E8400AA785B /* icon48@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon48@2x.png"; sourceTree = SOURCE_ROOT; };
+		E437821F2454777100AA785B /* whitePoint@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "whitePoint@2x.png"; path = "FloatDock/whitePoint@2x.png"; sourceTree = SOURCE_ROOT; };
 		E4378233245582D900AA785B /* AppWindowTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppWindowTool.h; sourceTree = "<group>"; };
 		E4378234245582D900AA785B /* AppWindowTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppWindowTool.m; sourceTree = "<group>"; };
 		E48A584B245BD1E8008B8C08 /* FavoriteVM.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteVM.h; sourceTree = "<group>"; };
 		E48A584C245BD1E8008B8C08 /* FavoriteVM.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteVM.m; sourceTree = "<group>"; };
-		E48A5855245DAF6E008B8C08 /* work.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = work.txt; sourceTree = "<group>"; };
 		E48A5857245DB6C3008B8C08 /* NSParameterName.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSParameterName.h; sourceTree = "<group>"; };
 		E48A5858245DB6C3008B8C08 /* NSParameterName.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSParameterName.m; sourceTree = "<group>"; };
-		E48A585A245EBD73008B8C08 /* KeyboardConvert.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KeyboardConvert.h; sourceTree = "<group>"; };
-		E48A585B245EBD73008B8C08 /* KeyboardConvert.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KeyboardConvert.m; sourceTree = "<group>"; };
 		E48A585E245EEF5B008B8C08 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Main.strings"; sourceTree = "<group>"; };
 		E48A5866245EF463008B8C08 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		E48A586A245EF546008B8C08 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -134,9 +106,7 @@
 		E4C7F1482459751700B73296 /* JHLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JHLabel.h; sourceTree = "<group>"; };
 		E4C7F14A2459751700B73296 /* LLCustomBT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LLCustomBT.m; sourceTree = "<group>"; };
 		E4C7F14B2459751700B73296 /* EditableTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableTextField.m; sourceTree = "<group>"; };
-		E4C7F1512459A3F000B73296 /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "delete@2x.png"; sourceTree = SOURCE_ROOT; };
-		E4C7F1572459DAED00B73296 /* NSWindow+beep.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSWindow+beep.h"; sourceTree = "<group>"; };
-		E4C7F1582459DAED00B73296 /* NSWindow+beep.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSWindow+beep.m"; sourceTree = "<group>"; };
+		E4C7F1512459A3F000B73296 /* delete@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "delete@2x.png"; path = "FloatDock/delete@2x.png"; sourceTree = SOURCE_ROOT; };
 		E4C7F160245A819B00B73296 /* FavoriteWindow.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FavoriteWindow.h; sourceTree = "<group>"; };
 		E4C7F161245A819B00B73296 /* FavoriteWindow.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FavoriteWindow.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -162,17 +132,6 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		C37DA818256772DE00D67AD2 /* StatusBarTool */ = {
-			isa = PBXGroup;
-			children = (
-				C37DA819256773A300D67AD2 /* StatusBarTool.h */,
-				C37DA81A256773A300D67AD2 /* StatusBarTool.m */,
-				C315493C2567C9E600185918 /* StatusBarView.h */,
-				C315493D2567C9E600185918 /* StatusBarView.m */,
-			);
-			path = StatusBarTool;
-			sourceTree = "<group>";
-		};
 		C37DA83025678ECB00D67AD2 /* NSImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,17 +150,10 @@
 				C3D1D08B2511A8F000D7A596 /* HotKeyLocal.m */,
 				C309AF472510B3880029C12B /* HotKeyMas.h */,
 				C309AF482510B3880029C12B /* HotKeyMas.m */,
+				DDDABA26257B8F900025CE73 /* HotKeyPermission.h */,
+				DDDABA25257B8F900025CE73 /* HotKeyPermission.m */,
 			);
 			path = Tool;
-			sourceTree = "<group>";
-		};
-		C3B3FE0A2513155600642A6B /* 异常 */ = {
-			isa = PBXGroup;
-			children = (
-				C3F2BB2E250CA91600543FDF /* PoporUncaughtExceptionHandler.h */,
-				C3F2BB2F250CA91600543FDF /* PoporUncaughtExceptionHandler.m */,
-			);
-			path = "异常";
 			sourceTree = "<group>";
 		};
 		C3B3FE0B2513155F00642A6B /* md5 */ = {
@@ -216,94 +168,65 @@
 		C3D1D0862511A80500D7A596 /* backup */ = {
 			isa = PBXGroup;
 			children = (
-				C3D1D08D2511B39100D7A596 /* HotKeyPermission.h */,
-				C3D1D08E2511B39100D7A596 /* HotKeyPermission.m */,
-				C3D1D08325119B4C00D7A596 /* HotKeyToolGlobal.h */,
-				C3D1D08425119B4C00D7A596 /* HotKeyToolGlobal.m */,
-				C3D1D0872511A87000D7A596 /* TestJsCode.h */,
-				C3D1D0882511A87000D7A596 /* TestJsCode.m */,
-				E48A585A245EBD73008B8C08 /* KeyboardConvert.h */,
-				E48A585B245EBD73008B8C08 /* KeyboardConvert.m */,
 			);
 			path = backup;
 			sourceTree = "<group>";
 		};
-		C3D1D0902511DB7C00D7A596 /* FloatDockVC */ = {
-			isa = PBXGroup;
-			children = (
-				E43781E424543BE900AA785B /* tool */,
-				E43781D52453305300AA785B /* entity */,
-				C3D1D0A42511DBB800D7A596 /* cell */,
-				C3D1D0972511DB9E00D7A596 /* View */,
-				C3D1D09E2511DB9E00D7A596 /* Presenter */,
-				C3D1D09B2511DB9E00D7A596 /* Interactor */,
-			);
-			path = FloatDockVC;
-			sourceTree = "<group>";
-		};
-		C3D1D0972511DB9E00D7A596 /* View */ = {
+		DDDABA21257B8DC20025CE73 /* Dock */ = {
 			isa = PBXGroup;
 			children = (
 				C3D1D0982511DB9E00D7A596 /* FloatDockVC.h */,
 				C3D1D0992511DB9E00D7A596 /* FloatDockVC.m */,
 				C3D1D09A2511DB9E00D7A596 /* FloatDockVCProtocol.h */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		C3D1D09B2511DB9E00D7A596 /* Interactor */ = {
-			isa = PBXGroup;
-			children = (
-				C3D1D09C2511DB9E00D7A596 /* FloatDockVCInteractor.h */,
-				C3D1D09D2511DB9E00D7A596 /* FloatDockVCInteractor.m */,
-			);
-			path = Interactor;
-			sourceTree = "<group>";
-		};
-		C3D1D09E2511DB9E00D7A596 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
 				C3D1D0A02511DB9E00D7A596 /* FloatDockVCPresenter.h */,
 				C3D1D09F2511DB9E00D7A596 /* FloatDockVCPresenter.m */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
-		C3D1D0A42511DBB800D7A596 /* cell */ = {
-			isa = PBXGroup;
-			children = (
-				C3D1D0A62511DFB700D7A596 /* cc */,
-				E43781E624543EF700AA785B /* AppInfoView */,
-				E43781F2245459EC00AA785B /* FloatWindow */,
-				E43781F12454572900AA785B /* AcceptDragFileView */,
-				C3D1D0A52511DCF300D7A596 /* NSWindow */,
-			);
-			path = cell;
-			sourceTree = "<group>";
-		};
-		C3D1D0A52511DCF300D7A596 /* NSWindow */ = {
-			isa = PBXGroup;
-			children = (
-				E4C7F1572459DAED00B73296 /* NSWindow+beep.h */,
-				E4C7F1582459DAED00B73296 /* NSWindow+beep.m */,
-			);
-			path = NSWindow;
-			sourceTree = "<group>";
-		};
-		C3D1D0A62511DFB700D7A596 /* cc */ = {
-			isa = PBXGroup;
-			children = (
+				E43781F324545A1900AA785B /* FloatWindow.h */,
+				E43781F424545A1900AA785B /* FloatWindow.m */,
 				C3D1D0A72511E10600D7A596 /* AppIconItem.h */,
 				C3D1D0A82511E10600D7A596 /* AppIconItem.m */,
+				E43781DB2453FC3500AA785B /* AcceptDragFileView.h */,
+				E43781DC2453FC3500AA785B /* AcceptDragFileView.m */,
+				E43781D62453306900AA785B /* AppInfoEntity.h */,
+				E43781D72453306900AA785B /* AppInfoEntity.m */,
+				E43781E124542D6A00AA785B /* DataSavePath.h */,
+				E43781E224542D6A00AA785B /* DataSavePath.m */,
 			);
-			path = cc;
+			path = Dock;
+			sourceTree = "<group>";
+		};
+		DDDABA22257B8E090025CE73 /* Preferences */ = {
+			isa = PBXGroup;
+			children = (
+				E4378233245582D900AA785B /* AppWindowTool.h */,
+				E4378234245582D900AA785B /* AppWindowTool.m */,
+				E4C7F1352459317F00B73296 /* FavoriteVC.h */,
+				E4C7F1362459317F00B73296 /* FavoriteVC.m */,
+				E48A584B245BD1E8008B8C08 /* FavoriteVM.h */,
+				E48A584C245BD1E8008B8C08 /* FavoriteVM.m */,
+				E4C7F1382459321500B73296 /* FavoriteAppEntity.h */,
+				E4C7F1392459321500B73296 /* FavoriteAppEntity.m */,
+				E4C7F13E2459729900B73296 /* FavoriteColumnEntity.h */,
+				E4C7F13F2459729900B73296 /* FavoriteColumnEntity.m */,
+				E4C7F160245A819B00B73296 /* FavoriteWindow.h */,
+				E4C7F161245A819B00B73296 /* FavoriteWindow.m */,
+				E4C7F1472459751700B73296 /* NSView+Address.h */,
+				E4C7F1422459751700B73296 /* NSView+Address.m */,
+				E4C7F1482459751700B73296 /* JHLabel.h */,
+				E4C7F1442459751700B73296 /* JHLabel.m */,
+				E4C7F1452459751700B73296 /* EditableTextField.h */,
+				E4C7F14B2459751700B73296 /* EditableTextField.m */,
+				E4C7F1462459751700B73296 /* LLCustomBT.h */,
+				E4C7F14A2459751700B73296 /* LLCustomBT.m */,
+				E4C7F07A24585F3E00B73296 /* AlphaSetVC.h */,
+				E4C7F07B24585F3E00B73296 /* AlphaSetVC.m */,
+			);
+			path = Preferences;
 			sourceTree = "<group>";
 		};
 		E43781B32453291B00AA785B = {
 			isa = PBXGroup;
 			children = (
 				E43781BE2453291B00AA785B /* FloatDock */,
-				E43782242454862E00AA785B /* bake */,
 				E43781BD2453291B00AA785B /* Products */,
 				5A5A381BF17EDF0DD13140F4 /* Pods */,
 				FF76C8A160FF392FDD2F7FA6 /* Frameworks */,
@@ -321,125 +244,23 @@
 		E43781BE2453291B00AA785B /* FloatDock */ = {
 			isa = PBXGroup;
 			children = (
-				E48A5855245DAF6E008B8C08 /* work.txt */,
-				E48A586B245EF546008B8C08 /* Localizable.strings */,
-				E43781D32453292B00AA785B /* other */,
+				DDDABA21257B8DC20025CE73 /* Dock */,
+				DDDABA22257B8E090025CE73 /* Preferences */,
 				E48A5856245DB62E008B8C08 /* Public */,
-				E437823124557D5200AA785B /* App */,
-				C3D1D0902511DB7C00D7A596 /* FloatDockVC */,
-				E4C7F07924585F1D00B73296 /* AlphaSetVC */,
-				E4C7F1342459312D00B73296 /* FavoriteVC */,
-				C37DA818256772DE00D67AD2 /* StatusBarTool */,
-			);
-			path = FloatDock;
-			sourceTree = "<group>";
-		};
-		E43781D32453292B00AA785B /* other */ = {
-			isa = PBXGroup;
-			children = (
-				E48A586E245EF796008B8C08 /* FloatDock-prefix.pch */,
-				E4C7F1512459A3F000B73296 /* delete@2x.png */,
-				E437822824549E8400AA785B /* icon48@2x.png */,
-				E437821F2454777100AA785B /* whitePoint@2x.png */,
-				E43781C52453291C00AA785B /* Assets.xcassets */,
-				E43781C72453291C00AA785B /* Main.storyboard */,
-				E43781CA2453291C00AA785B /* Info.plist */,
 				E43781CB2453291C00AA785B /* main.m */,
-				E43781CD2453291C00AA785B /* FloatDock.entitlements */,
-			);
-			name = other;
-			sourceTree = "<group>";
-		};
-		E43781D52453305300AA785B /* entity */ = {
-			isa = PBXGroup;
-			children = (
-				E43781D62453306900AA785B /* AppInfoEntity.h */,
-				E43781D72453306900AA785B /* AppInfoEntity.m */,
-			);
-			path = entity;
-			sourceTree = "<group>";
-		};
-		E43781E424543BE900AA785B /* tool */ = {
-			isa = PBXGroup;
-			children = (
-				E43781E124542D6A00AA785B /* DataSavePath.h */,
-				E43781E224542D6A00AA785B /* DataSavePath.m */,
-			);
-			path = tool;
-			sourceTree = "<group>";
-		};
-		E43781E624543EF700AA785B /* AppInfoView */ = {
-			isa = PBXGroup;
-			children = (
-				E437822124547BB700AA785B /* AppInfoView.h */,
-				E437822224547BB700AA785B /* AppInfoView.m */,
-			);
-			path = AppInfoView;
-			sourceTree = "<group>";
-		};
-		E43781F12454572900AA785B /* AcceptDragFileView */ = {
-			isa = PBXGroup;
-			children = (
-				E43781DB2453FC3500AA785B /* AcceptDragFileView.h */,
-				E43781DC2453FC3500AA785B /* AcceptDragFileView.m */,
-			);
-			path = AcceptDragFileView;
-			sourceTree = "<group>";
-		};
-		E43781F2245459EC00AA785B /* FloatWindow */ = {
-			isa = PBXGroup;
-			children = (
-				E43781F324545A1900AA785B /* FloatWindow.h */,
-				E43781F424545A1900AA785B /* FloatWindow.m */,
-			);
-			path = FloatWindow;
-			sourceTree = "<group>";
-		};
-		E43782242454862E00AA785B /* bake */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = bake;
-			sourceTree = "<group>";
-		};
-		E437823124557D5200AA785B /* App */ = {
-			isa = PBXGroup;
-			children = (
 				E43781BF2453291B00AA785B /* AppDelegate.h */,
 				E43781C02453291B00AA785B /* AppDelegate.m */,
-				E4378233245582D900AA785B /* AppWindowTool.h */,
-				E4378234245582D900AA785B /* AppWindowTool.m */,
+				E43781CA2453291C00AA785B /* Info.plist */,
+				E43781CD2453291C00AA785B /* FloatDock.entitlements */,
+				E43781C72453291C00AA785B /* Main.storyboard */,
+				E43781C52453291C00AA785B /* Assets.xcassets */,
+				E437821F2454777100AA785B /* whitePoint@2x.png */,
+				E4C7F1512459A3F000B73296 /* delete@2x.png */,
+				E48A586E245EF796008B8C08 /* FloatDock-prefix.pch */,
+				E48A586B245EF546008B8C08 /* Localizable.strings */,
+				E4C7F1342459312D00B73296 /* FavoriteVC */,
 			);
-			path = App;
-			sourceTree = "<group>";
-		};
-		E48A5847245BC6C3008B8C08 /* entity */ = {
-			isa = PBXGroup;
-			children = (
-				E4C7F1382459321500B73296 /* FavoriteAppEntity.h */,
-				E4C7F1392459321500B73296 /* FavoriteAppEntity.m */,
-				E4C7F13E2459729900B73296 /* FavoriteColumnEntity.h */,
-				E4C7F13F2459729900B73296 /* FavoriteColumnEntity.m */,
-			);
-			path = entity;
-			sourceTree = "<group>";
-		};
-		E48A5849245BC723008B8C08 /* window */ = {
-			isa = PBXGroup;
-			children = (
-				E4C7F160245A819B00B73296 /* FavoriteWindow.h */,
-				E4C7F161245A819B00B73296 /* FavoriteWindow.m */,
-			);
-			path = window;
-			sourceTree = "<group>";
-		};
-		E48A584A245BD197008B8C08 /* FavoriteVM */ = {
-			isa = PBXGroup;
-			children = (
-				E48A584B245BD1E8008B8C08 /* FavoriteVM.h */,
-				E48A584C245BD1E8008B8C08 /* FavoriteVM.m */,
-			);
-			path = FavoriteVM;
+			path = FloatDock;
 			sourceTree = "<group>";
 		};
 		E48A5856245DB62E008B8C08 /* Public */ = {
@@ -447,48 +268,17 @@
 			children = (
 				C37DA83025678ECB00D67AD2 /* NSImage */,
 				C3B3FE0B2513155F00642A6B /* md5 */,
-				C3B3FE0A2513155600642A6B /* 异常 */,
 				C3B3FE092513151500642A6B /* Tool */,
 			);
 			path = Public;
 			sourceTree = "<group>";
 		};
-		E4C7F07924585F1D00B73296 /* AlphaSetVC */ = {
-			isa = PBXGroup;
-			children = (
-				E4C7F07A24585F3E00B73296 /* AlphaSetVC.h */,
-				E4C7F07B24585F3E00B73296 /* AlphaSetVC.m */,
-			);
-			path = AlphaSetVC;
-			sourceTree = "<group>";
-		};
 		E4C7F1342459312D00B73296 /* FavoriteVC */ = {
 			isa = PBXGroup;
 			children = (
-				E4C7F1352459317F00B73296 /* FavoriteVC.h */,
-				E4C7F1362459317F00B73296 /* FavoriteVC.m */,
-				E48A584A245BD197008B8C08 /* FavoriteVM */,
-				E48A5847245BC6C3008B8C08 /* entity */,
-				E4C7F1412459751700B73296 /* view */,
-				E48A5849245BC723008B8C08 /* window */,
 				C3D1D0862511A80500D7A596 /* backup */,
 			);
 			path = FavoriteVC;
-			sourceTree = "<group>";
-		};
-		E4C7F1412459751700B73296 /* view */ = {
-			isa = PBXGroup;
-			children = (
-				E4C7F1472459751700B73296 /* NSView+Address.h */,
-				E4C7F1422459751700B73296 /* NSView+Address.m */,
-				E4C7F1482459751700B73296 /* JHLabel.h */,
-				E4C7F1442459751700B73296 /* JHLabel.m */,
-				E4C7F1452459751700B73296 /* EditableTextField.h */,
-				E4C7F14B2459751700B73296 /* EditableTextField.m */,
-				E4C7F1462459751700B73296 /* LLCustomBT.h */,
-				E4C7F14A2459751700B73296 /* LLCustomBT.m */,
-			);
-			path = view;
 			sourceTree = "<group>";
 		};
 		FF76C8A160FF392FDD2F7FA6 /* Frameworks */ = {
@@ -564,7 +354,6 @@
 				E43782202454777100AA785B /* whitePoint@2x.png in Resources */,
 				E43781C92453291C00AA785B /* Main.storyboard in Resources */,
 				E48A5869245EF546008B8C08 /* Localizable.strings in Resources */,
-				E437822924549E8400AA785B /* icon48@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -617,38 +406,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3D1D0892511A87000D7A596 /* TestJsCode.m in Sources */,
-				C3D1D08525119B4C00D7A596 /* HotKeyToolGlobal.m in Sources */,
 				E4C7F14C2459751700B73296 /* NSView+Address.m in Sources */,
 				E48A5859245DB6C3008B8C08 /* NSParameterName.m in Sources */,
 				E4378235245582D900AA785B /* AppWindowTool.m in Sources */,
 				C3D1D0A32511DB9E00D7A596 /* FloatDockVCPresenter.m in Sources */,
-				E437822324547BB700AA785B /* AppInfoView.m in Sources */,
 				E4C7F162245A819B00B73296 /* FavoriteWindow.m in Sources */,
 				C3D1D08C2511A8F000D7A596 /* HotKeyLocal.m in Sources */,
 				E4C7F1502459751700B73296 /* EditableTextField.m in Sources */,
-				E48A585C245EBD73008B8C08 /* KeyboardConvert.m in Sources */,
 				E4C7F07C24585F3E00B73296 /* AlphaSetVC.m in Sources */,
-				C315493E2567C9E600185918 /* StatusBarView.m in Sources */,
 				C3D1D0A92511E10600D7A596 /* AppIconItem.m in Sources */,
-				E4C7F1592459DAED00B73296 /* NSWindow+beep.m in Sources */,
 				E4C7F14D2459751700B73296 /* JHLabel.m in Sources */,
 				E43781D82453306900AA785B /* AppInfoEntity.m in Sources */,
-				C3D1D08F2511B39100D7A596 /* HotKeyPermission.m in Sources */,
 				E48A584D245BD1E8008B8C08 /* FavoriteVM.m in Sources */,
 				E4C7F14F2459751700B73296 /* LLCustomBT.m in Sources */,
 				E4C7F1372459317F00B73296 /* FavoriteVC.m in Sources */,
 				E4C7F13D245932FD00B73296 /* HotKeyTool.m in Sources */,
 				C37DA83325678EDB00D67AD2 /* ZLImage.m in Sources */,
-				C37DA81B256773A300D67AD2 /* StatusBarTool.m in Sources */,
 				E43781CC2453291C00AA785B /* main.m in Sources */,
 				E43781C12453291B00AA785B /* AppDelegate.m in Sources */,
 				E4C7F1402459729900B73296 /* FavoriteColumnEntity.m in Sources */,
-				C3F2BB30250CA91600543FDF /* PoporUncaughtExceptionHandler.m in Sources */,
 				E43781F524545A1900AA785B /* FloatWindow.m in Sources */,
-				C3D1D0A22511DB9E00D7A596 /* FloatDockVCInteractor.m in Sources */,
 				E4C7F13A2459321500B73296 /* FavoriteAppEntity.m in Sources */,
 				E43781E324542D6A00AA785B /* DataSavePath.m in Sources */,
+				DDDABA27257B8F900025CE73 /* HotKeyPermission.m in Sources */,
 				C309AF492510B3880029C12B /* HotKeyMas.m in Sources */,
 				E43781DD2453FC3500AA785B /* AcceptDragFileView.m in Sources */,
 				C3D1D0A12511DB9E00D7A596 /* FloatDockVC.m in Sources */,
@@ -801,7 +581,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 37;
-				DEVELOPMENT_TEAM = 5TP98E5R7H;
+				DEVELOPMENT_TEAM = 3UD8RC3G3X;
 				GCC_PREFIX_HEADER = "FloatDock/FloatDock-prefix.pch";
 				INFOPLIST_FILE = FloatDock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -825,7 +605,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 37;
-				DEVELOPMENT_TEAM = 5TP98E5R7H;
+				DEVELOPMENT_TEAM = 3UD8RC3G3X;
 				GCC_PREFIX_HEADER = "FloatDock/FloatDock-prefix.pch";
 				INFOPLIST_FILE = FloatDock/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

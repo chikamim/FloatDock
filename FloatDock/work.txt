@@ -1,6 +1,0 @@
-1. 右键APP添加到收藏: osx ObjectiveC Finder 右键 菜单: http://www.cocoachina.com/articles/430358, 暂时不考虑了
-2. runtime获取参数名字 完成
-3. rac性能查看
-4. 国际化 完成
-
-5. 需要增加向系统注册监听, 否则假如用户按下了 ctrl option Z, 会在编辑文本上留下 ctrl Z, 这是一个问题: 在2.0(30)中处理, 使用 MASShortcut 处理.
