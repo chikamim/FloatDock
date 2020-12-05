@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,10 @@
 		C3D1D0A12511DB9E00D7A596 /* FloatDockVC.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D0992511DB9E00D7A596 /* FloatDockVC.m */; };
 		C3D1D0A32511DB9E00D7A596 /* FloatDockVCPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D09F2511DB9E00D7A596 /* FloatDockVCPresenter.m */; };
 		C3D1D0A92511E10600D7A596 /* AppIconItem.m in Sources */ = {isa = PBXBuildFile; fileRef = C3D1D0A82511E10600D7A596 /* AppIconItem.m */; };
+		DD267413257BB29E004F6AFF /* JSONModel.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD49312D257BAD4900624B2B /* JSONModel.framework */; };
+		DD267414257BB29E004F6AFF /* Masonry.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD49313F257BAD4D00624B2B /* Masonry.framework */; };
+		DD267415257BB29E004F6AFF /* MASShortcut.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD49314A257BAD5200624B2B /* MASShortcut.framework */; };
+		DD267416257BB29E004F6AFF /* ReactiveObjC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD49315D257BAD5500624B2B /* ReactiveObjC.framework */; };
 		DDDABA27257B8F900025CE73 /* HotKeyPermission.m in Sources */ = {isa = PBXBuildFile; fileRef = DDDABA25257B8F900025CE73 /* HotKeyPermission.m */; };
 		E43781C12453291B00AA785B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E43781C02453291B00AA785B /* AppDelegate.m */; };
 		E43781C62453291C00AA785B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E43781C52453291C00AA785B /* Assets.xcassets */; };
@@ -38,13 +42,124 @@
 		E4C7F1502459751700B73296 /* EditableTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F14B2459751700B73296 /* EditableTextField.m */; };
 		E4C7F1522459A3F000B73296 /* delete@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E4C7F1512459A3F000B73296 /* delete@2x.png */; };
 		E4C7F162245A819B00B73296 /* FavoriteWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = E4C7F161245A819B00B73296 /* FavoriteWindow.m */; };
-		E97881DF951C3A94C79F92A5 /* Pods_FloatDock.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B4376660DB09AC0CFCDE5409 /* Pods_FloatDock.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		DD49312A257BAD4900624B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD493123257BAD4900624B2B /* JSONModel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 92C9BC3D1B19A51100D79B06;
+			remoteInfo = JSONModel;
+		};
+		DD49312C257BAD4900624B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD493123257BAD4900624B2B /* JSONModel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 01D689FB1E42150100CFE82F;
+			remoteInfo = "JSONModel-mac";
+		};
+		DD49312E257BAD4900624B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD493123257BAD4900624B2B /* JSONModel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 01D68A1A1E421A8400CFE82F;
+			remoteInfo = "JSONModel-watchOS";
+		};
+		DD493130257BAD4900624B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD493123257BAD4900624B2B /* JSONModel.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 01D68A271E421AC100CFE82F;
+			remoteInfo = "JSONModel-tvOS";
+		};
+		DD49313C257BAD4D00624B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD493137257BAD4D00624B2B /* Masonry.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3AED05B71AD59FD40053CC65;
+			remoteInfo = "Masonry iOS";
+		};
+		DD49313E257BAD4D00624B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD493137257BAD4D00624B2B /* Masonry.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3AED06271AD5A1400053CC65;
+			remoteInfo = "Masonry OSX";
+		};
+		DD493149257BAD5200624B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD493143257BAD5200624B2B /* MASShortcut.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0D827CD31990D4420010B8EF;
+			remoteInfo = MASShortcut;
+		};
+		DD49314B257BAD5200624B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD493143257BAD5200624B2B /* MASShortcut.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0D827D8319910AFF0010B8EF;
+			remoteInfo = MASShortcutTests;
+		};
+		DD49314D257BAD5200624B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD493143257BAD5200624B2B /* MASShortcut.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0D827D371990D5E70010B8EF;
+			remoteInfo = Demo;
+		};
+		DD49315C257BAD5500624B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD493152257BAD5500624B2B /* ReactiveObjC.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D04725EA19E49ED7006002AA;
+			remoteInfo = "ReactiveObjC-macOS";
+		};
+		DD49315E257BAD5500624B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD493152257BAD5500624B2B /* ReactiveObjC.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D04725F519E49ED7006002AA;
+			remoteInfo = "ReactiveObjC-macOSTests";
+		};
+		DD493160257BAD5500624B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD493152257BAD5500624B2B /* ReactiveObjC.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D047260C19E49F82006002AA;
+			remoteInfo = "ReactiveObjC-iOS";
+		};
+		DD493162257BAD5500624B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD493152257BAD5500624B2B /* ReactiveObjC.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = D047261619E49F82006002AA;
+			remoteInfo = "ReactiveObjC-iOSTests";
+		};
+		DD493164257BAD5500624B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD493152257BAD5500624B2B /* ReactiveObjC.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A9B315541B3940610001CB9C;
+			remoteInfo = "ReactiveObjC-watchOS";
+		};
+		DD493166257BAD5500624B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD493152257BAD5500624B2B /* ReactiveObjC.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 57A4D2411BA13D7A00F7D4B1;
+			remoteInfo = "ReactiveObjC-tvOS";
+		};
+		DD493168257BAD5500624B2B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DD493152257BAD5500624B2B /* ReactiveObjC.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 7DFBED031CDB8C9500EE435B;
+			remoteInfo = "ReactiveObjC-tvOSTests";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
-		22E4C7C8E957AAAC7DDFCE41 /* Pods-FloatDock.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloatDock.debug.xcconfig"; path = "Target Support Files/Pods-FloatDock/Pods-FloatDock.debug.xcconfig"; sourceTree = "<group>"; };
-		361A4F474278B8AD5E137ECE /* Pods-FloatDock.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FloatDock.release.xcconfig"; path = "Target Support Files/Pods-FloatDock/Pods-FloatDock.release.xcconfig"; sourceTree = "<group>"; };
-		B4376660DB09AC0CFCDE5409 /* Pods_FloatDock.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FloatDock.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C309AF472510B3880029C12B /* HotKeyMas.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HotKeyMas.h; sourceTree = "<group>"; };
 		C309AF482510B3880029C12B /* HotKeyMas.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HotKeyMas.m; sourceTree = "<group>"; };
 		C37DA83125678EDB00D67AD2 /* ZLImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ZLImage.h; sourceTree = "<group>"; };
@@ -58,6 +173,10 @@
 		C3D1D0A02511DB9E00D7A596 /* FloatDockVCPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FloatDockVCPresenter.h; sourceTree = "<group>"; };
 		C3D1D0A72511E10600D7A596 /* AppIconItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppIconItem.h; sourceTree = "<group>"; };
 		C3D1D0A82511E10600D7A596 /* AppIconItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppIconItem.m; sourceTree = "<group>"; };
+		DD493123257BAD4900624B2B /* JSONModel.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = JSONModel.xcodeproj; path = Libraries/jsonmodel/JSONModel.xcodeproj; sourceTree = "<group>"; };
+		DD493137257BAD4D00624B2B /* Masonry.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Masonry.xcodeproj; path = Libraries/Masonry/Masonry.xcodeproj; sourceTree = "<group>"; };
+		DD493143257BAD5200624B2B /* MASShortcut.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MASShortcut.xcodeproj; path = Libraries/MASShortcut/MASShortcut.xcodeproj; sourceTree = "<group>"; };
+		DD493152257BAD5500624B2B /* ReactiveObjC.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ReactiveObjC.xcodeproj; path = Libraries/ReactiveObjC/ReactiveObjC.xcodeproj; sourceTree = "<group>"; };
 		DDDABA25257B8F900025CE73 /* HotKeyPermission.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HotKeyPermission.m; path = FloatDock/Public/Tool/HotKeyPermission.m; sourceTree = SOURCE_ROOT; };
 		DDDABA26257B8F900025CE73 /* HotKeyPermission.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HotKeyPermission.h; path = FloatDock/Public/Tool/HotKeyPermission.h; sourceTree = SOURCE_ROOT; };
 		E43781BC2453291B00AA785B /* FloatDock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FloatDock.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,22 +235,16 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E97881DF951C3A94C79F92A5 /* Pods_FloatDock.framework in Frameworks */,
+				DD267413257BB29E004F6AFF /* JSONModel.framework in Frameworks */,
+				DD267414257BB29E004F6AFF /* Masonry.framework in Frameworks */,
+				DD267415257BB29E004F6AFF /* MASShortcut.framework in Frameworks */,
+				DD267416257BB29E004F6AFF /* ReactiveObjC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5A5A381BF17EDF0DD13140F4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				22E4C7C8E957AAAC7DDFCE41 /* Pods-FloatDock.debug.xcconfig */,
-				361A4F474278B8AD5E137ECE /* Pods-FloatDock.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		C37DA83025678ECB00D67AD2 /* NSImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -165,11 +278,48 @@
 			path = md5;
 			sourceTree = "<group>";
 		};
-		C3D1D0862511A80500D7A596 /* backup */ = {
+		DD493124257BAD4900624B2B /* Products */ = {
 			isa = PBXGroup;
 			children = (
+				DD49312B257BAD4900624B2B /* JSONModel.framework */,
+				DD49312D257BAD4900624B2B /* JSONModel.framework */,
+				DD49312F257BAD4900624B2B /* JSONModel.framework */,
+				DD493131257BAD4900624B2B /* JSONModel.framework */,
 			);
-			path = backup;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DD493138257BAD4D00624B2B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD49313D257BAD4D00624B2B /* Masonry.framework */,
+				DD49313F257BAD4D00624B2B /* Masonry.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DD493144257BAD5200624B2B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD49314A257BAD5200624B2B /* MASShortcut.framework */,
+				DD49314C257BAD5200624B2B /* MASShortcutTests.xctest */,
+				DD49314E257BAD5200624B2B /* Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DD493153257BAD5500624B2B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DD49315D257BAD5500624B2B /* ReactiveObjC.framework */,
+				DD49315F257BAD5500624B2B /* ReactiveObjCTests.xctest */,
+				DD493161257BAD5500624B2B /* ReactiveObjC.framework */,
+				DD493163257BAD5500624B2B /* ReactiveObjCTests.xctest */,
+				DD493165257BAD5500624B2B /* ReactiveObjC.framework */,
+				DD493167257BAD5500624B2B /* ReactiveObjC.framework */,
+				DD493169257BAD5500624B2B /* ReactiveObjCTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		DDDABA21257B8DC20025CE73 /* Dock */ = {
@@ -228,7 +378,6 @@
 			children = (
 				E43781BE2453291B00AA785B /* FloatDock */,
 				E43781BD2453291B00AA785B /* Products */,
-				5A5A381BF17EDF0DD13140F4 /* Pods */,
 				FF76C8A160FF392FDD2F7FA6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -258,7 +407,6 @@
 				E4C7F1512459A3F000B73296 /* delete@2x.png */,
 				E48A586E245EF796008B8C08 /* FloatDock-prefix.pch */,
 				E48A586B245EF546008B8C08 /* Localizable.strings */,
-				E4C7F1342459312D00B73296 /* FavoriteVC */,
 			);
 			path = FloatDock;
 			sourceTree = "<group>";
@@ -273,18 +421,13 @@
 			path = Public;
 			sourceTree = "<group>";
 		};
-		E4C7F1342459312D00B73296 /* FavoriteVC */ = {
-			isa = PBXGroup;
-			children = (
-				C3D1D0862511A80500D7A596 /* backup */,
-			);
-			path = FavoriteVC;
-			sourceTree = "<group>";
-		};
 		FF76C8A160FF392FDD2F7FA6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B4376660DB09AC0CFCDE5409 /* Pods_FloatDock.framework */,
+				DD493152257BAD5500624B2B /* ReactiveObjC.xcodeproj */,
+				DD493143257BAD5200624B2B /* MASShortcut.xcodeproj */,
+				DD493137257BAD4D00624B2B /* Masonry.xcodeproj */,
+				DD493123257BAD4900624B2B /* JSONModel.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -296,11 +439,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E43781D02453291C00AA785B /* Build configuration list for PBXNativeTarget "FloatDock" */;
 			buildPhases = (
-				7160DB36D901CF56F3B356AC /* [CP] Check Pods Manifest.lock */,
 				E43781B82453291B00AA785B /* Sources */,
 				E43781B92453291B00AA785B /* Frameworks */,
 				E43781BA2453291B00AA785B /* Resources */,
-				006C0008E1B7E802F1A2CB87 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -337,12 +478,145 @@
 			mainGroup = E43781B32453291B00AA785B;
 			productRefGroup = E43781BD2453291B00AA785B /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = DD493124257BAD4900624B2B /* Products */;
+					ProjectRef = DD493123257BAD4900624B2B /* JSONModel.xcodeproj */;
+				},
+				{
+					ProductGroup = DD493138257BAD4D00624B2B /* Products */;
+					ProjectRef = DD493137257BAD4D00624B2B /* Masonry.xcodeproj */;
+				},
+				{
+					ProductGroup = DD493144257BAD5200624B2B /* Products */;
+					ProjectRef = DD493143257BAD5200624B2B /* MASShortcut.xcodeproj */;
+				},
+				{
+					ProductGroup = DD493153257BAD5500624B2B /* Products */;
+					ProjectRef = DD493152257BAD5500624B2B /* ReactiveObjC.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				E43781BB2453291B00AA785B /* FloatDock */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		DD49312B257BAD4900624B2B /* JSONModel.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = JSONModel.framework;
+			remoteRef = DD49312A257BAD4900624B2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD49312D257BAD4900624B2B /* JSONModel.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = JSONModel.framework;
+			remoteRef = DD49312C257BAD4900624B2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD49312F257BAD4900624B2B /* JSONModel.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = JSONModel.framework;
+			remoteRef = DD49312E257BAD4900624B2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD493131257BAD4900624B2B /* JSONModel.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = JSONModel.framework;
+			remoteRef = DD493130257BAD4900624B2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD49313D257BAD4D00624B2B /* Masonry.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Masonry.framework;
+			remoteRef = DD49313C257BAD4D00624B2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD49313F257BAD4D00624B2B /* Masonry.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Masonry.framework;
+			remoteRef = DD49313E257BAD4D00624B2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD49314A257BAD5200624B2B /* MASShortcut.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MASShortcut.framework;
+			remoteRef = DD493149257BAD5200624B2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD49314C257BAD5200624B2B /* MASShortcutTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = MASShortcutTests.xctest;
+			remoteRef = DD49314B257BAD5200624B2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD49314E257BAD5200624B2B /* Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Demo.app;
+			remoteRef = DD49314D257BAD5200624B2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD49315D257BAD5500624B2B /* ReactiveObjC.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ReactiveObjC.framework;
+			remoteRef = DD49315C257BAD5500624B2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD49315F257BAD5500624B2B /* ReactiveObjCTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ReactiveObjCTests.xctest;
+			remoteRef = DD49315E257BAD5500624B2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD493161257BAD5500624B2B /* ReactiveObjC.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ReactiveObjC.framework;
+			remoteRef = DD493160257BAD5500624B2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD493163257BAD5500624B2B /* ReactiveObjCTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ReactiveObjCTests.xctest;
+			remoteRef = DD493162257BAD5500624B2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD493165257BAD5500624B2B /* ReactiveObjC.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ReactiveObjC.framework;
+			remoteRef = DD493164257BAD5500624B2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD493167257BAD5500624B2B /* ReactiveObjC.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ReactiveObjC.framework;
+			remoteRef = DD493166257BAD5500624B2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		DD493169257BAD5500624B2B /* ReactiveObjCTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ReactiveObjCTests.xctest;
+			remoteRef = DD493168257BAD5500624B2B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		E43781BA2453291B00AA785B /* Resources */ = {
@@ -358,48 +632,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		006C0008E1B7E802F1A2CB87 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FloatDock/Pods-FloatDock-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-FloatDock/Pods-FloatDock-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FloatDock/Pods-FloatDock-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7160DB36D901CF56F3B356AC /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-FloatDock-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E43781B82453291B00AA785B /* Sources */ = {
@@ -573,7 +805,6 @@
 		};
 		E43781D12453291C00AA785B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 22E4C7C8E957AAAC7DDFCE41 /* Pods-FloatDock.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FloatDock/FloatDock.entitlements;
@@ -597,7 +828,6 @@
 		};
 		E43781D22453291C00AA785B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 361A4F474278B8AD5E137ECE /* Pods-FloatDock.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = FloatDock/FloatDock.entitlements;
